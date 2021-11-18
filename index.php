@@ -15,11 +15,11 @@ switch ($url) {
         break;
     case 'cp-admin/dang-nhap':
         require_once "./business/auth/login.php";
-        login_page();
+        admin_login_page();
         break;
     case 'cp-admin/dang-nhap/kiem-tra':
         require_once "./business/auth/login.php";
-        login_handle();
+        admin_login_handle();
         break;
     case 'cp-admin/tai-khoan':
         require_once "./business/admin/account.php";

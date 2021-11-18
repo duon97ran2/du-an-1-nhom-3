@@ -1,10 +1,10 @@
 <?php
 
-function login_page() {
-    view_no_layout('auth/login');
+function admin_login_page() {
+    view_no_layout('auth/admin/login');
 }
 
-function login_handle() {
+function admin_login_handle() {
     $errors = [];
     $email = input_post('email');
     $password = input_post('password');
