@@ -46,6 +46,6 @@ switch ($url) {
         account_remove();
         break;
     default:
-        echo "Đường dẫn bạn đang truy cập chưa được định nghĩa";
+        include_once "./views/errors/_404.php";
         break;
 }
