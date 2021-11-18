@@ -11,7 +11,7 @@ function dd(){
     echo "<pre>";
     $args = func_get_args();
     foreach($args as $item){
-        print_r($item);
+        var_dump($item);
     }
     echo "</pre>";
     die;
@@ -39,6 +39,11 @@ function admin_url($path = '') {
     return ADMIN_URL . $path;
 }
 
+function error_page($page = '_404') {
+    include_once "./views/errors/$page.php";
+    die;
+}
+
 // chuong create 
 function set_session($key, $value) {
     $_SESSION[$key] = $value;
@@ -52,10 +57,10 @@ function remove_session($key) {
 
 // chuong create
 function input_get($name) {
-    return $_GET[$name];
+    return $_GET[$name] ?? '';
 }
 function input_post($name) {
-    return $_POST[$name];
+    return $_POST[$name] ?? '';
 }
 // chuong create
 function redirect($url) {
@@ -75,5 +80,27 @@ function print_errors($name) {
 }
 function remove_errors() {
     remove_session('errors');
+}
+// chuong create
+function auth_info() {
+    $user_id = get_session('AUTH_ID');
+    $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
+    $data = executeQuery($sql, false);
+    return $data ?? [];
+}
+function is_login_for_auth_page() {
+    if (get_session('AUTH_ID')) {
+        redirect('/');
+    }
+}
+function is_admin() {
+    $user = auth_info();
+    if (!empty($user)) {
+        if (strtolower($user['role']) != 'admin') {
+            error_page();
+        }
+    } else {
+        error_page();
+    }
 }
 ?>

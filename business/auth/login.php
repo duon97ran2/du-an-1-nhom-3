@@ -1,6 +1,7 @@
 <?php
 
 function admin_login_page() {
+    is_login_for_auth_page();
     view_no_layout('auth/admin/login');
 }
 
@@ -29,7 +30,7 @@ function admin_login_handle() {
             $errors['message'] = 'Tài khoản hoặc mật khẩu không chính xác';
         } else if ($user['is_active'] == 0) {
             $errors['message'] = 'Tài khoản đang bị khoá';
-        } else if ($user['role'] != 'admin') {
+        } else if (strtolower($user['role']) != 'admin') {
             $errors['message'] = 'Bạn không có quyền truy cập';
         } 
     }
@@ -38,8 +39,14 @@ function admin_login_handle() {
         set_errors($errors);
         redirect('cp-admin/dang-nhap');
     } else {
+        set_session('AUTH_ID', $user['user_id']);
         redirect('cp-admin/dashboard');
     }
+}
+
+function admin_logout() {
+    remove_session('AUTH_ID');
+    redirect('cp-admin/dang-nhap');
 }
 
 function find_user_by_email($email) {

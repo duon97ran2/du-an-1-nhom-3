@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PolyMOBILE | Đăng nhập</title>
+  <title>PolyMOBILE | Cập nhật mật khẩu</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -15,35 +15,28 @@
   <link rel="stylesheet" href="<?= asset('adminlte/dist/css/adminlte.min.css') ?>">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box" style="width: 400px">
+<div class="login-box" style="width: 500px">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
       <a href="<?= admin_url('dashboard') ?>" class="h1"><b>Poly</b>MOBILE</a>
     </div>
     <div class="card-body">
-        <form action="<?= admin_url('dang-nhap/kiem-tra') ?>" method="post">
+        <form action="<?= admin_url('quen-mat-khau/cap-nhat-mat-khau/kiem-tra') ?>" method="post">
             <?php if (!empty(print_errors('message'))) : ?>
             <div class="alert alert-danger"><?= print_errors('message') ?></div>
             <?php endif; ?>
-
-            <?php if (!empty(get_session('message'))) : ?>
-            <div class="alert alert-success">
-                <?= get_session('message') ?>
-            </div>
-            <?php remove_session('message') ?>
-            <?php endif; ?>
-
+            
+            <input type="hidden" name="token" value="<?= $token ?>">
             <div class="form-group mb-3">
                 <div class="input-group">
-                    <input type="text" name="email" class="form-control<?= print_errors('email') ? ' is-invalid' : '' ?>" placeholder="Email">
+                    <input type="text" class="form-control" name="email" value="<?= $email ?>" disabled>
                     <div class="input-group-append">  
                         <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
                         </div>
                     </div>
                 </div>
-                <span class="text-danger"><?= print_errors('email') ?></span>
             </div>
             <div class="form-group mb-3">
                 <div class="input-group">
@@ -56,12 +49,20 @@
                 </div>
                 <span class="text-danger"><?= print_errors('password') ?></span>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+            <div class="form-group mb-3">
+                <div class="input-group">
+                <input type="password" name="confirm_password" class="form-control<?= print_errors('confirm_password') ? ' is-invalid' : '' ?>" placeholder="Xác nhận mật khẩu">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <span class="text-danger"><?= print_errors('confirm_password') ?></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Cập nhật mật khẩu</button>
         </form>
         <?php remove_errors() ?>
-        <p class="mt-2 mb-1">
-            <a href="<?= admin_url('quen-mat-khau') ?>">Quên mật khẩu?</a>
-        </p>
     </div>
     <!-- /.card-body -->
   </div>

@@ -21,6 +21,26 @@ switch ($url) {
         require_once "./business/auth/login.php";
         admin_login_handle();
         break;
+    case 'cp-admin/dang-xuat':
+        require_once "./business/auth/login.php";
+        admin_logout();
+        break;
+    case 'cp-admin/quen-mat-khau':
+        require_once "./business/auth/reset.php";
+        admin_forgot_password_page();
+        break;
+    case 'cp-admin/quen-mat-khau/kiem-tra':
+        require_once "./business/auth/reset.php";
+        admin_forgot_password_handle();
+        break;
+    case 'cp-admin/quen-mat-khau/cap-nhat-mat-khau':
+        require_once "./business/auth/reset.php";
+        admin_reset_password_page();
+        break;
+    case 'cp-admin/quen-mat-khau/cap-nhat-mat-khau/kiem-tra':
+        require_once "./business/auth/reset.php";
+        admin_reset_password_handle();
+        break;
     case 'cp-admin/tai-khoan':
         require_once "./business/admin/account.php";
         account_index();
@@ -46,6 +66,6 @@ switch ($url) {
         account_remove();
         break;
     default:
-        include_once "./views/errors/_404.php";
+        error_page();
         break;
 }
