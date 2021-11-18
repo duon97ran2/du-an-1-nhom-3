@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once './commons/app_config.php';
 require_once './commons/helpers.php';
 require_once './dao/system_dao.php';
@@ -12,6 +12,14 @@ switch ($url) {
     case 'cp-admin/dashboard':
         require_once './business/admin/dashboard.php';
         dashboard_info();
+        break;
+    case 'cp-admin/dang-nhap':
+        require_once "./business/auth/login.php";
+        login_page();
+        break;
+    case 'cp-admin/dang-nhap/kiem-tra':
+        require_once "./business/auth/login.php";
+        login_handle();
         break;
     case 'cp-admin/tai-khoan':
         require_once "./business/admin/account.php";
