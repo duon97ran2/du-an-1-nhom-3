@@ -23,9 +23,11 @@
             <?php endif; ?>
 
             <div class="mb-3">
-                <input type="text" name="email" placeholder="Địa chỉ email" />
-                <small class="errors"></small>
+                <input type="text" name="email" class="<?= print_errors('email') ? ' is-invalid' : '' ?>" placeholder="Địa chỉ email" />
+                <small class="errors"><?= print_errors('email') ?></small>
             </div>
+            
+            <?php remove_errors() ?>
             <button type="submit" class="login">Gửi</button>
             <hr>
             <a href="<?= app_url('dang-nhap') ?>" class="create-account">Đăng nhập</a>
