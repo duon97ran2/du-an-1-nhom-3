@@ -1,5 +1,6 @@
 <?php
 function account_index(){
+    
     $sql = "select * from users";
     $users = executeQuery($sql);
 
@@ -21,7 +22,12 @@ function account_create(){
 function account_save_add(){
     $name = $_POST['name'];
     $email = $_POST['email'];
+    $gender = $_POST['gender'];
+    $status = $_POST['status'];
+    $role_id = $_POST['role_id'];
+    $address = $_POST['address'];
     $password = $_POST['password'];
+    $phone = $_POST['phone'];
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $file = $_FILES['avatar'];
     $avatar='';
@@ -33,9 +39,9 @@ function account_save_add(){
 
     // tạo ra câu sql insert tài khoản mới
     $sql = "insert into users 
-                (name, email, password, avatar) 
+                (name, email, password, avatar,gender,status,role_id,address,phone) 
             values 
-                ('$name', '$email', '$passwordHash', '$avatar')";
+                ('$name', '$email', '$passwordHash', '$avatar',$gender,$status,$role_id,'$address','$phone')";
     // Thực thi câu sql với db
     executeQuery($sql);
     header("location: " . ADMIN_URL . 'tai-khoan');
@@ -59,6 +65,11 @@ function account_save_edit(){
     $email = $_POST['email'];
     // lưu ảnh vào thư mục public/uploads
     $file = $_FILES['avatar'];
+    $gender = $_POST['gender'];
+    $status = $_POST['status'];
+    $role_id = $_POST['role_id'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
     $avatar = $oldData['avatar'];
     // Lưu ảnh
     if($file['size'] > 0){
@@ -72,10 +83,17 @@ function account_save_edit(){
             set
                 name = '$name', 
                 email = '$email', 
-                avatar = '$avatar' 
+                avatar = '$avatar',
+                gender='$gender',
+                status='$status',
+                role_id='$role_id',
+                address='$address',
+                phone='$phone'
             where id = $id";
     // Thực thi câu sql với db
     executeQuery($sql);
+
+    
     header("location: " . ADMIN_URL . 'tai-khoan');
 }
 ?>
