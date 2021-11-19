@@ -122,4 +122,14 @@ function upload_image($file = [], $folder = '')
     }
     return false;
 }
+
+function is_maintenance() {
+    $sql = "SELECT * FROM options";
+    $option = executeQuery($sql, false);
+    if (!empty($option)) {
+        if ($option['is_maintenance'] == 1) {
+            error_page('_maintenance');
+        }
+    }
+}
 ?>

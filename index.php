@@ -1,11 +1,12 @@
 <?php
 session_start();
 require_once './commons/app_config.php';
-require_once './commons/helpers.php';
 require_once './dao/system_dao.php';
+require_once './commons/helpers.php';
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 switch ($url) {
     case '/':
+        is_maintenance();
         require_once './business/homepage.php';
         index();
         break;
@@ -15,6 +16,7 @@ switch ($url) {
         dashboard_info();
         break;
     case 'dang-ky':
+        is_maintenance();
         is_login_for_auth_page();
         require_once "./business/auth/register.php";
         client_register_page();
@@ -24,10 +26,12 @@ switch ($url) {
         client_register_handle();
         break;
     case 'dang-ky/xac-nhan-tai-khoan':
+        is_maintenance();
         require_once "./business/auth/register.php";
         client_verify_hanle();
         break;
     case 'dang-nhap':
+        is_maintenance();
         is_login_for_auth_page();
         require_once "./business/auth/login.php";
         client_login_page();
@@ -41,6 +45,7 @@ switch ($url) {
         logout();
         break;
     case 'quen-mat-khau':
+        is_maintenance();
         is_login_for_auth_page();
         require_once "./business/auth/reset.php";
         client_forgot_password_page();
