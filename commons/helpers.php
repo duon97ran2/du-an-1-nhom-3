@@ -88,9 +88,13 @@ function auth_info() {
     $data = executeQuery($sql, false);
     return $data ?? [];
 }
-function is_login_for_auth_page() {
+function is_login_for_auth_page($admin = false) {
     if (get_session('AUTH_ID')) {
-        redirect('/');
+        if ($admin) {
+            redirect('cp-admin/dashboard');
+        } else {
+            redirect('/');
+        }
     }
 }
 function is_admin() {

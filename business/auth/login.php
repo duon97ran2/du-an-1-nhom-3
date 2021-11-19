@@ -1,7 +1,6 @@
 <?php
 
 function admin_login_page() {
-    is_login_for_auth_page();
     view_no_layout('auth/admin/login');
 }
 

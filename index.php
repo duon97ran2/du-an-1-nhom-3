@@ -10,10 +10,12 @@ switch ($url) {
         index();
         break;
     case 'cp-admin/dashboard':
+        is_admin();
         require_once './business/admin/dashboard.php';
         dashboard_info();
         break;
     case 'cp-admin/dang-nhap':
+        is_login_for_auth_page(true);
         require_once "./business/auth/login.php";
         admin_login_page();
         break;
@@ -26,6 +28,7 @@ switch ($url) {
         admin_logout();
         break;
     case 'cp-admin/quen-mat-khau':
+        is_login_for_auth_page(true);
         require_once "./business/auth/reset.php";
         admin_forgot_password_page();
         break;

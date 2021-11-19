@@ -3,7 +3,6 @@
 require_once DIR_ROOT."/commons/mailer/mail.php";
 
 function admin_forgot_password_page() {
-    is_login_for_auth_page();
     view_no_layout('auth/admin/forgot');
 }
 
@@ -41,8 +40,6 @@ function admin_forgot_password_handle() {
 }
 
 function admin_reset_password_page() {
-    is_login_for_auth_page();
-    
     $token = input_get('token');
     $user_token = find_user_by_token($token);
     $time_now = strtotime(date("Y-m-d H:i:s"));
