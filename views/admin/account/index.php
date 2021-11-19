@@ -1,5 +1,5 @@
 <h2>Danh sách tài khoản</h2>
-<a href="<?= ADMIN_URL ?>tai-khoan/tao-moi">Thêm tài khoản</a>
+
 <table class="table table-stripped">
     <thead>
         <th>ID</th>
@@ -7,7 +7,7 @@
         <th>Email</th>
         <th>Ảnh đại diện</th>
         <th>
-
+            <a class="btn btn-success btn-sm" href="<?= ADMIN_URL ?>tai-khoan/tao-moi">Thêm tài khoản</a>
         </th>
     </thead>
     <tbody>
