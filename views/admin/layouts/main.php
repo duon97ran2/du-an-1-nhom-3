@@ -16,7 +16,7 @@
   </div>
 
   <!-- Navbar -->
-  
+  <?php include_once "./views/admin/layouts/header.php" ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->

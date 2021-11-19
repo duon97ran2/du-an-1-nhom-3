@@ -8,6 +8,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?= ADMIN_ASSETS ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Custom File -->
+<script src="<?= ADMIN_ASSETS ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- ChartJS -->
 <script src="<?= ADMIN_ASSETS ?>plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -32,3 +34,8 @@
 <script src="<?= ADMIN_ASSETS ?>dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?= ADMIN_ASSETS ?>dist/js/pages/dashboard.js"></script>
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>

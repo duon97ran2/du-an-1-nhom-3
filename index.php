@@ -44,6 +44,14 @@ switch ($url) {
         require_once "./business/auth/reset.php";
         admin_reset_password_handle();
         break;
+    case 'cp-admin/cau-hinh-trang':
+        require_once "./business/admin/options.php";
+        option_page();
+        break;
+    case 'cp-admin/cau-hinh-trang/kiem-tra':
+        require_once "./business/admin/options.php";
+        option_handle();
+        break;
     case 'cp-admin/tai-khoan':
         require_once "./business/admin/account.php";
         account_index();
