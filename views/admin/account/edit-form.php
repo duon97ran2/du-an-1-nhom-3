@@ -12,9 +12,6 @@
             <div>
                 <img src="<?= PUBLIC_ASSETS . $user['avatar'] ?>" width="250">
             </div>
-            <label for="">Ảnh đại diện</label>
-            <input type="file" name="avatar" id="" class="form-control" placeholder="">
-
             <div class="form-group">
                 <label for="">Ảnh đại diện</label>
                 <input type="file" name="avatar" id="" class="form-control" placeholder="">
