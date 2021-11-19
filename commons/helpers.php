@@ -62,6 +62,9 @@ function input_get($name) {
 function input_post($name) {
     return $_POST[$name] ?? '';
 }
+function input_file($name) {
+    return $_FILES[$name];
+}
 // chuong create
 function redirect($url) {
     header('Location: '. app_url($url));
@@ -88,13 +91,9 @@ function auth_info() {
     $data = executeQuery($sql, false);
     return $data ?? [];
 }
-function is_login_for_auth_page($admin = false) {
+function is_login_for_auth_page() {
     if (get_session('AUTH_ID')) {
-        if ($admin) {
-            redirect('cp-admin/dashboard');
-        } else {
-            redirect('/');
-        }
+        redirect('/');
     }
 }
 function is_admin() {
@@ -106,5 +105,21 @@ function is_admin() {
     } else {
         error_page();
     }
+}
+// chuong create 
+function upload_image($file = [], $folder = '')
+{
+    $assets_path = DIR_ROOT . '/public/uploads/';
+    $folder = empty($folder) ? '' : $folder.'/' ;
+    if (!is_dir($assets_path.$folder))
+    {
+        mkdir($assets_path.$folder, 0755, true);
+    }
+    $file_name = $folder . uniqid() . '-' . rand() . date('YmdHis') . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+    if (move_uploaded_file($file['tmp_name'], $assets_path.$file_name))
+    {
+        return $file_name;
+    }
+    return false;
 }
 ?>

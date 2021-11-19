@@ -1,8 +1,9 @@
 <?php
 
 function dashboard_info(){
-    echo "Thông tin trang quản trị. <a href='".admin_url('dang-xuat')."'>Đăng xuất</a><br>";
-    dd(auth_info());
+    admin_render("dashboard.php", [
+        'page_title' => 'Cấu hình trang'
+    ]);
 }
 
 ?>

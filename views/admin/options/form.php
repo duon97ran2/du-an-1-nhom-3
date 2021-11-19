@@ -10,63 +10,78 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form id="quickForm" novalidate="novalidate">
+            <form action="<?= admin_url('cau-hinh-trang/kiem-tra') ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
-                    <input type="hidden" value="<?= $option_id ?>" name="option_id">
+                    <?php if (!empty(get_session('message'))) : ?>
+                    <div class="alert alert-success">
+                        <?= get_session('message') ?>
+                    </div>
+                    <?php remove_session('message') ?>
+                    <?php endif; ?>
+                    
+                    <input type="hidden" value="<?= $option['option_id'] ?? '' ?>" name="option_id">
                     <div class="form-group">
                         <label>Tên trang</label>
-                        <input type="text" name="app_name" class="form-control"/>
+                        <input type="text" name="app_name" class="form-control" value="<?= $option['app_name'] ?? '' ?>"/>
                     </div>
                     <div class="form-group">
                         <label>Logo</label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" name="logo" id="customFile">
-                          <label class="custom-file-label" for="customFile">Lựa chọn ảnh</label>
+                        <?php if (!empty($option['logo'])) : ?>
+                        <div class="text-center">
+                          <img class="profile-user-img img-fluid img-circle mb-3" style="height:100px" src="<?= asset('uploads/'.$option['logo']) ?>">
+                        </div>
+                        <?php endif; ?>
+                        <div class="row">
+                        <input type="file" class="col-12" name="logo">
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Favicon</label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" name="favicon" id="customFile">
-                          <label class="custom-file-label" for="customFile">Lựa chọn ảnh</label>
+                        <?php if (!empty($option['favicon'])) : ?>
+                        <div class="text-center">
+                          <img class="profile-user-img img-fluid img-circle mb-3" style="height:100px" src="<?= asset('uploads/'.$option['favicon']) ?>">
+                        </div>
+                        <?php endif; ?>
+                        <div class="row">
+                        <input type="file" class="col-12" name="favicon">
                         </div>
                     </div>
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Hotline 1</label>
-                            <input type="text" name="hotline_1" class="form-control"/>
+                            <input type="text" name="hotline_1" value="<?= $option['hotline_1'] ?? '' ?>" class="form-control"/>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Hotline 2</label>
-                            <input type="text" name="hotline_2" class="form-control"/>
+                            <input type="text" name="hotline_2" value="<?= $option['hotline_2'] ?? '' ?>" class="form-control"/>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Hotline 3</label>
-                            <input type="text" name="hotline_3" class="form-control"/>
+                            <input type="text" name="hotline_3" value="<?= $option['hotline_3'] ?? '' ?>" class="form-control"/>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                         <label>Địa chỉ cơ sở</label>
-                        <input type="text" name="address" class="form-control"/>
+                        <input type="text" name="address" value="<?= $option['address'] ?? '' ?>" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" name="email" class="form-control"/>
+                        <input type="text" name="email" value="<?= $option['email'] ?? '' ?>" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label>Giấy phép</label>
-                        <input type="text" name="license" class="form-control"/>
+                        <input type="text" name="license" value="<?= $option['license'] ?? '' ?>" class="form-control"/>
                     </div>
                     <div class="form-group">
                       <input type="hidden" name="is_maintenance" value="0">
                       <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" name="is_maintenance" value="1" id="customSwitch1">
+                        <input type="checkbox" class="custom-control-input" name="is_maintenance" value="1" <?= empty($option['is_maintenance']) ? '' : ($option['is_maintenance'] == 1 ? 'checked' : '') ?> id="customSwitch1">
                         <label class="custom-control-label" for="customSwitch1">Bảo trì</label>
                       </div>
                     </div>

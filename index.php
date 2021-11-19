@@ -58,7 +58,7 @@ switch ($url) {
         client_reset_password_handle();
         break;
     case 'cp-admin/dang-nhap':
-        is_login_for_auth_page(true);
+        is_login_for_auth_page();
         require_once "./business/auth/login.php";
         admin_login_page();
         break;
@@ -71,7 +71,7 @@ switch ($url) {
         logout(true);
         break;
     case 'cp-admin/quen-mat-khau':
-        is_login_for_auth_page(true);
+        is_login_for_auth_page();
         require_once "./business/auth/reset.php";
         admin_forgot_password_page();
         break;
@@ -88,6 +88,7 @@ switch ($url) {
         admin_reset_password_handle();
         break;
     case 'cp-admin/cau-hinh-trang':
+        is_admin();
         require_once "./business/admin/options.php";
         option_page();
         break;
