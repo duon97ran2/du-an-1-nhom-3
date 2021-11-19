@@ -14,6 +14,49 @@ switch ($url) {
         require_once './business/admin/dashboard.php';
         dashboard_info();
         break;
+    case 'dang-ky':
+        is_login_for_auth_page();
+        require_once "./business/auth/register.php";
+        client_register_page();
+        break;
+    case 'dang-ky/kiem-tra':
+        require_once "./business/auth/register.php";
+        client_register_handle();
+        break;
+    case 'dang-ky/xac-nhan-tai-khoan':
+        require_once "./business/auth/register.php";
+        client_verify_hanle();
+        break;
+    case 'dang-nhap':
+        is_login_for_auth_page();
+        require_once "./business/auth/login.php";
+        client_login_page();
+        break;
+    case 'dang-nhap/kiem-tra':
+        require_once "./business/auth/login.php";
+        client_login_handle();
+        break;
+    case 'dang-xuat':
+        require_once "./business/auth/login.php";
+        logout();
+        break;
+    case 'quen-mat-khau':
+        is_login_for_auth_page();
+        require_once "./business/auth/reset.php";
+        client_forgot_password_page();
+        break;
+    case 'quen-mat-khau/kiem-tra':
+        require_once "./business/auth/reset.php";
+        client_forgot_password_handle();
+        break;
+    case 'quen-mat-khau/cap-nhat-mat-khau':
+        require_once "./business/auth/reset.php";
+        client_reset_password_page();
+        break;
+    case 'quen-mat-khau/cap-nhat-mat-khau/kiem-tra':
+        require_once "./business/auth/reset.php";
+        client_reset_password_handle();
+        break;
     case 'cp-admin/dang-nhap':
         is_login_for_auth_page(true);
         require_once "./business/auth/login.php";
@@ -25,7 +68,7 @@ switch ($url) {
         break;
     case 'cp-admin/dang-xuat':
         require_once "./business/auth/login.php";
-        admin_logout();
+        logout(true);
         break;
     case 'cp-admin/quen-mat-khau':
         is_login_for_auth_page(true);

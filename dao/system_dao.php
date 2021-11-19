@@ -19,5 +19,12 @@ function executeQuery($sql, $getAll = true){
     }
 }
 
+function insertExecuteQueryLastID($sql){
+    $connect = get_connect();
+    $stmt = $connect->prepare($sql);
+    $stmt->execute();
+    return $connect->lastInsertId();
+}
+
 
 ?>
