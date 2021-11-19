@@ -10,7 +10,7 @@
                 <input type="text" name="email" id="" class="form-control" placeholder="" value="<?= $user['email'] ?>">
             </div>
             <div>
-                <img src="<?= PUBLIC_ASSETS . $u['avatar'] ?>" width="250">
+                <img src="<?= PUBLIC_ASSETS . $user['avatar'] ?>" width="250">
             </div>
             <label for="">Ảnh đại diện</label>
             <input type="file" name="avatar" id="" class="form-control" placeholder="">
