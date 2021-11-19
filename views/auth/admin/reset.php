@@ -28,16 +28,7 @@
             <?php endif; ?>
             
             <input type="hidden" name="token" value="<?= $token ?>">
-            <div class="form-group mb-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="email" value="<?= $email ?>" disabled>
-                    <div class="input-group-append">  
-                        <div class="input-group-text">
-                        <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <input type="hidden" name="email" value="<?= $email ?>">
             <div class="form-group mb-3">
                 <div class="input-group">
                 <input type="password" name="password" class="form-control<?= print_errors('password') ? ' is-invalid' : '' ?>" placeholder="Mật khẩu">
