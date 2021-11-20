@@ -36,16 +36,16 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="status">Trạng thái</label>
-                <select name="status" id="">
+                <label for="is_active">Trạng thái</label>
+                <select name="is_active" id="">
                     <option disabled selected>Chọn trạng thái</option>
                     <option value="0">Kích hoạt</option>
                     <option value="1">Tạm khóa</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="role_id">Vai trò</label>
-                <select name="role_id" id="">
+                <label for="role">Vai trò</label>
+                <select name="role" id="">
                     <option disabled selected>Chọn vai trò</option>
                     <option value="0">Quản trị viên</option>
                     <option value="1">Nhân viên</option>

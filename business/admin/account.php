@@ -1,18 +1,22 @@
 <?php
 function account_index(){
-    
     $sql = "select * from users";
     $users = executeQuery($sql);
 
-    admin_render('account/index.php', [
-        'dsTaiKhoan' => $users,
-    ]);
+    admin_render('account/index.php', 
+        [
+            'dsTaiKhoan' => $users,
+        ], 
+        [
+            'customize/js/account/list.js'
+        ]
+    );
 }
 
 function account_remove(){
     // lấy id từ đường dẫn
     $id = $_GET['id'];
-    $sql = "delete from users where id = $id";
+    $sql = "delete from users where user_id = $id";
     executeQuery($sql);
     header("location: " . ADMIN_URL . 'tai-khoan');
 }
@@ -23,8 +27,8 @@ function account_save_add(){
     $name = $_POST['name'];
     $email = $_POST['email'];
     $gender = $_POST['gender'];
-    $status = $_POST['status'];
-    $role_id = $_POST['role_id'];
+    $is_active = $_POST['is_active'];
+    $role = $_POST['role'];
     $address = $_POST['address'];
     $password = $_POST['password'];
     $phone = $_POST['phone'];
@@ -39,16 +43,16 @@ function account_save_add(){
 
     // tạo ra câu sql insert tài khoản mới
     $sql = "insert into users 
-                (name, email, password, avatar,gender,status,role_id,address,phone) 
+                (name, email, password, avatar,gender,is_active,role,address,phone) 
             values 
-                ('$name', '$email', '$passwordHash', '$avatar',$gender,$status,$role_id,'$address','$phone')";
+                ('$name', '$email', '$passwordHash', '$avatar',$gender,$is_active,$role,'$address','$phone')";
     // Thực thi câu sql với db
     executeQuery($sql);
     header("location: " . ADMIN_URL . 'tai-khoan');
 }
 function account_edit_form(){
     $id = $_GET['id'];
-    $sql = "select * from users where id = $id";
+    $sql = "select * from users where user_id = $id";
     $user = executeQuery($sql, false);
     admin_render('account/edit-form.php', [
         'user' => $user
@@ -66,8 +70,8 @@ function account_save_edit(){
     // lưu ảnh vào thư mục public/uploads
     $file = $_FILES['avatar'];
     $gender = $_POST['gender'];
-    $status = $_POST['status'];
-    $role_id = $_POST['role_id'];
+    $is_active = $_POST['is_active'];
+    $role = $_POST['role'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
     $avatar = $oldData['avatar'];
@@ -85,11 +89,11 @@ function account_save_edit(){
                 email = '$email', 
                 avatar = '$avatar',
                 gender='$gender',
-                status='$status',
-                role_id='$role_id',
+                is_active='$is_active',
+                role='$role',
                 address='$address',
                 phone='$phone'
-            where id = $id";
+            where user_id = $id";
     // Thực thi câu sql với db
     executeQuery($sql);
 

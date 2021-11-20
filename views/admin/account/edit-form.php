@@ -1,4 +1,4 @@
-<form action="<?= ADMIN_URL . 'tai-khoan/luu-sua?id=' . $user['id'] ?>" method="post" enctype="multipart/form-data">
+<form action="<?= ADMIN_URL . 'tai-khoan/luu-sua?id=' . $user['user_id'] ?>" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-6 offset-3">
             <div class="form-group">
@@ -25,18 +25,18 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="status">Trạng thái</label>
-                <select name="status" id="">
-                    <option value="0" <?php echo ($user['status']==0)?'selected':''?>>Kích hoạt</option>
-                    <option value="1" <?php echo ($user['status']==1)?'selected':''?>>Tạm khóa</option>
+                <label for="is_active">Trạng thái</label>
+                <select name="is_active" id="">
+                    <option value="0" <?php echo ($user['is_active']==0)?'selected':''?>>Kích hoạt</option>
+                    <option value="1" <?php echo ($user['is_active']==1)?'selected':''?>>Tạm khóa</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="role_id">Vai trò</label>
-                <select name="role_id" id="">
-                    <option value="0" <?php echo ($user['role_id']==0)?'selected':''?>>Quản trị viên</option>
-                    <option value="1" <?php echo ($user['role_id']==1)?'selected':''?>>Nhân viên</option>
-                    <option value="2" <?php echo ($user['role_id']==2)?'selected':''?>>Khách hàng</option>
+                <label for="role">Vai trò</label>
+                <select name="role" id="">
+                    <option value="0" <?php echo ($user['role']==0)?'selected':''?>>Quản trị viên</option>
+                    <option value="1" <?php echo ($user['role']==1)?'selected':''?>>Nhân viên</option>
+                    <option value="2" <?php echo ($user['role']==2)?'selected':''?>>Khách hàng</option>
                 </select>
             </div>
             <div class="form-group">

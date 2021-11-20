@@ -16,7 +16,7 @@
   </div>
 
   <!-- Navbar -->
-  
+  <?php include_once "./views/admin/layouts/header.php" ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -69,6 +69,11 @@
 </div>
 <!-- ./wrapper -->
 <?php include_once "./views/admin/layouts/script.php" ?>
+<?php if(count($jsFiles) > 0):?>
+  <?php foreach ($jsFiles as $jsFile): ?>
+    <script src="<?= PUBLIC_ASSETS . $jsFile?>" type="text/javascript"></script>
+  <?php endforeach ?>
+<?php endif?>
 
 </body>
 </html>

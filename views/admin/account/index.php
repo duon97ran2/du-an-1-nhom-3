@@ -1,4 +1,4 @@
-<?php $status = [
+<?php $is_active = [
     0 => 'Kích hoạt',
     1 => 'Tạm khóa',
 ];
@@ -32,20 +32,20 @@ $role = [
     <tbody>
         <?php foreach ($dsTaiKhoan as $u) : ?>
             <tr>
-                <td><?= $u['id'] ?></td>
+                <td><?= $u['user_id'] ?></td>
                 <td><?= $u['name'] ?></td>
                 <td><?= $u['email'] ?></td>
                 <td><?= $gender[$u['gender']] ?></td>
-                <td><?= $status[$u['status']] ?></td>
-                <td><?= $role[$u['role_id']] ?></td>
+                <td><?= $is_active[$u['is_active']] ?></td>
+                <td><?= $role[$u['role']] ?></td>
                 <td><?= $u['address'] ?></td>
                 <td><?= $u['phone'] ?></td>
                 <td>
                     <img src="<?= PUBLIC_ASSETS . $u['avatar'] ?>" width="100">
                 </td>
                 <td>
-                    <a href="<?= ADMIN_URL . 'tai-khoan/sua?id=' . $u['id'] ?>" class="btn btn-sm btn-info">Sửa</a>
-                    <a href="<?= ADMIN_URL . 'tai-khoan/xoa?id=' . $u['id'] ?>" class="btn btn-sm btn-danger">Xóa</a>
+                    <a href="<?= ADMIN_URL . 'tai-khoan/sua?id=' . $u['user_id'] ?>" class="btn btn-sm btn-info">Sửa</a>
+                    <a href="<?= ADMIN_URL . 'tai-khoan/xoa?id=' . $u['user_id'] ?>" class="btn btn-sm btn-danger">Xóa</a>
                 </td>
             </tr>
         <?php endforeach ?>
