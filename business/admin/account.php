@@ -28,6 +28,7 @@ function account_save_add(){
     $email = $_POST['email'];
     $gender = $_POST['gender'];
     $is_active = $_POST['is_active'];
+    $is_verify = $_POST['is_verify'];
     $role = $_POST['role'];
     $address = $_POST['address'];
     $password = $_POST['password'];
@@ -43,9 +44,9 @@ function account_save_add(){
 
     // tạo ra câu sql insert tài khoản mới
     $sql = "insert into users 
-                (name, email, password, avatar,gender,is_active,role,address,phone) 
+                (name, email, password, avatar,gender,is_active,is_verify,role,address,phone) 
             values 
-                ('$name', '$email', '$passwordHash', '$avatar',$gender,$is_active,$role,'$address','$phone')";
+                ('$name', '$email', '$passwordHash', '$avatar','$gender','$is_active','$is_verify','$role','$address','$phone')";
     // Thực thi câu sql với db
     executeQuery($sql);
     header("location: " . ADMIN_URL . 'tai-khoan');
@@ -62,7 +63,7 @@ function account_edit_form(){
 function account_save_edit(){
     // lấy ra thông tin cũ của dữ liệu vừa submit lên
     $id = $_GET['id'];
-    $sql = "select * from users where id = $id";
+    $sql = "select * from users where user_id = $id";
     $oldData = executeQuery($sql, false);
     // nhận dữ liệu từ form gửi lên
     $name = $_POST['name'];
@@ -71,6 +72,7 @@ function account_save_edit(){
     $file = $_FILES['avatar'];
     $gender = $_POST['gender'];
     $is_active = $_POST['is_active'];
+    $is_verify = $_POST['is_verify'];
     $role = $_POST['role'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
@@ -90,14 +92,13 @@ function account_save_edit(){
                 avatar = '$avatar',
                 gender='$gender',
                 is_active='$is_active',
+                is_verify='$is_verify',
                 role='$role',
                 address='$address',
                 phone='$phone'
             where user_id = $id";
     // Thực thi câu sql với db
     executeQuery($sql);
-
-    
     header("location: " . ADMIN_URL . 'tai-khoan');
 }
 ?>

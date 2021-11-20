@@ -38,6 +38,6 @@ switch ($url) {
         account_remove();
         break;
     default:
-        echo "Đường dẫn bạn đang truy cập chưa được định nghĩa";
+        error_page();
         break;
 }

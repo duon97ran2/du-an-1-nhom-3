@@ -1,7 +1,9 @@
 <?php
 
 function dashboard_info(){
-    echo "Thông tin trang quản trị";
+    admin_render("dashboard.php", [
+        'page_title' => 'Cấu hình trang'
+    ]);
 }
 
 ?>
