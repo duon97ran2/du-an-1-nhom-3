@@ -101,6 +101,20 @@ switch ($url) {
         require_once "./business/admin/options.php";
         option_handle();
         break;
+    case 'cp-admin/san-pham':
+        is_admin();
+        require_once "./business/admin/product.php";
+        product_page();
+        break;
+    case 'cp-admin/san-pham/them-moi':
+        is_admin();
+        require_once "./business/admin/product.php";
+        product_create();
+        break;
+    case 'cp-admin/san-pham/luu-them-moi':
+        require_once "./business/admin/product.php";
+        product_create_handle();
+        break;
     case 'cp-admin/tai-khoan':
         require_once "./business/admin/account.php";
         account_index();

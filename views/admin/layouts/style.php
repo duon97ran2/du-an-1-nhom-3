@@ -18,3 +18,11 @@
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/daterangepicker/daterangepicker.css">
 <!-- summernote -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/summernote/summernote-bs4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<style>
+    .attribute-form + .attribute-form {
+        border-top: 1px solid #bdbdbd;
+        padding-top: 1rem
+    }
+</style>

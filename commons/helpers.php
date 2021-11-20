@@ -1,6 +1,6 @@
 <?php
 
-function admin_render($viewpath, $data = []){
+function admin_render($viewpath, $data = [], $scripts = []){
 
     extract($data);
     $businessView = "./views/admin/" . $viewpath;
@@ -63,7 +63,7 @@ function input_post($name) {
     return $_POST[$name] ?? '';
 }
 function input_file($name) {
-    return $_FILES[$name];
+    return $_FILES[$name] ?? '';
 }
 // chuong create
 function redirect($url) {

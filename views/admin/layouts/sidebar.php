@@ -26,7 +26,15 @@
             <a href="<?= admin_url('dashboard') ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Bảng tin
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= admin_url('san-pham') ?>" class="nav-link">
+              <i class="nav-icon fas fa-box"></i>
+              <p>
+                Sản phẩm
               </p>
             </a>
           </li>
@@ -34,7 +42,7 @@
             <a href="<?= admin_url('cau-hinh-trang') ?>" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
-                Cấu hình trang
+                Cài đặt trang
               </p>
             </a>
           </li>

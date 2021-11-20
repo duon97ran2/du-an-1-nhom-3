@@ -8,17 +8,10 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?= ADMIN_ASSETS ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="<?= ADMIN_ASSETS ?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- Custom File -->
 <script src="<?= ADMIN_ASSETS ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- ChartJS -->
-<script src="<?= ADMIN_ASSETS ?>plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="<?= ADMIN_ASSETS ?>plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="<?= ADMIN_ASSETS ?>plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?= ADMIN_ASSETS ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?= ADMIN_ASSETS ?>plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
 <script src="<?= ADMIN_ASSETS ?>plugins/moment/moment.min.js"></script>
 <script src="<?= ADMIN_ASSETS ?>plugins/daterangepicker/daterangepicker.js"></script>
@@ -32,10 +25,12 @@
 <script src="<?= ADMIN_ASSETS ?>dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= ADMIN_ASSETS ?>dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= ADMIN_ASSETS ?>dist/js/pages/dashboard.js"></script>
+<?php foreach ($scripts as $script) : ?>
+<script src="<?= asset($script) ?>"></script>
+<?php endforeach; ?>
 <script>
 $(function () {
   bsCustomFileInput.init();
+    //Bootstrap Duallistbox
 });
 </script>
