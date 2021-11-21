@@ -12,6 +12,9 @@
 <script src="<?= ADMIN_ASSETS ?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- Custom File -->
 <script src="<?= ADMIN_ASSETS ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- JQUERY validate -->
+<script src="<?= ADMIN_ASSETS ?>plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="<?= ADMIN_ASSETS ?>plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- daterangepicker -->
 <script src="<?= ADMIN_ASSETS ?>plugins/moment/moment.min.js"></script>
 <script src="<?= ADMIN_ASSETS ?>plugins/daterangepicker/daterangepicker.js"></script>

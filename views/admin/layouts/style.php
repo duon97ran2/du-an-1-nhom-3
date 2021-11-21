@@ -20,9 +20,28 @@
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/summernote/summernote-bs4.min.css">
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<!-- CodeMirror -->
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/codemirror/codemirror.css">
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/codemirror/theme/monokai.css">
 <style>
-    .attribute-form + .attribute-form {
-        border-top: 1px solid #bdbdbd;
+    .attribute-form:first-child {
+        border-top: 1px solid #ededed;
         padding-top: 1rem
+    }
+    .attribute-form:last-child {
+        border-bottom: 1px solid #ededed;
+        padding-bottom: 1rem
+    }
+    .attribute-form + .attribute-form {
+        border-top: 1px solid #ededed;
+        padding-top: 1rem
+    }
+    .btn-cannel {
+        max-width: 100px;
+        width: 100%;
+    }
+    .btn-save {
+        max-width: 200px;
+        width: 100%;
     }
 </style>
