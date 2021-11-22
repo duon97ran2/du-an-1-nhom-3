@@ -115,6 +115,19 @@ switch ($url) {
         require_once "./business/admin/product.php";
         product_create_handle();
         break;
+    case 'cp-admin/san-pham/cap-nhat':
+        is_admin();
+        require_once "./business/admin/product.php";
+        product_update();
+        break;
+    case 'cp-admin/san-pham/luu-cap-nhat':
+        require_once "./business/admin/product.php";
+        product_update_handle();
+        break;
+    case 'cp-admin/san-pham/cap-nhat/xoa-bien-the':
+        require_once "./business/admin/product.php";
+        product_remove_variant_handle();
+        break;
     case 'cp-admin/tai-khoan':
         require_once "./business/admin/account.php";
         account_index();

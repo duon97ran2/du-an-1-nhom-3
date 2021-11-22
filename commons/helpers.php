@@ -74,6 +74,10 @@ function redirect_back() {
     header('Location: '. $_SERVER['HTTP_REFERER']);
     die;
 }
+function refresh_page() {
+    header('Refresh: 0');
+    die;
+}
 //chuong create
 function set_errors($array = []) {
     set_session('errors', $array);

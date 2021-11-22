@@ -38,7 +38,7 @@ productNewAttribute.on('click', function() {
         <div class="col-xl-3 col-lg-12">
             <div class="form-group">
                 <label>Tên <span class="text-danger">*</span></label>
-                <input type="text" name="product_variant_name[${indexVariant}]" data-slug="#product_variant_slug_${indexVariant}" placeholder="Nhập vào" class="form-control data-slug variant-valid">
+                <input type="text" name="product_variant_name[${indexVariant}]" data-slug="#product_variant_slug_${indexVariant}" placeholder="Nhập vào (VD: Xanh)" class="form-control data-slug variant-valid">
             </div>
         </div>
         <div class="col-xl-2 col-lg-12">
@@ -97,6 +97,17 @@ productNewAttribute.on('click', function() {
         });
     });
 });
+
+$('.attribute-update input').on('change', function() {
+    $('input.variant-valid-update').each(function () {
+        $(this).rules('add', {
+            required: true,
+            messages: {
+                required: "Vui lòng điền thông tin"
+            }
+        });
+    });
+})
 
 $(function () {
     $.validator.addMethod('filesize', function (value, element, param) {
@@ -184,4 +195,11 @@ $(function () {
             $(element).removeClass('is-invalid');
         }
     });
+
+    $("#example1").DataTable({
+        "responsive": true, 
+        "lengthChange": false, 
+        "autoWidth": false,
+        "buttons": ["csv", "excel", "pdf", "print"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 });
