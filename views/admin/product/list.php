@@ -12,6 +12,14 @@
     </div>
 </section>
 
+
+<?php if (!empty(get_session('message'))) : ?>
+<div class="alert alert-success">
+    <?= get_session('message') ?>
+</div>
+<?php remove_session('message') ?>
+<?php endif; ?>
+
 <div class="card card-default">
     <div class="card-header">
       <a href="<?= admin_url('san-pham/them-moi') ?>" class="btn btn-primary btn-sm ml-n2">Thêm sản phẩm mới</a>

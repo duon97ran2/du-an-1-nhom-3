@@ -13,6 +13,13 @@
     </div>
 </section>
 
+<?php if (!empty(get_session('message-errors'))) : ?>
+<div class="alert alert-danger">
+    <?= get_session('message-errors') ?>
+</div>
+<?php remove_session('message-errors') ?>
+<?php endif; ?>
+
 <form action="<?= admin_url('san-pham/luu-them-moi') ?>" id="quickForm" novalidate method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-7">
@@ -104,11 +111,11 @@
                             </div>
                         </div>
                         <select class="duallistbox" multiple="multiple" required name="product_gifts[]">
-                            <option>Quà số 1</option>
-                            <option>Quà số 2</option>
-                            <option>Quà số 3</option>
-                            <option>Quà số 4</option>
-                            <option>Quà số 5</option>
+                            <option value="1">Quà số 1</option>
+                            <option value="2">Quà số 2</option>
+                            <option value="3">Quà số 3</option>
+                            <option value="4">Quà số 4</option>
+                            <option value="5">Quà số 5</option>
                         </select>
                     </div>
                 </div>

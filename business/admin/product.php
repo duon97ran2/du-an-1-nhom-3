@@ -63,6 +63,20 @@ function product_create_handle() {
         $errors['product_quantity'] = 'Vui lòng điền thông tin';
     }
 
+    if (empty($errors)) {
+        $image_upload = upload_image($product_image, 'products');
+        $product_sql = "INSERT INTO products (
+            product_image,product_name,product_slug,product_description,
+            product_content,category_id,brand_id,product_price,product_quantity,product_discount,
+            product_gifts,product_status,product_hot,is_variant
+        ) VALUES (
+            '$image_upload','$product_name','$product_slug','$product_description',
+            '$product_content','$category_id','$brand_id','$product_price','$product_quantity',
+            '$product_discount','$product_gifts','$product_status','$product_hot','$is_variant'
+        );";
+        $product_id = insertExecuteQueryLastID($product_sql);
+    }
+
     if ($is_config == 1) {
         $display = input_post('display');
         $camera_front = input_post('camera_front');
@@ -75,26 +89,22 @@ function product_create_handle() {
         $sim = input_post('sim');
         $system = input_post('system');
         $made_in = input_post('made_in');
-        $product_config = [
-            'display' => $display,
-            'camera_front' => $camera_front,
-            'camera_back' => $camera_back,
-            'ram' => $ram,
-            'storage' => $storage,
-            'cpu' => $cpu,
-            'gpu' => $gpu,
-            'battery' => $battery,
-            'sim' => $sim,
-            'system' => $system,
-            'made_in' => $made_in,
-        ];
+
+        if (empty($errors)) {
+            $config_sql = "INSERT INTO product_configuration (
+                display,camera_front,camera_back,ram,storage,cpu,gpu,battery,sim,system,made_in,product_id
+            ) VALUES (
+                '$display','$camera_front','$camera_back','$ram','$storage','$cpu','$gpu','$battery','$sim','$system','$made_in','$product_id'
+            );";
+            executeQuery($config_sql);
+        }
     }
     if ($is_variant == 1) {
         $product_variant_image = input_file('product_variant_image');
         $product_variant_name = input_post('product_variant_name');
         $product_variant_slug = input_post('product_variant_slug');
         $product_variant_price = input_post('product_variant_price');
-        $product_variant_discount = input_post('product_variant_discount');
+        $product_variant_discount = input_post('product_variant_discount') ?? 0;
 
         if ($product_variant_image) {
             for ($i = 0; $i < count($product_variant_image['name']); $i++) {
@@ -127,39 +137,42 @@ function product_create_handle() {
         }
         for ($i = 0; $i < count($product_variant); $i++) {
             foreach ($product_variant[$i] as $key => $value) {
-                if ($product_variant[$i][$key] != $product_variant[$i]['product_variant_discount']) {
+                if ($key == 'product_variant_discount') {
                     continue;
+                } 
+                if ($key == 'product_variant_image') {
+                    if ($product_variant[$i][$key]['size'] == 0) {
+                        $errors['product_variant_image'] = 'Vui lòng chọn hình ảnh thuộc tính';
+                    }
                 } else {
-                    if ($product_variant[$i][$key] != $product_variant[$i]['product_variant_image']) {
-                        if (empty($product_variant[$i][$key])) {
-                            $errors[$key] = 'Vui lòng điền thông tin thuộc tính';
-                        }
-                    } else {
-                        if ($product_variant[$i]['product_variant_image']['size'] == 0) {
-                            $errors['product_variant_image'] = 'Vui lòng chọn hình ảnh thuộc tính';
-                        }
+                    if (empty($product_variant[$i][$key])) {
+                        $errors[$key] = 'Vui lòng điền thông tin thuộc tính';
                     }
                 }
             }
         }
+        if (empty($errors)) {
+            if (!empty($product_variant)) {
+                foreach ($product_variant as $item) {
+                    $image_upload = upload_image($item['product_variant_image'], 'products');
+                    $variant_sql = "INSERT INTO product_variants (
+                        product_variant_image,product_variant_name,product_variant_slug,product_variant_price,product_variant_discount,product_id
+                    ) VALUES (
+                        '$image_upload','".$item['product_variant_name']."','".$item['product_variant_slug']."',
+                        '".$item['product_variant_price']."','".$item['product_variant_discount']."','$product_id'
+                    );";
+                    executeQuery($variant_sql);
+                }
+            } 
+        }
     }
-    $product = [
-        'product_image' => $product_image,
-        'product_name' => $product_name,
-        'product_slug' => $product_slug,
-        'product_description' => $product_description,
-        'product_content' => $product_content,
-        'category_id' => $category_id,
-        'brand_id' => $brand_id,
-        'product_price' => $product_price,
-        'product_quantity' => $product_quantity,
-        'product_discount' => $product_discount,
-        'product_gifts' => $product_gifts,
-        'product_status' => $product_status,
-        'product_hot' => $product_hot,
-        'is_variant' => $is_variant,
-    ];
-    $product['product_variant'] = $product_variant;
-    $product['product_config'] = $product_config;
-    dd($product);
+
+    if (empty($errors)) {
+        set_session('message', 'Thêm sản phẩm thành công');
+        redirect('cp-admin/san-pham');
+    } 
+    else {
+        set_session('message-errors', 'Thêm sản phẩm thất bại');
+        redirect('cp-admin/san-pham/them-moi');
+    }
 }
