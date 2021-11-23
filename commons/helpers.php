@@ -1,7 +1,6 @@
 <?php
 
 function admin_render($viewpath, $data = [], $scripts = []){
-
     extract($data);
     $businessView = "./views/admin/" . $viewpath;
     include_once './views/admin/layouts/main.php';

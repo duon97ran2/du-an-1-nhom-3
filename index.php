@@ -161,6 +161,30 @@ switch ($url) {
         profile_save();
         echo 'page';
         break;
+    case 'cp-admin/banner':
+        require_once "./business/admin/banner.php";
+        banner_list();
+        break;
+    case 'cp-admin/banner/them-moi':
+        require_once "./business/admin/banner.php";
+        banner_add();   
+        break;
+     case 'cp-admin/banner/luu-them-moi':
+        require_once "./business/admin/banner.php";
+        banner_add_handle();   
+        break; 
+    case 'cp-admin/banner/cap-nhat':
+        require_once "./business/admin/banner.php";
+        banner_update();
+        break;  
+     case 'cp-admin/banner/luu-cap-nhat':
+        require_once "./business/admin/banner.php";
+        banner_update_handle();
+        break;
+    case 'cp-admin/banner/xoa':
+        require_once "./business/admin/banner.php";
+        remove_banner();
+        break;
     default:
         error_page();
         break;
