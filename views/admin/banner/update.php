@@ -99,7 +99,7 @@
     </div>
     <div class="card card-default mb-5 mt-3">
         <div class="card-footer text-right">
-            <a href="<?= admin_url('san-pham') ?>" class="btn btn-secondary btn-cannel">
+            <a href="<?= admin_url('banner') ?>" class="btn btn-secondary btn-cannel">
                 Huỷ
             </a>
             <button type="submit" id="js-btn-product-submit" class="btn btn-primary btn-save">
