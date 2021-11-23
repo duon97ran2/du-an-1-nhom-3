@@ -66,7 +66,9 @@ $gender = [
                         <td class='d-flex'>
                             <a href="<?= ADMIN_URL . 'tai-khoan/sua?id=' . $u['user_id'] ?>" class="btn btn-sm btn-info">Sửa</a>
                             &nbsp;
+                            <?php if(auth_info()['user_id']!=$u['user_id']): ?>
                             <a href="javascript:;" data-url="<?= ADMIN_URL . 'tai-khoan/xoa?id=' . $u['user_id'] ?>" data-name="<?= $u['name'] ?>" class="btn btn-sm btn-danger btn_remove_account">Xóa</a>
+                            <?php endif ?>
                         </td>
                     </tr>
                 <?php endforeach ?>
