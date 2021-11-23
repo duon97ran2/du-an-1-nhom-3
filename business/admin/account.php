@@ -28,7 +28,7 @@ function account_save_add(){
     $email = $_POST['email'];
     $gender = $_POST['gender'];
     $is_active = $_POST['is_active'];
-    $is_verify = $_POST['is_verify'];
+    $is_verify = 1;
     $role = $_POST['role'];
     $address = $_POST['address'];
     $password = $_POST['password'];
@@ -72,7 +72,7 @@ function account_save_edit(){
     $file = $_FILES['avatar'];
     $gender = $_POST['gender'];
     $is_active = $_POST['is_active'];
-    $is_verify = $_POST['is_verify'];
+    $is_verify = 1;
     $role = $_POST['role'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];

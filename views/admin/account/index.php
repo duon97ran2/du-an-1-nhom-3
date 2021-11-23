@@ -63,9 +63,10 @@ $gender = [
                         <td>
                             <img src="<?= PUBLIC_ASSETS . $u['avatar'] ?>" width="100">
                         </td>
-                        <td>
+                        <td class='d-flex'>
                             <a href="<?= ADMIN_URL . 'tai-khoan/sua?id=' . $u['user_id'] ?>" class="btn btn-sm btn-info">Sửa</a>
-                            <a href="<?= ADMIN_URL . 'tai-khoan/xoa?id=' . $u['user_id'] ?>" class="btn btn-sm btn-danger">Xóa</a>
+                            &nbsp;
+                            <a href="javascript:;" data-url="<?= ADMIN_URL . 'tai-khoan/xoa?id=' . $u['user_id'] ?>" data-name="<?= $u['name'] ?>" class="btn btn-sm btn-danger btn_remove_account">Xóa</a>
                         </td>
                     </tr>
                 <?php endforeach ?>

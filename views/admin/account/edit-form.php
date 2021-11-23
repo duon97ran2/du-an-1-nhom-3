@@ -18,12 +18,12 @@
     <form action="<?= ADMIN_URL . 'tai-khoan/luu-sua?id=' . $user['user_id'] ?>" method="post" enctype="multipart/form-data">
         <div class="card-body">
             <div class="form-group">
-                <label for="">Họ và tên</label>
+                <label for="name">Họ và tên</label>
                 <input type="text" name="name" id="" class="form-control" placeholder="" value="<?= $user['name'] ?>">
             </div>
             <div class="form-group">
-                <label for="">Email</label>
-                <input type="text" name="email" id="" class="form-control" placeholder="" value="<?= $user['email'] ?>">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="" class="form-control" placeholder="" value="<?= $user['email'] ?>">
             </div>
             <div class="form-group">
                 <label class='required' for="avatar">Ảnh đại diện</label>
@@ -59,15 +59,14 @@
                             <label class="input-group-text" for="role">Vai trò</label>
                         </div>
                         <select name="role" id="role" class="custom-select">
-                            <option disabled selected>Chọn vai trò</option>
-                            <option value="admin">Quản trị viên</option>
-                            <option value="customer">Khách hàng</option>
+                            <option <?php echo ($user['role']=='admin')?'selected':''?> value="admin" >Quản trị viên</option>
+                            <option value="customer" <?php echo ($user['role']=="customer")?'selected':''?>>Khách hàng</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-6 mb-3">
+                <!-- <div class="col-6 mb-3">
                     <input type="hidden" name="is_verify" value="0">
                     <div class="icheck-primary d-inline">
                         <input type="checkbox" id="is_verify" name="is_verify" value="1" <?php echo ($user['is_verify']==1)?'checked':''?> >
@@ -75,7 +74,7 @@
                             Kích hoạt
                         </label>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-6 mb-3">
                     <input type="hidden" name="is_active" value="0">
                     <div class="icheck-primary d-inline">

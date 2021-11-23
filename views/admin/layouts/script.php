@@ -21,6 +21,8 @@
 <script src="<?= ADMIN_ASSETS ?>plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?= ADMIN_ASSETS ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- Sweet Alert -->
+<script src="<?= ADMIN_ASSETS ?>plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= ADMIN_ASSETS ?>dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->

@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-6 mb-3">
+                <!-- <div class="col-6 mb-3">
                     <input type="hidden" name="is_verify" value="0">
                     <div class="icheck-primary d-inline">
                         <input type="checkbox" id="is_verify" name="is_verify" value="1">
@@ -85,7 +85,7 @@
                             Kích hoạt
                         </label>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-6 mb-3">
                     <input type="hidden" name="is_active" value="0">
                     <div class="icheck-primary d-inline">
