@@ -39,6 +39,16 @@ function admin_url($path = '') {
     return ADMIN_URL . $path;
 }
 
+function nameSeparation($name)
+{
+    $name_arr = explode(" ", $name);
+    $first_name = count($name_arr) > 1 ? array_pop($name_arr) : $name;
+    $last_name = count($name_arr) > 1 ? implode(" ", $name_arr) : '';
+    return [
+        'first_name' => $first_name,
+        'last_name' => $last_name
+    ];
+}
 function error_page($page = '_404') {
     include_once "./views/errors/$page.php";
     die;

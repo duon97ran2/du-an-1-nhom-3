@@ -152,6 +152,15 @@ switch ($url) {
         require_once "./business/admin/account.php";
         account_remove();
         break;
+    case 'thong-tin-ca-nhan':
+        require_once "./business/auth/profile.php";
+        profile_index();
+        break;
+    case 'thong-tin-ca-nhan/luu-sua':
+        require_once "./business/auth/profile.php";
+        profile_save();
+        echo 'page';
+        break;
     default:
         error_page();
         break;
