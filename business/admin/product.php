@@ -554,6 +554,13 @@ function product_update_handle() {
         }
     }
 
+    $variant_count_sql = "SELECT * FROM product_variants WHERE product_id = '$product_id'";
+    $variant_count = executeQuery($variant_count_sql, true);
+    if (count($variant_count) == 0) {
+        $product_update_variant_sql = "UPDATE products SET is_variant = 0 WHERE product_id = '$product_id'";
+        executeQuery($product_update_variant_sql);
+    }
+
     if (empty($errors)) {
         set_session('message', 'Cập nhật sản phẩm thành công');
         redirect('cp-admin/san-pham/cap-nhat?product_id='.$product_id);
@@ -582,8 +589,15 @@ function product_remove_product_handle() {
 
 function product_remove_variant_handle() {
     $variant_id = input_get('variant_id');
+    $product_id = input_get('product_id');
     $sql = "DELETE FROM product_variants WHERE product_variant_id = '$variant_id'";
     executeQuery($sql);
+    $variant_sql = "SELECT * FROM product_variants WHERE product_id = '$product_id'";
+    $variants = executeQuery($variant_sql, true);
+    if (count($variants) == 0) {
+        $product_sql = "UPDATE products SET is_variant = 0 WHERE product_id = '$product_id'";
+        executeQuery($product_sql);
+    }
     set_session('message', 'Xoá biến thể thành công');
     redirect_back();
 }

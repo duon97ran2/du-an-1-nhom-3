@@ -211,7 +211,7 @@
                                         <div class="input-group mb-3">
                                             <input type="number" name="product_variant_discount_update[<?= $key ?>]" placeholder="Nhập vào" value="<?= $item['product_variant_discount'] ?>" class="form-control rounded">
                                             <div class="input-group-prepend">
-                                                <button type="button" data-url="<?= admin_url('san-pham/cap-nhat/xoa-bien-the?variant_id='.$item['product_variant_id']) ?>" class="btn ml-3 rounded btn-primary btn-remove-variant btn_remove_variant">Xoá</button>
+                                                <button type="button" data-url="<?= admin_url('san-pham/cap-nhat/xoa-bien-the?variant_id='.$item['product_variant_id'].'&product_id='.$product['product_id']) ?>" class="btn ml-3 rounded btn-primary btn-remove-variant btn_remove_variant">Xoá</button>
                                             </div>
                                         </div>
                                     </div>
