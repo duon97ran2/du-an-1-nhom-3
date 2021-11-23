@@ -5,6 +5,7 @@ function account_index(){
 
     admin_render('account/index.php', 
         [
+            'page_title' => 'Danh sách tài khoản',
             'dsTaiKhoan' => $users,
         ], 
         [
@@ -21,7 +22,9 @@ function account_remove(){
     header("location: " . ADMIN_URL . 'tai-khoan');
 }
 function account_create(){
-    admin_render("account/add-form.php");
+    admin_render("account/add-form.php",[
+        'page_title' => 'Thêm tài khoản'
+    ]);
 }
 function account_save_add(){
     $name = $_POST['name'];
@@ -56,7 +59,8 @@ function account_edit_form(){
     $sql = "select * from users where user_id = $id";
     $user = executeQuery($sql, false);
     admin_render('account/edit-form.php', [
-        'user' => $user
+        'user' => $user,
+        'page_title' => 'Sửa '.$user['name']
     ]);
 }
 

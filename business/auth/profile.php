@@ -13,7 +13,6 @@ function profile_save()
   $oldData = executeQuery($sql, false);
   // nhận dữ liệu từ form gửi lên
   $name = $_POST['name'];
-  $email = $_POST['email'];
   // lưu ảnh vào thư mục public/uploads
   $file = $_FILES['avatar'];
   $gender = $_POST['gender'];
@@ -22,16 +21,13 @@ function profile_save()
   $avatar = $oldData['avatar'];
   // Lưu ảnh
   if ($file['size'] > 0) {
-    $filename = uniqid() . '-' . $file['name'];
-    move_uploaded_file($file['tmp_name'], './public/uploads/avatars/' . $filename);
-    $avatar = "uploads/avatars/" . $filename;
+    $avatar = upload_image($file,'avatars');
   }
 
   // tạo ra câu sql insert tài khoản mới
   $sql = "update users 
             set
                 name = '$name', 
-                email = '$email', 
                 avatar = '$avatar',
                 gender='$gender',
                 address='$address',
