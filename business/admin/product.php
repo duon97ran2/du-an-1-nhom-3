@@ -1,13 +1,5 @@
 <?php
 
-function product_page() {
-    admin_render('product/list.php', [
-        'page_title' => 'Danh sách sản phẩm'
-    ], [
-        'customize/js/product/scripts.js'
-    ]);
-}
-
 function get_gifts() {
     return [
         [
@@ -65,6 +57,17 @@ function get_categories() {
             'category_name' => 'Danh mục 3',
         ]
     ];
+}
+
+function product_page() {
+    $sql = "SELECT * FROM products";
+    $products = executeQuery($sql, true);
+    admin_render('product/list.php', [
+        'page_title' => 'Danh sách sản phẩm',
+        'products' => $products
+    ], [
+        'customize/js/product/scripts.js'
+    ]);
 }
 
 function product_create() {
@@ -368,7 +371,10 @@ function product_update_handle() {
                 executeQuery($config_sql);
             }
         }
-    } 
+    } else {
+        $delete_config_sql = "DELETE FROM product_configuration WHERE product_id = '$product_id'";
+        executeQuery($delete_config_sql);
+    }
     if ($is_variant == 1) {
         $product_variant_image = input_file('product_variant_image');
         $product_variant_name = input_post('product_variant_name');
