@@ -31,6 +31,10 @@
 <!-- daterangepicker -->
 <script src="<?= ADMIN_ASSETS ?>plugins/moment/moment.min.js"></script>
 <script src="<?= ADMIN_ASSETS ?>plugins/daterangepicker/daterangepicker.js"></script>
+<!-- sweetalert2 -->
+<script src="<?= ADMIN_ASSETS ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="<?= ADMIN_ASSETS ?>plugins/toastr/toastr.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?= ADMIN_ASSETS ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
@@ -50,3 +54,20 @@ $(function () {
     //Bootstrap Duallistbox
 });
 </script>
+<?php if (!empty(get_session('message-errors'))) : ?>
+<script>
+    $(function () {
+      toastr.error('<?= get_session('message-errors') ?>')
+    });
+</script>
+<?php remove_session('message-errors') ?>
+<?php endif; ?>
+
+<?php if (!empty(get_session('message'))) : ?>
+<script>
+    $(function () {
+      toastr.success('<?= get_session('message') ?>')
+    });
+</script>
+<?php remove_session('message') ?>
+<?php endif; ?>

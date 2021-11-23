@@ -13,19 +13,10 @@
 </section>
 
 <div class="row">
-    <!-- left column -->
     <div class="col-md-6 offset-3 mb-5">
-        <!-- jquery validation -->
         <div class="card card-primary">
             <form action="<?= admin_url('cau-hinh-trang/kiem-tra') ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
-                    <?php if (!empty(get_session('message'))) : ?>
-                    <div class="alert alert-success">
-                        <?= get_session('message') ?>
-                    </div>
-                    <?php remove_session('message') ?>
-                    <?php endif; ?>
-                    
                     <input type="hidden" value="<?= $option['option_id'] ?? '' ?>" name="option_id">
                     <div class="form-group">
                         <label>Tên trang</label>
@@ -95,7 +86,6 @@
                       </div>
                     </div>
                 </div>
-                <!-- /.card-body -->
                 <div class="card-footer">
                   <div class="row">
                     <div class="col-md-6">
@@ -112,10 +102,6 @@
                 </div>
             </form>
         </div>
-        <!-- /.card -->
     </div>
-    <!--/.col (left) -->
-    <!-- right column -->
     <div class="col-md-6"></div>
-    <!--/.col (right) -->
 </div>

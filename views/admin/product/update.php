@@ -7,24 +7,11 @@
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="<?= admin_url('dashboard') ?>">Trang chủ</a></li>
           <li class="breadcrumb-item"><a href="<?= admin_url('san-pham') ?>">Sản phẩm</a></li>
-          <li class="breadcrumb-item active">Sửa <?= $product['product_name'] ?></li>
+          <li class="breadcrumb-item active">Sửa sản phẩm <?= $product['product_name'] ?></li>
         </ol>
       </div>
     </div>
 </section>
-
-<?php if (!empty(get_session('message-errors'))) : ?>
-<div class="alert alert-danger">
-    <?= get_session('message-errors') ?>
-</div>
-<?php remove_session('message-errors') ?>
-<?php endif; ?>
-<?php if (!empty(get_session('message'))) : ?>
-<div class="alert alert-success">
-    <?= get_session('message') ?>
-</div>
-<?php remove_session('message') ?>
-<?php endif; ?>
 
 <form action="<?= admin_url('san-pham/luu-cap-nhat?product_id='.$product['product_id']) ?>" id="quickForm" novalidate method="post" enctype="multipart/form-data">
     <div class="row">
@@ -48,11 +35,11 @@
                     </div>
                     <div class="form-group">
                         <label for="product_name">Tên sản phẩm <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control data-slug" id="product_name" data-slug="#product_slug" name="product_name" value="<?= $product['product_name'] ?>" placeholder="Nhập vào">
+                        <input type="text" class="form-control data-slug product_check_slug" id="product_name" data-slug="#product_slug" name="product_name" value="<?= $product['product_name'] ?>" placeholder="Nhập vào">
                     </div>
                     <div class="form-group">
                         <label for="product_slug">Tên sản phẩm không dấu <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="product_slug" name="product_slug" value="<?= $product['product_slug'] ?>" placeholder="Nhập vào">
+                        <input type="text" class="form-control product_check_slug" data-action="edit" id="product_slug" data-url="<?= admin_url('san-pham/kiem-tra-slug') ?>" name="product_slug" data-old="<?= $product['product_slug'] ?>" value="<?= $product['product_slug'] ?>" placeholder="Nhập vào">
                     </div>
                     <div class="form-group">
                         <label for="product_description">Mô tả ngắn <span class="text-danger">*</span></label>
@@ -206,19 +193,25 @@
                                         <input type="text" name="product_variant_slug_update[<?= $key ?>]" value="<?= $item['product_variant_slug'] ?>" id="product_variant_slug_update<?= $key ?>" placeholder="Nhập vào" class="form-control variant-valid-update">
                                     </div>
                                 </div>
+                                <div class="col-xl-1 col-lg-12">
+                                    <div class="form-group">
+                                        <label>Số lượng<span class="text-danger">*</span></label>
+                                        <input type="number" name="product_variant_quantity_update[<?= $key ?>]" value="<?= $item['product_variant_quantity'] ?>" placeholder="Nhập vào" class="form-control variant-valid-update">
+                                    </div>
+                                </div>
                                 <div class="col-xl-2 col-lg-12">
                                     <div class="form-group">
                                         <label>Giá tiền (VND)<span class="text-danger">*</span></label>
                                         <input type="number" name="product_variant_price_update[<?= $key ?>]" value="<?= $item['product_variant_price'] ?>" placeholder="Nhập vào" class="form-control variant-valid-update">
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-12">
+                                <div class="col-xl-2 col-lg-12">
                                     <div class="form-group">
                                         <label>Giảm giá (%)</label>
                                         <div class="input-group mb-3">
                                             <input type="number" name="product_variant_discount_update[<?= $key ?>]" placeholder="Nhập vào" value="<?= $item['product_variant_discount'] ?>" class="form-control rounded">
                                             <div class="input-group-prepend">
-                                                <a href="<?= admin_url('san-pham/cap-nhat/xoa-bien-the?variant_id='.$item['product_variant_id']) ?>" class="btn ml-3 rounded btn-primary btn-remove-variant">Xoá</a>
+                                                <button type="button" data-url="<?= admin_url('san-pham/cap-nhat/xoa-bien-the?variant_id='.$item['product_variant_id']) ?>" class="btn ml-3 rounded btn-primary btn-remove-variant btn_remove_variant">Xoá</button>
                                             </div>
                                         </div>
                                     </div>

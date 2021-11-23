@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- sweetalert2 -->
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/sweetalert2/sweetalert2.min.css">
+<!-- Toastr -->
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/toastr/toastr.min.css">
 <!-- Tempusdominus Bootstrap 4 -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- iCheck -->
@@ -27,25 +31,6 @@
 <!-- CodeMirror -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/codemirror/codemirror.css">
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/codemirror/theme/monokai.css">
-<style>
-    #js-print-product-attribute-form .attribute-form:first-child {
-        border-top: 1px solid #ededed;
-        padding-top: 1rem
-    }
-    #js-print-product-attribute-form .attribute-form:last-child {
-        border-bottom: 1px solid #ededed;
-        padding-bottom: 1rem
-    }
-    .attribute-form + .attribute-form {
-        border-top: 1px solid #ededed;
-        padding-top: 1rem
-    }
-    .btn-cannel {
-        max-width: 100px;
-        width: 100%;
-    }
-    .btn-save {
-        max-width: 200px;
-        width: 100%;
-    }
-</style>
+<?php foreach ($styles as $style) : ?>
+<link rel="stylesheet" href="<?= asset($style) ?>">
+<?php endforeach; ?>

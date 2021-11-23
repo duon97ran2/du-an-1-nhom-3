@@ -124,9 +124,21 @@ switch ($url) {
         require_once "./business/admin/product.php";
         product_update_handle();
         break;
+    case 'cp-admin/san-pham/cap-nhat-trang-thai':
+        require_once "./business/admin/product.php";
+        product_change_status_handle();
+        break;
     case 'cp-admin/san-pham/cap-nhat/xoa-bien-the':
         require_once "./business/admin/product.php";
         product_remove_variant_handle();
+        break;
+    case 'cp-admin/san-pham/kiem-tra-slug':
+        require_once "./business/admin/product.php";
+        find_product_by_slug_json();
+        break;
+    case 'cp-admin/san-pham/xoa-san-pham':
+        require_once "./business/admin/product.php";
+        product_remove_product_handle();
         break;
     case 'cp-admin/tai-khoan':
         require_once "./business/admin/account.php";

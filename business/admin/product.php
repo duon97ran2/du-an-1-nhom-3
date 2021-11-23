@@ -1,79 +1,56 @@
 <?php
 
-function get_gifts() {
-    return [
-        [
-            'gift_id' => 1,
-            'gift_name' => 'Quà số 1',
-        ],
-        [
-            'gift_id' => 2,
-            'gift_name' => 'Quà số 2',
-        ],
-        [
-            'gift_id' => 3,
-            'gift_name' => 'Quà số 3',
-        ],
-        [
-            'gift_id' => 4,
-            'gift_name' => 'Quà số 4',
-        ],
-        [
-            'gift_id' => 5,
-            'gift_name' => 'Quà số 5',
-        ]
-    ];
-}
-
-function get_brands() {
-    return [
-        [
-            'brand_id' => 64,
-            'brand_name' => 'Thương hiệu 1',
-        ],
-        [
-            'brand_id' => 65,
-            'brand_name' => 'Thương hiệu 2',
-        ],
-        [
-            'brand_id' => 66,
-            'brand_name' => 'Thương hiệu 3',
-        ]
-    ];
-}
-
-function get_categories() {
-    return [
-        [
-            'category_id' => 63,
-            'category_name' => 'Danh mục 1',
-        ],
-        [
-            'category_id' => 64,
-            'category_name' => 'Danh mục 2',
-        ],
-        [
-            'category_id' => 65,
-            'category_name' => 'Danh mục 3',
-        ]
-    ];
-}
-
 function product_page() {
-    $sql = "SELECT * FROM products";
+    $cate_sql = "SELECT * FROM categories WHERE parent_id IS NOT NULL";
+    $brand_sql = "SELECT * FROM brands";
+    $variant_sql = "SELECT * FROM product_variants";
+    $variants = executeQuery($variant_sql, true);
+    $categories = executeQuery($cate_sql, true);
+    $brands = executeQuery($brand_sql, true);
+
+    $where = [];
+    $brand_get = input_get('brand');
+    $cate_get = input_get('category');
+    $status_get = input_get('status');
+    $sql = "SELECT * FROM products P
+        LEFT JOIN categories C ON C.category_id = P.category_id
+        LEFT JOIN brands B ON B.brand_id = P.brand_id";
+    if (!empty($brand_get)) {
+        $where[] = "P.brand_id = $brand_get";
+    }
+    if (!empty($cate_get)) {
+        $where[] = "P.category_id = $cate_get";
+    } 
+    if (!empty($status_get)) {
+        $where[] = "P.product_status = $status_get";
+    }
+
+    if ($where) {
+        $sql .= " WHERE ". implode(' AND ', $where);
+    }
+
     $products = executeQuery($sql, true);
     admin_render('product/list.php', [
         'page_title' => 'Danh sách sản phẩm',
-        'products' => $products
+        'products' => $products,
+        'categories' => $categories,
+        'brands' => $brands,
+        'variants' => $variants,
     ], [
+        'customize/js/commons.js',
         'customize/js/product/scripts.js'
+    ], [
+        'customize/css/product.css',
     ]);
 }
 
 function product_create() {
-    $categories = get_categories();
-    $brands = get_brands();
-    $gifts = get_gifts();
+    $cate_sql = "SELECT * FROM categories WHERE parent_id IS NOT NULL";
+    $brand_sql = "SELECT * FROM brands";
+    $gift_sql = "SELECT * FROM gifts";
+    $categories = executeQuery($cate_sql, true);
+    $brands = executeQuery($brand_sql, true);
+    $gifts = executeQuery($gift_sql, true);
     admin_render('product/create.php', [
         'page_title' => 'Thêm sản phẩm mới',
         'categories' => $categories,
@@ -82,6 +59,8 @@ function product_create() {
     ], [
         'customize/js/commons.js',
         'customize/js/product/scripts.js'
+    ], [
+        'customize/css/product.css',
     ]);
 }
 
@@ -105,6 +84,7 @@ function product_create_handle() {
     $product_hot = input_post('product_hot');
     $is_variant = input_post('is_variant');
     $is_config = input_post('is_config');
+    $slug_data = find_product_by_slug($product_slug);
     if ($product_image['size'] == 0) {
         $errors['product_image'] = 'Vui lòng chọn hình ảnh';
     }
@@ -113,6 +93,8 @@ function product_create_handle() {
     }
     if (empty($product_slug)) {
         $errors['product_slug'] = 'Vui lòng điền thông tin';
+    } else if (!empty($slug_data)) {
+        $errors['product_slug'] = 'Liên kết đã tồn tại';
     }
     if (empty($product_description)) {
         $errors['product_description'] = 'Vui lòng điền thông tin';
@@ -129,7 +111,7 @@ function product_create_handle() {
     if (empty($product_price)) {
         $errors['product_price'] = 'Vui lòng điền thông tin';
     }
-    if (empty($product_quantity)) {
+    if (!isset($product_quantity)) {
         $errors['product_quantity'] = 'Vui lòng điền thông tin';
     }
 
@@ -174,7 +156,8 @@ function product_create_handle() {
         $product_variant_name = input_post('product_variant_name');
         $product_variant_slug = input_post('product_variant_slug');
         $product_variant_price = input_post('product_variant_price');
-        $product_variant_discount = input_post('product_variant_discount') ?? 0;
+        $product_variant_discount = input_post('product_variant_discount');
+        $product_variant_quantity = input_post('product_variant_quantity');
 
         if ($product_variant_image) {
             for ($i = 0; $i < count($product_variant_image['name']); $i++) {
@@ -205,6 +188,11 @@ function product_create_handle() {
                 $product_variant[$i]['product_variant_discount'] = $product_variant_discount[$i];
             }
         }
+        if ($product_variant_quantity) {
+            for ($i = 0; $i < count($product_variant_quantity); $i++) {
+                $product_variant[$i]['product_variant_quantity'] = $product_variant_quantity[$i];
+            }
+        }
         for ($i = 0; $i < count($product_variant); $i++) {
             foreach ($product_variant[$i] as $key => $value) {
                 if ($key == 'product_variant_discount') {
@@ -213,6 +201,11 @@ function product_create_handle() {
                 if ($key == 'product_variant_image') {
                     if ($product_variant[$i][$key]['size'] == 0) {
                         $errors['product_variant_image'] = 'Vui lòng chọn hình ảnh thuộc tính';
+                    }
+                }
+                if ($key == 'product_variant_quantity') {
+                    if (!isset($product_variant[$i][$key])) {
+                        $errors[$key] = 'Vui lòng điền thông tin thuộc tính';
                     }
                 } else {
                     if (empty($product_variant[$i][$key])) {
@@ -226,10 +219,10 @@ function product_create_handle() {
                 foreach ($product_variant as $item) {
                     $image_upload = upload_image($item['product_variant_image'], 'products');
                     $variant_sql = "INSERT INTO product_variants (
-                        product_variant_image,product_variant_name,product_variant_slug,product_variant_price,product_variant_discount,product_id
+                        product_variant_image,product_variant_name,product_variant_slug,product_variant_price,product_variant_discount,product_variant_quantity,product_id
                     ) VALUES (
                         '$image_upload','".$item['product_variant_name']."','".$item['product_variant_slug']."',
-                        '".$item['product_variant_price']."','".$item['product_variant_discount']."','$product_id'
+                        '".$item['product_variant_price']."','".$item['product_variant_discount']."','".$item['product_variant_quantity']."','$product_id'
                     );";
                     executeQuery($variant_sql);
                 }
@@ -248,9 +241,12 @@ function product_create_handle() {
 }
 
 function product_update() {
-    $categories = get_categories();
-    $brands = get_brands();
-    $gifts = get_gifts();
+    $cate_sql = "SELECT * FROM categories WHERE parent_id IS NOT NULL";
+    $brand_sql = "SELECT * FROM brands";
+    $gift_sql = "SELECT * FROM gifts";
+    $categories = executeQuery($cate_sql, true);
+    $brands = executeQuery($brand_sql, true);
+    $gifts = executeQuery($gift_sql, true);
     $product_id = input_get('product_id');
     $product_sql = "SELECT * FROM products WHERE product_id = '$product_id'";
     $product = executeQuery($product_sql, false);
@@ -259,7 +255,7 @@ function product_update() {
     $variant_sql = "SELECT * FROM product_variants WHERE product_id = '$product_id'";
     $variant = executeQuery($variant_sql);
     admin_render('product/update.php', [
-        'page_title' => 'Sửa sản phẩm',
+        'page_title' => 'Sửa sản phẩm ' . $product['product_name'],
         'product' => $product,
         'config' => $config,
         'variant' => $variant,
@@ -269,6 +265,8 @@ function product_update() {
     ], [
         'customize/js/commons.js',
         'customize/js/product/scripts.js'
+    ], [
+        'customize/css/product.css',
     ]);
 }
 
@@ -294,11 +292,19 @@ function product_update_handle() {
     $product_hot = input_post('product_hot');
     $is_variant = input_post('is_variant');
     $is_config = input_post('is_config');
+    $select_product_sql = "SELECT * FROM products WHERE product_id = '$product_id'";
+    $product_data = executeQuery($select_product_sql, false);
+    $slug_data = find_product_by_slug($product_slug);
+
     if (empty($product_name)) {
         $errors['product_name'] = 'Vui lòng điền thông tin';
     }
     if (empty($product_slug)) {
         $errors['product_slug'] = 'Vui lòng điền thông tin';
+    } else if ($slug_data) {
+        if ($slug_data['product_slug'] != $product_data['product_slug']) {
+            $errors['product_slug'] = 'Liên kết đã tồn tại';
+        }
     }
     if (empty($product_description)) {
         $errors['product_description'] = 'Vui lòng điền thông tin';
@@ -315,14 +321,12 @@ function product_update_handle() {
     if (empty($product_price)) {
         $errors['product_price'] = 'Vui lòng điền thông tin';
     }
-    if (empty($product_quantity)) {
+    if (!isset($product_quantity)) {
         $errors['product_quantity'] = 'Vui lòng điền thông tin';
     }
 
     if (empty($errors)) {
         $time_now = date("Y-m-d H:i:s");
-        $select_product_sql = "SELECT * FROM products WHERE product_id = '$product_id'";
-        $product_data = executeQuery($select_product_sql, false);
         $image_upload = $product_image['size'] > 0 ? upload_image($product_image, 'products') : $product_data['product_image'];
         $product_sql = "UPDATE products SET
             product_image = '$image_upload',product_name = '$product_name',product_slug = '$product_slug',product_description = '$product_description',
@@ -381,6 +385,7 @@ function product_update_handle() {
         $product_variant_slug = input_post('product_variant_slug');
         $product_variant_price = input_post('product_variant_price');
         $product_variant_discount = input_post('product_variant_discount');
+        $product_variant_quantity = input_post('product_variant_quantity');
 
         //  insert
         if ($product_variant_image) {
@@ -412,6 +417,11 @@ function product_update_handle() {
                 $product_variant[$i]['product_variant_discount'] = $product_variant_discount[$i];
             }
         }
+        if ($product_variant_quantity) {
+            for ($i = 0; $i < count($product_variant_quantity); $i++) {
+                $product_variant[$i]['product_variant_quantity'] = $product_variant_quantity[$i];
+            }
+        }
         for ($i = 0; $i < count($product_variant); $i++) {
             foreach ($product_variant[$i] as $key => $value) {
                 if ($key == 'product_variant_discount') {
@@ -420,6 +430,11 @@ function product_update_handle() {
                 if ($key == 'product_variant_image') {
                     if ($product_variant[$i][$key]['size'] == 0) {
                         $errors['product_variant_image'] = 'Vui lòng chọn hình ảnh thuộc tính';
+                    }
+                } 
+                if ($key == 'product_variant_quantity') {
+                    if (!isset($product_variant[$i][$key])) {
+                        $errors[$key] = 'Vui lòng điền thông tin thuộc tính';
                     }
                 } else {
                     if (empty($product_variant[$i][$key])) {
@@ -436,6 +451,7 @@ function product_update_handle() {
         $product_variant_slug_update = input_post('product_variant_slug_update');
         $product_variant_price_update = input_post('product_variant_price_update');
         $product_variant_discount_update = input_post('product_variant_discount_update');
+        $product_variant_quantity_update = input_post('product_variant_quantity_update');
 
         if ($product_variant_image_update) {
             for ($i = 0; $i < count($product_variant_image_update['name']); $i++) {
@@ -471,13 +487,23 @@ function product_update_handle() {
                 $product_variant_update[$i]['product_variant_discount_update'] = $product_variant_discount_update[$i];
             }
         }
+        if ($product_variant_quantity_update) {
+            for ($i = 0; $i < count($product_variant_quantity_update); $i++) {
+                $product_variant_update[$i]['product_variant_quantity_update'] = $product_variant_quantity_update[$i];
+            }
+        }
         for ($i = 0; $i < count($product_variant_update); $i++) {
             foreach ($product_variant_update[$i] as $key => $value) {
                 if ($key == 'product_variant_discount_update') {
                     continue;
-                } 
+                }
                 if ($key == 'product_variant_image_update') {
                     continue;
+                }
+                if ($key == 'product_variant_quantity_update') {
+                    if (!isset($product_variant_update[$i][$key])) {
+                        $errors[$key] = 'Vui lòng điền thông tin thuộc tính';
+                    }
                 } else {
                     if (empty($product_variant_update[$i][$key])) {
                         $errors[$key] = 'Vui lòng điền thông tin thuộc tính';
@@ -490,10 +516,10 @@ function product_update_handle() {
                 foreach ($product_variant as $item) {
                     $image_upload = upload_image($item['product_variant_image'], 'products');
                     $variant_insert_sql = "INSERT INTO product_variants (
-                        product_variant_image,product_variant_name,product_variant_slug,product_variant_price,product_variant_discount,product_id
+                        product_variant_image,product_variant_name,product_variant_slug,product_variant_price,product_variant_discount,product_variant_quantity,product_id
                     ) VALUES (
                         '$image_upload','".$item['product_variant_name']."','".$item['product_variant_slug']."',
-                        '".$item['product_variant_price']."','".$item['product_variant_discount']."','$product_id'
+                        '".$item['product_variant_price']."','".$item['product_variant_discount']."','".$item['product_variant_quantity']."','$product_id'
                     );";
                     executeQuery($variant_insert_sql);
                 }
@@ -510,6 +536,7 @@ function product_update_handle() {
                     $up_variant_slug = $item['product_variant_slug_update'];
                     $up_variant_price = $item['product_variant_price_update'];
                     $up_variant_discount = $item['product_variant_discount_update'];
+                    $up_variant_quantity = $item['product_variant_quantity_update'];
                     $up_variant_id = $select_variant['product_variant_id'];
                     $variant_update_sql = "UPDATE product_variants 
                         SET
@@ -517,7 +544,8 @@ function product_update_handle() {
                             product_variant_name = '$up_variant_name',
                             product_variant_slug = '$up_variant_slug',
                             product_variant_price = '$up_variant_price',
-                            product_variant_discount = '$up_variant_discount' 
+                            product_variant_discount = '$up_variant_discount',
+                            product_variant_quantity = '$up_variant_quantity' 
                         WHERE 
                             product_variant_id = '$up_variant_id'";
                     executeQuery($variant_update_sql);
@@ -536,10 +564,48 @@ function product_update_handle() {
     }
 }
 
+function product_change_status_handle() {
+    $product_id = input_post('product_id');
+    $status = input_post('status');
+    $sql = "UPDATE products SET product_status = $status WHERE product_id = $product_id";
+    executeQuery($sql);
+    echo "Cập nhật thành công";
+}
+
+function product_remove_product_handle() {
+    $product_id = input_get('product_id');
+    $sql = "DELETE FROM products WHERE product_id = '$product_id'";
+    executeQuery($sql);
+    set_session('message', 'Xoá sản phẩm thành công');
+    redirect_back();
+}
+
 function product_remove_variant_handle() {
     $variant_id = input_get('variant_id');
     $sql = "DELETE FROM product_variants WHERE product_variant_id = '$variant_id'";
     executeQuery($sql);
     set_session('message', 'Xoá biến thể thành công');
     redirect_back();
+}
+
+function find_product_by_slug($slug) {
+    $sql = "SELECT * FROM products WHERE product_slug = '$slug'";
+    return executeQuery($sql, false);
+}
+
+function find_product_by_slug_json() {
+    $slug = input_post('slug');
+    $action = input_post('action');
+    $old_slug = input_post('old_slug');
+    $product = find_product_by_slug($slug);
+    if ($product) {
+        if (strtolower($action) == 'add') {
+            echo $product['product_slug'];
+        }
+        if (strtolower($action) == 'edit'){
+            if ($slug != $old_slug) {
+                echo $product['product_slug'];
+            }
+        }
+    }
 }
