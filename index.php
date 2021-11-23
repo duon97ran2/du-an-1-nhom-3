@@ -10,10 +10,15 @@ switch ($url) {
         require_once './business/homepage.php';
         index();
         break;
-    case 'cp-admin/dashboard':
-        is_admin();
-        require_once './business/admin/dashboard.php';
-        dashboard_info();
+    case 'thong-tin-san-pham':
+        is_maintenance();
+        require_once './business/product.php';
+        product_details();
+        break;
+    case 'gio-hang':
+        is_maintenance();
+        require_once './business/shopping-carts.php';
+        shopping_carts();
         break;
     case 'dang-ky':
         is_maintenance();
@@ -61,6 +66,11 @@ switch ($url) {
     case 'quen-mat-khau/cap-nhat-mat-khau/kiem-tra':
         require_once "./business/auth/reset.php";
         client_reset_password_handle();
+        break;
+    case 'cp-admin/dashboard':
+        is_admin();
+        require_once './business/admin/dashboard.php';
+        dashboard_info();
         break;
     case 'cp-admin/dang-nhap':
         is_login_for_auth_page();
