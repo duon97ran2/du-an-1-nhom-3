@@ -17,11 +17,14 @@ function profile_save()
   $file = $_FILES['avatar'];
   $gender = $_POST['gender'];
   $address = $_POST['address'];
+  $name_arr = nameSeparation($name);
+  $first_name = $name_arr['first_name'];
+  $last_name = $name_arr['last_name'];
   $phone = $_POST['phone'];
   $avatar = $oldData['avatar'];
   // Lưu ảnh
   if ($file['size'] > 0) {
-    $avatar = upload_image($file,'avatars');
+    $avatar = upload_image($file, 'avatars');
   }
 
   // tạo ra câu sql insert tài khoản mới
@@ -29,6 +32,8 @@ function profile_save()
             set
                 name = '$name', 
                 avatar = '$avatar',
+                first_name='$first_name',
+                last_name='$last_name',
                 gender='$gender',
                 address='$address',
                 phone='$phone'
