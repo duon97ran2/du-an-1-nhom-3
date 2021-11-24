@@ -15,7 +15,7 @@ function get_product_variant_by_slug($slug) {
             LEFT JOIN categories C ON C.category_id = P.category_id
             LEFT JOIN categories CP ON CP.category_id = C.parent_id
             LEFT JOIN brands B ON B.brand_id = P.brand_id
-            LEFT JOIN product_variants V ON V.product_id = P.product_id;
+            LEFT JOIN product_variants V ON V.product_id = P.product_id
         WHERE product_slug = '$slug'";
     $product = executeQuery($sql, true);
     if (count($product) == 1) {

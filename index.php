@@ -20,6 +20,11 @@ switch ($url) {
         require_once './business/shopping-carts.php';
         shopping_carts();
         break;
+    case 'gio-hang/them-san-pham':
+        is_maintenance();
+        require_once './business/shopping-carts.php';
+        add_to_cart();
+        break;
     case 'dang-ky':
         is_maintenance();
         is_login_for_auth_page();
