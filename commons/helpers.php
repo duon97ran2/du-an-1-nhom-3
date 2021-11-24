@@ -147,4 +147,10 @@ function is_maintenance() {
         }
     }
 }
+function cart_total() {
+    $user_id = auth_info()['user_id'];
+    $sql = "SELECT * FROM shopping_carts WHERE user_id = '$user_id' AND is_buy = 0";
+    $cart_item = executeQuery($sql, true);
+    return count($cart_item) ?? 0;
+}
 ?>

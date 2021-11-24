@@ -46,6 +46,10 @@ switch ($url) {
         profile_save();
         echo 'page';
         break;
+    case 'thong-tin-san-pham':
+        require_once "./business/product.php";
+        product_details();
+        break;
     default:
         error_page();
         break;

@@ -24,7 +24,7 @@ function profile_save()
   $avatar = $oldData['avatar'];
   // Lưu ảnh
   if ($file['size'] > 0) {
-    $avatar = upload_image($file, 'avatars');
+    $avatar = "uploads/".upload_image($file, 'avatars');
   }
 
   // tạo ra câu sql insert tài khoản mới
