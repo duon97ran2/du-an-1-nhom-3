@@ -44,9 +44,9 @@ switch ($url) {
     case 'thong-tin-ca-nhan/luu-sua':
         require_once "./business/auth/profile.php";
         profile_save();
-        echo 'page';
         break;
     case 'thong-tin-san-pham':
+        is_maintenance();
         require_once "./business/product.php";
         product_details();
         break;

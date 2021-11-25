@@ -18,7 +18,7 @@ function get_product_variant_by_slug($slug) {
             LEFT JOIN product_variants V ON V.product_id = P.product_id
         WHERE product_slug = '$slug'";
     $product = executeQuery($sql, true);
-    if (count($product) == 1) {
+    if (count($product) == 1) { 
         $data[] = $product[0];
     } else {
         $data = $product;
@@ -34,7 +34,7 @@ function get_configuration_by_product_id($product_id) {
 function product_details() {
     $slug = input_get('slug');
     $product_variant = [];
-    $product_default = get_product_by_slug($slug);
+    $product_default = get_product_by_slug($slug); 
     if (empty($product_default)) {
         error_page();
     } 
