@@ -205,8 +205,8 @@ function checkout_handle() {
             foreach ($carts as $item) {
                 $update_cart_sql = "UPDATE shopping_carts SET is_buy = 1 WHERE cart_id = ".$item['cart_id'];
                 executeQuery($update_cart_sql);
-                $insert_order_item_sql = "INSERT INTO order_items (order_id, product_id, price ,quantity, color) 
-                            VALUES ($order_id, ".$item['product_id'].", ".$item['price'].", ".$item['quantity'].", '".$item['color']."')";
+                $insert_order_item_sql = "INSERT INTO order_items (order_id, product_id, price, total_price ,quantity, color) 
+                            VALUES ($order_id, ".$item['product_id'].", ".$item['price'].", ".$item['total_price'].", ".$item['quantity'].", '".$item['color']."')";
                 executeQuery($insert_order_item_sql);
             }
             $content_mail = "<div style='max-width: 800px; padding: 15px; background-color: #f2f2f2;border: 1px solid #ddd'>
