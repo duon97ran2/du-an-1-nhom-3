@@ -17,5 +17,4 @@ const MAIL_PORT = '587';
 const MAIL_USERNAME = 'manutd0097@gmail.com';
 const MAIL_PASSWORD = 'Vodoi001';
 
-
 ?>

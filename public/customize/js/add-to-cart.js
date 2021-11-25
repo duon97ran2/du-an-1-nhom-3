@@ -20,12 +20,12 @@ $('#js-add-to-cart').on('click', function() {
                 price: price,
             },
             success: function(response) {
+                console.log(response);
                 response = JSON.parse(response);
-                if (response.errors != '') {
+                if (response.errors) {
                     alert(response.errors);
                 } else {
                     cart_toal.html(response.cart_total);
-                    console.log(response.data);
                     alert(response.success);
                 }
             }
