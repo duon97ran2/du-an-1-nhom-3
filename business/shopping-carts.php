@@ -26,6 +26,7 @@ function shopping_carts() {
 
 function add_to_cart() {
     $errors = '';
+    $success = '';
     $user_id = auth_info()['user_id'] ?? '';
     $product_id = input_post('product_id');
     $quantity = input_post('quantity');
@@ -39,12 +40,31 @@ function add_to_cart() {
     } else if (empty($quantity)) {
         $errors = 'Vui long nhap so luong';
     }
+    $cart_sql = "SELECT * FROM shopping_carts WHERE user_id = $user_id AND product_id = $product_id AND color = '$color' AND is_buy = 0";
+    $cart_data = executeQuery($cart_sql, false);
 
-    if (empty($errors)) {
-        $cart_sql = "SELECT * FROM shopping_carts WHERE user_id = $user_id AND product_id = $product_id AND color = '$color' AND is_buy = 0";
-        $cart_data = executeQuery($cart_sql, false);
-    
-        if ($cart_data) {
+    $product_sql = "SELECT * FROM products WHERE product_id = $product_id";
+    $product_data = executeQuery($product_sql, false);
+
+    $variant_sql = "SELECT * FROM product_variants WHERE product_variant_slug = '$color'";
+    $variant_data = executeQuery($variant_sql, false);
+
+    if ($cart_data) {
+        $count_quantity = $cart_data['quantity'] + $quantity;
+        if ($color) {
+            if ($count_quantity > $variant_data['product_variant_quantity']) {
+                $quantity = $variant_data['product_variant_quantity'] - $cart_data['quantity'];
+            }
+        } else {
+            if ($count_quantity > $product_data['product_quantity']) {
+                $quantity = $product_data['product_quantity'] - $cart_data['quantity'];
+            }
+        }
+        if ($quantity == 0) {
+            $errors = 'Đã đạt giới hạn thêm';
+        }
+
+        if (empty($errors)) {
             $time_now = date("Y-m-d H:i:s");
             $cart_update_sql = "UPDATE shopping_carts 
                             SET 
@@ -59,20 +79,32 @@ function add_to_cart() {
                             AND 
                                 color = '$color'";
             executeQuery($cart_update_sql);
-        } else {
+            $success = 'Them thanh cong';
+        }
+    } else {
+        if (empty($errors)  ) {
+            if ($color) {
+                if ($quantity > $variant_data['product_variant_quantity']) {
+                    $quantity = $variant_data['product_variant_quantity'];
+                }
+            } else {
+                if ($quantity > $product_data['product_quantity']) {
+                    $quantity = $product_data['product_quantity'];
+                }
+            }
             $cart_insert_sql = "INSERT INTO shopping_carts 
                                 (user_id, product_id, quantity, color, price, total_price) 
                             VALUES 
                                 ('$user_id', '$product_id', '$quantity', '$color', '$price', '".($price * $quantity)."')";
             executeQuery($cart_insert_sql);
+            $success = 'Them thanh cong';
         }
-        $success = 'Them thanh cong';
     }
 
     $response = [
         'success' => $success,
-        'errors' => $errors,
-        'cart_total' => cart_total() ?? 0
+        'cart_total' => cart_total() ?? 0,
+        'errors' => $errors
     ];
 
     echo json_encode($response);
@@ -82,6 +114,24 @@ function cart_update_handle() {
     $quantity = input_post('quantity');
     $cart_id = input_post('cart_id');
     $time_now = date("Y-m-d H:i:s");
+    
+    $cart_sql = "SELECT * FROM shopping_carts WHERE cart_id = $cart_id";
+    $cart_data = executeQuery($cart_sql, false);
+
+    if (!empty($cart_data['color'])) {
+        $variant_sql = "SELECT * FROM product_variants WHERE product_variant_slug = '".$cart_data['color']."'";
+        $variant_data = executeQuery($variant_sql, false);
+        if ($quantity > $variant_data['product_variant_quantity']) {
+            $quantity = $variant_data['product_variant_quantity'];
+        }
+    } else {
+        $product_sql = "SELECT * FROM products WHERE product_id = ". $cart_data['product_id'];
+        $product_data = executeQuery($product_sql, false);
+        if ($quantity > $product_data['product_quantity']) {
+            $quantity = $product_data['product_quantity'];
+        }
+    }
+
     $cart_update_sql = "UPDATE shopping_carts 
                     SET 
                         quantity =  $quantity,
@@ -185,7 +235,7 @@ function checkout_handle() {
             $order_code = generatorOrderCode();
 
             $cart_sql = "SELECT 
-                            P.product_name, P.product_price, SP.*, V.product_variant_name
+                            P.product_name, P.product_price, SP.*, V.product_variant_name, V.product_variant_id
                         FROM shopping_carts SP
                         LEFT JOIN products P ON SP.product_id = P.product_id
                         LEFT JOIN product_variants V ON V.product_variant_slug = SP.color
@@ -208,6 +258,18 @@ function checkout_handle() {
                 $insert_order_item_sql = "INSERT INTO order_items (order_id, product_id, price, total_price ,quantity, color) 
                             VALUES ($order_id, ".$item['product_id'].", ".$item['price'].", ".$item['total_price'].", ".$item['quantity'].", '".$item['color']."')";
                 executeQuery($insert_order_item_sql);
+                // $quantity_update = $item['quantity'];
+                // $update_quantity_sql = '';
+                // if (!empty($item['product_variant_id'])) {
+                //     $update_quantity_sql = "UPDATE product_variants 
+                //                                 SET product_variant_quantity = product_variant_quantity - $quantity_update 
+                //                         WHERE product_variant_id = ".$item['product_variant_id'];
+                // } else {
+                //     $update_quantity_sql = "UPDATE products 
+                //                                 SET product_quantity = product_quantity - $quantity_update 
+                //                         WHERE product_id = ".$item['product_id'];
+                // }
+                // executeQuery($update_quantity_sql);
             }
             $content_mail = "<div style='max-width: 800px; padding: 15px; background-color: #f2f2f2;border: 1px solid #ddd'>
                     <span>Bạn vừa đặt hàng thành công tại <a href='".app_url()."' style='text-decoration: none;'>Poly-mobile</a>.</span>
