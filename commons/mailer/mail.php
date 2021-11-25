@@ -30,10 +30,36 @@ function sendEmail($email, $subject, $content, $btn_label, $btn_link)
         $mail->Port = MAIL_PORT;
         $mail->Username = MAIL_USERNAME;
         $mail->Password = MAIL_PASSWORD;
-        $mail->setFrom(MAIL_USERNAME);
-        $mail->Subject = $subject;
         $mail->isHTML(true);
+        $mail->setFrom(MAIL_USERNAME, 'no-reply');
+        $mail->addReplyTo('chuonqit@gmail.com', 'Kiều Văn Chương');
+        $mail->Subject = $subject;
         $mail->Body = $body;
+        $mail->AltBody = $body;
+        $mail->addAddress($email);
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Gui mail that bai.\nMailer error: ".$e->getMessage();
+    }
+}
+
+function sendEmailOrder($email, $subject, $content)
+{
+    try {
+        $mail = new PHPMailer();
+        $mail->CharSet = "utf-8";
+        $mail->isSMTP();
+        $mail->Host = MAIL_HOST;
+        $mail->SMTPAuth = MAIL_SMTP_AUTH;
+        $mail->SMTPSecure = MAIL_SMTP_SECURE;
+        $mail->Port = MAIL_PORT;
+        $mail->Username = MAIL_USERNAME;
+        $mail->Password = MAIL_PASSWORD;
+        $mail->isHTML(true);
+        $mail->setFrom(MAIL_USERNAME, 'no-reply');
+        $mail->Subject = $subject;
+        $mail->Body = $content;
+        $mail->AltBody = $content;
         $mail->addAddress($email);
         $mail->send();
     } catch (Exception $e) {
