@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2021 at 07:46 PM
+-- Generation Time: Nov 23, 2021 at 05:59 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -55,6 +55,15 @@ CREATE TABLE `brands` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_slug`, `brand_image`, `created_at`, `updated_at`) VALUES
+(64, 'Thuong hieu 1', 'thuong-hieu-1', '', '2021-11-22 07:44:26', '2021-11-22 07:44:26'),
+(65, 'Thuong hieu 2', 'thuong-hieu-2', '', '2021-11-23 18:08:59', '2021-11-23 18:08:59'),
+(66, 'Thuong hieu 3', 'thuong-hieu-3', '', '2021-11-23 18:09:05', '2021-11-23 18:09:05');
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +83,18 @@ CREATE TABLE `categories` (
   `menu_url` varchar(255) DEFAULT NULL,
   `category_index` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `category_name`, `category_slug`, `category_image`, `is_menu`, `is_parent`, `parent_id`, `created_at`, `updated_at`, `menu_url`, `category_index`) VALUES
+(63, 'Danh muc 1', 'danh-muc-1', '', 0, 1, NULL, '2021-11-22 07:44:07', '2021-11-22 07:44:07', NULL, NULL),
+(64, 'Danh muc 2', 'danh-muc-2', '', 0, 1, NULL, '2021-11-22 07:44:07', '2021-11-22 07:44:07', NULL, NULL),
+(65, 'Danh muc 1.1', 'danh-muc-1-1', '', 0, 0, 63, '2021-11-23 18:07:23', '2021-11-23 18:07:23', NULL, NULL),
+(66, 'Danh muc 1.2', 'danh-muc-1-2', '', 0, 0, 63, '2021-11-23 18:07:23', '2021-11-23 18:07:23', NULL, NULL),
+(67, 'Danh muc 2.2', 'danh-muc-2-2', '', 0, 0, 64, '2021-11-23 18:08:08', '2021-11-23 18:08:08', NULL, NULL),
+(68, 'Danh muc 2.1', 'danh-muc-2-1', '', 0, 0, 64, '2021-11-23 18:08:08', '2021-11-23 18:08:08', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -102,6 +123,18 @@ CREATE TABLE `gifts` (
   `start_time` datetime NOT NULL DEFAULT current_timestamp(),
   `end_time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `gifts`
+--
+
+INSERT INTO `gifts` (`gift_id`, `gift_name`, `start_time`, `end_time`) VALUES
+(1, 'Qua so 1', '2021-11-23 18:15:14', '2021-11-23 18:15:14'),
+(2, 'Qua so 2', '2021-11-23 18:15:14', '2021-11-23 18:15:14'),
+(3, 'Qua so 3', '2021-11-23 18:15:28', '2021-11-23 18:15:28'),
+(4, 'Qua so 4', '2021-11-23 18:15:28', '2021-11-23 18:15:28'),
+(5, 'Qua so 5', '2021-11-23 18:15:28', '2021-11-23 18:15:28'),
+(6, 'Qua so 6', '2021-11-23 18:15:28', '2021-11-23 18:15:28');
 
 -- --------------------------------------------------------
 
@@ -148,7 +181,7 @@ CREATE TABLE `options` (
 --
 
 INSERT INTO `options` (`option_id`, `app_name`, `hotline_1`, `hotline_2`, `hotline_3`, `address`, `email`, `logo`, `favicon`, `license`, `is_maintenance`) VALUES
-(3, 'Poly Mobile', '123456789', '123456789', '123456789', 'Vietnam', 'chuonqit@gmail.com', 'options/6197ef6b9cc6d-99555165220211120013939.png', 'options/6197efe97a969-35880710120211120014145.jpg', 'ABC123', 1);
+(3, 'Poly Mobile', '123456789', '123456789', '123456789', 'Vietnam', 'chuonqit@gmail.com', 'options/6197ef6b9cc6d-99555165220211120013939.png', 'options/619d01d2e7eb3-132805334020211123215930.png', 'ABC123', 0);
 
 -- --------------------------------------------------------
 
@@ -200,7 +233,7 @@ CREATE TABLE `products` (
   `product_discount` float NOT NULL DEFAULT 0,
   `product_quantity` int(11) NOT NULL,
   `product_hot` tinyint(4) NOT NULL DEFAULT 0,
-  `product_gifts` varchar(20) DEFAULT NULL,
+  `product_gifts` varchar(255) DEFAULT NULL,
   `category_id` int(11) NOT NULL,
   `brand_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
@@ -243,6 +276,7 @@ CREATE TABLE `product_variants` (
   `product_variant_slug` varchar(120) NOT NULL,
   `product_variant_price` float NOT NULL,
   `product_variant_discount` float NOT NULL DEFAULT 0,
+  `product_variant_quantity` int(11) NOT NULL,
   `product_variant_image` varchar(255) NOT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -526,13 +560,13 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -544,7 +578,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `gifts`
 --
 ALTER TABLE `gifts`
-  MODIFY `gift_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gift_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -568,13 +602,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `product_variants`
 --
 ALTER TABLE `product_variants`
-  MODIFY `product_variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `product_variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `ratings`

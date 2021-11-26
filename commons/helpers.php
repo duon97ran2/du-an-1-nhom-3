@@ -1,6 +1,6 @@
 <?php
 
-function admin_render($viewpath, $data = [], $scripts = []){
+function admin_render($viewpath, $data = [], $scripts = [], $styles = []){
 
     extract($data);
     $businessView = "./views/admin/" . $viewpath;
@@ -105,6 +105,12 @@ function auth_info() {
     $data = executeQuery($sql, false);
     return $data ?? [];
 }
+function cart_total() {
+    $user_id = auth_info()['user_id'] ?? '';
+    $sql = "SELECT * FROM shopping_carts WHERE user_id = '$user_id' AND is_buy = 0";
+    $cart_item = executeQuery($sql, true);
+    return count($cart_item) ?? 0;
+}
 function is_login_for_auth_page() {
     if (get_session('AUTH_ID')) {
         redirect('/');
@@ -137,13 +143,23 @@ function upload_image($file = [], $folder = '')
     return false;
 }
 
-function is_maintenance() {
+function option_info() {
     $sql = "SELECT * FROM options";
     $option = executeQuery($sql, false);
+    return $option;
+}
+
+function is_maintenance() {
+    $option = option_info();
     if (!empty($option)) {
         if ($option['is_maintenance'] == 1) {
             error_page('_maintenance');
         }
     }
+}
+// chuong create
+function priceVND($price)
+{
+    return number_format($price, 0, '', '.')." ₫";
 }
 ?>
