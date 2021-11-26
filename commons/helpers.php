@@ -6,6 +6,12 @@ function admin_render($viewpath, $data = [], $scripts = [], $styles = []){
     $businessView = "./views/admin/" . $viewpath;
     include_once './views/admin/layouts/main.php';
 }
+function client_render($viewpath, $data = [], $scripts = []){
+
+    extract($data);
+    $businessView = "./views/client/" . $viewpath;
+    include_once './views/client/layouts/main.php';
+}
 
 function dd(){
     echo "<pre>";
@@ -39,6 +45,16 @@ function admin_url($path = '') {
     return ADMIN_URL . $path;
 }
 
+function nameSeparation($name)
+{
+    $name_arr = explode(" ", $name);
+    $first_name = count($name_arr) > 1 ? array_pop($name_arr) : $name;
+    $last_name = count($name_arr) > 1 ? implode(" ", $name_arr) : '';
+    return [
+        'first_name' => $first_name,
+        'last_name' => $last_name
+    ];
+}
 function error_page($page = '_404') {
     include_once "./views/errors/$page.php";
     die;
@@ -152,4 +168,3 @@ function priceVND($price)
 {
     return number_format($price, 0, '', '.')." ₫";
 }
-?>

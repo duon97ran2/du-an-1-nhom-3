@@ -196,6 +196,19 @@ switch ($url) {
         require_once "./business/admin/account.php";
         account_remove();
         break;
+    case 'thong-tin-ca-nhan':
+        require_once "./business/auth/profile.php";
+        profile_index();
+        break;
+    case 'thong-tin-ca-nhan/luu-sua':
+        require_once "./business/auth/profile.php";
+        profile_save();
+        break;
+    case 'thong-tin-san-pham':
+        is_maintenance();
+        require_once "./business/product.php";
+        product_details();
+        break;
     default:
         error_page();
         break;

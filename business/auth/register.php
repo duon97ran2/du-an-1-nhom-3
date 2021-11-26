@@ -80,16 +80,6 @@ function client_verify_hanle() {
     redirect('dang-nhap');
 }
 
-function nameSeparation($name)
-{
-    $name_arr = explode(" ", $name);
-    $first_name = count($name_arr) > 1 ? array_pop($name_arr) : $name;
-    $last_name = count($name_arr) > 1 ? implode(" ", $name_arr) : '';
-    return [
-        'first_name' => $first_name,
-        'last_name' => $last_name
-    ];
-}
 
 function find_user_by_email($email) {
     $sql = "SELECT * FROM users WHERE email = '$email'";
