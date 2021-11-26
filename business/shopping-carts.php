@@ -339,10 +339,3 @@ function generatorOrderCode() {
     }
     return 'PM'.$code;
 }
-
-function rebuild() {
-    $cart_id = input_get('id');
-    $sql = "UPDATE shopping_carts SET is_buy = 0 WHERE cart_id = $cart_id";
-    executeQuery($sql);
-    redirect('gio-hang');
-}

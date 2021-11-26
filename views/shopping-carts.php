@@ -58,7 +58,6 @@
                 <th>So luong</th>
                 <th>Tong tien</th>
                 <th></th>
-                <th></th>
             </tr>
             <?php foreach($cart_buy_data as $item) : ?>
                 <tr>
@@ -67,7 +66,6 @@
                     <td><?= priceVND($item['price']) ?></td>
                     <td><input type="number" value="<?= $item['quantity'] ?>"></td>
                         <td><?= priceVND($item['total_price']) ?></td>
-                    <td><a href="<?= app_url('gio-hang/mua-lai?id='.$item['cart_id']) ?>" class="btn btn-primary">Mua lai</a></td>
                     <td><a href="<?= app_url('gio-hang/xoa-san-pham?id='.$item['cart_id']) ?>" class="btn btn-danger">Xoa</a></td>
                 </tr>
             <?php endforeach; ?>

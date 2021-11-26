@@ -32,10 +32,6 @@ switch ($url) {
         require_once './business/shopping-carts.php';
         remove_item_cart();
         break;
-    case 'gio-hang/mua-lai':
-        require_once './business/shopping-carts.php';
-        rebuild();
-        break;
     case 'thanh-toan':
         is_maintenance();
         require_once './business/shopping-carts.php';
