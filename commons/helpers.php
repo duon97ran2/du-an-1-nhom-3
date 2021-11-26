@@ -143,10 +143,10 @@ function upload_image($file = [], $folder = '')
     return false;
 }
 
-function option_info() {
+function option_info($key = '') {
     $sql = "SELECT * FROM options";
     $option = executeQuery($sql, false);
-    return $option;
+    return $option[$key] ?? $option;
 }
 
 function is_maintenance() {
