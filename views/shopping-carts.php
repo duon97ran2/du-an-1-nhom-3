@@ -64,7 +64,7 @@
                     <td><?= $item['product_name'] ?></td>
                     <td><?= $item['product_variant_name'] ?></td>
                     <td><?= priceVND($item['price']) ?></td>
-                    <td><input type="number" value="<?= $item['quantity'] ?>"></td>
+                    <td><?= $item['quantity'] ?></td>
                         <td><?= priceVND($item['total_price']) ?></td>
                     <td><a href="<?= app_url('gio-hang/xoa-san-pham?id='.$item['cart_id']) ?>" class="btn btn-danger">Xoa</a></td>
                 </tr>
