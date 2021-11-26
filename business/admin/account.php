@@ -5,6 +5,7 @@ function account_index(){
 
     admin_render('account/index.php', 
         [
+            'page_title' => 'Danh sách tài khoản',
             'dsTaiKhoan' => $users,
         ], 
         [
@@ -21,7 +22,9 @@ function account_remove(){
     header("location: " . ADMIN_URL . 'tai-khoan');
 }
 function account_create(){
-    admin_render("account/add-form.php");
+    admin_render("account/add-form.php",[
+        'page_title' => 'Thêm tài khoản'
+    ]);
 }
 function account_save_add(){
     $name = $_POST['name'];
@@ -33,6 +36,9 @@ function account_save_add(){
     $address = $_POST['address'];
     $password = $_POST['password'];
     $phone = $_POST['phone'];
+    $name_arr = nameSeparation($name);
+    $first_name = $name_arr['first_name'];
+    $last_name = $name_arr['last_name'];
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $file = $_FILES['avatar'];
     $avatar='';
@@ -44,9 +50,9 @@ function account_save_add(){
 
     // tạo ra câu sql insert tài khoản mới
     $sql = "insert into users 
-                (name, email, password, avatar,gender,is_active,is_verify,role,address,phone) 
+                (name,first_name,last_name,email, password, avatar,gender,is_active,is_verify,role,address,phone) 
             values 
-                ('$name', '$email', '$passwordHash', '$avatar','$gender','$is_active','$is_verify','$role','$address','$phone')";
+                ('$name','$first_name','$last_name', '$email', '$passwordHash', '$avatar','$gender','$is_active','$is_verify','$role','$address','$phone')";
     // Thực thi câu sql với db
     executeQuery($sql);
     header("location: " . ADMIN_URL . 'tai-khoan');
@@ -56,7 +62,8 @@ function account_edit_form(){
     $sql = "select * from users where user_id = $id";
     $user = executeQuery($sql, false);
     admin_render('account/edit-form.php', [
-        'user' => $user
+        'user' => $user,
+        'page_title' => 'Sửa '.$user['name']
     ]);
 }
 
@@ -76,6 +83,9 @@ function account_save_edit(){
     $role = $_POST['role'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
+    $name_arr = nameSeparation($name);
+    $first_name = $name_arr['first_name'];
+    $last_name = $name_arr['last_name'];
     $avatar = $oldData['avatar'];
     // Lưu ảnh
     if($file['size'] > 0){
@@ -91,6 +101,8 @@ function account_save_edit(){
                 email = '$email', 
                 avatar = '$avatar',
                 gender='$gender',
+                first_name='$first_name',
+                last_name='$last_name',
                 is_active='$is_active',
                 is_verify='$is_verify',
                 role='$role',

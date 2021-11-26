@@ -47,9 +47,11 @@
 <script src="<?= ADMIN_ASSETS ?>dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= ADMIN_ASSETS ?>dist/js/demo.js"></script>
+<?php if(isset($script)):?>
 <?php foreach ($scripts as $script) : ?>
 <script src="<?= asset($script) ?>"></script>
 <?php endforeach; ?>
+<?php endif; ?>
 <script>
 $(function () {
   bsCustomFileInput.init();

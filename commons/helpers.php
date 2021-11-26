@@ -6,6 +6,12 @@ function admin_render($viewpath, $data = [], $scripts = [], $styles = []){
     $businessView = "./views/admin/" . $viewpath;
     include_once './views/admin/layouts/main.php';
 }
+function client_render($viewpath, $data = [], $scripts = []){
+
+    extract($data);
+    $businessView = "./views/client/" . $viewpath;
+    include_once './views/client/layouts/main.php';
+}
 
 function dd(){
     echo "<pre>";
@@ -162,4 +168,3 @@ function priceVND($price)
 {
     return number_format($price, 0, '', '.')." ₫";
 }
-?>
