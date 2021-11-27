@@ -46,35 +46,9 @@
         <?php if ($cart_data) : ?>
             <p>Tong tien: <?= priceVND($total_price) ?></p>
             <?php if ($total_price > 0) : ?>
-                <p><a href="<?= app_url('thanh-toan'); ?>" class="btn btn-primary">Thanh toan</a></p>
+                <p><a href="<?= app_url('thanh-toan'); ?>" class="btn btn-primary">Đặt hàng</a></p>
             <?php endif ?>
         <?php endif ?>
-        <h1>Da mua</h1>
-        <table class="table table-bordered">
-            <tr>
-                <th>Ten</th>
-                <th>Mau sac</th>
-                <th>Gia tien</th>
-                <th>So luong</th>
-                <th>Tong tien</th>
-                <th></th>
-            </tr>
-            <?php foreach($cart_buy_data as $item) : ?>
-                <tr>
-                    <td><?= $item['product_name'] ?></td>
-                    <td><?= $item['product_variant_name'] ?></td>
-                    <td><?= priceVND($item['price']) ?></td>
-                    <td><input type="number" value="<?= $item['quantity'] ?>"></td>
-                        <td><?= priceVND($item['total_price']) ?></td>
-                    <td><a href="<?= app_url('gio-hang/xoa-san-pham?id='.$item['cart_id']) ?>" class="btn btn-danger">Xoa</a></td>
-                </tr>
-            <?php endforeach; ?>
-            <?php if (empty($cart_buy_data)) : ?>
-                <tr>
-                    <td colspan="6" class="text-center">Danh sach trong</td> 
-                </tr>
-            <?php endif ?>
-        </table>
     </div>
     
     <script src="<?= ADMIN_ASSETS ?>plugins/jquery/jquery.min.js"></script>

@@ -37,6 +37,10 @@ switch ($url) {
         require_once './business/shopping-carts.php';
         checkout();
         break;
+    case 'thanh-toan/kiem-tra-voucher':
+        require_once './business/shopping-carts.php';
+        checkVoucher();
+        break;
     case 'thanh-toan/kiem-tra':
         is_maintenance();
         require_once './business/shopping-carts.php';

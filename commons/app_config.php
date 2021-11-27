@@ -14,7 +14,7 @@ const MAIL_HOST = 'smtp.gmail.com';
 const MAIL_SMTP_AUTH = true;
 const MAIL_SMTP_SECURE = 'tls';
 const MAIL_PORT = '587';
-const MAIL_USERNAME = '';
-const MAIL_PASSWORD = '';
+const MAIL_USERNAME = 'chuonqit@gmail.com';
+const MAIL_PASSWORD = 'kvctt99z';
 
 ?>
