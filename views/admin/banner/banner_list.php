@@ -53,7 +53,7 @@
             <td><?= $b['banner_position'] == 1 ? "main_banner" : "sub_banner"?></td>
             <td><?= $b['is_active']== 1 ? "active" : "hidden"?></td>
             <td><?= $b['created_at'] ?></td>
-            <td><?= $b['update_at'] ?></td>
+            <td><?= $b['updated_at'] ?></td>
             <td>
               <a href="<?=admin_url('banner/cap-nhat?banner_id='.$b['banner_id'])?>" class="btn btn-info">Update</a>
               <a href="javascript:;" 
