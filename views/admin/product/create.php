@@ -37,11 +37,11 @@
                     </div>
                     <div class="form-group">
                         <label for="product_name">Tên sản phẩm <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control data-slug" id="product_name" data-slug="#product_slug" name="product_name" placeholder="Nhập vào">
+                        <input type="text" class="form-control data-slug product_check_slug" id="product_name" data-slug="#product_slug" name="product_name" placeholder="Nhập vào">
                     </div>
                     <div class="form-group">
                         <label for="product_slug">Tên sản phẩm không dấu <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="product_slug" name="product_slug" placeholder="Nhập vào">
+                        <input type="text" class="form-control product_check_slug" data-action="add" data-url="<?= admin_url('san-pham/kiem-tra-slug') ?>" id="product_slug" name="product_slug" placeholder="Nhập vào">
                     </div>
                     <div class="form-group">
                         <label for="product_description">Mô tả ngắn <span class="text-danger">*</span></label>

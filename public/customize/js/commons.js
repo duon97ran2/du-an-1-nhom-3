@@ -26,3 +26,23 @@ $('.data-slug').each(function() {
         $(slugID).val(changeToSlug(slug_value));
     });
 });
+
+$.fn.extend({
+  deleteConfirm: function($title = 'Bạn có chắc chắn muốn xóa?') {
+    let $this = $(this);
+    $this.on('click', function(){
+        let redirectUrl = $this.data('url');
+        Swal.fire({
+            icon: 'warning',
+            title: $title,
+            showCancelButton: true,
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: `Hủy`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = redirectUrl;
+            }
+        })
+    })
+  },
+});

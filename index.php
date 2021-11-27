@@ -10,10 +10,37 @@ switch ($url) {
         require_once './business/homepage.php';
         index();
         break;
-    case 'cp-admin/dashboard':
-        is_admin();
-        require_once './business/admin/dashboard.php';
-        dashboard_info();
+    case 'thong-tin-san-pham':
+        is_maintenance();
+        require_once './business/product.php';
+        product_details();
+        break;
+    case 'gio-hang':
+        is_maintenance();
+        require_once './business/shopping-carts.php';
+        shopping_carts();
+        break;
+    case 'gio-hang/them-san-pham':
+        require_once './business/shopping-carts.php';
+        add_to_cart();
+        break;
+    case 'gio-hang/cap-nhat':
+        require_once './business/shopping-carts.php';
+        cart_update_handle();
+        break;
+    case 'gio-hang/xoa-san-pham':
+        require_once './business/shopping-carts.php';
+        remove_item_cart();
+        break;
+    case 'thanh-toan':
+        is_maintenance();
+        require_once './business/shopping-carts.php';
+        checkout();
+        break;
+    case 'thanh-toan/kiem-tra':
+        is_maintenance();
+        require_once './business/shopping-carts.php';
+        checkout_handle();
         break;
     case 'dang-ky':
         is_maintenance();
@@ -61,6 +88,11 @@ switch ($url) {
     case 'quen-mat-khau/cap-nhat-mat-khau/kiem-tra':
         require_once "./business/auth/reset.php";
         client_reset_password_handle();
+        break;
+    case 'cp-admin/dashboard':
+        is_admin();
+        require_once './business/admin/dashboard.php';
+        dashboard_info();
         break;
     case 'cp-admin/dang-nhap':
         is_login_for_auth_page();
@@ -124,9 +156,21 @@ switch ($url) {
         require_once "./business/admin/product.php";
         product_update_handle();
         break;
+    case 'cp-admin/san-pham/cap-nhat-trang-thai':
+        require_once "./business/admin/product.php";
+        product_change_status_handle();
+        break;
     case 'cp-admin/san-pham/cap-nhat/xoa-bien-the':
         require_once "./business/admin/product.php";
         product_remove_variant_handle();
+        break;
+    case 'cp-admin/san-pham/kiem-tra-slug':
+        require_once "./business/admin/product.php";
+        find_product_by_slug_json();
+        break;
+    case 'cp-admin/san-pham/xoa-san-pham':
+        require_once "./business/admin/product.php";
+        product_remove_product_handle();
         break;
     case 'cp-admin/tai-khoan':
         require_once "./business/admin/account.php";
@@ -159,7 +203,11 @@ switch ($url) {
     case 'thong-tin-ca-nhan/luu-sua':
         require_once "./business/auth/profile.php";
         profile_save();
-        echo 'page';
+        break;
+    case 'thong-tin-san-pham':
+        is_maintenance();
+        require_once "./business/product.php";
+        product_details();
         break;
     case 'cp-admin/banner':
         require_once "./business/admin/banner.php";

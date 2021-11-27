@@ -9,35 +9,34 @@ function profile_index()
 function profile_save()
 {
   $id = $_GET['id'];
-  $sql = "select * from users where user_id = $id";
-  $oldData = executeQuery($sql, false);
   // nhận dữ liệu từ form gửi lên
   $name = $_POST['name'];
-  $email = $_POST['email'];
   // lưu ảnh vào thư mục public/uploads
   $file = $_FILES['avatar'];
   $gender = $_POST['gender'];
   $address = $_POST['address'];
+  $name_arr = nameSeparation($name);
+  $first_name = $name_arr['first_name'];
+  $last_name = $name_arr['last_name'];
   $phone = $_POST['phone'];
-  $avatar = $oldData['avatar'];
   // Lưu ảnh
-  if ($file['size'] > 0) {
-    $filename = uniqid() . '-' . $file['name'];
-    move_uploaded_file($file['tmp_name'], './public/uploads/avatars/' . $filename);
-    $avatar = "uploads/avatars/" . $filename;
-  }
+  
 
   // tạo ra câu sql insert tài khoản mới
   $sql = "update users 
             set
                 name = '$name', 
-                email = '$email', 
-                avatar = '$avatar',
+                first_name='$first_name',
+                last_name='$last_name',
                 gender='$gender',
                 address='$address',
                 phone='$phone'
             where user_id = $id";
   // Thực thi câu sql với db
+  if ($file['size'] > 0) {
+    $avatar = "uploads/".upload_image($file, 'avatars');
+    $sql ="update users set avatar='$avatar' where user_id=$id";
+  }
   executeQuery($sql);
   redirect_back();
 }
