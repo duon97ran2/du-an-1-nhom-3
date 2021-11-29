@@ -9,14 +9,14 @@
                         if (intval($b['banner_position']) == 1 && intval($b['banner_index']) == 1) {
                     ?>
                             <div class="carousel-item active">
-                                <img src="<?= asset('uploads/' . $b['banner_image']) ?>" class="banner_image" alt="...">
+                                <img src="<?= asset('uploads/' . $b['banner_image']) ?>" class="banner-image" alt="...">
                             </div>
 
                         <?php
                         } else if (intval($b['banner_position']) == 1) {
                         ?>
                             <div class="carousel-item">
-                                <img src="<?= asset('uploads/' . $b['banner_image']) ?>" class="banner_image" alt="...">
+                                <img src="<?= asset('uploads/' . $b['banner_image']) ?>" class="banner-image" alt="...">
                             </div>
                     <?php }
                     endforeach; ?>

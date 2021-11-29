@@ -177,7 +177,7 @@ function priceVND($price)
 
 
 function menu_page() {
-    $sql = "SELECT * FROM `categories` WHERE parent_id !=0  AND is_menu = 1 ORDER BY category_index ASC;";
+    $sql = "SELECT * FROM categories WHERE is_menu = 1 ORDER BY category_index ASC;";
     return executeQuery($sql, true) ?? [];
 }
 
