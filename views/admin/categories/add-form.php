@@ -26,11 +26,11 @@
                     </div>
                     <div class="form-group">
                         <label for="">Tên danh mục</label>
-                        <input type="text" name="category_name" id="" class="form-control" placeholder="">
+                        <input type="text" name="category_name" id="" data-slug="#category_slug" class="form-control data-slug" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="">Tên không dấu</label>
-                        <input type="text" name="category_slug" id="" class="form-control" placeholder="">
+                        <input type="text" name="category_slug" id="category_slug" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="is_parent" value="0">

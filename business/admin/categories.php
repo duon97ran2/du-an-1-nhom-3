@@ -14,6 +14,7 @@ function categories_remove(){
     $category_id = $_GET['category_id'];
     $sql = "delete from categories where category_id = $category_id";
     executeQuery($sql);
+    set_session('message', 'Xoá thành công');
     header("location: " . ADMIN_URL . 'danh-muc'); //
 }
 function categories_create(){
@@ -21,6 +22,8 @@ function categories_create(){
     $categories = executeQuery($sql, true);
     admin_render("categories/add-form.php", [
         'categories' => $categories
+    ], [
+        'customize/js/commons.js',
     ]);
 }
 //thêm
@@ -43,6 +46,7 @@ function categories_save_add(){
     ('$category_name','$category_slug', $is_parent, $parent_id, '$fileName', $is_menu, '$menu_url')";
 
     executeQuery($sql);
+    set_session('message', 'Thêm thành công');
     header("location: " .ADMIN_URL . 'danh-muc');
 }
 function categories_edit_form(){
@@ -55,6 +59,8 @@ function categories_edit_form(){
     admin_render('categories/edit-form.php', [
         'categories' => $categories,
         'cate_parents' => $cate_parents
+    ], [
+        'customize/js/commons.js',
     ]);
 }
 function categories_save_edit(){
@@ -86,6 +92,7 @@ function categories_save_edit(){
             category_image = '$category_image'
     where category_id = $category_id";
     executeQuery($sql);
+    set_session('message', 'Cập nhật thành công');
     header("location: " . ADMIN_URL . 'danh-muc');
 }
 
