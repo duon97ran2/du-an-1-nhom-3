@@ -3,14 +3,16 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
-        a,
-        .container a {
+        a{
+            color: #000 !important;
             text-decoration: none;
-            color: #fff
+        }
+        a:hover{
+            color: red;
+            transition: all 2s ease-in-out;
         }
         
-        a:hover,
+         colgroup a:hover,
         .container a:hover {
             color: red;
         }
@@ -182,7 +184,7 @@
             width: 100%;
             border-radius: 10px;
             padding: 5px;
-            object-fit: fill;
+            object-fit: cover;
         }
         
         section+section {
@@ -358,5 +360,11 @@
             background-size: 200% 100%;
             background-position: 100%;
             transform: rotate(-40deg);
+        }
+        .footer{
+            background-color: #c8c8c8;
+        }
+        .fw-bold{
+         color: rgb(146, 34, 0);
         }
         /* rating */

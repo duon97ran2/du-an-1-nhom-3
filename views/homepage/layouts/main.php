@@ -95,88 +95,90 @@
 
     <div class="menu bg-primary">
         <div class="container">
-            <ul class="d-flex justify-content-between p-2">
+            <ul class="d-flex justify-content-start p-2">
                 <?php if(menu_page()): ?>
                 <?php foreach (menu_page() as $Cate) : ?>
-                    <li><a href="<?= $Cate['menu_url'] ?? app_url('danh-muc/'.$Cate['category_slug'])?>" class="text-light"><?= $Cate['category_name'] ?></a>
+                    <li>
+                        <a href="<?= $Cate['menu_url'] ?? app_url('danh-muc/'.$Cate['category_slug'])?>" class="text-light me-3">
+                            <?= $Cate['category_name'] ?>
+                        </a>
                         <?php if(empty($Cate['menu_url'])) : ?>
                             <!-- vì ở đây t để nếu menu url = '' mưới chạy r uki -->
-                        <div class="menu--sub">
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="menu--sub-title">
-                                        Hãng sản xuất
+                            <div class="menu--sub">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="menu--sub-title">
+                                            Hãng sản xuất
+                                        </div>
+                                        <div class="menu--sub-content">
+                                            <?php foreach ($list_brand as $l) : ?> 
+                                                <!-- mấy cái này tương tự uki, trong này chỉ xài cái category slug thôi nhé -->
+                                                <ul>
+                                                    <li><a href="#"><?= $l['brand_name'] ?></a></li>
+                                                </ul>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </div>
-                                    <div class="menu--sub-content">
-                                        <?php foreach ($list_brand as $l) : ?> 
-                                            <!-- mấy cái này tương tự uki, trong này chỉ xài cái category slug thôi nhé -->
+                                    <div class="col-4">
+                                        <div class="menu--sub-title">
+                                            Mức giá
+                                        </div>
+                                        <div class="menu--sub-content">
                                             <ul>
-                                                <li><a href="#"><?= $l['brand_name'] ?></a></li>
-                                            </ul>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="menu--sub-title">
-                                        Mức giá
-                                    </div>
-                                    <div class="menu--sub-content">
-                                        <ul>
-                                            <?php
-                                            if (!isset($list_price)) {
-                                            } else {
-                                                $price = 0;
-                                                for ($i = 0; $i <= 40; $i++) {
-                                                    for ($j = 0; $j < count($list_price); $j++) {
-                                                        if ((intval($list_price[$j]['product_price']) >= $price) && (intval($list_price[$j]['product_price']) <= ($price + 1000000))) {
-                                            ?>
+                                                <?php
+                                                if (!isset($list_price)) {
+                                                } else {
+                                                    $price = 0;
+                                                    for ($i = 0; $i <= 40; $i++) {
+                                                        for ($j = 0; $j < count($list_price); $j++) {
+                                                            if ((intval($list_price[$j]['product_price']) >= $price) && (intval($list_price[$j]['product_price']) <= ($price + 1000000))) {
+                                                ?>
 
-                                                            <li><a href="<?= BASE_URL ?>?from_price=<?= $price ?>&to_price=<?= $price + 1000000 ?>&category_id=<?= $Cate[0] ?>">Từ <?= number_format($price) ?> VNĐ Đến <?= number_format($price + 1000000) ?> VNĐ</a></li>
+                                                                <li><a href="<?= BASE_URL ?>?from_price=<?= $price ?>&to_price=<?= $price + 1000000 ?>&category_id=<?= $Cate[0] ?>">Từ <?= number_format($price) ?> VNĐ Đến <?= number_format($price + 1000000) ?> VNĐ</a></li>
 
-                                            <?php
-                                                            $price += 1000000;
+                                                <?php
+                                                                $price += 1000000;
+                                                            }
                                                         }
+                                                        $price += 1000000;
                                                     }
-                                                    $price += 1000000;
                                                 }
-                                            }
-                                            ?>
-                                        </ul>
+                                                ?>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="menu--sub-title">
-                                        Bán chạy
+                                    <div class="col-3">
+                                        <div class="menu--sub-title">
+                                            Bán chạy
+                                        </div>
+                                        <div class="menu--sub-content">
+                                            <ul>
+                                                <li class="d-flex align-items-center"><a href="">
+                                                        <img width="100px" src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" alt=""></a>
+                                                    <p class="flex-fill"><span class="text-danger">Name</span>
+                                                        <br>
+                                                        <span class="text-primary">Price</span>
+                                                    </p>
+                                                </li> <br>
+                                                <li class="d-flex align-items-center"><a href="">
+                                                        <img width="100px" src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" alt=""></a>
+                                                    <p class="flex-fill"><span class="text-danger">Name</span>
+                                                        <br>
+                                                        <span class="text-primary">Price</span>
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="menu--sub-content">
-                                        <ul>
-                                            <li class="d-flex align-items-center"><a href="">
-                                                    <img width="100px" src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" alt=""></a>
-                                                <p class="flex-fill"><span class="text-danger">Name</span>
-                                                    <br>
-                                                    <span class="text-primary">Price</span>
-                                                </p>
-                                            </li> <br>
-                                            <li class="d-flex align-items-center"><a href="">
-                                                    <img width="100px" src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" alt=""></a>
-                                                <p class="flex-fill"><span class="text-danger">Name</span>
-                                                    <br>
-                                                    <span class="text-primary">Price</span>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="menu-sub-banner">
-                                        <a href=""><img src="https://cellphones.com.vn/sforum/wp-content/uploads/2021/03/su-kien-Apple-1.jpg" width="100%" alt="" mt-5></a>
+                                    <div class="col-2">
+                                        <div class="menu-sub-banner">
+                                            <a href=""><img src="https://cellphones.com.vn/sforum/wp-content/uploads/2021/03/su-kien-Apple-1.jpg" width="100%" alt="" mt-5></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <?php endif; ?>
                     </li>
-
                 <?php endforeach; ?>
                 <?php endif; ?>
             </ul>

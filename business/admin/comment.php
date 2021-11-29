@@ -15,18 +15,29 @@ function AllCmt(){
     $sql = "SELECT * FROM comments";
     return executeQuery($sql,true);
 }
-// xoas
-function removeComment(){
+//detailCmt
+function detailCmt()
+{
+    $sql = "SELECT * FROM comments c
+            JOIN products p ON c.product_id = p.product_id 
+            JOIN users u ON u.user_id = c.user_id
+            WHERE p.product_id = 9 ";
 
+    return  executeQuery($sql, true);
 }
 
 function cmt_index(){
     $amountCmt = getCountCommentInProductBySlug();
     $AllCmt = AllCmt();
+    $detailCmt = detailCmt();
+    
+
     client_render('page/comment.php',[
         'page_title' => 'Trang chi tiết sản phẩm',
         'amountCmt' => $amountCmt,
-        'allCmt' => $AllCmt
+        'allCmt' => $AllCmt,
+        'detailCmt' =>$detailCmt
+
         
         [
         'customize/js/banner&comment/script.js'

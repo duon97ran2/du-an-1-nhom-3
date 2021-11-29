@@ -1,4 +1,4 @@
-<div class="footer bg-dark">
+<div class="footer">
   <div class="container">
     <div class="row pt-3">
       <div class="col-xl-2 m-2">
@@ -34,17 +34,17 @@
       <div class="col">
         <ul class="footer--ul p-0">
           <li>
-            <p class="text-light fw-bold m-1 fs-6">Tư vấn mua hàng (Miễn phí)</p>
+            <p class=" fw-bold m-1 fs-6">Tư vấn mua hàng (Miễn phí)</p>
             <a href="tel:18006601" title="" class="fw-bold fs-5"><?= option_info('hotline_1')?></a> <span>(Nhánh 1)</span>
-            <p class="text-light fw-bold m-1 fs-6">Hỗ trợ kỹ thuật</p>
+            <p class=" fw-bold m-1 fs-6">Hỗ trợ kỹ thuật</p>
             <a href="tel:18006601" title="" class="fw-bold fs-5"><?= option_info('hotline_2')?></a><span>(Nhánh 2)</span>
           </li>
           <li>
-            <p class="text-light fw-bold m-1 fs-6">Góp ý, khiếu nại dịch vụ (8h00-22h00)</p>
+            <p class=" fw-bold m-1 fs-6">Góp ý, khiếu nại dịch vụ (8h00-22h00)</p>
             <a href="tel:18006601" title="" class="fw-bold fs-5"><?= option_info('hotline_1')?> </a> <span>(Nhánh 1)</span>
           </li>
         </ul>
-        <div class="footer--bottom text-light">
+        <div class="footer--bottom ">
           <div>
             <p class="fw-bold fs-6">Hỗ trợ thanh toán</p>
             <a href=""><img src="<?= asset('uploads/icons/visa.png') ?>" alt=""></a>
@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="row text-light text-center">
+    <div class="row  text-center">
       
         <strong>Copyright &copy; 2021 <a href="<?= admin_url('dashboard') ?>">PolyMobile</a>.</strong>
       

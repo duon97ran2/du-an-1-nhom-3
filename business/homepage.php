@@ -26,7 +26,7 @@
     }
 
     function get_cate_img() {
-        $sql = "SELECT * FROM categories";
+        $sql = "SELECT * FROM categories WHERE is_parent = 0";
         return  executeQuery( $sql,true);
         
     }
