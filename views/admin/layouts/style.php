@@ -7,6 +7,8 @@
 <!-- Tempusdominus Bootstrap 4 -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- iCheck -->
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 <!-- JQVMap -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/jqvmap/jqvmap.min.css">
