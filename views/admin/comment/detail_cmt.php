@@ -26,7 +26,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                   
+                   <th></th>
                     <th>STT</th>
                     <th>Nội dung</th>
                     <th>Người bình luận</th>
@@ -38,7 +38,7 @@
             <tbody>
                 <?php foreach ($details_cmt as $key => $detail) : ?>
                     <tr>
-                        <!-- <td><input type="checkbox" class="checkboxItem" name="checkbox" data-id="<?= $detail['comment_id'] ?>" id=""></td> -->
+                        <td><input type="checkbox" class="checkboxItem" name="checkbox" data-id="<?= $detail['comment_id'] ?>" id=""></td>
 
                         <td><?= $key + 1 ?></td>
                         <td><?= $detail['comment_content']  ?></td>
@@ -58,9 +58,9 @@
     </div>
 </div>
 
-<!-- <div class="control__manager">
+<div class="control__manager">
     <button onclick="selectAll()" class="table__controlBtn btn btn-primary">Chọn tất cả</button>
     <button onclick="deselectAll()" class="table__controlBtn btn btn-primary">Bỏ chọn tất cả</button>
-    <button onclick="deleteSelectedItems('AjaxDeleteListComment')" class="table__controlBtn btn btn-primary">Xóa các mục chọn</button> -->
+    <button onclick="deleteSelectedItems('AjaxDeleteListComment')" class="table__controlBtn btn btn-primary">Xóa các mục chọn</button>
     <a href="<?= admin_url('comments') ?>" class="btn btn-primary">Quay lại</a>
-<!-- </div> -->
+</div>
