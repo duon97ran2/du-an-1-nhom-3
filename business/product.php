@@ -1,11 +1,13 @@
 <?php
 
-function get_product_by_slug($slug) {
+function get_product_by_slug($slug)
+{
     $product_sql = "SELECT * FROM products WHERE product_slug = '$slug'";
     return executeQuery($product_sql, false);
 }
 
-function get_product_variant_by_slug($slug) {
+function get_product_variant_by_slug($slug)
+{
     $data = [];
     $sql = "SELECT 
                 P.*, C.category_name, CP.category_id as category_parent_id, CP.category_name as category_parent_name, B.brand_name,
@@ -26,18 +28,20 @@ function get_product_variant_by_slug($slug) {
     return $data;
 }
 
-function get_configuration_by_product_id($product_id) {
+function get_configuration_by_product_id($product_id)
+{
     $sql = "SELECT * FROM product_configuration WHERE product_id = '$product_id'";
     return executeQuery($sql, false);
 }
 
-function product_details() {
+function product_details()
+{
     $slug = input_get('slug');
     $product_variant = [];
     $product_default = get_product_by_slug($slug);
     if (empty($product_default)) {
         error_page();
-    } 
+    }
     if ($product_default['is_variant'] == 1) {
         $flag = false;
         $product_variant = get_product_variant_by_slug($slug);
@@ -66,7 +70,7 @@ function product_details() {
     }
     $product_configuration = get_configuration_by_product_id($product_default['product_id']);
 
-    view_no_layout('product-details', [
+    view_no_layout('layouts/product-details', [
         'product_default' => $product_default,
         'product_variant' => $product_variant,
         'product_configuration' => $product_configuration,

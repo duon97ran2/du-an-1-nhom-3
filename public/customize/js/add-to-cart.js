@@ -8,7 +8,7 @@ $('#js-add-to-cart').on('click', function() {
     let price = $(this).data('price');
     let data_url = $(this).data('url');
     if (login == 0) {
-        alert('Vui long dang nhap de mua hang');
+        toastr.error('Vui long dang nhap de mua hang');
     } else {
         $.ajax({
             type: "POST",
@@ -22,7 +22,7 @@ $('#js-add-to-cart').on('click', function() {
             success: function(response) {
                 response = JSON.parse(response);
                 if (response.errors) {
-                    alert(response.errors);
+                    toastr.error(response.errors);
                 } 
                 if (response.quantity > 0) {
                     cart_toal.html(response.cart_total);

@@ -168,3 +168,8 @@ function priceVND($price)
 {
     return number_format($price, 0, '', '.')." ₫";
 }
+function find_user_by_email($email) {
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    return executeQuery($sql, false);
+}
+?>
