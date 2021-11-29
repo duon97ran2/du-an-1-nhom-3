@@ -2,10 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b78e61b-d089-440a-bd23-c47929e4c83d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/commons/app_config.php" beforeDir="false" afterPath="$PROJECT_DIR$/commons/app_config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/admin/banner.php" beforeDir="false" afterPath="$PROJECT_DIR$/business/admin/banner.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/business/homepage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commons/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/commons/helpers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/images/calm_meadow_by_byrotek_dcv50fg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/options/6197ef6b9cc6d-99555165220211120013939.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/options/6197ef81a837b-192887816220211120014001.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/options/6197efe97a969-35880710120211120014145.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/options/61982dd5bed2f-181606168120211120060557.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tesst.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/banner/banner_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/banner/banner_list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/banner/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/banner/update.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/layouts/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/layouts/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/homepage/trang-chu.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,13 +31,18 @@
   </component>
   <component name="ProjectId" id="21K8jWJA32o0oSGoSrycdmaqeM2" />
   <component name="ProjectViewState">
+    <option name="foldersAlwaysOnTop" value="false" />
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -38,7 +54,25 @@
       <option name="presentableId" value="Default" />
       <updated>1637678560281</updated>
       <workItem from="1637678560285" duration="17000" />
+      <workItem from="1637713241075" duration="24000" />
+      <workItem from="1637727393330" duration="4000" />
+      <workItem from="1637752782115" duration="48000" />
+      <workItem from="1637752870068" duration="12000" />
+      <workItem from="1637831176588" duration="4000" />
+      <workItem from="1637854823648" duration="471000" />
+      <workItem from="1637867966083" duration="1371000" />
+      <workItem from="1637869377050" duration="86000" />
+      <workItem from="1637930043059" duration="616000" />
+      <workItem from="1637934611326" duration="251000" />
+      <workItem from="1637943576420" duration="22000" />
+      <workItem from="1638098022343" duration="2616000" />
+      <workItem from="1638103516165" duration="2738000" />
+      <workItem from="1638121142070" duration="22000" />
+      <workItem from="1638124072849" duration="4000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

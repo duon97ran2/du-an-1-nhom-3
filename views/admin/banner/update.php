@@ -29,11 +29,12 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
+                        <input type="hidden" name="banner_id" value="<?= $banner['banner_id'] ?>">
                         <div class="mb-3"><img src="<?= asset('uploads/') . $banner['banner_image'] ?>" alt="" width="150"></div>
                         <label>Ảnh banner <span class="text-danger">*</span></label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="banner_image" id="customFileImage">
-                            <label class="custom-file-label" for="customFileImage">Lựa chọn hình ảnh</label>
+                            <label class="" for="">Lựa chọn hình ảnh</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,7 +103,7 @@
             <a href="<?= admin_url('banner') ?>" class="btn btn-secondary btn-cannel">
                 Huỷ
             </a>
-            <button type="submit" id="js-btn-product-submit" class="btn btn-primary btn-save">
+            <button type="submit" class="btn btn-primary btn-save">
                 Lưu
             </button>
         </div>

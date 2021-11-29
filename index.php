@@ -10,6 +10,16 @@ switch ($url) {
         require_once './business/homepage.php';
         index();
         break;
+    case 'tim-kiem/xu-ly':
+        is_maintenance();
+        require_once './business/homepage.php';
+        search_ajax();
+        break;
+    case 'cp-admin/dashboard':
+        is_admin();
+        require_once './business/admin/dashboard.php';
+        dashboard_info();
+
     case 'thong-tin-san-pham':
         is_maintenance();
         require_once './business/product.php';
@@ -45,6 +55,7 @@ switch ($url) {
         is_maintenance();
         require_once './business/shopping-carts.php';
         checkout_handle();
+
         break;
     case 'dang-ky':
         is_maintenance();
@@ -237,6 +248,22 @@ switch ($url) {
         require_once "./business/admin/banner.php";
         remove_banner();
         break;
+    case 'cp-admin/comments':
+        require_once "./business/homepage.php";
+        comment_index();
+        break;
+    case 'cp-admin/comments/chi-tiet':
+        require_once "./business/homepage.php";
+        detail_cmt();
+        break;
+     case 'ajax/deleteListComment':
+         require_once "./business/ajax/deleteListComment.php";
+         break;
+    case 'comment/them-comment':
+        require_once "./business/homepage.php";
+        insertComment();
+        break;
+   
     default:
         error_page();
         break;

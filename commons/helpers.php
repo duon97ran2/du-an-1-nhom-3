@@ -6,12 +6,17 @@ function admin_render($viewpath, $data = [], $scripts = [], $styles = []){
     $businessView = "./views/admin/" . $viewpath;
     include_once './views/admin/layouts/main.php';
 }
-function client_render($viewpath, $data = [], $scripts = []){
 
+function  client_render($viewpath, $data = [], $scripts = []){ 
     extract($data);
-    $businessView = "./views/client/" . $viewpath;
-    include_once './views/client/layouts/main.php';
+    $businessView = "./views/homepage/" . $viewpath . ".php";
+    include_once './views/homepage/layouts/main.php';
 }
+
+// function  client_menu($data = [], $scripts = []){ 
+//     extract($data);
+//     include_once './views/homepage/layouts/main.php';
+// }
 
 function dd(){
     echo "<pre>";
@@ -163,6 +168,7 @@ function is_maintenance() {
         }
     }
 }
+
 // chuong create
 function priceVND($price)
 {
@@ -172,4 +178,11 @@ function find_user_by_email($email) {
     $sql = "SELECT * FROM users WHERE email = '$email'";
     return executeQuery($sql, false);
 }
+
+
+function menu_page() {
+    $sql = "SELECT * FROM `categories` WHERE parent_id !=0  AND is_menu = 1 ORDER BY category_index ASC;";
+    return executeQuery($sql, true) ?? [];
+}
+
 ?>
