@@ -5,7 +5,7 @@
                 FROM  products p
                 JOIN categories c
                 ON p.category_id = c.category_id
-                WHERE p.product_hot = 1 AND P.product_status = 1
+                WHERE p.product_hot = 1 AND p.product_status = 1
                 LIMIT 8
                 ";
         return executeQuery( $sql,true);
@@ -17,7 +17,7 @@
                 FROM  products p
                 JOIN categories c
                 ON p.category_id = c.category_id
-                WHERE p.product_views > 1 AND P.product_status = 1
+                WHERE p.product_views > 1 AND p.product_status = 1
                 GROUP BY p.product_price DESC 
                 LIMIT 8
                 ";
