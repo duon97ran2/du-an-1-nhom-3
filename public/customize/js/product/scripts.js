@@ -233,8 +233,34 @@ $(function () {
         "buttons": ["csv", "excel", "pdf", "print"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-    $('.btn_remove_product').deleteConfirm();
-    $('.btn_remove_variant').deleteConfirm();
+    $('.btn_remove_product').on('click', function(){
+        let redirectUrl = $(this).data('url');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Bạn có chắc chắn muốn xóa?',
+            showCancelButton: true,
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: `Hủy`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = redirectUrl;
+            }
+        })
+    });
+    $('.btn_remove_variant').on('click', function(){
+        let redirectUrl = $(this).data('url');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Bạn có chắc chắn muốn xóa?',
+            showCancelButton: true,
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: `Hủy`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = redirectUrl;
+            }
+        })
+    });
 
     var windowsize = $(window).width();
 
