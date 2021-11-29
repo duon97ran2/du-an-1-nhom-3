@@ -41,7 +41,7 @@
             <div class="brands__item ">
                 <div class="brands_item--item">
                     <div class="brands_item--box">
-                        <a href="#"> <img src="<?= asset('uploads/' . $c['category_image']) ?>" alt="" class="brands-image"></a>
+                        <a href="#"> <img src="<?= asset($c['category_image']) ?>" alt="" class="brands-image"></a>
                     </div>
                 </div>
             </div>
