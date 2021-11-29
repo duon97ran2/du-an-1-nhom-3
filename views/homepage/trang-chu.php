@@ -1,1 +1,0 @@
-<h2>Hello <?= $name ?>, tôi <?= $age ?> tuổi</h2>

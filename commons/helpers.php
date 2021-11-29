@@ -6,6 +6,17 @@ function admin_render($viewpath, $data = [], $scripts = []){
     include_once './views/admin/layouts/main.php';
 }
 
+function  client_render($viewpath, $data = [], $scripts = []){ // sia chinh ta ghe the
+    extract($data);
+    $businessView = "./views/homepage/" . $viewpath . ".php";
+    include_once './views/homepage/layouts/main.php';
+}
+
+function  client_menu($data = [], $scripts = []){ // sia chinh ta ghe the
+    extract($data);
+    include_once './views/homepage/layouts/main.php';
+}
+
 function dd(){
     echo "<pre>";
     $args = func_get_args();
@@ -145,4 +156,23 @@ function is_maintenance() {
         }
     }
 }
+
+// chuong create
+function priceVND($price)
+{
+    return number_format($price, 0, '', '.')." ₫";
+}
+
+
+function option_info($key = '') {
+    $sql = "SELECT * FROM options";
+    $option = executeQuery($sql, false);
+    return $option[$key] ?? $option;
+}   
+
+function menu_page() {
+    $sql = "SELECT * FROM `categories` WHERE parent_id !=0  AND is_menu = 1 ORDER BY category_index ASC;";
+    return executeQuery($sql, true) ?? [];
+}
+
 ?>

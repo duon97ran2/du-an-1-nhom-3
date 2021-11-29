@@ -7,7 +7,7 @@
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="<?= admin_url('dashboard') ?>">Trang chủ</a></li>
-        <li class="breadcrumb-item active">banner</li>
+        <li class="breadcrumb-item active">banners</li>
       </ol>
     </div>
   </div>
@@ -37,7 +37,6 @@
           <th>Vị trí</th>
           <th>Trạng Thái</th>
           <th>Ngày tạo</th>
-          <th>Ngày update</th>
           <th>Action</th>
         </tr> 
       </thead>
@@ -53,7 +52,7 @@
             <td><?= $b['banner_position'] == 1 ? "main_banner" : "sub_banner"?></td>
             <td><?= $b['is_active']== 1 ? "active" : "hidden"?></td>
             <td><?= $b['created_at'] ?></td>
-            <td><?= $b['update_at'] ?></td>
+           
             <td>
               <a href="<?=admin_url('banner/cap-nhat?banner_id='.$b['banner_id'])?>" class="btn btn-info">Update</a>
               <a href="javascript:;" 

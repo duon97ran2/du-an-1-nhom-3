@@ -55,6 +55,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= admin_url('comments') ?>" class="nav-link">
+              <i class="nav-icon fas fa-square"></i>
+              <p>
+                QL comment
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= admin_url('cau-hinh-trang') ?>" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p>

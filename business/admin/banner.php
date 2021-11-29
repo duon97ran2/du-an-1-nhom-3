@@ -2,7 +2,10 @@
     function banner_list(){
         $sql = "SELECT * FROM banners";
         $banners = executeQuery($sql, true);
-        admin_render('banner/banner_list.php', ['banners' => $banners], ['customize/js/banner/list.js']);
+        admin_render('banner/banner_list.php', [
+            'banners' => $banners], [
+            'customize/js/banner&comment/script.js'
+        ]);
     }
 
     function banner_add(){
@@ -36,6 +39,14 @@
         }
 
     }
+    function remove_banner(){
+        $banner_id = $_GET['banner_id'];
+        $sql = "DELETE FROM banners WHERE banner_id = $banner_id";
+        executeQuery($sql);
+        set_session('message', 'xoa banner thành công');
+        redirect('cp-admin/banner');
+    }
+
     function banner_update(){
         $banner_id = $_GET['banner_id'];
         $sql = "select * from banners where banner_id = $banner_id";
@@ -51,6 +62,7 @@
         $banner_id = $_GET['banner_id'];
         $sql = "select * from banners where banner_id = $banner_id";
         $banner_old= executeQuery($sql,false);
+
         $banner_name = input_post('banner_name');
         $banner_url = input_post('banner_url');
         $banner_index= input_post('banner_index');
@@ -58,32 +70,23 @@
         $banner_position= input_post('banner_position');
         $is_active = input_post('is_active');
         $banner_image = input_file('banner_image');
+        
 
         if ($banner_image['size'] == 0) {
             $errors['banner_image'] = 'Vui lòng chọn hình ảnh';
-            redirect_back();
-            die;
         }
-        $image_upload = upload_image($banner_image,'banner');
-        $sql = "UPDATE banners SET 
-                banner_name ='$banner_name',banner_url ='$banner_url',banner_image='$image_upload',
-                banner_index='$banner_index',banner_target='$banner_target',banner_position='$banner_position',is_active='$is_active' 
-                WHERE banner_id = '$banner_id'";
-        executeQuery($sql);
-        set_session('message', 'update banner thành công');
-        redirect('cp-admin/banner');
+        if(empty($errors)){
+            $image_upload = upload_image($banner_image,'banner');
+            $sql_banner = "UPDATE banners SET 
+                    banner_name ='$banner_name',banner_url ='$banner_url',banner_image='$image_upload',
+                    banner_index='$banner_index',banner_target='$banner_target',banner_position='$banner_position',is_active='$is_active' 
+                    WHERE banner_id = '$banner_id'";
+            executeQuery($sql_banner);
+            set_session('message', 'update banner thành công');
+            redirect('cp-admin/banner');
+          
+        }
  
     }
 
-    function remove_banner(){
-        $banner_id = $_GET['banner_id'];
-        $sql = "DELETE FROM banners WHERE banner_id = $banner_id";
-        executeQuery($sql);
-        set_session('message', 'xoa banner thành công');
-        redirect('cp-admin/banner');
-    }
-
-    function check_banner_index(){
-     
-      
-    }
+    
