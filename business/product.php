@@ -39,22 +39,29 @@ function product_details() {
         error_page();
     } 
     if ($product_default['is_variant'] == 1) {
+        $flag = false;
         $product_variant = get_product_variant_by_slug($slug);
         if ($product_variant) {
             $color = input_get('color');
             if (empty($color)) {
-                $product_default = $product_variant[0];
+                $flag = false;
             } else {
                 if (count($product_variant) > 1) {
                     foreach ($product_variant as $variant) {
                         if ($variant['product_variant_slug'] == $color) {
                             $product_default = $variant;
+                            $flag = true;
+                        } else {
+                            $flag = false;
                         }
                     }
                 } else {
-                    $product_default = $product_variant[0];
+                    $flag = false;
                 }
-            } 
+            }
+            if ($flag == false) {
+                $product_default = $product_variant[0];
+            }
         }
     }
     $product_configuration = get_configuration_by_product_id($product_default['product_id']);
