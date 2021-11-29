@@ -153,4 +153,8 @@ function cart_total() {
     $cart_item = executeQuery($sql, true);
     return count($cart_item) ?? 0;
 }
+function find_user_by_email($email) {
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    return executeQuery($sql, false);
+}
 ?>

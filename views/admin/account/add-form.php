@@ -11,19 +11,26 @@
         </div>
     </div>
 </section>
+<?php if (!empty(print_errors('message'))) : ?>
+            <div class="alert alert-danger mb-3"><?= print_errors('message') ?></div>
+        <?php endif; ?>
 <div class="card card-default">
+    
     <div class="card-header">
         <h3 class="card-title">Thêm tài khoản mới</h3>
     </div>
     <form action="<?= ADMIN_URL . 'tai-khoan/luu-tao-moi' ?>" method="post" enctype="multipart/form-data">
+        
         <div class="card-body">
             <div class="form-group">
                 <label for="">Họ và tên</label>
                 <input type="text" name="name" id="" class="form-control" placeholder="">
+                <span class='text-danger'><?= print_errors('name')?></span>
             </div>
             <div class="form-group">
                 <label for="">Email</label>
                 <input type="text" name="email" id="" class="form-control" placeholder="">
+                <span class='text-danger'><?= print_errors('email')?></span>
             </div>
             <div class="form-group">
                 <label class='required' for="avatar">Ảnh đại diện</label>
@@ -33,10 +40,12 @@
                         <label class="custom-file-label" for="avatar">Chọn hình cho sản phẩm</label>
                     </div>
                 </div>
+                <span class='text-danger'><?= print_errors('avatar')?></span>
             </div>
             <div class="form-group">
                 <label for="">Mật khẩu</label>
                 <input type="password" name="password" id="" class="form-control" placeholder="">
+                <span class='text-danger'><?= print_errors('password')?></span>
             </div>
             <!-- <div class="form-group">
                 <label for="gender">Giới tính</label>
@@ -62,6 +71,8 @@
                         <input type="radio" id="other" name="gender" value="2" />
                         <label for="other">Giới tính khác</label>
                     </div>
+                    <br>
+                    <span class='text-danger'><?= print_errors('gender')?></span>
                 </div>
                 <div class=" col-6 mb-3">
                     <div class="input-group ">
@@ -74,6 +85,7 @@
                             <option value="customer">Khách hàng</option>
                         </select>
                     </div>
+                    <span class='text-danger'><?= print_errors('role')?></span>
                 </div>
             </div>
             <div class="row">
@@ -100,10 +112,12 @@
             <div class="form-group">
                 <label for="phone">Số điện thoại</label>
                 <input type="text" name="phone" id="" class="form-control" placeholder="">
+                <span class='text-danger'><?= print_errors('phone')?></span>
             </div>
             <div class="form-group">
                 <label for="address">Địa chỉ</label>
                 <input type="text" name="address" id="" class="form-control" placeholder="">
+                <span class='text-danger'><?= print_errors('address')?></span>
             </div>
             <br>
             <div class="d-flex justify-content-center">
@@ -113,4 +127,5 @@
             </div>
         </div>
     </form>
+    <?php unset($_SESSION['errors'])?>
 </div>

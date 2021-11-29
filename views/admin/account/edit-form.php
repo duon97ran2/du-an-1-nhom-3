@@ -11,6 +11,9 @@
         </div>
     </div>
 </section>
+<?php if (!empty(print_errors('message'))) : ?>
+            <div class="alert alert-danger mb-3"><?= print_errors('message') ?></div>
+        <?php endif; ?>
 <div class="card card-default">
     <div class="card-header">
         <h3 class="card-title">Sửa tài khoản</h3>
@@ -20,10 +23,11 @@
             <div class="form-group">
                 <label for="name">Họ và tên</label>
                 <input type="text" name="name" id="" class="form-control" placeholder="" value="<?= $user['name'] ?>">
+                <span class='text-danger'><?= print_errors('name')?></span>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="" class="form-control" placeholder="" value="<?= $user['email'] ?>">
+                <input type="email" disabled name="email" id="" class="form-control" placeholder="" value="<?= $user['email'] ?>">
             </div>
             <div class="form-group">
                 <label class='required' for="avatar">Ảnh đại diện</label>
@@ -33,9 +37,10 @@
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="avatar">
-                        <label class="custom-file-label" for="avatar">Chọn hình cho sản phẩm</label>
+                        <label class="custom-file-label" for="avatar"><?= $user['avatar'] ?></label>
                     </div>
                 </div>
+                <span class='text-danger'><?= print_errors('avatar')?></span>
             </div>
             <div class="row">
                 <div class="col-6 mb-3">
@@ -89,10 +94,12 @@
             <div class="form-group">
                 <label for="phone">Số điện thoại</label>
                 <input type="text" name="phone" id="" class="form-control" placeholder="" value="<?= $user['phone']?>">
+                <span class='text-danger'><?= print_errors('phone')?></span>
             </div>
             <div class="form-group">
                 <label for="address">Địa chỉ</label>
                 <input type="text" name="address" id="" class="form-control" placeholder="" value="<?= $user['address']?>">
+                <span class='text-danger'><?= print_errors('address')?></span>
             </div>
             <br>
             <div class="d-flex justify-content-center">
@@ -102,4 +109,5 @@
             </div>
         </div>
     </form>
+    <?php unset($_SESSION['errors'])?>
 </div>

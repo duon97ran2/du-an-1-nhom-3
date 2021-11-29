@@ -26,7 +26,9 @@ $gender = [
         </div>
     </div>
 </section>
-
+<?php if (!empty(print_errors('message'))) : ?>
+            <div class="alert alert-success mb-3"><?= print_errors('message') ?></div>
+        <?php endif; ?>
 <div class="card card-default">
     <div class="card-header">
         <a href="<?= ADMIN_URL ?>tai-khoan/tao-moi" class="btn btn-success btn-sm">Thêm mới</a>
