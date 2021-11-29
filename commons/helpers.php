@@ -7,7 +7,7 @@ function admin_render($viewpath, $data = [], $scripts = [], $styles = []){
     include_once './views/admin/layouts/main.php';
 }
 
-function  client_render($viewpath, $data = [], $scripts = []){ 
+function client_render($viewpath, $data = [], $scripts = []){ 
     extract($data);
     $businessView = "./views/homepage/" . $viewpath . ".php";
     include_once './views/homepage/layouts/main.php';
@@ -168,17 +168,16 @@ function is_maintenance() {
         }
     }
 }
-
 // chuong create
 function priceVND($price)
 {
     return number_format($price, 0, '', '.')." ₫";
 }
+
 function find_user_by_email($email) {
     $sql = "SELECT * FROM users WHERE email = '$email'";
     return executeQuery($sql, false);
 }
-
 
 function menu_page() {
     $sql = "SELECT * FROM categories WHERE is_menu = 1 ORDER BY category_index ASC;";

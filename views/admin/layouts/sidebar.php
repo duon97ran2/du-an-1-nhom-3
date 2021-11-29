@@ -31,6 +31,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= admin_url('danh-muc') ?>" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Danh muc
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?= admin_url('san-pham') ?>" class="nav-link">
               <i class="nav-icon fas fa-box"></i>
               <p>
@@ -39,10 +47,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= admin_url('tai-khoan') ?>" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+            <a href="<?= admin_url('qua-tang') ?>" class="nav-link">
+              <i class="nav-icon fas fa-gift"></i>
               <p>
-                Tài khoản
+                Qua tang
               </p>
             </a>
           </li>
@@ -59,6 +67,22 @@
               <i class="nav-icon fas fa-square"></i>
               <p>
                 QL comment
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= admin_url('phieu-giam-gia') ?>" class="nav-link">
+              <i class="nav-icon fas fa-ticket-alt"></i>
+              <p>
+                Vouchers
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= admin_url('tai-khoan') ?>" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Tài khoản
               </p>
             </a>
           </li>

@@ -96,8 +96,3 @@ function logout($admin = false) {
         redirect('dang-nhap');
     }
 }
-
-function find_user_by_email($email) {
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    return executeQuery($sql, false);
-}

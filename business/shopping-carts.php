@@ -284,6 +284,7 @@ function checkout_handle() {
         sendEmailOrder($email, "Thông tin đơn hàng $order_code", $content_mail);
 
         echo "Đặt hàng thành công. Chi tiết đơn hàng đã được gửi vào email bạn cung cấp.";
+        redirect('/');
     }
 
     if ($errors) {
