@@ -235,7 +235,6 @@ $(function () {
 
     $('.btn_remove_product').on('click', function(){
         let redirectUrl = $(this).data('url');
-        console.log(redirectUrl);
         Swal.fire({
             icon: 'warning',
             title: 'Bạn có chắc chắn muốn xóa?',
@@ -250,7 +249,6 @@ $(function () {
     });
     $('.btn_remove_variant').on('click', function(){
         let redirectUrl = $(this).data('url');
-        console.log(redirectUrl);
         Swal.fire({
             icon: 'warning',
             title: 'Bạn có chắc chắn muốn xóa?',

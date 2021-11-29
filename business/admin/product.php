@@ -581,7 +581,7 @@ function product_change_status_handle() {
 
 function product_remove_product_handle() {
     $product_id = input_get('product_id');
-    $sql = "DELETE FROM products WHERE product_id = '$product_id'";
+    $sql = "DELETE FROM products WHERE product_id = $product_id";
     executeQuery($sql);
     set_session('message', 'Xoá sản phẩm thành công');
     redirect_back();
