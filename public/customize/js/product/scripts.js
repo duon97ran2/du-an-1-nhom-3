@@ -35,7 +35,7 @@ productNewAttribute.on('click', function() {
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-12">
+        <div class="col-xl-2 col-lg-12">
             <div class="form-group">
                 <label>Tên <span class="text-danger">*</span></label>
                 <input type="text" name="product_variant_name[${indexVariant}]" data-slug="#product_variant_slug_${indexVariant}" placeholder="Nhập vào (VD: Xanh)" class="form-control data-slug variant-valid">
@@ -45,6 +45,12 @@ productNewAttribute.on('click', function() {
             <div class="form-group">
                 <label>Tên không dấu <span class="text-danger">*</span></label>
                 <input type="text" name="product_variant_slug[${indexVariant}]" id="product_variant_slug_${indexVariant}" placeholder="Nhập vào" class="form-control variant-valid">
+            </div>
+        </div>
+        <div class="col-xl-1 col-lg-12">
+            <div class="form-group">
+                <label>Số lượng <span class="text-danger">*</span></label>
+                <input type="number" name="product_variant_quantity[${indexVariant}]" placeholder="Nhập vào" class="form-control variant-valid">
             </div>
         </div>
         <div class="col-xl-2 col-lg-12">
@@ -109,7 +115,28 @@ $('.attribute-update input').on('change', function() {
     });
 })
 
+$('.product_check_slug').on('change keyup',function () {
+    $.ajax({
+        type: "POST",
+        url: $('#product_slug').data('url'),
+        data: {
+            slug: $('#product_slug').val(),
+            old_slug: $('#product_slug').data('old'),
+            action: $('#product_slug').data('action')
+        },
+        success: function (data) {
+            $.validator.addMethod('slugcheck', function (value, element, param) {
+                if (data == value) {
+                    return false;
+                }
+                return true;
+            });
+        }
+    });
+});
+
 $(function () {
+
     $.validator.addMethod('filesize', function (value, element, param) {
         return this.optional(element) || (((element.files[0].size / (1024*1024)).toFixed(2)) <= param)
     }, 'Kích thước tệp phải nhỏ hơn {0} MB');
@@ -129,6 +156,7 @@ $(function () {
             },
             product_slug: {
                 required: true,
+                slugcheck: true
             },
             product_description: {
                 required: true,
@@ -161,6 +189,7 @@ $(function () {
             },
             product_slug: {
                 required: "Vui lòng điền thông tin",
+                slugcheck: 'Tên sản phẩm không dấu đã tồn tại'
             },
             product_description: {
                 required: "Vui lòng điền thông tin",
@@ -203,4 +232,44 @@ $(function () {
         "ordering": false,
         "buttons": ["csv", "excel", "pdf", "print"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+    $('.btn_remove_product').deleteConfirm();
+    $('.btn_remove_variant').deleteConfirm();
+
+    var windowsize = $(window).width();
+
+    $(window).resize(function() {
+        windowsize = $(window).width();
+    });
+
+    $('.js-checkbox-status').on('click',function (e) {
+        let data_id = $(this).data('id');
+        let ckd_status = $(this).is(':checked') ? 1 : 0;
+        let data_url = $(this).data('url');
+        if (ckd_status == 1) {
+            $(this).next().removeClass('btn-danger');
+            $(this).next().addClass('btn-primary');
+            $(this).next().html("Hiển thị");
+        } else {
+            $(this).next().addClass('btn-danger');
+            $(this).next().removeClass('btn-primary');
+            $(this).next().html("Không hiển thị");
+        }
+        $.ajax({
+            type: "POST",
+            url: data_url,
+            data: {
+                product_id: data_id,
+                status: ckd_status,
+            },
+            success: function (data) {
+                if (windowsize < 568) {
+                    setTimeout(function() {
+                        location.reload();
+                    }, 500);
+                }
+                toastr.success(data)
+            }
+        });
+    });
 });

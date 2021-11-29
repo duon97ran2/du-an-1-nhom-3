@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= $page_title ?? 'Dashboard' ?></title>
+  <title><?= $page_title ?? 'Dashboard' ?><?= (!empty(option_info()) ? ' - ' . option_info('app_name') : 'Document') ?></title>
+  <?php if(!empty(option_info('favicon'))): ?>
+  <link rel="icon" type="image/png" href="<?= asset('uploads/'.option_info('favicon')) ?>"/>
+  <?php endif; ?>
   <?php include_once "./views/admin/layouts/style.php" ?>
   
 </head>
@@ -36,7 +39,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2021 <a href="<?= admin_url('dashboard') ?>">PolyMobile</a>.</strong>
+    <strong>Copyright &copy; 2021 <a href="<?= admin_url('dashboard') ?>"><?= (!empty(option_info()) ? option_info()['app_name'] : 'Document') ?></a>.</strong>
     All rights reserved.
   </footer>
 

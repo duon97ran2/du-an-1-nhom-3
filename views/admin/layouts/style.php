@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- sweetalert2 -->
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/sweetalert2/sweetalert2.min.css">
+<!-- Toastr -->
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/toastr/toastr.min.css">
 <!-- Tempusdominus Bootstrap 4 -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- iCheck -->
