@@ -1,4 +1,4 @@
-<form action="<?= ADMIN_URL . 'phieu-giam-gia/luu-sua?gift_id=' . $vouchers['voucher_id'] ?>" method="post" >
+<form action="<?= ADMIN_URL . 'phieu-giam-gia/luu-sua?voucher_id=' . $vouchers['voucher_id'] ?>" method="post" >
     <div class="row">
         <div class="col-6 offset-3">
         <div class="form-group">
@@ -19,11 +19,11 @@
             </div>
             <div class="form-group">
                 <label for="">Giá sử dụng</label>
-                <input type="float" name="apply_price" id="" class="form-control" placeholder="" value="<?= $vouchers['apply_price'] ?>">
+                <input type="number" name="apply_price" id="" class="form-control" placeholder="" value="<?= $vouchers['apply_price'] ?>">
             </div>
             <div class="form-group">
                 <label for="">Giá tối thiểu</label>
-                <input type="float" name="minimum_order_price" id="" class="form-control" placeholder="" value="<?= $vouchers['minimum_order_price'] ?>">
+                <input type="number" name="minimum_order_price" id="" class="form-control" placeholder="" value="<?= $vouchers['minimum_order_price'] ?>">
             </div>
     </div>
     <br>

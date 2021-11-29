@@ -1,4 +1,4 @@
-<form action="<?= ADMIN_URL . 'phieu-giam-gia/luu-tao-moi?voucher_id=' . $vouchers['voucher_id'] ?>" method="post" >
+<form action="<?= ADMIN_URL . 'phieu-giam-gia/luu-tao-moi'?>" method="post" >
     <div class="row">
         <div class="form-group">
                 <label for="">Mã voucher</label>
@@ -18,16 +18,17 @@
             </div>
             <div class="form-group">
                 <label for="">Giá sử dụng</label>
-                <input type="float" name="apply_price" class="form-control" placeholder="">
+                <input type="number" name="apply_price" class="form-control" placeholder="">
             </div>
             <div class="form-group">
                 <label for="">Giá tối thiểu</label>
-                <input type="float" name="minimum_order_price" class="form-control" placeholder="">
+                <input type="number" name="minimum_order_price" class="form-control" placeholder="">
             </div>
-    <br>
+        <div class="voucher-footer">
             <div class="d-flex justify-content-center">
                 <a href="<?= ADMIN_URL . 'phieu-giam-gia'?>" class="btn btn-sm btn-danger">Hủy</a>
                 &nbsp;  
                 <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
             </div>
+        </div>
 </form>

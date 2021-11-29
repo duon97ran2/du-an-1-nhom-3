@@ -64,10 +64,26 @@ switch ($url) {
     case 'cp-admin/phieu-giam-gia':
         require_once "./business/admin/vouchers.php";
         voucher_index();  
+        break;
+    case 'cp-admin/phieu-giam-gia/xoa':
+        require_once "./business/admin/vouchers.php";
+        voucher_remove();  
+        break;
+    case 'cp-admin/phieu-giam-gia/tao-moi':
+        require_once "./business/admin/vouchers.php";
+        voucher_create();
         break;    
     case 'cp-admin/phieu-giam-gia/luu-tao-moi':
         require_once "./business/admin/vouchers.php";
         voucher_save_add();
+        break;
+    case 'cp-admin/phieu-giam-gia/sua':
+        require_once "./business/admin/vouchers.php";
+        voucher_edit_form();
+        break;
+    case 'cp-admin/phieu-giam-gia/luu-sua':
+        require_once "./business/admin/vouchers.php";
+        voucher_save_edit();
         break;  
     default:
         echo "Đường dẫn bạn đang truy cập chưa được định nghĩa";
