@@ -28,6 +28,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        }
         h1{
             font-size: 3em;
             font-weight: 100;
@@ -49,7 +50,6 @@
             font-weight: 300;
             color: #F44;
             text-decoration: none;
-        }
         }
 
         footer{

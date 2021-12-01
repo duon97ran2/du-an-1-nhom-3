@@ -5,6 +5,30 @@ require_once './dao/system_dao.php';
 require_once './commons/helpers.php';
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 switch ($url) {
+    case 'cp-admin/tai-khoan':
+        require_once "./business/admin/account.php";
+        account_index();
+        break;
+    case 'cp-admin/tai-khoan/tao-moi':
+        require_once "./business/admin/account.php";
+        account_create();
+        break;
+    case 'cp-admin/tai-khoan/luu-tao-moi':
+        require_once "./business/admin/account.php";
+        account_save_add();
+        break;
+    case 'cp-admin/tai-khoan/sua':
+        require_once "./business/admin/account.php";
+        account_edit_form();
+        break;
+    case 'cp-admin/tai-khoan/luu-sua':
+        require_once "./business/admin/account.php";
+        account_save_edit();
+        break;
+    case 'cp-admin/tai-khoan/xoa':
+        require_once "./business/admin/account.php";
+        account_remove();
+        break;
     case '/':
         is_maintenance();
         require_once './business/homepage.php';
@@ -189,31 +213,42 @@ switch ($url) {
         require_once "./business/admin/product.php";
         product_remove_product_handle();
         break;
-    case 'cp-admin/tai-khoan':
-        is_admin();
-        require_once "./business/admin/account.php";
-        account_index();
+    // Brand By Trần Khánh Linh
+    case 'cp-admin/thuong-hieu':
+        require_once "./business/admin/brand.php";
+        brand_index();
         break;
-    case 'cp-admin/tai-khoan/tao-moi':
-        require_once "./business/admin/account.php";
-        account_create();
+    case 'cp-admin/thuong-hieu/tao-moi':
+        require_once "./business/admin/brand.php";
+        brand_create();
         break;
-    case 'cp-admin/tai-khoan/luu-tao-moi':
-        require_once "./business/admin/account.php";
-        account_save_add();
+    case 'cp-admin/thuong-hieu/luu-tao-moi':
+        require_once "./business/admin/brand.php";
+        brand_save_add();
         break;
-    case 'cp-admin/tai-khoan/sua':
-        is_admin();
-        require_once "./business/admin/account.php";
-        account_edit_form();
+    case 'cp-admin/thuong-hieu/sua':
+        require_once "./business/admin/brand.php";
+        brand_edit_form();
         break;
-    case 'cp-admin/tai-khoan/luu-sua':
-        require_once "./business/admin/account.php";
-        account_save_edit();
+    case 'cp-admin/thuong-hieu/luu-sua':
+        require_once "./business/admin/brand.php";
+        brand_save_edit();
         break;
-    case 'cp-admin/tai-khoan/xoa':
-        require_once "./business/admin/account.php";
-        account_remove();
+    case 'cp-admin/thuong-hieu/xoa':
+        require_once "./business/admin/brand.php";
+        brand_remove();
+        break;
+    // Wishlist By Trần Khánh Linh
+    case 'danh-sach-yeu-thich':
+        is_maintenance();
+        require_once './business/wishlist.php';
+        break;
+    case 'danh-sach-yeu-thich/them-san-pham':
+        require_once './business/wishlist.php';
+
+        break;
+    case 'danh-sach-yeu-thich/xoa-san-pham':
+        require_once './business/wishlist.php';
         break;
     case 'cp-admin/banner':
         is_admin();
@@ -348,4 +383,5 @@ switch ($url) {
     default:
         error_page();
         break;
+        
 }

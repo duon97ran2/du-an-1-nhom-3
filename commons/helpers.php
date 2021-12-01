@@ -27,7 +27,6 @@ function dd(){
     echo "</pre>";
     die;
 }
-
 // chuong create
 function view_no_layout($viewpath, $data = []) {
     extract($data);

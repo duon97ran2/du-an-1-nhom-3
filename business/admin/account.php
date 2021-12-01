@@ -20,6 +20,7 @@ function account_remove(){
     $sql = "delete from users where user_id = $id";
     executeQuery($sql);
     header("location: " . ADMIN_URL . 'tai-khoan');
+    $_SESSION['message']='Xóa thành công';
 }
 function account_create(){
     admin_render("account/add-form.php",[

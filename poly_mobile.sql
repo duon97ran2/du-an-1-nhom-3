@@ -71,14 +71,23 @@ CREATE TABLE `categories` (
   `parent_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `menu_url` varchar(255) DEFAULT NULL,
-  `category_index` int(11) DEFAULT NULL
+  `menu_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `category_name`, `category_slug`, `category_image`, `is_menu`, `is_parent`, `parent_id`, `created_at`, `updated_at`, `menu_url`) VALUES
+(1, 'Điện thoại', 'dien-thoai', '', 1, 1, NULL, '2021-11-12 01:54:57', '2021-11-12 01:54:57', NULL),
+(2, 'Iphone', 'iphone', '', 0, 0, 1, '2021-11-12 01:55:48', '2021-11-12 01:55:48', NULL),
+(3, 'Phụ kiện', 'phu-kien', '', 1, 1, NULL, '2021-11-12 03:18:59', '2021-11-12 03:18:59', NULL),
+(4, 'Tai nghe', 'tai-nghe', '', 0, 0, 3, '2021-11-12 03:19:17', '2021-11-12 03:19:17', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Cấu trúc bảng cho bảng `comments`
 --
 
 CREATE TABLE `comments` (
@@ -215,6 +224,18 @@ CREATE TABLE `products` (
 --
 -- Table structure for table `product_configuration`
 --
+-- Đang đổ dữ liệu cho bảng `products`
+--
+
+INSERT INTO `products` (`product_id`, `product_name`, `product_slug`, `product_description`, `product_content`, `product_image`, `product_price`, `product_discount`, `product_quantity`, `product_hot`, `product_gifts`, `category_id`, `brand_id`, `created_at`, `updated_at`, `is_variant`, `product_status`, `product_views`) VALUES
+(1, '13 Pro Max 128GB', '13-pro-max-128gb', 'Iphone 13 Pro Max 128GB', 'Iphone 13 Pro Max 128GB', '', 28000000, 0, 20, 0, NULL, 2, 1, '2021-11-12 01:58:04', '2021-11-12 01:58:04', 1, 1, 0),
+(2, 'Airpod Pro', 'airpod-pro', 'Airpod Pro', 'Airpod Pro', '', 2500000, 0, 22, 0, NULL, 4, 1, '2021-11-12 03:19:52', '2021-11-12 03:19:52', 0, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product_configuration`
+--
 
 CREATE TABLE `product_configuration` (
   `display` varchar(150) DEFAULT NULL,
@@ -251,6 +272,18 @@ CREATE TABLE `product_variants` (
 
 --
 -- Table structure for table `ratings`
+--
+-- Đang đổ dữ liệu cho bảng `product_variants`
+--
+
+INSERT INTO `product_variants` (`product_variant_id`, `product_variant_name`, `product_variant_slug`, `product_variant_price`, `product_variant_discount`, `product_variant_image`, `product_id`) VALUES
+(1, 'Gold', 'gold', 29000000, 0, '', 1),
+(2, 'Hồng', 'hong', 27000000, 0, '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `ratings`
 --
 
 CREATE TABLE `ratings` (
@@ -313,7 +346,11 @@ INSERT INTO `users` (`user_id`, `name`, `first_name`, `last_name`, `email`, `pas
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `user_tokens`
+=======
+-- Cấu trúc bảng cho bảng `user_tokens`
+>>>>>>> origin/linh
 --
 
 CREATE TABLE `user_tokens` (
@@ -325,6 +362,7 @@ CREATE TABLE `user_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+<<<<<<< HEAD
 -- Dumping data for table `user_tokens`
 --
 
@@ -337,11 +375,22 @@ INSERT INTO `user_tokens` (`user_id`, `access_token`, `is_active`, `start_time`,
 (2, 'NjE5NmIyMTE0NmY5YmNodW9uZ2t2cGgxMzM5MkBmcHQuZWR1LnZu', 0, '2021-11-19 03:05:37', '2021-11-19 04:05:37'),
 (7, 'NjE5N2Q3MTc5YzIxMmNodW9ucWl0QGdtYWlsLmNvbQ==', 1, '2021-11-19 23:55:51', '2021-11-19 23:55:51'),
 (7, 'NjE5N2Q4ZTkzZDFiNGNodW9ucWl0QGdtYWlsLmNvbQ==', 1, '2021-11-20 00:03:37', '2021-11-20 01:03:37');
+=======
+-- Đang đổ dữ liệu cho bảng `user_tokens`
+--
+
+INSERT INTO `user_tokens` (`user_id`, `access_token`, `is_active`, `start_time`, `end_time`) VALUES
+(1, 'MTYzNjY1MDgwODEyMjI0MDQxMDJ8Y2h1b25na3ZwaDEzMzkyQGZwdC5lZHUudm4=', 1, '2021-11-12 00:13:28', '2021-11-12 00:13:28');
+>>>>>>> origin/linh
 
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `user_vouchers`
+=======
+-- Cấu trúc bảng cho bảng `user_vouchers`
+>>>>>>> origin/linh
 --
 
 CREATE TABLE `user_vouchers` (
@@ -352,7 +401,11 @@ CREATE TABLE `user_vouchers` (
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `vouchers`
+=======
+-- Cấu trúc bảng cho bảng `vouchers`
+>>>>>>> origin/linh
 --
 
 CREATE TABLE `vouchers` (
@@ -369,7 +422,11 @@ CREATE TABLE `vouchers` (
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `wishlists`
+=======
+-- Cấu trúc bảng cho bảng `wishlists`
+>>>>>>> origin/linh
 --
 
 CREATE TABLE `wishlists` (
@@ -380,30 +437,50 @@ CREATE TABLE `wishlists` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+<<<<<<< HEAD
 -- Indexes for dumped tables
 --
 
 --
 -- Indexes for table `banners`
+=======
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `banners`
+>>>>>>> origin/linh
 --
 ALTER TABLE `banners`
   ADD PRIMARY KEY (`banner_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `brands`
+=======
+-- Chỉ mục cho bảng `brands`
+>>>>>>> origin/linh
 --
 ALTER TABLE `brands`
   ADD PRIMARY KEY (`brand_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `categories`
+=======
+-- Chỉ mục cho bảng `categories`
+>>>>>>> origin/linh
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`),
   ADD KEY `categories_parent` (`parent_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `comments`
+=======
+-- Chỉ mục cho bảng `comments`
+>>>>>>> origin/linh
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`),
@@ -411,40 +488,64 @@ ALTER TABLE `comments`
   ADD KEY `comments_users` (`user_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `gifts`
+=======
+-- Chỉ mục cho bảng `gifts`
+>>>>>>> origin/linh
 --
 ALTER TABLE `gifts`
   ADD PRIMARY KEY (`gift_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `news`
+=======
+-- Chỉ mục cho bảng `news`
+>>>>>>> origin/linh
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`news_id`),
   ADD KEY `news_users` (`user_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `options`
+=======
+-- Chỉ mục cho bảng `options`
+>>>>>>> origin/linh
 --
 ALTER TABLE `options`
   ADD PRIMARY KEY (`option_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `orders`
+=======
+-- Chỉ mục cho bảng `orders`
+>>>>>>> origin/linh
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `users_orders` (`user_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `order_items`
+=======
+-- Chỉ mục cho bảng `order_items`
+>>>>>>> origin/linh
 --
 ALTER TABLE `order_items`
   ADD KEY `orders_items` (`order_id`),
   ADD KEY `products_orders_items` (`product_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `products`
+=======
+-- Chỉ mục cho bảng `products`
+>>>>>>> origin/linh
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`),
@@ -452,27 +553,43 @@ ALTER TABLE `products`
   ADD KEY `products_categories` (`category_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `product_configuration`
+=======
+-- Chỉ mục cho bảng `product_configuration`
+>>>>>>> origin/linh
 --
 ALTER TABLE `product_configuration`
   ADD KEY `product_configuration` (`product_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `product_variants`
+=======
+-- Chỉ mục cho bảng `product_variants`
+>>>>>>> origin/linh
 --
 ALTER TABLE `product_variants`
   ADD PRIMARY KEY (`product_variant_id`),
   ADD KEY `product_variants` (`product_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `ratings`
+=======
+-- Chỉ mục cho bảng `ratings`
+>>>>>>> origin/linh
 --
 ALTER TABLE `ratings`
   ADD PRIMARY KEY (`rating_id`),
   ADD KEY `comments_ratings` (`comment_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `shopping_carts`
+=======
+-- Chỉ mục cho bảng `shopping_carts`
+>>>>>>> origin/linh
 --
 ALTER TABLE `shopping_carts`
   ADD PRIMARY KEY (`cart_id`),
@@ -480,32 +597,52 @@ ALTER TABLE `shopping_carts`
   ADD KEY `users_carts` (`user_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `users`
+=======
+-- Chỉ mục cho bảng `users`
+>>>>>>> origin/linh
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `user_tokens`
+=======
+-- Chỉ mục cho bảng `user_tokens`
+>>>>>>> origin/linh
 --
 ALTER TABLE `user_tokens`
   ADD KEY `users_tokens` (`user_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `user_vouchers`
+=======
+-- Chỉ mục cho bảng `user_vouchers`
+>>>>>>> origin/linh
 --
 ALTER TABLE `user_vouchers`
   ADD KEY `users_vouchers_fk1` (`user_id`),
   ADD KEY `users_vouchers_fk2` (`voucher_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `vouchers`
+=======
+-- Chỉ mục cho bảng `vouchers`
+>>>>>>> origin/linh
 --
 ALTER TABLE `vouchers`
   ADD PRIMARY KEY (`voucher_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `wishlists`
+=======
+-- Chỉ mục cho bảng `wishlists`
+>>>>>>> origin/linh
 --
 ALTER TABLE `wishlists`
   ADD PRIMARY KEY (`wishlist_id`),
@@ -513,22 +650,35 @@ ALTER TABLE `wishlists`
   ADD KEY `products_wishlists` (`product_id`);
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
 -- AUTO_INCREMENT for table `banners`
+=======
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `banners`
+>>>>>>> origin/linh
 --
 ALTER TABLE `banners`
   MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `brands`
+=======
+-- AUTO_INCREMENT cho bảng `brands`
+>>>>>>> origin/linh
 --
 ALTER TABLE `brands`
   MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -536,23 +686,41 @@ ALTER TABLE `categories`
 
 --
 -- AUTO_INCREMENT for table `comments`
+=======
+-- AUTO_INCREMENT cho bảng `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `comments`
+>>>>>>> origin/linh
 --
 ALTER TABLE `comments`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `gifts`
+=======
+-- AUTO_INCREMENT cho bảng `gifts`
+>>>>>>> origin/linh
 --
 ALTER TABLE `gifts`
   MODIFY `gift_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `news`
+=======
+-- AUTO_INCREMENT cho bảng `news`
+>>>>>>> origin/linh
 --
 ALTER TABLE `news`
   MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
@@ -560,11 +728,21 @@ ALTER TABLE `options`
 
 --
 -- AUTO_INCREMENT for table `orders`
+=======
+-- AUTO_INCREMENT cho bảng `options`
+--
+ALTER TABLE `options`
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `orders`
+>>>>>>> origin/linh
 --
 ALTER TABLE `orders`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
@@ -578,17 +756,37 @@ ALTER TABLE `product_variants`
 
 --
 -- AUTO_INCREMENT for table `ratings`
+=======
+-- AUTO_INCREMENT cho bảng `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `product_variants`
+--
+ALTER TABLE `product_variants`
+  MODIFY `product_variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `ratings`
+>>>>>>> origin/linh
 --
 ALTER TABLE `ratings`
   MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `shopping_carts`
+=======
+-- AUTO_INCREMENT cho bảng `shopping_carts`
+>>>>>>> origin/linh
 --
 ALTER TABLE `shopping_carts`
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -596,17 +794,31 @@ ALTER TABLE `users`
 
 --
 -- AUTO_INCREMENT for table `vouchers`
+=======
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `vouchers`
+>>>>>>> origin/linh
 --
 ALTER TABLE `vouchers`
   MODIFY `voucher_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `wishlists`
+=======
+-- AUTO_INCREMENT cho bảng `wishlists`
+>>>>>>> origin/linh
 --
 ALTER TABLE `wishlists`
   MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- Constraints for dumped tables
 --
 
@@ -618,18 +830,36 @@ ALTER TABLE `categories`
 
 --
 -- Constraints for table `comments`
+=======
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_parent` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`category_id`);
+
+--
+-- Các ràng buộc cho bảng `comments`
+>>>>>>> origin/linh
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `comments_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
+<<<<<<< HEAD
 -- Constraints for table `news`
+=======
+-- Các ràng buộc cho bảng `news`
+>>>>>>> origin/linh
 --
 ALTER TABLE `news`
   ADD CONSTRAINT `news_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
+<<<<<<< HEAD
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
@@ -663,25 +893,72 @@ ALTER TABLE `product_variants`
 
 --
 -- Constraints for table `ratings`
+=======
+-- Các ràng buộc cho bảng `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `users_orders` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Các ràng buộc cho bảng `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `orders_items` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `products_orders_items` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
+
+--
+-- Các ràng buộc cho bảng `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_brands` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`brand_id`),
+  ADD CONSTRAINT `products_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
+
+--
+-- Các ràng buộc cho bảng `product_configuration`
+--
+ALTER TABLE `product_configuration`
+  ADD CONSTRAINT `product_configuration` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
+
+--
+-- Các ràng buộc cho bảng `product_variants`
+--
+ALTER TABLE `product_variants`
+  ADD CONSTRAINT `product_variants` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
+
+--
+-- Các ràng buộc cho bảng `ratings`
+>>>>>>> origin/linh
 --
 ALTER TABLE `ratings`
   ADD CONSTRAINT `comments_ratings` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`comment_id`) ON DELETE CASCADE;
 
 --
+<<<<<<< HEAD
 -- Constraints for table `shopping_carts`
+=======
+-- Các ràng buộc cho bảng `shopping_carts`
+>>>>>>> origin/linh
 --
 ALTER TABLE `shopping_carts`
   ADD CONSTRAINT `products_carts` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `users_carts` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
+<<<<<<< HEAD
 -- Constraints for table `user_tokens`
+=======
+-- Các ràng buộc cho bảng `user_tokens`
+>>>>>>> origin/linh
 --
 ALTER TABLE `user_tokens`
   ADD CONSTRAINT `users_tokens` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
+<<<<<<< HEAD
 -- Constraints for table `user_vouchers`
+=======
+-- Các ràng buộc cho bảng `user_vouchers`
+>>>>>>> origin/linh
 --
 ALTER TABLE `user_vouchers`
   ADD CONSTRAINT `users_vouchers_fk1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,

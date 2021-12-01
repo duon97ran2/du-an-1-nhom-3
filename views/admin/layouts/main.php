@@ -51,6 +51,11 @@
 </div>
 <!-- ./wrapper -->
 <?php include_once "./views/admin/layouts/script.php" ?>
+<?php if(count($scripts) > 0):?>
+  <?php foreach ($scripts as $scripts): ?>
+    <script src="<?= PUBLIC_ASSETS . $scripts?>" type="text/javascript"></script>
+  <?php endforeach ?>
+<?php endif?>
 
 </body>
 </html>
