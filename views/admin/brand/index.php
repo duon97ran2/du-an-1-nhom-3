@@ -5,7 +5,7 @@
         <th>ID</th>
         <th>Tên thương hiệu</th>
         <th>Slug</th>
-        <th>Ảnh đại diện</th>
+        <th>Logo thương hiệu</th>
         <th>Ngày tạo mới</th>
         <th>Ngày cập nhập</th>
         <th>

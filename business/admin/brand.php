@@ -61,7 +61,7 @@ function brand_save_add(){
                 ('$brand_name', '$brand_slug', '$brand_image')";
     // Thực thi câu sql với db
     if ($errors) {
-        $_SESSION['message'] = 'Thêm thất bại';
+        $_SESSION['message-errors'] = 'Thêm thất bại';
         redirect_back();
     }else{
         $_SESSION['message'] = 'Thêm thành công';
@@ -97,9 +97,6 @@ function brand_save_edit(){
         move_uploaded_file($file['tmp_name'], './public/uploads/brands/' . $filename);
         $brand_image = "uploads/brands/" . $filename;
     }
-    $created_at = $_POST['created_at'];
-    $updated_at = $_POST['updated_at'];
-
     $errors = [];
         if (empty($brand_name)) {
             $errors['brand_name'] = 'Vui lòng nhập tên thương hiệu';
@@ -117,20 +114,19 @@ function brand_save_edit(){
             set
                 brand_name = '$brand_name', 
                 brand_slug = '$brand_slug', 
-                brand_image = '$brand_image',
-                created_at = '$created_at',
-                updated_at = '$updated_at'
+                brand_image = '$brand_image'
             where brand_id = $brand_id";
     // Thực thi câu sql với db
     if ($errors) {
         $_SESSION['message'] = 'Thêm thất bại';
-        
+        redirect_back();
     }else{
         $_SESSION['message'] = 'Thêm thành công';
         executeQuery($sql);
         
+        
     }
-    header("location: " . ADMIN_URL . 'thuong-hieu');
+    // header("location: " . ADMIN_URL . 'thuong-hieu');
     
 }
 ?>

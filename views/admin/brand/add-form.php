@@ -18,18 +18,18 @@
             <div class="form-group">
                 <label for="">Tên thương hiệu</label>
                 <input type="text" name="brand_name" id="" class="form-control" placeholder="">
-                <span class="error">*<?= $_SESSION['errors']['brand_name'] ?? '' ?></span>
+                <span class="text-danger">*<?= $_SESSION['errors']['brand_name'] ?? '' ?></span>
                 
             </div>
             <div class="form-group">
                 <label for="">Slug</label>
                 <input type="text" name="brand_slug" id="" class="form-control" placeholder="">
-                <span class="error">*<?= $_SESSION['errors']['brand_slug'] ?? '' ?></span>
+                <span class="text-danger">*<?= $_SESSION['errors']['brand_slug'] ?? '' ?></span>
             </div>
             <div class="form-group">
-                <label for="">Image</label>
+                <label for="">Logo thương hiệu</label>
                 <input type="file" name="brand_image" id="" class="form-control" placeholder="">
-                <span class="error">*<?= $_SESSION['errors']['brand_image'] ?? '' ?></span>
+                <span class="text-danger">*<?= $_SESSION['errors']['brand_image'] ?? '' ?></span>
             </div>
             <br>
             <div class="d-flex justify-content-center">
