@@ -341,6 +341,10 @@ switch ($url) {
         require_once "./business/admin/vouchers.php";
         voucher_save_edit();
         break;
+    case 'luu-yeu-thich':
+        require_once "./business/wishlist.php";
+        save_wishlist();
+        break;
     default:
         error_page();
         break;

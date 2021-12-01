@@ -34,7 +34,7 @@
             <a href="<?= admin_url('danh-muc') ?>" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
-                Danh muc
+                Danh mục
               </p>
             </a>
           </li>
@@ -50,7 +50,7 @@
             <a href="<?= admin_url('qua-tang') ?>" class="nav-link">
               <i class="nav-icon fas fa-gift"></i>
               <p>
-                Qua tang
+                Quà tặng
               </p>
             </a>
           </li>
@@ -58,7 +58,7 @@
             <a href="<?= admin_url('banner') ?>" class="nav-link">
               <i class="nav-icon fas fa-square"></i>
               <p>
-                Banner
+                Ảnh bìa
               </p>
             </a>
           </li>
@@ -66,7 +66,7 @@
             <a href="<?= admin_url('comments') ?>" class="nav-link">
               <i class="nav-icon fas fa-square"></i>
               <p>
-                QL comment
+                Bình luận
               </p>
             </a>
           </li>

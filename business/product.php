@@ -70,7 +70,7 @@ function product_details()
     }
     $product_configuration = get_configuration_by_product_id($product_default['product_id']);
 
-    view_no_layout('layouts/product-details', [
+    client_render('page/product-details', [
         'product_default' => $product_default,
         'product_variant' => $product_variant,
         'product_configuration' => $product_configuration,
