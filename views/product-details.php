@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/toastr/toastr.min.css">
 </head>
 <body>
     <h1><a href="<?= app_url('gio-hang') ?>">Gio hang</a>: <span id="js-cart-total"><?= cart_total() ?></span></h1>
@@ -35,7 +37,7 @@
             <p>
                 <button>Hết hàng</button>
             </p>
-        <?php endif; ?>    
+        <?php endif; ?>  
     <?php else: ?>
         <?php if($product_default['product_quantity'] > 0) : ?>
             <p>
@@ -57,6 +59,8 @@
 
     <!-- jQuery -->
     <script src="<?= ADMIN_ASSETS ?>plugins/jquery/jquery.min.js"></script>
+    <!-- Toastr -->
+    <script src="<?= ADMIN_ASSETS ?>plugins/toastr/toastr.min.js"></script>
     <script src="<?= asset('customize/js/add-to-cart.js') ?>"></script>
 </body>
 </html>

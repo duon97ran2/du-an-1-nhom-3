@@ -1,17 +1,22 @@
 <?php
 
-function admin_render($viewpath, $data = [], $scripts = []){
+function admin_render($viewpath, $data = [], $scripts = [], $styles = []){
 
     extract($data);
     $businessView = "./views/admin/" . $viewpath;
     include_once './views/admin/layouts/main.php';
 }
-function client_render($viewpath, $data = [], $scripts = []){
 
+function client_render($viewpath, $data = [], $scripts = []){ 
     extract($data);
     $businessView = "./views/client/" . $viewpath .".php";
     include_once './views/client/layouts/main.php';
 }
+
+// function  client_menu($data = [], $scripts = []){ 
+//     extract($data);
+//     include_once './views/homepage/layouts/main.php';
+// }
 
 function dd(){
     echo "<pre>";
@@ -19,7 +24,6 @@ function dd(){
     foreach($args as $item){
         var_dump($item);
     }
-    
     echo "</pre>";
     die;
 }
@@ -44,6 +48,7 @@ function admin_url($path = '') {
     $path = ltrim($path, '/');
     return ADMIN_URL . $path;
 }
+
 function nameSeparation($name)
 {
     $name_arr = explode(" ", $name);
@@ -89,6 +94,10 @@ function redirect_back() {
     header('Location: '. $_SERVER['HTTP_REFERER']);
     die;
 }
+function refresh_page() {
+    header('Refresh: 0');
+    die;
+}
 //chuong create
 function set_errors($array = []) {
     set_session('errors', $array);
@@ -105,6 +114,12 @@ function auth_info() {
     $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
     $data = executeQuery($sql, false);
     return $data ?? [];
+}
+function cart_total() {
+    $user_id = auth_info()['user_id'] ?? '';
+    $sql = "SELECT * FROM shopping_carts WHERE user_id = '$user_id' AND is_buy = 0";
+    $cart_item = executeQuery($sql, true);
+    return count($cart_item) ?? 0;
 }
 function is_login_for_auth_page() {
     if (get_session('AUTH_ID')) {
@@ -138,23 +153,34 @@ function upload_image($file = [], $folder = '')
     return false;
 }
 
-function is_maintenance() {
+function option_info($key = '') {
     $sql = "SELECT * FROM options";
     $option = executeQuery($sql, false);
+    return $option[$key] ?? $option;
+}
+
+function is_maintenance() {
+    $option = option_info();
     if (!empty($option)) {
         if ($option['is_maintenance'] == 1) {
             error_page('_maintenance');
         }
     }
 }
-function cart_total() {
-    $user_id = auth_info()['user_id'];
-    $sql = "SELECT * FROM shopping_carts WHERE user_id = '$user_id' AND is_buy = 0";
-    $cart_item = executeQuery($sql, true);
-    return count($cart_item) ?? 0;
+// chuong create
+function priceVND($price)
+{
+    return number_format($price, 0, '', '.')." ₫";
 }
+
 function find_user_by_email($email) {
     $sql = "SELECT * FROM users WHERE email = '$email'";
     return executeQuery($sql, false);
 }
+
+function menu_page() {
+    $sql = "SELECT * FROM categories WHERE is_menu = 1 ORDER BY category_index ASC;";
+    return executeQuery($sql, true) ?? [];
+}
+
 ?>

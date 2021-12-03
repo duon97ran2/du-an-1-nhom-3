@@ -20,6 +20,7 @@ function account_remove(){
     $sql = "delete from users where user_id = $id";
     executeQuery($sql);
     header("location: " . ADMIN_URL . 'tai-khoan');
+    $_SESSION['message']='Xóa thành công';
 }
 function account_create(){
     admin_render("account/add-form.php",[
@@ -96,10 +97,10 @@ function account_save_add(){
     $_SESSION['errors']=$errors;
     if(empty($errors)){
     executeQuery($sql);
-    $_SESSION['errors']['message']='Thêm tài khoản thành công';
+    $_SESSION['message']='Thêm tài khoản thành công';
     header("location: " . ADMIN_URL . 'tai-khoan');}
     else{
-        $_SESSION['errors']['message']='Thêm tài khoản thất bại';
+        $_SESSION['message-errors']='Thêm tài khoản thất bại';
         redirect_back();
     }
 }
@@ -174,11 +175,11 @@ function account_save_edit(){
     $_SESSION['errors']=$errors;
     if(empty($errors)){
         executeQuery($sql);
-        $_SESSION['errors']['message']='Cập nhật tài khoản thành công';
+        $_SESSION['message']='Cập nhật tài khoản thành công';
         header("location: " . ADMIN_URL . 'tai-khoan');
     }
     else{
-        $_SESSION['errors']['message']='Cập nhật tài khoản thất bại';
+        $_SESSION['message-errors']='Cập nhật tài khoản thất bại';
         redirect_back();
     }
     

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3b78e61b-d089-440a-bd23-c47929e4c83d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/business/product.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/business/shopping-carts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/customize/css/product.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/customize/js/add-to-cart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d0f2a07c46-45280366420211123225626.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d10544f872-tải xuống.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d10689cf24-102498604720211123230144.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d107a7a21c-181781988220211123230202.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d1319da433-143347175620211123231313.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d13a90f497-205571661520211123231537.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d180c63f7d-team 3 -demo template (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d1cddba9fb-18723083020211123235453.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d1cf374507-68990510420211123235515.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619d1d05d5ef4-16388811120211123235533.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619def5c81f75-56914326720211124145300.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619df08bd2d9e-88655581020211124145803.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619e5f4b1375b-201344160420211124225035.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619e5f984a099-206855904720211124225152.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619e6091c6802-18079188620211124225601.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619e609b45ebc-89041380620211124225611.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/avatars/619e60d1882b2-52848350220211124225705.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/banner/61a1826ec9cf5-33303755220211127075718.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/options/619d01d2e7eb3-132805334020211123215930.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/products/619d3c294c8a2-104219730420211124020825.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/products/619d74cb04c82-171056381020211124061003.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/products/61a0f6d06b92a-129020061220211126220136.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/products/61a0f6d06e2b9-138987529120211126220136.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/checkout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/layout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/product-details.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/shopping-carts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/admin/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/business/admin/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/admin/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/business/admin/comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/admin/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/business/admin/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/auth/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/business/auth/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/app_config.php" beforeDir="false" afterPath="$PROJECT_DIR$/commons/app_config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/commons/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/mailer/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/commons/mailer/mail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poly_mobile.sql" beforeDir="false" afterPath="$PROJECT_DIR$/poly_mobile.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/customize/js/commons.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/customize/js/commons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/customize/js/product/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/customize/js/product/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/avatars/6195ab4e311ea-Screenshot 2021-11-17 202944.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/avatars/6195b07dc70cd-Screenshot 2021-11-17 202944.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/avatars/6195b0d5ae40f-Screenshot 2021-11-17 202944.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/avatars/6195b1abc0884-Screenshot 2021-11-17 202944.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/images/calm_meadow_by_byrotek_dcv50fg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/options/6197ef6b9cc6d-99555165220211120013939.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/options/6197ef81a837b-192887816220211120014001.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/options/6197efe97a969-35880710120211120014145.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/options/61982dd5bed2f-181606168120211120060557.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619aec3f2128b-70479666020211122080255.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/products/619d29410825b-154829179920211124004745.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619aec3f22326-118587547220211122080255.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/products/619d2ebb2e4db-120545892220211124011107.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619b105f4904c-27547428720211122103703.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/products/619d74cb0245a-123345475420211124061003.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619b106a3edfa-199892096820211122103714.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/products/619d74cb0beb2-111367973220211124061003.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619b107da41cf-136432617420211122103733.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619b108ce84a4-160367784720211122103748.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619b10a384877-129809632020211122103811.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619b10a984375-14970996720211122103817.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/products/619d2dce15896-203670864620211124010710.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619b1350124fe-94580227020211122104936.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619b1512ea87f-183256675720211122105706.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619c3cdb1f396-22674017120211123075907.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/products/619d3a335c699-152324863820211124020003.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/619c3cdb2086f-48782653420211123075907.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tesst.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/banner/banner_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/banner/banner_list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/layouts/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/layouts/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/layouts/script.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/layouts/script.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/layouts/style.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/layouts/style.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/options/form.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/options/form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/product/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/product/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/product/list.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/product/list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/product/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/product/update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/auth/client/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/auth/client/profile.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="21K8jWJA32o0oSGoSrycdmaqeM2" />
+  <component name="ProjectViewState">
+    <option name="foldersAlwaysOnTop" value="false" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3b78e61b-d089-440a-bd23-c47929e4c83d" name="Changes" comment="" />
+      <created>1637678560281</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1637678560281</updated>
+      <workItem from="1637678560285" duration="17000" />
+      <workItem from="1637713241075" duration="24000" />
+      <workItem from="1637727393330" duration="4000" />
+      <workItem from="1637752782115" duration="48000" />
+      <workItem from="1637752870068" duration="12000" />
+      <workItem from="1637831176588" duration="4000" />
+      <workItem from="1637854823648" duration="471000" />
+      <workItem from="1637867966083" duration="1371000" />
+      <workItem from="1637869377050" duration="86000" />
+      <workItem from="1637930043059" duration="616000" />
+      <workItem from="1637934611326" duration="251000" />
+      <workItem from="1637943576420" duration="22000" />
+      <workItem from="1638098022343" duration="2616000" />
+      <workItem from="1638103516165" duration="2738000" />
+      <workItem from="1638121142070" duration="22000" />
+      <workItem from="1638124072849" duration="4000" />
+      <workItem from="1638201398895" duration="643000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

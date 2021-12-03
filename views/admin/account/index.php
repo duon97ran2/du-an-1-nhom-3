@@ -1,7 +1,7 @@
 <?php
 $is_active = [
-    0 => 'Hoạt động',
-    1 => 'Tạm khóa',
+    0 => 'Tạm khóa',
+    1 => 'Hoạt động',
 ];
 $is_verify = [
     0 => 'Chưa kích hoạt',
