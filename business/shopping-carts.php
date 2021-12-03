@@ -5,13 +5,13 @@ require_once DIR_ROOT."/commons/mailer/mail.php";
 function shopping_carts() {
     $user_id = auth_info()['user_id'] ?? '';
     $cart_sql = "SELECT 
-            P.product_name, SP.*, V.product_variant_name, V.product_variant_id
+            P.product_name, P.product_image, SP.*, V.product_variant_name, V.product_variant_id, V.product_variant_image
         FROM shopping_carts SP
         LEFT JOIN products P ON SP.product_id = P.product_id
         LEFT JOIN product_variants V ON V.product_variant_slug = SP.color
         WHERE user_id = $user_id AND is_buy = 0;";
     $cart_data = executeQuery($cart_sql, true);
-    client_render('page/shopping-carts', [
+    client_render('page/shopping-cart', [
         'cart_data' => $cart_data,
     ]);
 }
@@ -134,6 +134,7 @@ function cart_update_handle() {
                     WHERE 
                         cart_id = $cart_id";
     executeQuery($cart_update_sql);
+    set_session('message', 'Cập nhật thành công');
     redirect('gio-hang');
 }
 
@@ -141,6 +142,7 @@ function remove_item_cart() {
     $id = input_get('id');
     $sql = "DELETE FROM shopping_carts WHERE cart_id = $id";
     executeQuery($sql);
+    set_session('message', 'Xóa thành công');
     redirect_back();
 }
 
@@ -155,11 +157,23 @@ function checkout() {
     }
     $cart_total_price_sql = "SELECT sum(total_price) as total_price FROM shopping_carts WHERE is_buy = 0 AND user_id = ".$user_id." AND quantity > 0";
     $cart_total_price = executeQuery($cart_total_price_sql, false)['total_price'];
-    view_no_layout('checkout', [
+
+    $cart_data_sql = "SELECT 
+                    P.product_name, P.product_image, SP.*, V.product_variant_name, V.product_variant_id, V.product_variant_image
+                FROM shopping_carts SP
+                LEFT JOIN products P ON SP.product_id = P.product_id
+                LEFT JOIN product_variants V ON V.product_variant_slug = SP.color
+                WHERE user_id = $user_id AND is_buy = 0 AND quantity > 0;";
+    $cart_data = executeQuery($cart_data_sql, true);
+
+    client_render('page/checkout', [
         'total_cart' => count($carts),
         'total_price' => $cart_total_price,
         'auth_info' => $auth_info,
+        'cart_data' => $cart_data,
         'voucher' => get_session('VOUCHER') ?? []
+    ],[
+        'customize/js/add-to-cart.js',
     ]);
 }
 
@@ -167,7 +181,6 @@ function checkout_handle() {
     $errors = [];
     $auth_info = auth_info() ?? '';
     $user_id = $auth_info['user_id'] ?? '';
-    $action = input_post('action');
     $name = input_post('name');
     $email = input_post('email');
     $phone = input_post('phone');
@@ -282,8 +295,7 @@ function checkout_handle() {
                 </p>
         </div>";
         sendEmailOrder($email, "Thông tin đơn hàng $order_code", $content_mail);
-
-        echo "Đặt hàng thành công. Chi tiết đơn hàng đã được gửi vào email bạn cung cấp.";
+        set_session('message', 'Đặt hàng thành công. Chi tiết đơn hàng đã được gửi vào email bạn cung cấp.');
         redirect('/');
     }
 

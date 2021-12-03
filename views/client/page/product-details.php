@@ -4,77 +4,121 @@
       <div class="g-container">
         <div class="row">
           <ol class="breadcrumb bg-transparent breadcrumb-margin">
-            <li class="breadcrumb-item "><a href="/" title="Trang chủ">Trang chủ</a></li>
-            <li class="breadcrumb-item "><a href="/dien-thoai" title="Điện thoại">Điện thoại</a></li>
-            <li class="breadcrumb-item  active"><a href="/dien-thoai/apple-iphone" title="Apple (iPhone)">Apple (iPhone)</a></li>
+            <li class="breadcrumb-item "><a href="<?= app_url() ?>" title="Trang chủ">Trang chủ</a></li>
+            <li class="breadcrumb-item active"><a href="<?= app_url('san-pham/'.$product_default['product_slug']) ?>" class="text-capitalize"><?= $product_default['product_name']; ?></a></li>
           </ol>
         </div>
       </div>
       <div class="g-container">
         <div class="l-pd-top">
-          <h1 class="st-name">iPhone 13 Pro Max 128GB</h1>
+          <h1 class="st-name text-capitalize"><?= $product_default['product_name']; ?></h1>
         </div>
         <div class="l-pd-row clearfix">
           <div class="l-pd-left">
             <div class="st-slider ">
-              <div class="swiper-container js--pd-slider swiper-custom swiper-container-initialized swiper-container-horizontal">
-                <div class="swiper-wrapper js--slide--full" style="transform: translate3d(0px, 0px, 0px);">
-                  <div class="swiper-slide swiper-slide-active" data-src="https://images.fpt.shop/unsafe/fit-in/800x800/filters:quality(90):fill(white):upscale()/fptshop.com.vn/Uploads/Originals/2021/9/15/637673217820889289_iphone-13-pro-max-vang-1.jpg" style="width: 585px; margin-right: 15px;"><img src="https://images.fpt.shop/unsafe/fit-in/585x390/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/9/15/637673217820889289_iphone-13-pro-max-vang-1.jpg" alt="637673217820889289_iphone-13-pro-max-vang-1" class=""></div>
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next" style="display: none;"><span><i class="icon-right-open-big"></i></span></div>
-                <div class="swiper-button-prev" style="display: none;"><span><i class="icon-left-open-big"></i></span></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-              </div>
+              <?php if ($product_default['is_variant'] == 1) : ?>
+                <img class="p-4 card shadow" src="<?= asset('uploads/' . $product_default['product_variant_image']) ?>" alt="" width="100%">
+              <?php else : ?>
+                <img class="p-4 card shadow" src="<?= asset('uploads/' . $product_default['product_image']) ?>" alt="" width="100%">
+              <?php endif; ?>
             </div>
           </div>
           <div class="l-pd-right">
             <div class="st-price">
               <div class="st-price__left">
-                <div class="st-price-main">33.990.000₫</div>
+                <div class="st-price-main">
+                <!-- discount_price -->
+                  <?php if ($product_default['is_variant'] == 1) : ?>
+                    <?php if ($product_default['product_variant_discount'] > 0) : ?>
+                      <div class="d-flex">
+                        <h2 class=""><?= discount_price($product_default['product_variant_price'], $product_default['product_variant_discount']) ?></h2>
+                        <h3 class="ml-3 text-secondary"><strike><?= priceVND($product_default['product_variant_price']) ?></strike></h3>
+                      </div>
+                    <?php else: ?>
+                      <h2 class=""><?= priceVND($product_default['product_variant_price']) ?></h2>
+                    <?php endif ?>
+                  <?php else: ?>
+                    <?php if ($product_default['product_discount'] > 0) : ?>
+                      <div class="d-flex">
+                        <h2 class=""><?= discount_price($product_default['product_price'], $product_default['product_discount']) ?></h2>
+                        <h3 class="ml-3 text-secondary"><strike><?= priceVND($product_default['product_price']) ?></strike></h3>
+                      </div>
+                    <?php else: ?>
+                      <h2 class=""><?= priceVND($product_default['product_price']) ?></h2>
+                    <?php endif ?>
+                  <?php endif ?>
+                </div>
               </div>
             </div>
-            <div class="st-select-color">
-              <label for="color-vang" class="select-color-cus">
-                <input type="radio" id="color-vang" class="width-0" name="color" checked>
-                <div class="st-select-color__item js--select-color-item">
-                  <div class="img">
-                    <img src="https://images.fpt.shop/unsafe/fit-in/40x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/9/15/637673217820889289_iphone-13-pro-max-vang-1.jpg" alt="Vàng">
-                  </div>
-                  <p title="Vàng">Vàng</p>
-                </div>
-              </label>
-              <label for="color-xanh" class="select-color-cus">
-                <input type="radio" id="color-xanh" class="width-0" name="color">
-                <div class="st-select-color__item js--select-color-item">
-                  <div class="img">
-                    <img src="https://images.fpt.shop/unsafe/fit-in/40x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/9/15/637673217826201634_iphone-13-pro-max-xanh-1.jpg" alt="Xanh">
-                  </div>
-                  <p title="Xanh">Xanh</p>
-                </div>
-              </label>
-            </div>
-            <div class="st-boxPromo">
-              <div class="title">Nhận ngay khuyến mại đặc biệt</div>
-              <ul class="st-boxPromo__list st-boxPromo__list--more">
-                <li>
-                  <span class="icon-chekc material-icons">check_circle</span>
-                  <div><span>Trả góp 0% </span></div>
-                </li>
-                <li>
-                  <span class="icon-chekc material-icons">check_circle</span>
-                  <div><span>Giảm 50% mua sim data khủng 90GB </span></div>
-                </li>
-              </ul>
-            </div>
-            <div class="st-pd-btn">
-              <button class="btn btn-info btn-xl btn--lg" id="btn-buy-now">
-                <div><strong>MUA NGAY</strong></div>
-                <p>Giao hàng miễn phí hoặc nhận tại shop</p>
-              </button>
-              <button class="btn btn-danger btn-xl btn--sm" id="btn-buy-now">
-                <div><strong><span class="material-icons">favorite</span></strong></div>
-                <p> Yêu thích </p>
-              </button>
+            <span class="">Còn lại: <?= $product_default['product_variant_quantity'] ?? $product_default['product_quantity'] ?> (sản phẩm)</span>
+            <p class="mt-3">Lượt xem: <?= $product_default['product_views'] ?> lượt</p>
+            <?php if ($product_default['is_variant'] == 1) : ?>
+              <div class="st-select-color mt-3">
+                <form method="GET" action="">
+                  <?php foreach ($product_variant as $variant) : ?>
+                    <label for="color-<?= $variant['product_variant_slug']?>" class="select-color-cus">
+                      <input type="radio" name="color" id="color-<?= $variant['product_variant_slug']?>" class="js-color-type width-0" value="<?= $variant['product_variant_slug'] ?>" <?= $variant['product_variant_slug'] == $product_default['product_variant_slug'] ? 'checked' : '' ?> onclick="this.form.submit()">
+                      <div class="st-select-color__item js--select-color-item">
+                        <div class="img">
+                          <img src="<?= asset('uploads/' . $variant['product_variant_image']) ?>" alt="<?= $variant['product_variant_name'] ?>">
+                        </div>
+                        <p title="<?= $variant['product_variant_name'] ?>"><?= $variant['product_variant_name'] ?></p>
+                      </div>
+                    </label>
+                  <?php endforeach; ?>
+                </form>
+              </div>
+            <?php endif ?>
+
+            <?php if ($product_default['product_gifts']) : ?>
+              <div class="st-boxPromo">
+                <div class="title">Nhận ngay khuyến mại đặc biệt</div>
+                <ul class="st-boxPromo__list st-boxPromo__list--more">
+                  <?php foreach ($gifts as $gift) : ?>
+                    <?php foreach (explode(',', $product_default['product_gifts']) as $item) : ?>
+                      <?php if ($item == $gift['gift_id']) : ?>
+                        <li>
+                          <span class="icon-chekc material-icons">check_circle</span>
+                          <div><span><?= $gift['gift_name'] ?></span></div>
+                        </li>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+            <?php endif; ?>
+
+            <div class="st-pd-btn mt-3">
+            <input type="hidden" name='quantity' class="form-control w-25 mx-2 text-center js-quantity-type" value="1" min="0" max="<?= $product_default['product_variant_quantity'] ?? $product_default['product_quantity'] ?>">
+              <?php if ($product_default['is_variant'] == 1) : ?>
+                <?php if ($product_default['product_variant_quantity'] > 0) : ?>
+                  <button class="btn btn-info btn-xl btn--lg" id="js-add-to-cart" data-id="<?= $product_default['product_id'] ?>" data-price="<?= $product_default['product_variant_price'] ?? $product_default['product_price'] ?>" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('gio-hang/them-san-pham') ?>">
+                    <div><strong>MUA NGAY</strong></div>
+                    <p>Giao hàng miễn phí hoặc nhận tại shop</p>
+                  </button>
+                <?php else : ?>
+                  <button class='btn btn-info btn-xl btn--lg disabled'>
+                    <div><strong>Hết hàng</strong></div>
+                    <p>Sản phẩm đang hết hàng</p>
+                  </button>
+                <?php endif; ?>
+              <?php else : ?>
+                <?php if ($product_default['product_quantity'] > 0) : ?>
+                  <button class="btn btn-info btn-xl btn--lg" id="js-add-to-cart" data-id="<?= $product_default['product_id'] ?>" data-price="<?= $product_default['product_variant_price'] ?? $product_default['product_price'] ?>" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('gio-hang/them-san-pham') ?>">
+                    <div><strong>MUA NGAY</strong></div>
+                    <p>Giao hàng miễn phí hoặc nhận tại shop</p>
+                  </button>
+                <?php else : ?>
+                  <button class='btn btn-info btn-xl btn--lg disabled'>
+                    <div><strong>Hết hàng</strong></div>
+                    <p>Sản phẩm đang hết hàng</p>
+                  </button>
+                <?php endif; ?>
+              <?php endif; ?>
+            <button class="btn btn-danger btn-xl btn--sm" data-id="<?= $product_default['product_id'] ?>" id="js-add-to-wishlists" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('luu-yeu-thich') ?>">
+              <div><strong><span class="material-icons">favorite</span></strong></div>
+              <p> Yêu thích </p>
+            </button>
             </div>
           </div>
         </div>
@@ -85,9 +129,9 @@
         <div class="l-pd-body__wrapper">
           <div class="l-pd-body__left">
             <div class="card re-card st-card st-card--article js--st-card--article">
-              <h2 class="card-title">Đặc điểm nổi bật của iPhone 13 Pro Max</h2>
+              <h2 class="card-title">Thông tin sản phẩm <?= $product_default['product_name']; ?></h2>
               <div class="card-body">
-
+                <?= $product_default['product_content']; ?>
               </div>
             </div>
           </div>
@@ -223,6 +267,9 @@
               <div class="card-body">
                 <div class="hot-js-swipper swiper-container cdt-sale-js swiper-container-initialized swiper-container-horizontal">
                   <div class="swiper-wrapper">
+
+                    <!-- foreach -->
+
                     <div class="swiper-slide">
                       <div class="cdt-product">
                         <div class="cdt-product__img">
@@ -246,101 +293,13 @@
                         </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
-                      <div class="cdt-product">
-                        <div class="cdt-product__img">
-                          <a href="./details.html">
-                            <span class=" lazy-load-image-background opacity lazy-load-image-loaded">
-                              <img src="https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/9/15/637673213598401263_iphone-13-pro-max-dd-1.jpg" alt="iPhone 13 Pro Max 128GB" title="iPhone 13 Pro Max 128GB">
-                            </span>
-                          </a>
-                        </div>
-                        <div class="cdt-product__info">
-                          <h3><a href="./details.html" title="iPhone 13 Pro Max 128GB" class="cdt-product__name">iPhone 13 Pro Max 128GB</a></h3>
-                          <div class="cdt-product__show-promo">
-                            <div class="progress justify-content-center">
-                              23.699.000 ₫
-                              <div class="progress-bar" style="width: 100%;"></div>
-                            </div>
-                            <div class="strike-price">
-                              <strike>25.499.000 ₫</strike>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="cdt-product">
-                        <div class="cdt-product__img">
-                          <a href="./details.html">
-                            <span class=" lazy-load-image-background opacity lazy-load-image-loaded">
-                              <img src="https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/9/15/637673213598401263_iphone-13-pro-max-dd-1.jpg" alt="iPhone 13 Pro Max 128GB" title="iPhone 13 Pro Max 128GB">
-                            </span>
-                          </a>
-                        </div>
-                        <div class="cdt-product__info">
-                          <h3><a href="./details.html" title="iPhone 13 Pro Max 128GB" class="cdt-product__name">iPhone 13 Pro Max 128GB</a></h3>
-                          <div class="cdt-product__show-promo">
-                            <div class="progress justify-content-center">
-                              23.699.000 ₫
-                              <div class="progress-bar" style="width: 100%;"></div>
-                            </div>
-                            <div class="strike-price">
-                              <strike>25.499.000 ₫</strike>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="cdt-product">
-                        <div class="cdt-product__img">
-                          <a href="./details.html">
-                            <span class=" lazy-load-image-background opacity lazy-load-image-loaded">
-                              <img src="https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/9/15/637673213598401263_iphone-13-pro-max-dd-1.jpg" alt="iPhone 13 Pro Max 128GB" title="iPhone 13 Pro Max 128GB">
-                            </span>
-                          </a>
-                        </div>
-                        <div class="cdt-product__info">
-                          <h3><a href="./details.html" title="iPhone 13 Pro Max 128GB" class="cdt-product__name">iPhone 13 Pro Max 128GB</a></h3>
-                          <div class="cdt-product__show-promo">
-                            <div class="progress justify-content-center">
-                              23.699.000 ₫
-                              <div class="progress-bar" style="width: 100%;"></div>
-                            </div>
-                            <div class="strike-price">
-                              <strike>25.499.000 ₫</strike>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="cdt-product">
-                        <div class="cdt-product__img">
-                          <a href="./details.html">
-                            <span class=" lazy-load-image-background opacity lazy-load-image-loaded">
-                              <img src="https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/9/15/637673213598401263_iphone-13-pro-max-dd-1.jpg" alt="iPhone 13 Pro Max 128GB" title="iPhone 13 Pro Max 128GB">
-                            </span>
-                          </a>
-                        </div>
-                        <div class="cdt-product__info">
-                          <h3><a href="./details.html" title="iPhone 13 Pro Max 128GB" class="cdt-product__name">iPhone 13 Pro Max 128GB</a></h3>
-                          <div class="cdt-product__show-promo">
-                            <div class="progress justify-content-center">
-                              23.699.000 ₫
-                              <div class="progress-bar" style="width: 100%;"></div>
-                            </div>
-                            <div class="strike-price">
-                              <strike>25.499.000 ₫</strike>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+
+                    <!-- endforeach -->
+
+
                   </div>
-                  <div class="swiper-button-next swiper-button-white" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false"><i class="icon-angle-right"></i></div>
-                  <div class="swiper-button-prev swiper-button-white" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="true"><i class="icon-angle-left"></i></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                  <div class="swiper-button-next swiper-button-white"><i class="icon-angle-right"></i></div>
+                  <div class="swiper-button-prev swiper-button-white" ><i class="icon-angle-left"></i></div><span class="swiper-notification"></span>
                 </div>
                 <script>
                   new Swiper(".hot-js-swipper", {

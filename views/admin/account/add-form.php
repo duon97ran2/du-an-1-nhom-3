@@ -99,9 +99,9 @@
                     </div>
                 </div> -->
                 <div class="col-6 mb-3">
-                    <input type="hidden" name="is_active" value="0">
+                    <input type="hidden" name="is_active" value="1">
                     <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="is_active" name="is_active" value="1">
+                        <input type="checkbox" id="is_active" name="is_active" value="0">
                         <label for="is_active">
                             Khóa tài khoản
                         </label>

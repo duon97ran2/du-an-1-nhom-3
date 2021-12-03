@@ -35,7 +35,7 @@ function get_configuration_by_product_id($product_id)
 }
 function get_gifts()
 {
-    $sql = "SELECT * FROM gifts ";
+    $sql = "SELECT * FROM gifts";
     return executeQuery($sql);
 }
 
@@ -76,9 +76,13 @@ function product_details()
     $product_configuration = get_configuration_by_product_id($product_default['product_id']);
     $gifts=get_gifts();
     client_render('page/product-details', [
+        'page_title' => $product_default['product_name'],
         'product_default' => $product_default,
         'product_variant' => $product_variant,
         'product_configuration' => $product_configuration,
         'gifts' => $gifts,
+    ],[
+        'customize/js/add-to-cart.js',
+        'customize/js/add-to-wishlist.js',
     ]);
 }

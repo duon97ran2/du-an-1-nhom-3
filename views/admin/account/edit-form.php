@@ -58,6 +58,7 @@
                         <label for="other">Giới tính khác</label>
                     </div>
                 </div>
+                <?php if (auth_info()['user_id'] != $user['user_id']) : ?>
                 <div class=" col-6 mb-3">
                     <div class="input-group ">
                         <div class="input-group-prepend">
@@ -69,6 +70,7 @@
                         </select>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
             <div class="row">
                 <!-- <div class="col-6 mb-3">
@@ -80,15 +82,17 @@
                         </label>
                     </div>
                 </div> -->
+                <?php if (auth_info()['user_id'] != $user['user_id']) : ?>
                 <div class="col-6 mb-3">
-                    <input type="hidden" name="is_active" value="0">
+                    <input type="hidden" name="is_active" value="1">
                     <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="is_active" name="is_active" value="1" <?php echo ($user['is_active']==1)?'checked':''?> >
+                        <input type="checkbox" id="is_active" name="is_active" value="0" <?php echo ($user['is_active']==0)?'checked':''?> >
                         <label for="is_active">
                             Khóa tài khoản
                         </label>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
 
             <div class="form-group">

@@ -71,12 +71,8 @@
         $is_active = input_post('is_active');
         $banner_image = input_file('banner_image');
         
-
-        if ($banner_image['size'] == 0) {
-            $errors['banner_image'] = 'Vui lòng chọn hình ảnh';
-        }
         if(empty($errors)){
-            $image_upload = upload_image($banner_image,'banner');
+            $image_upload = $banner_image['size'] > 0 ? upload_image($banner_image,'banner') : $banner_old['banner_image'];
             $sql_banner = "UPDATE banners SET 
                     banner_name ='$banner_name',banner_url ='$banner_url',banner_image='$image_upload',
                     banner_index='$banner_index',banner_target='$banner_target',banner_position='$banner_position',is_active='$is_active' 

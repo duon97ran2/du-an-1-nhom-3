@@ -74,12 +74,12 @@
                     <div class="form-group">
                         <label for="">Target</label><br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="banner_target" id="banner_target" value="1" <?= intval($banner['banner_target']) == 1 ? "checked" : "" ?>>
-                            <label class="form-check-label" for="inlineRadio1">_blank</label>
+                            <input class="form-check-input" type="radio" name="banner_target" id="banner_target" value="_blank" <?= $banner['banner_target'] == '_blank' ? "checked" : "" ?>>
+                            <label class="form-check-label" for="inlineRadio1">Mở trên trang mới</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="banner_target" id="banner_target" value="2" <?= intval($banner['banner_target']) == 2 ? "checked" : "" ?>>
-                            <label class="form-check-label" for="inlineRadio2">_self</label>
+                            <input class="form-check-input" type="radio" name="banner_target" id="banner_target" value="_self" <?= $banner['banner_target'] == '_self' ? "checked" : "" ?>>
+                            <label class="form-check-label" for="inlineRadio2">Mở trên trang hiện tại</label>
                         </div>
                     </div>
 

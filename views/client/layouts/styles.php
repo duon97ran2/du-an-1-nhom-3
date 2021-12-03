@@ -6,6 +6,8 @@
 <script src="<?= PUBLIC_ASSETS ?>shop/plugin/jquery/jquery.min.js"></script>
 <script src="<?= PUBLIC_ASSETS ?>shop/plugin/jquery-ui/jquery-ui.min.js"></script>
 <script src="<?= PUBLIC_ASSETS ?>shop/plugin/toastr/toastr.min.js"></script>
+<script src="<?= PUBLIC_ASSETS ?>shop/plugin/jquery-validation/jquery.validate.min.js"></script>
+<script src="<?= PUBLIC_ASSETS ?>shop/plugin/jquery-validation/additional-methods.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>

@@ -90,7 +90,7 @@
         $hot_view =hot_views();
         $cate_img = get_cate_img();
         $banner = showBanner();
-        client_render('page/trang_chu',[
+        client_render('page/home',[
             'logo' => $menu['logo'],
             'list_brand' => $menu['list_brand'],
             'products' => $menu['products'], 

@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 function template($title, $btn_label, $btn_link)
 {
     $content = file_get_contents(DIR_ROOT.'/commons/mailer/templates.html');
-    $content = str_replace('%app_name%', (!empty(option_info()) ? (' - ' . option_info()['app_name']) : 'Document'), $content);
+    $content = str_replace('%app_name%', (!empty(option_info()) ? option_info()['app_name'] : 'PolyMobile'), $content);
     $content = str_replace('%app_url%', BASE_URL, $content);
     $content = str_replace('%title%', $title, $content);
     $content = str_replace('%button_label%', $btn_label, $content);

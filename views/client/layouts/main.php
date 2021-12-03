@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title><?= $page_title ?? 'PolyMobile' ?><?= (!empty(option_info()) ? ' - ' . option_info('app_name') : '') ?></title>
+  <?php if(!empty(option_info('favicon'))): ?>
+  <link rel="icon" type="image/png" href="<?= asset('uploads/'.option_info('favicon')) ?>"/>
+  <?php endif; ?>
   <?php include_once './views/client/layouts/styles.php'?>
 </head>
 <body>

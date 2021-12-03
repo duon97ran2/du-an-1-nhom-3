@@ -3,7 +3,7 @@
 require_once DIR_ROOT."/commons/mailer/mail.php";
 
 function client_register_page() {
-    view_no_layout('auth/client/register');
+    client_render('auth/register');
 }
 
 function client_register_handle() {
@@ -78,12 +78,6 @@ function client_verify_hanle() {
     executeQuery($token_sql);
     set_session('message', 'Xác nhận tài khoản thành công');
     redirect('dang-nhap');
-}
-
-
-function find_user_by_email($email) {
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    return executeQuery($sql, false);
 }
 
 function find_user_by_token($token) {

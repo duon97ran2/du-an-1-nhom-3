@@ -142,11 +142,6 @@ function account_save_edit(){
     else if(!in_array($avatar_type, $type_arr)&&($file['size']>0)){
         $errors['avatar']='Vui lòng chọn đúng loại ảnh';
     }
-    if(empty($errors['avatar'])){
-        $filename = uniqid() . '-' . $file['name'];
-        move_uploaded_file($file['tmp_name'], './public/uploads/avatars/' . $filename);
-        $avatar = "uploads/avatars/" . $filename;
-    }
     if(empty($name)){
         $errors['name']='Vui lòng điền thông tin';
     }
@@ -156,24 +151,28 @@ function account_save_edit(){
     if(empty($phone)){
         $errors['phone']='Vui lòng điền thông tin';
     }
-    // Lưu ảnh
-    // tạo ra câu sql insert tài khoản mới
-    $sql = "update users 
-            set
-                name = '$name',  
-                avatar = '$avatar',
-                gender='$gender',
-                first_name='$first_name',
-                last_name='$last_name',
-                is_active='$is_active',
-                is_verify='$is_verify',
-                role='$role',
-                address='$address',
-                phone='$phone'
-            where user_id = $id";
     // Thực thi câu sql với db
     $_SESSION['errors']=$errors;
     if(empty($errors)){
+        if($file['size'] > 0){
+            $filename = uniqid() . '-' . $file['name'];
+            move_uploaded_file($file['tmp_name'], './public/uploads/avatars/' . $filename);
+            $avatar = "uploads/avatars/" . $filename;
+        }
+        // tạo ra câu sql insert tài khoản mới
+        $sql = "update users 
+                set
+                    name = '$name',  
+                    avatar = '$avatar',
+                    gender='$gender',
+                    first_name='$first_name',
+                    last_name='$last_name',
+                    is_active='$is_active',
+                    is_verify='$is_verify',
+                    role='$role',
+                    address='$address',
+                    phone='$phone'
+                where user_id = $id";
         executeQuery($sql);
         $_SESSION['message']='Cập nhật tài khoản thành công';
         header("location: " . ADMIN_URL . 'tai-khoan');

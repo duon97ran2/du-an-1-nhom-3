@@ -35,13 +35,13 @@
           <ul class="fs-ftr2 clearfix">
             <li>
               <p class="fs-ftrtit" style="font-size: 15px;">Tư vấn mua hàng (Miễn phí)</p>
-              <a href="tel:18006601" title="">1800 6601 </a> <span>(Nhánh 1)</span>
+              <a href="tel:<?= option_info('hotline_1')?>" title=""><?= option_info('hotline_1')?> </a> <span>(Nhánh 1)</span>
               <p class="fs-ftrtit">Hỗ trợ kỹ thuật</p>
-              <a href="tel:18006601" title="">1800 6601 </a><span>(Nhánh 2)</span>
+              <a href="tel:<?= option_info('hotline_2')?>" title=""><?= option_info('hotline_2')?> </a><span>(Nhánh 2)</span>
             </li>
             <li>
               <p class="fs-ftrtit" style="font-size: 15px;">Góp ý, khiếu nại dịch vụ (8h00-22h00)</p>
-              <a href="tel:18006616" title="">1800 6616</a><br>
+              <a href="tel:<?= option_info('hotline_3')?>" title=""><?= option_info('hotline_3')?></a><br>
               <!-- <a href="tel:18006601" title="">1800 6601 </a><span>(Nhánh 3)</span> -->
             </li>
           </ul>
@@ -49,5 +49,27 @@
       </div>
     </div>
   </div>
-  <div class="fs-ftbott">© 2021 PolyMobile</div>
+  <div class="fs-ftbott">© 2021 <a href="<?= app_url() ?>"><?= (!empty(option_info()) ? option_info()['app_name'] : 'Document') ?></a></div>
 </footer>
+<?php if(isset($scripts)):?>
+<?php foreach ($scripts as $script) : ?>
+<script src="<?= asset($script) ?>"></script>
+<?php endforeach; ?>
+<?php endif; ?>
+<?php if (!empty(get_session('message-errors'))) : ?>
+<script>
+    $(function () {
+      toastr.error('<?= get_session('message-errors') ?>')
+    });
+</script>
+<?php remove_session('message-errors') ?>
+<?php endif; ?>
+
+<?php if (!empty(get_session('message'))) : ?>
+<script>
+    $(function () {
+      toastr.success('<?= get_session('message') ?>')
+    });
+</script>
+<?php remove_session('message') ?>
+<?php endif; ?>

@@ -83,7 +83,6 @@
             <div class="col-12 fs-5 mb-3 d-flex .align-items-center">
               <label for="quantity" class="text-nowrap">Số lượng:</label>
               <input type="number" name='quantity' class="form-control w-25 mx-2 text-center js-quantity-type" value="0" min="0" max="<?= $product_default['product_variant_quantity'] ?? $product_default['product_quantity'] ?>">
-
             </div>
             <div class="col">
               <?php if ($product_default['is_variant'] == 1) : ?>
@@ -98,11 +97,6 @@
                           </label>
                         </li>
                       <?php endforeach; ?>
-                      <!-- <li>
-                  <label>
-                    <input type="radio" name="color" class="js-color-type" onchange="" value="black">
-                    <span class="swatch" style="background-color:rgb(9, 50, 211)"></span> BLue
-                  </label></li> -->
                     </ul>
                   </div>
                 </form>
@@ -119,7 +113,7 @@
                   <button class='btn btn-primary disabled'>Hết hàng</button>
                 <?php endif; ?>
               <?php endif; ?>
-              <button type='button' data-id="<?= $product_default['product_id'] ?>" class="btn btn-danger" id="js-add-to-wishlists" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('luu-yeu-thich') ?>"><i class="fa fa-heart" aria-hidden="true"></i> Yêu thích</button>
+              <button type='button' class="btn btn-danger" data-id="<?= $product_default['product_id'] ?>" id="js-add-to-wishlists" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('luu-yeu-thich') ?>"><i class="fa fa-heart" aria-hidden="true"></i> Yêu thích</button>
             </div>
           </div>
         </div>
@@ -127,9 +121,8 @@
           <h3 class="text-primary"><i class="fas fa-gift  "></i> Quà Tặng</h3>
           <?php foreach ($gifts as $gift) : ?>
             <?php foreach (explode(',', $product_default['product_gifts']) as $item) : ?>
-              <ul></ul>
               <?php if ($item == $gift['gift_id']) : ?>
-                  <li class='fs-4'><?=$gift['gift_name']?></li>
+                <li class='fs-4'><?= $gift['gift_name'] ?></li>
               <?php endif; ?>
             <?php endforeach; ?>
           <?php endforeach; ?>

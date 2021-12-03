@@ -1,26 +1,24 @@
 <main class="main-wrapper">
   <div class="fpt-sale">
+    <?php if ($banner) : ?>
     <section class="section-banner swiper-banner margin-30">
       <div class="category-container ">
         <div class="cate-box bg-white ">
           <div class="box-container row-flex ">
             <div class="banner-js-swipper swiper-container gallery-top swiper-container-initialized swiper-container-horizontal">
               <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <a href="/" target="_blank">
-                    <img style="width: 100%;" src="https://images.fpt.shop/unsafe/fit-in/800x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/11/30/637739131345545712_F-H1_800x300.png" alt="Sắm Samsung, trúng quà 60 triệu" title="Sắm Samsung, trúng quà 60 triệu">
-                  </a>
-                </div>
-                <div class="swiper-slide">
-                  <a href="/" target="_blank">
-                    <img style="width: 100%;" src="https://images.fpt.shop/unsafe/fit-in/800x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/11/30/637739130550071063_F-H1_800x300.png" alt="iPhone 13 Series ưu đãi đến 5 triệu" title="iPhone 13 Series ưu đãi đến 5 triệu" class="swiper-lazy swiper-lazy-loaded">
-                  </a>
-                </div>
-                <div class="swiper-slide">
-                  <a href="/" target="_blank">
-                    <img style="width: 100%;" src="https://images.fpt.shop/unsafe/fit-in/800x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/11/30/637738655803121919_F-H1_800x300.png" alt="Reno6 Z | Reno6 5G giảm đến 500.000Đ" title="Reno6 Z | Reno6 5G giảm đến 500.000Đ" class="swiper-lazy">
-                  </a>
-                </div>
+                <?php foreach ($banner as $b) : ?>
+                  <?php if (intval($b['banner_position']) == 1) : ?>
+                    <div class="carousel-item active">
+                        <img src="<?= asset('uploads/' . $b['banner_image']) ?>" class="banner-image" alt="...">
+                    </div>
+                    <div class="swiper-slide">
+                      <a href="<?= $b['banner_url'] ?>" target="<?= $b['banner_target'] ?>">
+                        <img style="width: 100%;" src="<?= asset('uploads/' . $b['banner_image']) ?>">
+                      </a>
+                    </div>
+                  <?php endif; ?>
+                <?php endforeach; ?>
               </div>
               <div class="swiper-button-next swiper-button-white"></div>
               <div class="swiper-button-prev swiper-button-white"></div>
@@ -38,38 +36,31 @@
         </div>
       </div>
     </section>
+    <?php endif; ?>
+    <?php if ($cate_img) : ?>
     <section class="section-box st-cate margin-30">
       <div class="category-container">
         <div class="cate-box">
           <div class="row-flex bg-white">
-            <div class="col6-no col-border">
-              <a href="/" class="ct-item-a ct-transition">
-                <div class="cate-item text-center">
-                  <picture class="picture margin-10">
-                    <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/https://fptshop.com.vn/Uploads/images/v5d/dien-thoai.png" alt="Điện thoại">
-                  </picture>
-                  <div class="cate-item-name f15-bold">
-                    Điện thoại
+            <?php foreach ($cate_img as $c) :  ?>
+              <div class="col6-no col-border">
+                <a href="<?= app_url() ?>" class="ct-item-a ct-transition">
+                  <div class="cate-item text-center">
+                    <picture class="picture margin-10">
+                      <img src="<?= asset($c['category_image']) ?>">
+                    </picture>
+                    <div class="cate-item-name f15-bold">
+                      <?= $c['category_name'] ?>
+                    </div>
                   </div>
-                </div>
-              </a>
-            </div>
-            <div class="col6-no col-border">
-              <a href="/" class="ct-item-a ct-transition">
-                <div class="cate-item text-center">
-                  <picture class="picture margin-10">
-                    <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/https://fptshop.com.vn/Uploads/images/2015/Other/tablet0409.png" alt="Điện thoại">
-                  </picture>
-                  <div class="cate-item-name f15-bold">
-                    Máy tính bảng
-                  </div>
-                </div>
-              </a>
-            </div>
+                </a>
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
     </section>
+    <?php endif; ?>
     <section class="section-box slide-product">
       <div class="category-container">
         <div class="prd-sale cate-box bg-white p-t-15 margin-30">

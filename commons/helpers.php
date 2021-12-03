@@ -183,4 +183,9 @@ function menu_page() {
     return executeQuery($sql, true) ?? [];
 }
 
+function discount_price($price, $percent) {
+    $money = $price - ($price * ($percent / 100));
+    return priceVND($money);
+}
+
 ?>
