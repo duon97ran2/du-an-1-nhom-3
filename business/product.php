@@ -74,14 +74,23 @@ function product_details()
         }
     }
     $product_configuration = get_configuration_by_product_id($product_default['product_id']);
-    $gifts=get_gifts();
+    $product_id = $product_default['product_id'];
+    $comments_sql = "SELECT products.*, users.*, comments.* FROM comments
+                join products on comments.product_id = products.product_id
+                join users on users.user_id	= comments.user_id 
+                where products.product_id = $product_id 
+                group by products.product_id";
+    $comments = executeQuery($comments_sql, true);
+    $gifts = get_gifts();
     client_render('page/product-details', [
         'page_title' => $product_default['product_name'],
         'product_default' => $product_default,
         'product_variant' => $product_variant,
         'product_configuration' => $product_configuration,
         'gifts' => $gifts,
-    ],[
+        'total_cmt' => count($comments),
+        'comments' => $comments,
+    ], [
         'customize/js/add-to-cart.js',
         'customize/js/add-to-wishlist.js',
     ]);

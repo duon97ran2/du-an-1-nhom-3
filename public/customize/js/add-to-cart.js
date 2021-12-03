@@ -56,7 +56,9 @@ $(function() {
                 success: function (data) {
                     data = JSON.parse(data);
                     let total_price = price - data.price;
-                    total_price_currency = total_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+                    let total_price_currency = total_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+                    let voucher_price =  price - total_price;
+                    let voucher_price_currency = voucher_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
 
                     $.validator.addMethod('voucher', function (value, element, param) {
                         if (data.errors != '' && param) {
@@ -75,6 +77,7 @@ $(function() {
                             voucher: false,
                         });
                         $('#js-total-price').val(total_price);
+                        $('#js-show-voucher-discount').html( voucher_price_currency );
                         $('#js-show-total-price').html(total_price_currency);
                     }
                 }

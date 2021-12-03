@@ -63,7 +63,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= admin_url('comments') ?>" class="nav-link">
+          <a href="<?= admin_url('comment') ?>" class="nav-link">
             <i class="nav-icon fas fa-square"></i>
             <p>
               Bình luận

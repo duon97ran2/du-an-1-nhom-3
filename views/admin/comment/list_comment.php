@@ -21,28 +21,30 @@
 <?php endif; ?>
 
 <div class="card card-default">
- 
+  
   <div class="card-body">
     <table class="table table-bordered">
       <thead>
         <tr>
           <th>STT</th>
+          <!-- <th>ID sp</th> -->
           <th>Tên sản phẩm</th>
           <th>Số lượng comment</th>
           <th>Ngày mới nhất</th>
-          
           <th>Action</th>
         </tr> 
       </thead>
       <tbody>
-        <?php foreach($get_cmt_by_slug as $key => $cbylug):?>
+      
+        <?php foreach($cmt as $key => $cbylug):?>
         <tr>
-          <td><?= $key +1 ?></td>
+          <td><?= $key +1 ?></td>   
+          <!-- <td><?= $cbylug['product_id']?></td> -->
           <td><?=  $cbylug['product_name']?></td>
-          <td><?=  $cbylug['so_luot_bl']?></td>
+          <td><?=  $cbylug['so_cmt']?></td>
           <td><?=  $cbylug['created_at']?></td>
           <td>
-              <a href="<?= admin_url('comments/chi-tiet') ?>">Chi Tieet</a>
+              <a href="<?= admin_url('comment/chi-tiet?product_id='.$cbylug['product_id']) ?>" class="btn btn-dark">Chi Tiết</a>
           </td>
         </tr>
         <?php endforeach;?>

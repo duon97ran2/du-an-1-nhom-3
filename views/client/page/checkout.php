@@ -72,7 +72,7 @@
         <div class="col-md-4">
           <div class="well">
             <h5 class="mb-2">Giá tiền: <span><?= priceVND($total_price) ?></span></h5>
-            <h5 class="mb-2">Giảm giá: <span><?= priceVND($voucher['price'] ?? 0) ?></sp></h5>
+            <h5 class="mb-2">Giảm giá: <span id="js-show-voucher-discount"><?= priceVND($voucher['price'] ?? 0) ?></sp></h5>
             <h5 class="mb-4">Tổng tiền: <span id="js-show-total-price"><?= priceVND($total_price - ($voucher['price'] ?? 0)) ?></span></h5>
             <input type="hidden" name="payment_type" value="shipcod">
             <input type="hidden" name="price" id="js-price" value="<?= $total_price ?>">

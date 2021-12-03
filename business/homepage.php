@@ -1,15 +1,12 @@
 <?php
 
     function sp_hot(){
-        $sql = "SELECT p.product_name, p.product_price,c.category_name,p.product_image
-                FROM  products p
-                JOIN categories c
-                ON p.category_id = c.category_id
-                WHERE p.product_hot = 1 AND p.product_status = 1
-                LIMIT 8
-                ";
+        $sql = "SELECT * FROM products WHERE product_hot = 1 AND product_status = 1 AND product_discount > 0 LIMIT 8";
         return executeQuery( $sql,true);
-
+    }
+    function sp_categories(){
+        $sql = "SELECT * FROM products WHERE category_id=14 AND product_status = 1 LIMIT 8";
+        return executeQuery( $sql,true);
     }
 
     function hot_views(){
@@ -87,9 +84,10 @@
         $menu = client_header();
 
         $hot_sale = sp_hot();
-        $hot_view =hot_views();
+        $hot_view = hot_views();
         $cate_img = get_cate_img();
         $banner = showBanner();
+        $sp_cate = sp_categories();
         client_render('page/home',[
             'logo' => $menu['logo'],
             'list_brand' => $menu['list_brand'],
@@ -100,6 +98,7 @@
             'hot_view' => $hot_view,
             'cate_img' => $cate_img,
             'banner' => $banner,
+            'sp_cate' => $sp_cate,
         ]);
     
     }
@@ -131,53 +130,3 @@
         }
         echo $output;
     }
-
-// cmt
-
-
-
-function getCountCommentInProductBySlug()
-{
-    $sql = " select count(p.product_id) as so_luot_bl , c.product_id,p.product_name,c.created_at
-            from users u inner join comments c on c.user_id = u.user_id
-            inner join products p on p.product_id = c.product_id
-            where p.product_slug like '%dien-thoai%' order by(c.created_at) desc limit 1";
-    return  executeQuery($sql, true);
-}
-
-function comment_index()
-{
-    $get_cmt_by_slug = getCountCommentInProductBySlug();
-    admin_render(
-        'comment/list_comment.php',
-        [
-            'page_title' => 'list comment',
-            'get_cmt_by_slug' => $get_cmt_by_slug,
-        ]
-    );
-}
-
-function detail_cmt()
-{
-    $getListDetailCmt = "SELECT * FROM comments c join users u ON c.user_id = u.user_id ";
-    $details_cmt = executeQuery($getListDetailCmt, true);
-    admin_render(
-        'comment/detail_cmt.php',
-        [
-            'page_title' => 'chi tiet cmt',
-            'details_cmt' => $details_cmt,
-
-        ]
-    );
-}
-
-function insertComment(){
-    $menu = client_header();
-    client_render('page/comment', [
-        'logo' => $menu['logo'],
-        'list_brand' => $menu['list_brand'],
-        'products' => $menu['products'], 
-        'allCategories' => $menu['allCategories'],
-        'list_price' => $menu['list_price'],
-    ]);
-}

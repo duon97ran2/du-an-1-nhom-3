@@ -1,7 +1,7 @@
 <section class="content-header">
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Chi tieets comments</h1>
+            <h1>Chi tiết comment</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -26,7 +26,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                   <th></th>
+
                     <th>STT</th>
                     <th>Nội dung</th>
                     <th>Người bình luận</th>
@@ -36,19 +36,25 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($details_cmt as $key => $detail) : ?>
+                <?php foreach ($cmt_detail as $key => $detail) : ?>
                     <tr>
-                        <td><input type="checkbox" class="checkboxItem" name="checkbox" data-id="<?= $detail['comment_id'] ?>" id=""></td>
-
                         <td><?= $key + 1 ?></td>
                         <td><?= $detail['comment_content']  ?></td>
                         <td><?= $detail['name']  ?></td>
                         <td><?= $detail['created_at']  ?></td>
-                        <td><?= $detail['comment_author'] ?></td>
+                        <td class="result"><?= $detail['comment_author'] ?></td>
+                        <td class="form_rep" style="display:none">
+                            <form action="<?=admin_url('comment/tra-loi')?>" method="POST">
+                                <input type="hidden" name="comment_id" value="<?=$detail['comment_id']?>"></input>
+                                <label for="">Rep comment</label><br>
+                                <textarea name="comment_author" cols="30" rows="3"><?= $detail['comment_author'] ?></textarea><br>
+                                <button class="btn btn-success">Gửi</button>
+                                <a href="javascript:;" class="btn btn-primary cannel">Cancel</a>
+                            </form>
+                        </td>
                         <td>
-                            <!-- <a href="<?= admin_url('comments/chi-tiet') ?>">DELETE</a> -->
-                            <button onclick="deleteComment(<?= $detail['comment_id'] ?>)" class="table__controlBtn btn btn-danger">Xóa</button>
-                            <a href="" class="btn btn-primary">Trả lời</a>
+                            <a href="javascript:;" class="btn btn-primary btn_admin_rep_cmt">Trả lời</a>
+                            <a href="javascript:;" data-url="<?= admin_url('comment/xoa?comment_id=' . $detail['comment_id']) ?>" data-name="<?= $detail['comment_content'] ?>" class="btn btn-danger" id="btn_remove_item">Xóa</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -57,10 +63,5 @@
 
     </div>
 </div>
-
-<div class="control__manager">
-    <button onclick="selectAll()" class="table__controlBtn btn btn-primary">Chọn tất cả</button>
-    <button onclick="deselectAll()" class="table__controlBtn btn btn-primary">Bỏ chọn tất cả</button>
-    <button onclick="deleteSelectedItems('AjaxDeleteListComment')" class="table__controlBtn btn btn-primary">Xóa các mục chọn</button>
-    <a href="<?= admin_url('comments') ?>" class="btn btn-primary">Quay lại</a>
+<a href="<?= admin_url('comment') ?>" class="btn btn-primary">Quay lại</a>
 </div>
