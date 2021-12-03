@@ -11,7 +11,7 @@ function shopping_carts() {
         LEFT JOIN product_variants V ON V.product_variant_slug = SP.color
         WHERE user_id = $user_id AND is_buy = 0;";
     $cart_data = executeQuery($cart_sql, true);
-    view_no_layout('shopping-carts', [
+    client_render('page/shopping-carts', [
         'cart_data' => $cart_data,
     ]);
 }

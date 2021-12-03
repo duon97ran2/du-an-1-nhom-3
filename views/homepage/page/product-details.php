@@ -107,32 +107,32 @@
                   </div>
                 </form>
                 <h2 class="text-danger my-2"><?= priceVND($product_default['product_variant_price'] ?? $product_default['product_price']) ?></h2>
-                  <?php if($product_default['product_variant_quantity'] > 0) : ?>
-                    <button type="button" class='btn btn-primary' id="js-add-to-cart" data-id="<?= $product_default['product_id'] ?>" data-price="<?= $product_default['product_variant_price'] ?? $product_default['product_price'] ?>" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('gio-hang/them-san-pham') ?>">Mua ngay</button>
-                  <?php else: ?>
-                    <button class='btn btn-primary disabled'>Hết hàng</button>
-                  <?php endif; ?>  
-                <?php else: ?>
-                  <?php if($product_default['product_quantity'] > 0) : ?>
-                    <button type="button" class='btn btn-primary' id="js-add-to-cart" data-id="<?= $product_default['product_id'] ?>" data-price="<?= $product_default['product_variant_price'] ?? $product_default['product_price'] ?>" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('gio-hang/them-san-pham') ?>">Mua ngay</button>
-                  <?php else: ?>
-                    <button class='btn btn-primary disabled'>Hết hàng</button>
-                  <?php endif; ?>    
-                <?php endif; ?>  
-                  <button type='button' data-id="<?= $product_default['product_id'] ?>" class="btn btn-danger" id="js-add-to-wishlists"  data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('luu-yeu-thich') ?>"><i class="fa fa-heart" aria-hidden="true" ></i> Yêu thích</button>
-                </div>
+                <?php if ($product_default['product_variant_quantity'] > 0) : ?>
+                  <button type="button" class='btn btn-primary' id="js-add-to-cart" data-id="<?= $product_default['product_id'] ?>" data-price="<?= $product_default['product_variant_price'] ?? $product_default['product_price'] ?>" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('gio-hang/them-san-pham') ?>">Mua ngay</button>
+                <?php else : ?>
+                  <button class='btn btn-primary disabled'>Hết hàng</button>
+                <?php endif; ?>
+              <?php else : ?>
+                <?php if ($product_default['product_quantity'] > 0) : ?>
+                  <button type="button" class='btn btn-primary' id="js-add-to-cart" data-id="<?= $product_default['product_id'] ?>" data-price="<?= $product_default['product_variant_price'] ?? $product_default['product_price'] ?>" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('gio-hang/them-san-pham') ?>">Mua ngay</button>
+                <?php else : ?>
+                  <button class='btn btn-primary disabled'>Hết hàng</button>
+                <?php endif; ?>
+              <?php endif; ?>
+              <button type='button' data-id="<?= $product_default['product_id'] ?>" class="btn btn-danger" id="js-add-to-wishlists" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('luu-yeu-thich') ?>"><i class="fa fa-heart" aria-hidden="true"></i> Yêu thích</button>
+            </div>
           </div>
         </div>
         <div class="card shadow p-3">
-          <h3 class="text-primary"><i class="fas fa-gift    "></i> Quà Tặng</h3>
-          <label for="gift_1" class="d-block fs-4">
-            <input type="checkbox" name="gift_1" id="">
-            gift_1
-          </label>
-          <label for="gift_2" class="d-block fs-4">
-            <input type="checkbox" name="gift_2" id="">
-            gift_2
-          </label>
+          <h3 class="text-primary"><i class="fas fa-gift  "></i> Quà Tặng</h3>
+          <?php foreach ($gifts as $gift) : ?>
+            <?php foreach (explode(',', $product_default['product_gifts']) as $item) : ?>
+              <ul></ul>
+              <?php if ($item == $gift['gift_id']) : ?>
+                  <li class='fs-4'><?=$gift['gift_name']?></li>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          <?php endforeach; ?>
         </div>
         <div class="card shadow p-3">
           <h3 class="text-success"><i class="fas fa-shield-alt    "></i> Bảo hành</h3>
@@ -145,13 +145,13 @@
     </div>
     <div class="row mt-3">
       <div class="col-7">
-      <div class="card">
+        <div class="card">
           <div class="card shadow">
             <h2 class="card-header">
               Mô tả
             </h2>
             <div class="card-body">
-              <p class="card-text"><?=$product_default['product_description']?></p>
+              <p class="card-text"><?= $product_default['product_description'] ?></p>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@
               Thông tin chi tiết
             </h2>
             <div class="card-body">
-              <p class="card-text"><?=$product_default['product_content']?></p>
+              <p class="card-text"><?= $product_default['product_content'] ?></p>
             </div>
           </div>
         </div>

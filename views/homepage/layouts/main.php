@@ -48,7 +48,10 @@
                             <?php
                             if (!empty(auth_info())) {
                                 echo "<a href='"     . app_url('dang-xuat') . "'>Đăng xuất</a><br>";
-                                echo "<a href='" . app_url('dang-xuat') . "'>Thoong tin ca nhan</a><br>";;
+                                echo "<a href='" . app_url('dang-xuat') . "'>Thông tin ca nhan</a><br>";;
+                                if(auth_info()['role']=='admin'){
+                                    echo "<a href='" . admin_url('dashboard') . "'>Quản trị</a><br>";;
+                                }
                             } else {
                                 echo "<a href='" . app_url('dang-nhap') . "'>Đăng nhập</a><br>";
                             }
