@@ -9,7 +9,7 @@ function admin_render($viewpath, $data = [], $scripts = []){
 function client_render($viewpath, $data = [], $scripts = []){
 
     extract($data);
-    $businessView = "./views/client/" . $viewpath;
+    $businessView = "./views/client/" . $viewpath .".php";
     include_once './views/client/layouts/main.php';
 }
 
