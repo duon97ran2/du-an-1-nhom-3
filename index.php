@@ -244,22 +244,28 @@ switch ($url) {
         require_once "./business/admin/banner.php";
         remove_banner();
         break;
-    case 'cp-admin/comments':
-        require_once "./business/homepage.php";
-        comment_index();
+    case 'cp-admin/comment':
+        require_once "./business/admin/comment.php";
+        comment_page_admin();
+        // get_all_cmt();
         break;
-    case 'cp-admin/comments/chi-tiet':
-        require_once "./business/homepage.php";
-        detail_cmt();
+    case 'cp-admin/comment/chi-tiet':
+        require_once "./business/admin/comment.php";
+        detail_cmt_admin();
+        
         break;
-     case 'ajax/deleteListComment':
-         require_once "./business/ajax/deleteListComment.php";
-         break;
-    case 'comment/them-comment':
-        require_once "./business/homepage.php";
-        insertComment();
+    case 'cp-admin/comment/xoa':
+        require_once "./business/admin/comment.php";
+        remove_comment_admin();
         break;
-   
+    case 'cp-admin/comment/tra-loi':
+        require_once "./business/admin/comment.php";
+        reply_comment();
+        break;  
+    case 'comment':
+        require_once "./business/admin/comment.php";
+        get_detail_comment();
+        break;  
     default:
         error_page();
         break;
