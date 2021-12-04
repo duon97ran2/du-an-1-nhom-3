@@ -1,3 +1,5 @@
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
+
 <section class="content-header">
     <div class="row mb-2">
         <div class="col-sm-6">
@@ -43,22 +45,38 @@
                         <td><?= $detail['created_at']  ?></td>
                         <td class="result"><?= $detail['comment_author'] ?></td>
                         <td class="form_rep" style="display:none">
-
-                            <form action="<?=admin_url('comment/tra-loi')?>" method="POST">
-                                <input type="hidden" name="comment_id" value="<?=$detail['comment_id']?>"></input>
+                            <form action="<?= admin_url('comment/tra-loi') ?>" method="POST">
+                                <input type="hidden" name="comment_id" value="<?= $detail['comment_id'] ?>"></input>
+                                <input type="hidden" name="product_id" value="<?= $product_id ?>"></input>
                                 <label for="">Rep comment</label><br>
                                 <textarea name="comment_author" cols="30" rows="3"><?= $detail['comment_author'] ?></textarea><br>
                                 <button class="btn btn-success">Gửi</button>
                                 <a href="javascript:;" class="btn btn-primary cannel">Cancel</a>
                             </form>
-                            
+
                         </td>
                         <td>
                             <a href="javascript:;" class="btn btn-primary btn_admin_rep_cmt">Trả lời</a>
-                            <a href="javascript:;" data-url="<?= admin_url('comment/xoa?comment_id=' . $detail['comment_id']) ?>" data-name="<?= $detail['comment_content'] ?>" class="btn btn-danger" id="btn_remove_item">Xóa</a>
+                            <a href="javascript:;" data-url="<?= admin_url('comment/xoa?comment_id=' . $detail['comment_id']) ?>" data-name="<?= $detail['comment_content'] ?>" class="btn btn-danger btn_remove_item">Xóa</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
+                <script>
+                    $('.btn_admin_rep_cmt').on('click', function() {
+                        let btn_rep = $(this).parent().parent().find('.form_rep');
+                        let result = $(this).parent().parent().find('.result');
+                        btn_rep.toggle();
+                        result.toggle();
+                    })
+
+                    $('.form_rep .cannel').on('click', function() {
+                        $(this).parent().parent().parent().find('.btn_admin_rep_cmt').click();
+                    })
+                    $('.submit').on('click', function() {
+                        $('#form_rep').css('display', 'none');
+                        $('#result').css('display', 'block');
+                    })
+                </script> 
             </tbody>
         </table>
 

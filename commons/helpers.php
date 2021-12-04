@@ -13,11 +13,6 @@ function client_render($viewpath, $data = [], $scripts = []){
     include_once './views/client/layouts/main.php';
 }
 
-// function  client_menu($data = [], $scripts = []){ 
-//     extract($data);
-//     include_once './views/homepage/layouts/main.php';
-// }
-
 function dd(){
     echo "<pre>";
     $args = func_get_args();

@@ -382,9 +382,9 @@ switch ($url) {
         break;  
     case 'comment':
         require_once "./business/admin/comment.php";
-        get_detail_comment();
+        // get_detail_comment();
         break;
-    case 'comment/them':
+    case 'save-comment': //??? đây có mà la th
         require_once "./business/admin/comment.php";
         insertCmt();
         break;
