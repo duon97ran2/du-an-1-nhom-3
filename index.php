@@ -5,6 +5,30 @@ require_once './dao/system_dao.php';
 require_once './commons/helpers.php';
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 switch ($url) {
+    case 'cp-admin/tai-khoan':
+        require_once "./business/admin/account.php";
+        account_index();
+        break;
+    case 'cp-admin/tai-khoan/tao-moi':
+        require_once "./business/admin/account.php";
+        account_create();
+        break;
+    case 'cp-admin/tai-khoan/luu-tao-moi':
+        require_once "./business/admin/account.php";
+        account_save_add();
+        break;
+    case 'cp-admin/tai-khoan/sua':
+        require_once "./business/admin/account.php";
+        account_edit_form();
+        break;
+    case 'cp-admin/tai-khoan/luu-sua':
+        require_once "./business/admin/account.php";
+        account_save_edit();
+        break;
+    case 'cp-admin/tai-khoan/xoa':
+        require_once "./business/admin/account.php";
+        account_remove();
+        break;
     case '/':
         is_maintenance();
         require_once './business/homepage.php';
@@ -15,11 +39,6 @@ switch ($url) {
         require_once './business/homepage.php';
         search_ajax();
         break;
-    case 'cp-admin/dashboard':
-        is_admin();
-        require_once './business/admin/dashboard.php';
-        dashboard_info();
-
     case 'thong-tin-san-pham':
         is_maintenance();
         require_once './business/product.php';
@@ -47,11 +66,14 @@ switch ($url) {
         require_once './business/shopping-carts.php';
         checkout();
         break;
+    case 'thanh-toan/kiem-tra-voucher':
+        require_once './business/shopping-carts.php';
+        checkVoucher();
+        break;
     case 'thanh-toan/kiem-tra':
         is_maintenance();
         require_once './business/shopping-carts.php';
         checkout_handle();
-
         break;
     case 'dang-ky':
         is_maintenance();
@@ -99,6 +121,14 @@ switch ($url) {
     case 'quen-mat-khau/cap-nhat-mat-khau/kiem-tra':
         require_once "./business/auth/reset.php";
         client_reset_password_handle();
+        break;
+    case 'thong-tin-ca-nhan':
+        require_once "./business/auth/profile.php";
+        profile_index();
+        break;
+    case 'thong-tin-ca-nhan/luu-sua':
+        require_once "./business/auth/profile.php";
+        profile_save();
         break;
     case 'cp-admin/dashboard':
         is_admin();
@@ -183,48 +213,50 @@ switch ($url) {
         require_once "./business/admin/product.php";
         product_remove_product_handle();
         break;
-    case 'cp-admin/tai-khoan':
-        require_once "./business/admin/account.php";
-        account_index();
+    // Brand By Trần Khánh Linh
+    case 'cp-admin/thuong-hieu':
+        require_once "./business/admin/brand.php";
+        brand_index();
         break;
-    case 'cp-admin/tai-khoan/tao-moi':
-        require_once "./business/admin/account.php";
-        account_create();
+    case 'cp-admin/thuong-hieu/tao-moi':
+        require_once "./business/admin/brand.php";
+        brand_create();
         break;
-    case 'cp-admin/tai-khoan/luu-tao-moi':
-        require_once "./business/admin/account.php";
-        account_save_add();
+    case 'cp-admin/thuong-hieu/luu-tao-moi':
+        require_once "./business/admin/brand.php";
+        brand_save_add();
         break;
-    case 'cp-admin/tai-khoan/sua':
-        require_once "./business/admin/account.php";
-        account_edit_form();
+    case 'cp-admin/thuong-hieu/sua':
+        require_once "./business/admin/brand.php";
+        brand_edit_form();
         break;
-    case 'cp-admin/tai-khoan/luu-sua':
-        require_once "./business/admin/account.php";
-        account_save_edit();
+    case 'cp-admin/thuong-hieu/luu-sua':
+        require_once "./business/admin/brand.php";
+        brand_save_edit();
         break;
-    case 'cp-admin/tai-khoan/xoa':
-        require_once "./business/admin/account.php";
-        account_remove();
+    case 'cp-admin/thuong-hieu/xoa':
+        require_once "./business/admin/brand.php";
+        brand_remove();
         break;
-    case 'thong-tin-ca-nhan':
-        require_once "./business/auth/profile.php";
-        profile_index();
-        break;
-    case 'thong-tin-ca-nhan/luu-sua':
-        require_once "./business/auth/profile.php";
-        profile_save();
-        break;
-    case 'thong-tin-san-pham':
+    // Wishlist By Trần Khánh Linh
+    case 'danh-sach-yeu-thich':
         is_maintenance();
-        require_once "./business/product.php";
-        product_details();
+        require_once './business/wishlist.php';
+        break;
+    case 'danh-sach-yeu-thich/them-san-pham':
+        require_once './business/wishlist.php';
+
+        break;
+    case 'danh-sach-yeu-thich/xoa-san-pham':
+        require_once './business/wishlist.php';
         break;
     case 'cp-admin/banner':
+        is_admin();
         require_once "./business/admin/banner.php";
         banner_list();
         break;
     case 'cp-admin/banner/them-moi':
+        is_admin();
         require_once "./business/admin/banner.php";
         banner_add();   
         break;
@@ -233,6 +265,7 @@ switch ($url) {
         banner_add_handle();   
         break; 
     case 'cp-admin/banner/cap-nhat':
+        is_admin();
         require_once "./business/admin/banner.php";
         banner_update();
         break;  
@@ -243,6 +276,91 @@ switch ($url) {
     case 'cp-admin/banner/xoa':
         require_once "./business/admin/banner.php";
         remove_banner();
+        break;
+    case 'cp-admin/danh-muc':
+        is_admin();
+        require_once "./business/admin/categories.php";
+        categories_index();
+        break;
+    case 'cp-admin/danh-muc/tao-moi':
+        is_admin();
+        require_once "./business/admin/categories.php";
+        categories_create();
+        break;
+    case 'cp-admin/danh-muc/luu-tao-moi':
+        require_once "./business/admin/categories.php";
+        categories_save_add();
+        break;
+    case 'cp-admin/danh-muc/sua':
+        is_admin();
+        require_once "./business/admin/categories.php";
+        categories_edit_form();
+        break;
+    case 'cp-admin/danh-muc/luu-sua':
+        require_once "./business/admin/categories.php";
+        categories_save_edit();
+        break;
+    case 'cp-admin/danh-muc/xoa':
+        require_once "./business/admin/categories.php";
+        categories_remove();
+        break;
+    case 'cp-admin/qua-tang':
+        is_admin();
+        require_once "./business/admin/gifts.php";
+        gift_index();
+        break;
+    case 'cp-admin/qua-tang/xoa':
+        require_once "./business/admin/gifts.php";
+        gift_remove();
+        break;
+    case 'cp-admin/qua-tang/tao-moi':
+        is_admin();
+        require_once "./business/admin/gifts.php";
+        gift_create();
+        break;
+    case 'cp-admin/qua-tang/luu-tao-moi':
+        require_once "./business/admin/gifts.php";
+        gift_save_add();
+        break;
+    case 'cp-admin/qua-tang/sua':
+        is_admin();
+        require_once "./business/admin/gifts.php";
+        gift_edit_form();
+        break;
+    case 'cp-admin/qua-tang/luu-sua':
+        require_once "./business/admin/gifts.php";
+        gift_save_edit();
+        break;
+    case 'cp-admin/phieu-giam-gia':
+        is_admin();
+        require_once "./business/admin/vouchers.php";
+        voucher_index();  
+        break;
+    case 'cp-admin/phieu-giam-gia/xoa':
+        require_once "./business/admin/vouchers.php";
+        voucher_remove();  
+        break;
+    case 'cp-admin/phieu-giam-gia/tao-moi':
+        is_admin();
+        require_once "./business/admin/vouchers.php";
+        voucher_create();
+        break;    
+    case 'cp-admin/phieu-giam-gia/luu-tao-moi':
+        require_once "./business/admin/vouchers.php";
+        voucher_save_add();
+        break;
+    case 'cp-admin/phieu-giam-gia/sua':
+        is_admin();
+        require_once "./business/admin/vouchers.php";
+        voucher_edit_form();
+        break;
+    case 'cp-admin/phieu-giam-gia/luu-sua':
+        require_once "./business/admin/vouchers.php";
+        voucher_save_edit();
+        break;
+    case 'luu-yeu-thich':
+        require_once "./business/wishlist.php";
+        save_wishlist();
         break;
     case 'cp-admin/comment':
         require_once "./business/admin/comment.php";
@@ -274,4 +392,5 @@ switch ($url) {
     default:
         error_page();
         break;
+        
 }

@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/toastr/toastr.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
@@ -48,6 +50,9 @@
             <p>
                 <button>Hết hàng</button>
             </p>
+        <?php endif; ?>  
+    <?php else: ?>
+        <?php if($product_default['product_quantity'] > 0) : ?>
         <?php endif; ?>
     <?php else : ?>
         <?php if ($product_default['product_quantity'] > 0) : ?>
@@ -69,6 +74,8 @@
     <?php endif; ?>
     <!-- jQuery -->
     <script src="<?= ADMIN_ASSETS ?>plugins/jquery/jquery.min.js"></script>
+    <!-- Toastr -->
+    <script src="<?= ADMIN_ASSETS ?>plugins/toastr/toastr.min.js"></script>
     <script src="<?= asset('customize/js/add-to-cart.js') ?>"></script>
 </body>
 

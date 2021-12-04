@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= $page_title ?? 'Dashboard' ?><?= (!empty(option_info()) ? ' - ' . option_info('app_name') : 'Document') ?></title>
+  <title><?= $page_title ?? 'Dashboard' ?><?= (!empty(option_info()) ? ' - ' . option_info('app_name') : '') ?></title>
   <?php if(!empty(option_info('favicon'))): ?>
   <link rel="icon" type="image/png" href="<?= asset('uploads/'.option_info('favicon')) ?>"/>
   <?php endif; ?>
@@ -51,6 +51,11 @@
 </div>
 <!-- ./wrapper -->
 <?php include_once "./views/admin/layouts/script.php" ?>
+<?php if(count($scripts) > 0):?>
+  <?php foreach ($scripts as $scripts): ?>
+    <script src="<?= PUBLIC_ASSETS . $scripts?>" type="text/javascript"></script>
+  <?php endforeach ?>
+<?php endif?>
 
 </body>
 </html>

@@ -1,11 +1,13 @@
 <?php
 
-function get_product_by_slug($slug) {
+function get_product_by_slug($slug)
+{
     $product_sql = "SELECT * FROM products WHERE product_slug = '$slug'";
     return executeQuery($product_sql, false);
 }
 
-function get_product_variant_by_slug($slug) {
+function get_product_variant_by_slug($slug)
+{
     $data = [];
     $sql = "SELECT 
                 P.*, C.category_name, CP.category_id as category_parent_id, CP.category_name as category_parent_name, B.brand_name,
@@ -26,42 +28,70 @@ function get_product_variant_by_slug($slug) {
     return $data;
 }
 
-function get_configuration_by_product_id($product_id) {
+function get_configuration_by_product_id($product_id)
+{
     $sql = "SELECT * FROM product_configuration WHERE product_id = '$product_id'";
     return executeQuery($sql, false);
 }
+function get_gifts()
+{
+    $sql = "SELECT * FROM gifts";
+    return executeQuery($sql);
+}
 
-function product_details() {
+function product_details()
+{
     $slug = input_get('slug');
     $product_variant = [];
     $product_default = get_product_by_slug($slug);
     if (empty($product_default)) {
         error_page();
-    } 
+    }
     if ($product_default['is_variant'] == 1) {
+        $flag = false;
         $product_variant = get_product_variant_by_slug($slug);
         if ($product_variant) {
             $color = input_get('color');
             if (empty($color)) {
-                $product_default = $product_variant[0];
+                $flag = false;
             } else {
                 if (count($product_variant) > 1) {
                     foreach ($product_variant as $variant) {
                         if ($variant['product_variant_slug'] == $color) {
                             $product_default = $variant;
+                            $flag = true;
+                        } else {
+                            $flag = false;
                         }
                     }
                 } else {
-                    $product_default = $product_variant[0];
+                    $flag = false;
                 }
-            } 
+            }
+            if ($flag == false) {
+                $product_default = $product_variant[0];
+            }
         }
     }
     $product_configuration = get_configuration_by_product_id($product_default['product_id']);
-
-    view_no_layout('product-details', [
+    $product_id = $product_default['product_id'];
+    $comments_sql = "SELECT products.*, users.*, comments.* FROM comments
+                join products on comments.product_id = products.product_id
+                join users on users.user_id	= comments.user_id 
+                where products.product_id = $product_id 
+                group by products.product_id";
+    $comments = executeQuery($comments_sql, true);
+    $gifts = get_gifts();
+    client_render('page/product-details', [
+        'page_title' => $product_default['product_name'],
         'product_default' => $product_default,
         'product_variant' => $product_variant,
         'product_configuration' => $product_configuration,
+        'gifts' => $gifts,
+        'total_cmt' => count($comments),
+        'comments' => $comments,
+    ], [
+        'customize/js/add-to-cart.js',
+        'customize/js/add-to-wishlist.js',
     ]);
 }

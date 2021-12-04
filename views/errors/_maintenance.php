@@ -18,16 +18,17 @@
         a {
             text-decoration: none;
             color: crimson;
-            font-weight: 400
+            font-weight: 400;
         }
         main{
         height: 100%;
         display: flex;
-        margin: 0 20px; // To look nice on mobile
+        margin: 0 20px;
         text-align: center;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        }
         h1{
             font-size: 3em;
             font-weight: 100;
@@ -49,7 +50,6 @@
             font-weight: 300;
             color: #F44;
             text-decoration: none;
-        }
         }
 
         footer{

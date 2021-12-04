@@ -45,7 +45,7 @@ function product_page() {
 }
 
 function product_create() {
-    $cate_sql = "SELECT * FROM categories WHERE parent_id IS NOT NULL";
+    $cate_sql = "SELECT * FROM categories WHERE is_parent = 0";
     $brand_sql = "SELECT * FROM brands";
     $gift_sql = "SELECT * FROM gifts";
     $categories = executeQuery($cate_sql, true);
@@ -241,7 +241,7 @@ function product_create_handle() {
 }
 
 function product_update() {
-    $cate_sql = "SELECT * FROM categories WHERE parent_id IS NOT NULL";
+    $cate_sql = "SELECT * FROM categories WHERE is_parent = 0";
     $brand_sql = "SELECT * FROM brands";
     $gift_sql = "SELECT * FROM gifts";
     $categories = executeQuery($cate_sql, true);

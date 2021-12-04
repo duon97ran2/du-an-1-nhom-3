@@ -35,13 +35,13 @@
         <ul class="footer--ul p-0">
           <li>
             <p class=" fw-bold m-1 fs-6">Tư vấn mua hàng (Miễn phí)</p>
-            <a href="tel:18006601" title="" class="fw-bold fs-5"><?= option_info('hotline_1')?></a> <span>(Nhánh 1)</span>
+            <a href="tel:<?= option_info('hotline_1')?>" title="" class="fw-bold fs-5"><?= option_info('hotline_1')?></a> <span>(Nhánh 1)</span>
             <p class=" fw-bold m-1 fs-6">Hỗ trợ kỹ thuật</p>
-            <a href="tel:18006601" title="" class="fw-bold fs-5"><?= option_info('hotline_2')?></a><span>(Nhánh 2)</span>
+            <a href="tel:<?= option_info('hotline_2')?>" title="" class="fw-bold fs-5"><?= option_info('hotline_2')?></a><span>(Nhánh 2)</span>
           </li>
           <li>
             <p class=" fw-bold m-1 fs-6">Góp ý, khiếu nại dịch vụ (8h00-22h00)</p>
-            <a href="tel:18006601" title="" class="fw-bold fs-5"><?= option_info('hotline_1')?> </a> <span>(Nhánh 1)</span>
+            <a href="tel:<?= option_info('hotline_3')?>" title="" class="fw-bold fs-5"><?= option_info('hotline_3')?> </a> <span>(Nhánh 1)</span>
           </li>
         </ul>
         <div class="footer--bottom ">
@@ -65,7 +65,7 @@
     </div>
     <div class="row  text-center">
       
-        <strong>Copyright &copy; 2021 <a href="<?= admin_url('dashboard') ?>">PolyMobile</a>.</strong>
+        <strong>Copyright &copy; 2021 <a href="<?= app_url() ?>">PolyMobile</a>.</strong>
       
     </div>
   </div>

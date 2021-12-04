@@ -7,10 +7,10 @@ function admin_render($viewpath, $data = [], $scripts = [], $styles = []){
     include_once './views/admin/layouts/main.php';
 }
 
-function  client_render($viewpath, $data = [], $scripts = []){ 
+function client_render($viewpath, $data = [], $scripts = []){ 
     extract($data);
-    $businessView = "./views/homepage/" . $viewpath . ".php";
-    include_once './views/homepage/layouts/main.php';
+    $businessView = "./views/client/" . $viewpath .".php";
+    include_once './views/client/layouts/main.php';
 }
 
 // function  client_menu($data = [], $scripts = []){ 
@@ -27,7 +27,6 @@ function dd(){
     echo "</pre>";
     die;
 }
-
 // chuong create
 function view_no_layout($viewpath, $data = []) {
     extract($data);
@@ -168,17 +167,25 @@ function is_maintenance() {
         }
     }
 }
-
 // chuong create
 function priceVND($price)
 {
     return number_format($price, 0, '', '.')." ₫";
 }
 
+function find_user_by_email($email) {
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    return executeQuery($sql, false);
+}
 
 function menu_page() {
     $sql = "SELECT * FROM categories WHERE is_menu = 1 ORDER BY category_index ASC;";
     return executeQuery($sql, true) ?? [];
+}
+
+function discount_price($price, $percent) {
+    $money = $price - ($price * ($percent / 100));
+    return priceVND($money);
 }
 
 ?>

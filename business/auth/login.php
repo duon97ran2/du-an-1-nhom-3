@@ -1,10 +1,10 @@
 <?php
 
 function client_login_page() {
-    view_no_layout('auth/client/login');
+    client_render('auth/login');
 }
 
-function client_login_handle() {
+function client_login_handle() {    
     $errors = [];
     $email = input_post('email');
     $password = input_post('password');
@@ -35,9 +35,10 @@ function client_login_handle() {
     }
 
     if ($errors) {
-        set_errors($errors);
+        set_session('message-errors', $errors['message']);
         redirect('dang-nhap');
     } else {
+        set_session('message', 'Đăng nhập thành công');
         set_session('AUTH_ID', $user['user_id']);
         redirect('/');
     }
@@ -95,9 +96,4 @@ function logout($admin = false) {
     } else {
         redirect('dang-nhap');
     }
-}
-
-function find_user_by_email($email) {
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    return executeQuery($sql, false);
 }

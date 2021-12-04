@@ -4,6 +4,10 @@
         $sql = "SELECT * FROM products WHERE product_hot = 1 AND product_status = 1 AND product_discount > 0 LIMIT 8";
         return executeQuery( $sql,true);
     }
+    function sp_categories(){
+        $sql = "SELECT * FROM products WHERE category_id=14 AND product_status = 1 LIMIT 8";
+        return executeQuery( $sql,true);
+    }
 
     function hot_views(){
         $sql = "SELECT *
@@ -83,7 +87,8 @@
         $hot_view = hot_views();
         $cate_img = get_cate_img();
         $banner = showBanner();
-        view_no_layout('homepage/page/trang_chu',[
+        $sp_cate = sp_categories();
+        client_render('page/home',[
             'logo' => $menu['logo'],
             'list_brand' => $menu['list_brand'],
             'products' => $menu['products'], 
@@ -93,6 +98,7 @@
             'hot_view' => $hot_view,
             'cate_img' => $cate_img,
             'banner' => $banner,
+            'sp_cate' => $sp_cate,
         ]);
     
     }

@@ -6,6 +6,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <title><?= $page_title ?? 'Home' ?><?= (!empty(option_info()) ? ' - ' . option_info('app_name') : '') ?></title>
+    <?php if(!empty(option_info('favicon'))): ?>
+    <link rel="icon" type="image/png" href="<?= asset('uploads/'.option_info('favicon')) ?>"/>
+    <?php endif; ?>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css" />
     <!-- Bootstrap CSS v5.0.2 -->
@@ -47,7 +51,10 @@
                             <?php
                             if (!empty(auth_info())) {
                                 echo "<a href='"     . app_url('dang-xuat') . "'>Đăng xuất</a><br>";
-                                echo "<a href='" . app_url('dang-xuat') . "'>Thoong tin ca nhan</a><br>";;
+                                echo "<a href='" . app_url('dang-xuat') . "'>Thông tin ca nhan</a><br>";;
+                                if(auth_info()['role']=='admin'){
+                                    echo "<a href='" . admin_url('dashboard') . "'>Quản trị</a><br>";;
+                                }
                             } else {
                                 echo "<a href='" . app_url('dang-nhap') . "'>Đăng nhập</a><br>";
                             }
@@ -64,7 +71,7 @@
                     </div>
 
                     <div class="nav-item focus_cart">
-                        <a class="nav-link" href="#"><label for="nav_input">GIỎ HÀNG <i class="fas fa-shopping-bag"></i>
+                        <a class="nav-link" href="<?= app_url('gio-hang') ?>"><label for="nav_input"><small>(<?= cart_total() ?>)</small> GIỎ HÀNG <i class="fas fa-shopping-bag"></i>
                     </div>
 
                     <div class="focus_cart">

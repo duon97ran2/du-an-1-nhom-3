@@ -69,14 +69,10 @@
         $banner_target = input_post('banner_target');
         $banner_position= input_post('banner_position');
         $is_active = input_post('is_active');
-        $banner_image = $banner_old['banner_image'];
-
-        if ($banner_image['size'] < 0) {
-            $banner_image = input_file('banner_image');
-            $image_upload = upload_image($banner_image,'banner');
-        }
-
+        $banner_image = input_file('banner_image');
+        
         if(empty($errors)){
+            $image_upload = $banner_image['size'] > 0 ? upload_image($banner_image,'banner') : $banner_old['banner_image'];
             $sql_banner = "UPDATE banners SET 
                             banner_name ='$banner_name',banner_url ='$banner_url',banner_image='$image_upload',
                             banner_index='$banner_index',banner_target='$banner_target',banner_position='$banner_position',is_active='$is_active' 

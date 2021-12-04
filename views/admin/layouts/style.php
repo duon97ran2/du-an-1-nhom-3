@@ -15,6 +15,8 @@
 <!-- Tempusdominus Bootstrap 4 -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- iCheck -->
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 <!-- Sweet Alert -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
@@ -33,7 +35,6 @@
 <!-- CodeMirror -->
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/codemirror/codemirror.css">
 <link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/codemirror/theme/monokai.css">
-<script src="<?= PUBLIC_ASSETS ?>customize/js/banner/script.js"></script>
 <style>
     #js-print-product-attribute-form .attribute-form:first-child {
         border-top: 1px solid #ededed;
