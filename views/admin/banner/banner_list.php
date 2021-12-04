@@ -54,7 +54,8 @@
             <td><?= $b['created_at'] ?></td>
            
             <td>
-              <a href="<?=admin_url('banner/cap-nhat?banner_id='.$b['banner_id'])?>" class="btn btn-info">Update</a>
+             
+              <a href="<?=admin_url('banner/luu-cap-nhat?banner_id='.$b['banner_id'])?>" class="btn btn-info">Update</a>
               <a href="javascript:;" 
                       data-url="<?=admin_url('banner/xoa?banner_id=' .$b['banner_id'])?>" 
                       data-name="<?= $b['banner_name'] ?>" 

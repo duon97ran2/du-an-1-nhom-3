@@ -265,7 +265,12 @@ switch ($url) {
     case 'comment':
         require_once "./business/admin/comment.php";
         get_detail_comment();
-        break;  
+        break;
+    case 'comment/them':
+        require_once "./business/admin/comment.php";
+        insertCmt();
+        break;
+    
     default:
         error_page();
         break;

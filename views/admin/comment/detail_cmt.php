@@ -26,7 +26,6 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-
                     <th>STT</th>
                     <th>Nội dung</th>
                     <th>Người bình luận</th>
@@ -44,6 +43,7 @@
                         <td><?= $detail['created_at']  ?></td>
                         <td class="result"><?= $detail['comment_author'] ?></td>
                         <td class="form_rep" style="display:none">
+
                             <form action="<?=admin_url('comment/tra-loi')?>" method="POST">
                                 <input type="hidden" name="comment_id" value="<?=$detail['comment_id']?>"></input>
                                 <label for="">Rep comment</label><br>
@@ -51,6 +51,7 @@
                                 <button class="btn btn-success">Gửi</button>
                                 <a href="javascript:;" class="btn btn-primary cannel">Cancel</a>
                             </form>
+                            
                         </td>
                         <td>
                             <a href="javascript:;" class="btn btn-primary btn_admin_rep_cmt">Trả lời</a>

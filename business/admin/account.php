@@ -66,6 +66,7 @@ function account_edit_form(){
         'page_title' => 'Sửa '.$user['name']
     ]);
 }
+// chỗ xử lí login đâu
 
 function account_save_edit(){
     // lấy ra thông tin cũ của dữ liệu vừa submit lên

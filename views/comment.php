@@ -5,7 +5,7 @@
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./public/shop/css/style.css">
     <link rel="stylesheet" href="./public/shop/plugin/toastr/toastr.min.css">
     <script src="./public/shop/plugin/jquery/jquery.min.js"></script>
@@ -15,6 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 </head>
+
 <body>
     <header class="fs-header">
         <div class="f-hdtop">
@@ -76,7 +77,7 @@
                 <ul class="fs-mnul clearfix">
                     <li>
                         <a href="/dien-thoai" title="ĐIỆN THOẠI">
-                            <div class="base-ic"></div> ĐIỆN THOẠI 
+                            <div class="base-ic"></div> ĐIỆN THOẠI
                         </a>
                         <div class="fs-mnsub">
                             <div class="fs-mnbox">
@@ -121,7 +122,7 @@
     <div id="root">
         <main class="l-main">
             <div class="l-pd">
-                <!-- <div class="l-pd-header">
+                <div class="l-pd-header">
                     <div class="g-container">
                         <div class="row">
                             <ol class="breadcrumb bg-transparent breadcrumb-margin">
@@ -200,8 +201,8 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
-                
+                </div>
+
                 <div class="l-pd-body">
                     <div class="g-container">
                         <div class="l-pd-body__wrapper">
@@ -209,7 +210,7 @@
                                 <div class="card re-card st-card st-card--article js--st-card--article">
                                     <h2 class="card-title">Đặc điểm nổi bật của iPhone 13 Pro Max</h2>
                                     <div class="card-body">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -274,50 +275,68 @@
                             </div>
                         </div>
 
-                            <div class="l-pd-comment">
-                                <div class="g-container"><input hidden="" id="id-page-comment" readonly="" value="993609">
-                                    <div class="card st-card card-normal">
-                                        <h2 class="card-title card-title--badge">Hỏi &amp; Đáp về <span class="badge text-white" style="background: rgb(220, 53, 69);">13</span></h2>
-                                        <div class="card-body">
-                                            <div style="margin: 0 2rem;">
-                                                <div class="c-user-rate-form f-comment-0"><textarea name="" id="f-comment-0" rows="4" placeholder="Viết câu hỏi của bạn"></textarea><button class="btn btn-primary" data-id="0">Gửi câu hỏi</button></div>
-                                                <p class="f-err" style="display: none;">Mời bạn viết bình luận.(Tối thiểu 3 ký tự)</p>
-                                            </div>
-                                            <div class="comment-content">
+                        <div class="l-pd-comment">
+                            <div class="g-container"><input hidden="" id="id-page-comment" readonly="" value="993609">
+                                <div class="card st-card card-normal">
+                                    <h2 class="card-title card-title--badge">Hỏi &amp; Đáp về <span class="badge text-white" style="background: rgb(220, 53, 69);">13</span></h2>
+                                    <div class="card-body">
+                                        <div style="margin: 0 2rem;">
+                                            <div class="c-user-rate-form f-comment-0">
                                                 
-                                                <?php foreach($comment as $c):?>
-                                                    <div class="c-comment " id="f-comment-root">
-                                                        <div class="c-comment-box">
-                                                            <div class="c-comment-box__avatar"><img src="<?= asset($c['avatar'])?>" alt=""></div>
-                                                            <div class="c-comment-box__content">
-                                                                <div class="c-comment-name"><?= $c['name']?><div class="time"><?= $c['created_at']?></div>
-                                                                </div>
-                                                                <div class="c-comment-text"><?= $c['comment_content']?></div>
-                                                                <div class="c-comment-status"><a style="cursor: pointer;">Trả lời</a></div>
+                                                <form action="" method="POST">
+                                                    <input type="hidden" name="user_id" value="<?=isset($_SESSION['AUTH_ID']) ? $_SESSION['AUTH_ID'] : ''?>">
+                                                    <input type="hidden" name="product_id" value="<?=$_GET['id']?>">
+                                                    <textarea name="comment_content" id="f-comment-0" rows="4" cols="150" placeholder="Viết câu hỏi của bạn"></textarea>
+                                                    <?php
+                                                    if(!isset($_SESSION['AUTH_ID'])){
+                                                    ?>
+                                                    <a href="#" class="btn btn-primary">Đăng Nhập để bình luận</a>
+                                                    <?php
+                                                    }else{
+                                                    ?>
+                                                    <button class="btn btn-primary" data-id="0">Gửi câu hỏi</button>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </form>
+                                            </div>
+                                            <p class="f-err" style="display: none;">Mời bạn viết bình luận.(Tối thiểu 3 ký tự)</p>
+                                        </div>
+                                        
+                                        <div class="comment-content">
+                                            <?php foreach ($comment as $c) : ?>
+                                                <div class="c-comment" id="f-comment-root">
+                                                    <div class="c-comment-box">
+                                                        <div class="c-comment-box__avatar"><img src="<?= asset($c['avatar']) ?>" alt=""></div>
+                                                        <div class="c-comment-box__content">
+                                                            <div class="c-comment-name"><?= $c['name'] ?><div class="time"><?= $c['created_at'] ?></div>
                                                             </div>
-                                                        </div>
-                                                        <div class="c-comment-box level2">
-                                                            <div class="c-comment-box__avatar">KVC-ADM</div>
-                                                            <div class="c-comment-box__content">
-                                                                <div class="c-comment-name">Adminstrator<span class="badge badge-primary">Quản trị viên</span>
-                                                                    <div class="time">7 giờ trước</div>
-                                                                </div>
-                                                                <div class="c-comment-text">
-                                                                    <p>Chào <?= $c['first_name']?></p>
-                                                                    <p><?=$c['comment_author']?></p>
-                                                                    <p>Thân mến!</p>
-                                                                </div>
-                                                                <div class="c-comment-status"></div>
-                                                            </div>
+                                                            <div class="c-comment-text"><?= $c['comment_content'] ?></div>
+                                                            <div class="c-comment-status"><a style="cursor: pointer;">Trả lời</a></div>
                                                         </div>
                                                     </div>
-                                                <?php endforeach;?>
-                                                
-                                            </div>
+                                                    <div class="c-comment-box level2">
+                                                        <div class="c-comment-box__avatar">KVC-ADM</div>
+                                                        <div class="c-comment-box__content">
+                                                            <div class="c-comment-name">Adminstrator<span class="badge badge-primary">Quản trị viên</span>
+                                                                <div class="time">7 giờ trước</div>
+                                                            </div>
+                                                            <div class="c-comment-text">
+                                                                <p>Chào <?= $c['first_name'] ?></p>
+                                                                <p><?= $c['comment_author'] ?></p>
+                                                                <p>Thân mến!</p>
+                                                            </div>
+                                                            <div class="c-comment-status"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <div class="l-pd-productsViewed">
                             <div class="g-container">
                                 <div class="card card-normal">
