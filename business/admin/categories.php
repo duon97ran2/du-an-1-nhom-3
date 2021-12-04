@@ -26,7 +26,7 @@ function categories_create(){
         'customize/js/commons.js',
     ]);
 }
-//thêm
+//thêm 
 function categories_save_add(){
     $category_name = $_POST['category_name'];
     $category_slug = $_POST['category_slug'];

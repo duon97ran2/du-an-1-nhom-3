@@ -54,7 +54,7 @@
     <?php else: ?>
         <?php if($product_default['product_quantity'] > 0) : ?>
         <?php endif; ?>
-    <?php else : ?>
+    <?php else : ?> //  trang ày bỏ đi h ạk
         <?php if ($product_default['product_quantity'] > 0) : ?>
             <p>
                 <button type="button" id="js-add-to-cart" data-id="<?= $product_default['product_id'] ?>" data-price="<?= $product_default['product_variant_price'] ?? $product_default['product_price'] ?>" data-login="<?= empty(auth_info()) ? 0 : 1 ?>" data-url="<?= app_url('gio-hang/them-san-pham') ?>">Mua ngay</button>
