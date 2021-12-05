@@ -3,7 +3,7 @@
 require_once DIR_ROOT."/commons/mailer/mail.php";
 
 function client_forgot_password_page() {
-    view_no_layout('auth/client/forgot');
+    client_render('auth/forgot');
 }
 
 function client_forgot_password_handle() {
@@ -49,7 +49,7 @@ function client_reset_password_page() {
         error_page();
     }
     $user = find_user_by_id($user_token['user_id']);
-    view_no_layout('auth/client/reset', [
+    client_render('auth/reset', [
         'email' => $user['email'],
         'token' => $token
     ]);

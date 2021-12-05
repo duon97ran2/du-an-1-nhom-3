@@ -3,7 +3,7 @@
 require_once DIR_ROOT."/commons/mailer/mail.php";
 
 function client_register_page() {
-    view_no_layout('auth/client/register');
+    client_render('auth/register');
 }
 
 function client_register_handle() {

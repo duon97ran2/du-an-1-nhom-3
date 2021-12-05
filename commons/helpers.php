@@ -7,6 +7,17 @@ function admin_render($viewpath, $data = [], $scripts = [], $styles = []){
     include_once './views/admin/layouts/main.php';
 }
 
+function client_render($viewpath, $data = [], $scripts = []){ 
+    extract($data);
+    $businessView = "./views/client/" . $viewpath .".php";
+    include_once './views/client/layouts/main.php';
+}
+
+// function  client_menu($data = [], $scripts = []){ 
+//     extract($data);
+//     include_once './views/homepage/layouts/main.php';
+// }
+
 function dd(){
     echo "<pre>";
     $args = func_get_args();
@@ -16,7 +27,6 @@ function dd(){
     echo "</pre>";
     die;
 }
-
 // chuong create
 function view_no_layout($viewpath, $data = []) {
     extract($data);
@@ -39,6 +49,16 @@ function admin_url($path = '') {
     return ADMIN_URL . $path;
 }
 
+function nameSeparation($name)
+{
+    $name_arr = explode(" ", $name);
+    $first_name = count($name_arr) > 1 ? array_pop($name_arr) : $name;
+    $last_name = count($name_arr) > 1 ? implode(" ", $name_arr) : '';
+    return [
+        'first_name' => $first_name,
+        'last_name' => $last_name
+    ];
+}
 function error_page($page = '_404') {
     include_once "./views/errors/$page.php";
     die;
@@ -152,4 +172,20 @@ function priceVND($price)
 {
     return number_format($price, 0, '', '.')." ₫";
 }
+
+function find_user_by_email($email) {
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    return executeQuery($sql, false);
+}
+
+function menu_page() {
+    $sql = "SELECT * FROM categories WHERE is_menu = 1 ORDER BY category_index ASC;";
+    return executeQuery($sql, true) ?? [];
+}
+
+function discount_price($price, $percent) {
+    $money = $price - ($price * ($percent / 100));
+    return priceVND($money);
+}
+
 ?>

@@ -10,6 +10,11 @@ switch ($url) {
         require_once './business/homepage.php';
         index();
         break;
+    case 'danh-muc':
+        is_maintenance();
+        require_once './business/category.php';
+        category_page();
+        break;
     case 'thong-tin-san-pham':
         is_maintenance();
         require_once './business/product.php';

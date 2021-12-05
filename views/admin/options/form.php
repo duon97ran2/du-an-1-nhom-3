@@ -26,7 +26,7 @@
                         <label>Logo</label>
                         <?php if (!empty($option['logo'])) : ?>
                         <div class="text-center">
-                          <img class="profile-user-img img-fluid img-circle mb-3" style="height:100px" src="<?= asset('uploads/'.$option['logo']) ?>">
+                          <img class="profile-user-img img-fluid img-circle mb-3 bg-dark" style="height:100px;object-fit: contain;" src="<?= asset('uploads/'.$option['logo']) ?>">
                         </div>
                         <?php endif; ?>
                         <div class="custom-file">
@@ -38,7 +38,7 @@
                         <label>Favicon</label>
                         <?php if (!empty($option['favicon'])) : ?>
                         <div class="text-center">
-                          <img class="profile-user-img img-fluid img-circle mb-3" style="height:100px" src="<?= asset('uploads/'.$option['favicon']) ?>">
+                          <img class="profile-user-img img-fluid img-circle mb-3 bg-dark" style="height:100px;object-fit: contain;" src="<?= asset('uploads/'.$option['favicon']) ?>">
                         </div>
                         <?php endif; ?>
                         <div class="custom-file">

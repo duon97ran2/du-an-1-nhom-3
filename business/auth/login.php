@@ -1,7 +1,7 @@
 <?php
 
 function client_login_page() {
-    view_no_layout('auth/client/login');
+    client_render('auth/login');
 }
 
 function client_login_handle() {
