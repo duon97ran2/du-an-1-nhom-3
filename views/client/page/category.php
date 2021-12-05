@@ -138,6 +138,7 @@
                 </form>
             </div>
             <div class="col-9 p-0 pl-4">
+                <?php if ($cate_name) : ?>
                 <div class="card mb-5 fpheadbox">
                     <div class="card-header">
                         <div class="cdt-head">
@@ -312,6 +313,17 @@
                         <div class="cdt-product--loadmore mb-5"><a class="btn btn-light">Xem thêm</a></div>
                     </div>
                 </div>
+                <?php else : ?>
+                    <div class="card fplistbox">
+                    <div class="card-body p-0 p-t-15 p-b-30 fplistpdbox">
+                        <div class="fs-ghnull">
+                            <p class="fs-ghnl1"><img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt="" width="150px"></p>
+                            <p class="fs-ghnl2">Không có sản phẩm nào</p>
+                            <p class="fs-ghnl3"><a href="<?= app_url() ?>" title="Trang chủ">ĐẾN TRANG CHỦ</a></p> 
+                        </div>
+                    </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>

@@ -20,9 +20,6 @@ function category_page() {
             $category_slug = $item['slug'];
         }
     }
-    if (empty($category_name)) {
-        error_page();
-    }
     client_render('page/category', [
         'page_title' => 'Danh mục',
         'cate_name' => empty($slug) ? 'Toàn bộ sản phẩm' : $category_name,
