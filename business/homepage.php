@@ -53,7 +53,7 @@ function search_ajax() {
     $output = '';
     if($result){
         foreach($result as $item){
-            $output .= '<li>' . $item['product_name'] . '</li>';
+            $output .= '<li><a href="'.app_url('san-pham/'.$item['product_slug']).'">' . $item['product_name'] . '</a></li>';
         }
     }else{
         $output = '<li><a href="javascript:;">Không tìm thấy sản phẩm nào...</a></li>';
