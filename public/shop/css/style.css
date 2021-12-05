@@ -27060,3 +27060,105 @@ legend {
     border: 0;
     border-bottom: 1px solid #e5e5e5;
 }
+
+
+.cdt-product-wrapper .cdt-product {
+    -ms-flex-preferred-size: 33.33%;
+    flex-basis: 33.33%;
+    width: 33.33%;
+}
+
+.cdt-filter__block {
+    margin-bottom: 30px;
+}
+.cdt-filter__title {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    color: #212529;
+    margin-bottom: 21px;
+}
+.cdt-filter__block:first-child .filterBrand {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin-bottom: -14px;
+}
+.cdt-filter__block:first-child .filterBrand .radio-select {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 50%;
+    flex: 1 50%;
+    max-width: 50%;
+}
+.cdt-filter__checklist .checkbox>a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 18px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #4d4d4d;
+    cursor: pointer;
+    width: 100%;
+}
+.cdt-filter__checklist .checkbox .iconcate-checkbox {
+    border: solid 1px #cb1c22;
+    background-color: #cb1c22;
+}
+.cdt-filter__checklist .checkbox>a .iconcate-checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: solid 1px #97a3b9;
+    background-color: #fff;
+    margin-right: 10px;
+    position: relative;
+}
+.cdt-filter__checklist .checkbox .iconcate-checkbox:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5px;
+    display: table;
+    width: 5px;
+    height: 11px;
+    border: 2px solid #fff;
+    border-top-width: 0;
+    border-left-width: 0;
+    -webkit-transform: rotate(
+45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(
+45deg);
+}
+.cdt-filter__checklist .radio-select {
+    display: flex;
+}
+.cdt-filter__checklist .radio-select input[type='radio'] {
+    width: 0;
+    height: 0;
+}
+.cdt-filter__checklist .radio-select input[type='radio']:checked + .checkbox>a .iconcate-checkbox {
+    border: solid 1px #cb1c22;
+    background-color: #cb1c22;
+}
+.cdt-filter__checklist .checkbox {
+    margin-bottom: 14px;
+}
+.checkbox, .radio {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
