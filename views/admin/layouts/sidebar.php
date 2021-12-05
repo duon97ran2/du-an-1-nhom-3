@@ -87,6 +87,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="<?= admin_url('don-hang') ?>" class="nav-link">
+            <i class="nav-icon fas fa-clipboard-list" aria-hidden="true"></i>
+            <p>
+              Đơn hàng
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="<?= admin_url('tai-khoan') ?>" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>

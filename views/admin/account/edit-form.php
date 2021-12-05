@@ -73,15 +73,6 @@
                 <?php endif; ?>
             </div>
             <div class="row">
-                <!-- <div class="col-6 mb-3">
-                    <input type="hidden" name="is_verify" value="0">
-                    <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="is_verify" name="is_verify" value="1" <?php echo ($user['is_verify']==1)?'checked':''?> >
-                        <label for="is_verify">
-                            Kích hoạt
-                        </label>
-                    </div>
-                </div> -->
                 <?php if (auth_info()['user_id'] != $user['user_id']) : ?>
                 <div class="col-6 mb-3">
                     <input type="hidden" name="is_active" value="1">

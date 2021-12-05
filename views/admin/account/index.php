@@ -27,14 +27,21 @@ $gender = [
     </div>
 </section>
 <?php if (!empty(print_errors('message'))) : ?>
-            <div class="alert alert-success mb-3"><?= print_errors('message') ?></div>
-        <?php endif; ?>
+    <div class="alert alert-success mb-3"><?= print_errors('message') ?></div>
+<?php endif; ?>
 <div class="card card-default">
     <div class="card-header">
-        <a href="<?= ADMIN_URL ?>tai-khoan/tao-moi" class="btn btn-success btn-sm">Thêm mới</a>
+        <a href="<?= ADMIN_URL ?>tai-khoan/tao-moi" class="btn mb-3 btn-success btn-sm">Thêm mới</a>
+        <form method="get" class="form-inline ml-n2">
+            <div class="form-group ml-1">
+                <input class="form-control form-control-sm" type="text" name="email" placeholder="Nhập mã email" value="<?= (!empty(input_get('email'))) ? input_get('email') : '' ?>">
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm ml-1">Lọc</button>
+            <a href="<?= admin_url('tai-khoan') ?>" class="btn btn-primary btn-sm ml-1">Bỏ lọc</a>
+        </form>
     </div>
     <div class="card-body">
-        <table class="table table-stripped table-responsive text-center">
+        <table id="example1" class="table table-bordered table-striped text-center">
             <thead>
                 <th>ID</th>
                 <th>Họ và tên</th>
@@ -68,8 +75,8 @@ $gender = [
                         <td class='d-flex'>
                             <a href="<?= ADMIN_URL . 'tai-khoan/sua?id=' . $u['user_id'] ?>" class="btn btn-sm btn-info">Sửa</a>
                             &nbsp;
-                            <?php if(auth_info()['user_id']!=$u['user_id']): ?>
-                            <a href="javascript:;" data-url="<?= ADMIN_URL . 'tai-khoan/xoa?id=' . $u['user_id'] ?>" data-name="<?= $u['name'] ?>" class="btn btn-sm btn-danger btn_remove_account">Xóa</a>
+                            <?php if (auth_info()['user_id'] != $u['user_id']) : ?>
+                                <a href="javascript:;" data-url="<?= ADMIN_URL . 'tai-khoan/xoa?id=' . $u['user_id'] ?>" data-name="<?= $u['name'] ?>" class="btn btn-sm btn-danger btn_remove_account">Xóa</a>
                             <?php endif ?>
                         </td>
                     </tr>

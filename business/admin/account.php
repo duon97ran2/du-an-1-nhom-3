@@ -1,33 +1,48 @@
 <?php
-function account_index(){
+function account_index()
+{
+    $where=[];
     $sql = "select * from users";
+    $email = input_get('email');
+    if (!empty($email)) {
+        $where[] = "email = '$email'";
+    }
+    if ($where) {
+        $sql .= " WHERE " . implode(' AND ', $where);
+    }
     $users = executeQuery($sql);
-
-    admin_render('account/index.php', 
+    if(empty($users)){
+        set_session('message-errors','Tài khoản không tồn tại');
+    }
+    admin_render(
+        'account/index.php',
         [
             'page_title' => 'Danh sách tài khoản',
             'dsTaiKhoan' => $users,
-        ], 
+        ],
         [
             'customize/js/account/list.js'
         ]
     );
 }
 
-function account_remove(){
+function account_remove()
+{
     // lấy id từ đường dẫn
     $id = $_GET['id'];
     $sql = "delete from users where user_id = $id";
     executeQuery($sql);
     header("location: " . ADMIN_URL . 'tai-khoan');
-    $_SESSION['message']='Xóa thành công';
+    $_SESSION['message'] = 'Xóa thành công';
 }
-function account_create(){
-    admin_render("account/add-form.php",[
+function account_create()
+{
+    admin_render("account/add-form.php", [
         'page_title' => 'Thêm tài khoản'
     ]);
 }
-function account_save_add(){
+function account_save_add()
+{
     $name = $_POST['name'];
     $email = $_POST['email'];
     $gender = $_POST['gender'];
@@ -45,24 +60,22 @@ function account_save_add(){
     $type_arr = ['jpg', 'png', 'jpeg', 'jfif', 'webp', 'gif'];
     $avatar_type = pathinfo($file['name'], PATHINFO_EXTENSION);
     $user = find_user_by_email($email);
-    $avatar='';
-    $errors=[];
-    if($file['size']==0){
-        $errors['avatar']='Vui lòng tải ảnh lên';
+    $avatar = '';
+    $errors = [];
+    if ($file['size'] == 0) {
+        $errors['avatar'] = 'Vui lòng tải ảnh lên';
+    } else if ($file['size'] > 5000000) {
+        $errors['avatar'] = 'Vui lòng chọn ảnh nhỏ hơn 5mb';
+    } else if (!in_array($avatar_type, $type_arr)) {
+        $errors['avatar'] = 'Vui lòng chọn đúng loại ảnh';
     }
-    else if($file['size']>5000000){
-        $errors['avatar']='Vui lòng chọn ảnh nhỏ hơn 5mb';
-    }
-    else if(!in_array($avatar_type, $type_arr)){
-        $errors['avatar']='Vui lòng chọn đúng loại ảnh';
-    }
-    if(empty($errors['avatar'])){
+    if (empty($errors['avatar'])) {
         $filename = uniqid() . '-' . $file['name'];
         move_uploaded_file($file['tmp_name'], './public/uploads/avatars/' . $filename);
         $avatar = "uploads/avatars/" . $filename;
     }
-    if(empty($name)){
-        $errors['name']='Vui lòng điền thông tin';
+    if (empty($name)) {
+        $errors['name'] = 'Vui lòng điền thông tin';
     }
     if (empty($email)) {
         $errors['email'] = 'Vui lòng điền thông tin';
@@ -76,17 +89,17 @@ function account_save_add(){
     } else if (strlen($password) < 6) {
         $errors['password'] = 'Mật khẩu tối thiểu 6 ký tự';
     }
-    if(empty($role)){
-        $errors['role']='Vui lòng điền thông tin';
+    if (empty($role)) {
+        $errors['role'] = 'Vui lòng điền thông tin';
     }
-    if(empty($gender)){
-        $errors['gender']='Vui lòng điền thông tin';
+    if (empty($gender)) {
+        $errors['gender'] = 'Vui lòng điền thông tin';
     }
-    if(empty($address)){
-        $errors['address']='Vui lòng điền thông tin';
+    if (empty($address)) {
+        $errors['address'] = 'Vui lòng điền thông tin';
     }
-    if(empty($phone)){
-        $errors['phone']='Vui lòng điền thông tin';
+    if (empty($phone)) {
+        $errors['phone'] = 'Vui lòng điền thông tin';
     }
     // tạo ra câu sql insert tài khoản mới
     $sql = "insert into users 
@@ -94,27 +107,29 @@ function account_save_add(){
             values 
                 ('$name','$first_name','$last_name', '$email', '$passwordHash', '$avatar','$gender','$is_active','$is_verify','$role','$address','$phone')";
     // Thực thi câu sql với db
-    $_SESSION['errors']=$errors;
-    if(empty($errors)){
-    executeQuery($sql);
-    $_SESSION['message']='Thêm tài khoản thành công';
-    header("location: " . ADMIN_URL . 'tai-khoan');}
-    else{
-        $_SESSION['message-errors']='Thêm tài khoản thất bại';
+    $_SESSION['errors'] = $errors;
+    if (empty($errors)) {
+        executeQuery($sql);
+        $_SESSION['message'] = 'Thêm tài khoản thành công';
+        header("location: " . ADMIN_URL . 'tai-khoan');
+    } else {
+        $_SESSION['message-errors'] = 'Thêm tài khoản thất bại';
         redirect_back();
     }
 }
-function account_edit_form(){
+function account_edit_form()
+{
     $id = $_GET['id'];
     $sql = "select * from users where user_id = $id";
     $user = executeQuery($sql, false);
     admin_render('account/edit-form.php', [
         'user' => $user,
-        'page_title' => 'Sửa '.$user['name']
+        'page_title' => 'Sửa ' . $user['name']
     ]);
 }
 
-function account_save_edit(){
+function account_save_edit()
+{
     // lấy ra thông tin cũ của dữ liệu vừa submit lên
     $id = $_GET['id'];
     $sql = "select * from users where user_id = $id";
@@ -135,29 +150,34 @@ function account_save_edit(){
     $avatar = $oldData['avatar'];
     $type_arr = ['jpg', 'png', 'jpeg', 'jfif', 'webp', 'gif'];
     $avatar_type = pathinfo($file['name'], PATHINFO_EXTENSION);
-    $errors=[];
-    if($file['size']>5000000){
-        $errors['avatar']='Vui lòng chọn ảnh nhỏ hơn 5mb';
+    $errors = [];
+    if ($file['size'] > 5000000) {
+        $errors['avatar'] = 'Vui lòng chọn ảnh nhỏ hơn 5mb';
+    } else if (!in_array($avatar_type, $type_arr) && ($file['size'] > 0)) {
+        $errors['avatar'] = 'Vui lòng chọn đúng loại ảnh';
     }
-    else if(!in_array($avatar_type, $type_arr)&&($file['size']>0)){
-        $errors['avatar']='Vui lòng chọn đúng loại ảnh';
+    if (empty($name)) {
+        $errors['name'] = 'Vui lòng điền thông tin';
     }
-    if(empty($name)){
-        $errors['name']='Vui lòng điền thông tin';
+    if (empty($address)) {
+        $errors['address'] = 'Vui lòng điền thông tin';
     }
-    if(empty($address)){
-        $errors['address']='Vui lòng điền thông tin';
-    }
-    if(empty($phone)){
-        $errors['phone']='Vui lòng điền thông tin';
+    if (empty($phone)) {
+        $errors['phone'] = 'Vui lòng điền thông tin';
     }
     // Thực thi câu sql với db
-    $_SESSION['errors']=$errors;
-    if(empty($errors)){
-        if($file['size'] > 0){
+    $_SESSION['errors'] = $errors;
+    if (empty($errors)) {
+        if ($file['size'] > 0) {
             $filename = uniqid() . '-' . $file['name'];
             move_uploaded_file($file['tmp_name'], './public/uploads/avatars/' . $filename);
             $avatar = "uploads/avatars/" . $filename;
+        }
+        if (empty($role)) {
+            $role = $oldData['role'];
+        }
+        if (empty($is_active)) {
+            $is_active = $oldData['is_active'];
         }
         // tạo ra câu sql insert tài khoản mới
         $sql = "update users 
@@ -174,12 +194,10 @@ function account_save_edit(){
                     phone='$phone'
                 where user_id = $id";
         executeQuery($sql);
-        $_SESSION['message']='Cập nhật tài khoản thành công';
+        $_SESSION['message'] = 'Cập nhật tài khoản thành công';
         header("location: " . ADMIN_URL . 'tai-khoan');
-    }
-    else{
-        $_SESSION['message-errors']='Cập nhật tài khoản thất bại';
+    } else {
+        $_SESSION['message-errors'] = 'Cập nhật tài khoản thất bại';
         redirect_back();
     }
-    
 }
