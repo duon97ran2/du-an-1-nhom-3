@@ -1,17 +1,18 @@
 <main class="l-main">
   <div class="l-pd">
     <div class="l-pd-header">
-      <div class="g-container">
+      <div class="g-container px-2">
         <div class="row">
           <ol class="breadcrumb bg-transparent breadcrumb-margin">
             <li class="breadcrumb-item "><a href="<?= app_url() ?>" title="Trang chủ">Trang chủ</a></li>
+            <li class="breadcrumb-item "><a href="<?= app_url('danh-muc/'.$product_default['category_slug']) ?>" title="Trang chủ"><?= $product_default['category_name'] ?></a></li>
             <li class="breadcrumb-item active"><a href="<?= app_url('san-pham/' . $product_default['product_slug']) ?>" class="text-capitalize"><?= $product_default['product_name']; ?></a></li>
           </ol>
         </div>
       </div>
       <div class="g-container">
         <div class="l-pd-top">
-          <h1 class="st-name text-capitalize"><?= $product_default['product_name']; ?></h1>
+          <h1 class="st-name text-capitalize"><?= $product_default['category_name'] . ' ' . $product_default['product_name']; ?></h1>
         </div>
         <div class="l-pd-row clearfix">
           <div class="l-pd-left">

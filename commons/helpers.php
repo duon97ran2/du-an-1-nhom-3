@@ -188,7 +188,7 @@ function brand_page() {
     return executeQuery($sql, true) ?? [];
 }
 function product_most_view() {
-    $sql = "SELECT * FROM products WHERE product_views > 0 AND product_status = 1 ORDER BY product_views DESC LIMIT 10";
+    $sql = "SELECT * FROM products WHERE product_views > 0 AND product_status = 1 AND is_delete = 0 ORDER BY product_views DESC LIMIT 10";
     return executeQuery($sql,false);
 }
 function discount_price($price, $percent) {

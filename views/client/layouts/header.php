@@ -66,7 +66,7 @@
               });
               $("#search_input").on('change keyup', function() {
                   let keyword = $(this).val();
-                  if (keyword != '') {
+                  if (keyword.trim() != '') {
                     $('#icon-cance').css('display', 'block');
                     $.ajax({
                       type: "post",

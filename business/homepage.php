@@ -1,7 +1,7 @@
 <?php
 
 function sp_hot_sale(){
-    $sql = "SELECT * FROM products WHERE product_hot = 1 AND product_status = 1 AND product_discount > 0 LIMIT 10";
+    $sql = "SELECT * FROM products WHERE product_hot = 1 AND product_status = 1 AND product_discount > 0 AND is_delete = 0 LIMIT 10";
     return executeQuery($sql,true);
 }
 function sp_categories($cate_slug){
@@ -11,11 +11,11 @@ function sp_categories($cate_slug){
             FROM products P
             LEFT JOIN categories C ON C.category_id = P.category_id
             LEFT JOIN categories CP ON CP.category_id = C.parent_id
-            WHERE CP.category_slug = '$cate_slug' LIMIT 8";
+            WHERE CP.category_slug = '$cate_slug' AND P.is_delete = 0 LIMIT 8";
     return executeQuery($sql,true);
 }
 function sp_hot_view(){
-    $sql = "SELECT * FROM products WHERE product_views > 0 AND product_status = 1 ORDER BY product_views DESC LIMIT 10";
+    $sql = "SELECT * FROM products WHERE product_views > 0 AND product_status = 1 AND is_delete = 0 ORDER BY product_views DESC LIMIT 10";
     return executeQuery($sql,true);
 }
 function list_categories() {
@@ -46,7 +46,7 @@ function index() {
 
 function search_ajax() {
     $search = $_POST['keyword'];
-    $query = "SELECT * FROM `products` WHERE `product_name` like '%$search%'";
+    $query = "SELECT * FROM products WHERE product_name LIKE '%$search%' AND is_delete = 0";
     $result = executeQuery($query, true);
     $output = '';
     if($result){
@@ -62,7 +62,8 @@ function search_ajax() {
     }
 
     if (count($result) > 5) {
-        $output .= '<li><a href="'.app_url('tim-kiem?keyword='.$search).'">Xem toàn bộ</a></li>';
+        $count_result = count($result) - 5;
+        $output .= '<li><a href="'.app_url('tim-kiem?keyword='.$search).'">Xem thêm '.$count_result.' kết quả khác</a></li>';
     }
     echo $output;
 }
