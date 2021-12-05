@@ -141,59 +141,59 @@
                 <div class="card mb-5 fpheadbox">
                     <div class="card-header">
                         <div class="cdt-head">
-                            <h1 class="cdt-head__title">Điện thoại</h1>
+                            <h1 class="cdt-head__title"><?= $cate_name ?></h1>
                         </div>
                     </div>
                     <div class="card-body cdt-brand-pd">
                         <div class="cdt-brand-img brand-js-swipper swiper-container swiper-container-horizontal">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=1') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=1') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491898901930_Vsmart@2x.jpg" alt="Vsmart">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=2') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=2') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340493755614653_Nokia@2x.jpg" alt="Nokia">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=3') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=3') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491898901930_Masstel@2x.jpg" alt="Masstel">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=4') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=4') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340490193124614_iPhone-Apple@2x.jpg" alt="Apple (iPhone)">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=5') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=5') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340490904217021_Samsung@2x.jpg" alt="Samsung">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=6') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=6') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491304997311_Oppo@2x.jpg" alt="OPPO">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=7') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=7') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/6/2/637582325361253577_Xiaomi@2x.jpg" alt="Xiaomi">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=8') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=8') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491898745716_Vivo@2x.jpg" alt="Vivo">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=9') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=9') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/10/22/637705137962743415_Tecno@2x.jpg" alt="Tecno">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
-                                    <a href="<?= app_url('danh-muc?brand=10') ?>">
+                                    <a href="<?= app_url('danh-muc'.$slug.'?brand=10') ?>">
                                         <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491898745716_Realme@2x.jpg" alt="Realme">
                                     </a>
                                 </div>
