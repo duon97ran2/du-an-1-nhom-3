@@ -10,6 +10,11 @@ switch ($url) {
         require_once './business/homepage.php';
         index();
         break;
+    case 'tim-kiem/xu-ly':
+        is_maintenance();
+        require_once './business/homepage.php';
+        search_ajax();
+        break;
     case 'danh-muc':
         is_maintenance();
         require_once './business/category.php';

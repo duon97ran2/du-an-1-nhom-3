@@ -183,6 +183,14 @@ function menu_page() {
     return executeQuery($sql, true) ?? [];
 }
 
+function brand_page() {
+    $sql = "SELECT * FROM brands";
+    return executeQuery($sql, true) ?? [];
+}
+function product_most_view() {
+    $sql = "SELECT * FROM products WHERE product_views > 0 AND product_status = 1 ORDER BY product_views DESC LIMIT 10";
+    return executeQuery($sql,false);
+}
 function discount_price($price, $percent) {
     $money = $price - ($price * ($percent / 100));
     return priceVND($money);

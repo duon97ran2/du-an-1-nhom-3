@@ -29,7 +29,7 @@
           <?php if(auth_info()) : ?>
             <ul class="fs-hdmsub fs-hdmsubsmall">
                 <?php if(auth_info()['role'] == 'admin') : ?>
-                  <li><a href="<?= admin_url('dashboard') ?>">Trang quản trị</a></li>
+                  <li><a href="<?= admin_url('dashboard') ?>" target="_blank">Trang quản trị</a></li>
                 <?php endif; ?>
                 <li><a href="<?= app_url('dang-nhap') ?>">Thông tin tài khoản</a></li>
                 <li><a href="<?= app_url('dang-xuat') ?>">Đăng xuất</a></li>
@@ -47,26 +47,54 @@
       <div class="fs-search">
         <form action="" method="get" autocomplete="off">
           <label for="key" class="mf-vhiditem">Nhập tên điện thoại, máy tính, phụ kiện... cần tìm</label>
-          <input class="fs-stxt" type="text" id="key" name="" placeholder="Nhập tên điện thoại, máy tính, phụ kiện... cần tìm" autocomplete="off" maxlength="50">
+          <input class="fs-stxt" type="text" id="search_input" name="" placeholder="Nhập tên sản phẩm cần tìm" autocomplete="off" maxlength="50">
           <span class="icon-cance" id="icon-cance" style="display:none" title="Xóa">✕</span>
           <button type="submit" aria-label="Tìm kiếm" class="search-button" title="Tìm kiếm"><i class="ficon f-search"></i></button>
-          <div class="fs-sresult" id="result" style="display:none">
+          <div class="fs-sresult" id="result_search" style="display:none">
             <div class="fs-sremain">
-              <ul>
-                <li><a href="">Ket qua</a></li>
+              <ul id="result_search_data">
               </ul>
             </div>
           </div>
         </form>
+          <script>
+            $(function() { 
+              $('#icon-cance').on('click', function() {
+                $(this).css('display', 'none');
+                $('#search_input').val(null);
+                $("#result_search_data").html(null);
+              });
+              $("#search_input").on('change keyup', function() {
+                  let keyword = $(this).val();
+                  if (keyword != '') {
+                    $('#icon-cance').css('display', 'block');
+                    $.ajax({
+                      type: "post",
+                      url: "<?= app_url('tim-kiem/xu-ly') ?>",
+                      data: {
+                        keyword: keyword,
+                      },
+                      success: function(data) {
+                        $("#result_search").css('display', 'block');
+                        $("#result_search_data").html(data);
+                      }
+                    });
+                  } else {
+                    $("#result_search_data").html(null);
+                    $('#icon-cance').css('display', 'none');
+                  }
+              });
+            });
+        </script>
       </div>
     </div>
     <input id="queryID" queryid="" hidden="" style="display:none">
     <input id="userIP" ip-user="14.226.4.149" hidden="" style="display:none">
   </div>
+  <?php if(menu_page()): ?>
   <nav class="fs-menu">
     <div class="f-wrap">
       <ul class="fs-mnul clearfix">
-      <?php if(menu_page()): ?>
         <?php foreach (menu_page() as $cate) : ?>
           <li>
             <a href="<?= $cate['menu_url'] ?? app_url('danh-muc/'.$cate['category_slug'])?>">
@@ -76,27 +104,42 @@
               <div class="fs-mnsub">
                 <div class="fs-mnbox">
                   <div class="fs-mntd fs-mntd1">
+                    <?php if(brand_page()): ?>
                     <p class="fs-mnstit">Hãng sản xuất</p>
                     <ul class="fs-mnsul fs-mnsul3 clearfix">
-                      <li><a href="/">Apple (iPhone)</a></li>
+                      <?php foreach (brand_page() as $brand) : ?>
+                      <li><a href="<?= app_url('danh-muc/'.$cate['category_slug'].'?brand_id='.$brand['brand_id']) ?>"><?= $brand['brand_name'] ?></a></li>
+                      <?php endforeach; ?>
                     </ul>
+                    <?php endif; ?>
                   </div>
                   <div class="fs-mntd fs-mntd2">
                     <p class="fs-mnstit">Mức giá</p>
                     <ul class="fs-mnsul fs-mnsul1 clearfix">
-                      <li><a href="/">Dưới 2 triệu</a></li>
+                      <li><a href="<?= app_url('danh-muc/'.$cate['category_slug'].'?price=duoi-2-trieu') ?>">Dưới 2 triệu</a></li>
+                      <li><a href="<?= app_url('danh-muc/'.$cate['category_slug'].'?price=tu-2-4-trieu') ?>">Từ 2 - 4 triệu</a></li>
+                      <li><a href="<?= app_url('danh-muc/'.$cate['category_slug'].'?price=tu-4-7-trieu') ?>">Từ 4 - 7 triệu</a></li>
+                      <li><a href="<?= app_url('danh-muc/'.$cate['category_slug'].'?price=tu-7-13-trieu') ?>">Từ 7 - 13 triệu</a></li>
+                      <li><a href="<?= app_url('danh-muc/'.$cate['category_slug'].'?price=tren-13-trieu') ?>">Trên 13 triệu</a></li>
                     </ul>
                   </div>
                   <div class="fs-mntd fs-mntd3">
-                    <p class="fs-mnstit">Bán chạy nhất</p>
+                    <p class="fs-mnstit">Xem nhiều nhất</p>
                     <ul class="fs-mnsprod">
                       <li class="clearfix">
-                        <a class="fs-mnspimg" href="/">
-                          <img src="https://images.fpt.shop/unsafe/fit-in/192x192/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/7/16/637620445702136793_samsung-galaxy-a22-5g-den-dd.jpg" alt="Samsung Galaxy A22 5G">
+                        <a class="fs-mnspimg" href="<?= app_url('san-pham/'.product_most_view()['product_slug']) ?>">
+                          <img src="<?= asset('uploads/'.product_most_view()['product_image']) ?>" alt="Samsung Galaxy A22 5G">
                         </a>
                         <div>
-                          <span><a href="/dien-thoai/samsung-galaxy-a22-5g" title="">Samsung Galaxy A22 5G</a></span>
-                          <p>6.290.000 ₫</p>
+                          <span><a href="<?= app_url('san-pham/'.product_most_view()['product_slug']) ?>" title=""><?= product_most_view()['product_name'] ?></a></span>
+                          <?php if (product_most_view()['product_discount'] > 0) : ?>
+                            <p>
+                              <?= discount_price(product_most_view()['product_price'], product_most_view()['product_discount']) ?>
+                              <strike><?= priceVND(product_most_view()['product_price']) ?></strike>
+                            </p>
+                          <?php else: ?>
+                            <p><?= priceVND(product_most_view()['product_price']) ?></p>
+                          <?php endif; ?>
                         </div>
                       </li>
                     </ul>
@@ -106,8 +149,8 @@
             <?php endif; ?>
           </li>
         <?php endforeach; ?>
-      <?php endif; ?>
       </ul>
     </div>
   </nav>
+  <?php endif; ?>
 </header>
