@@ -227,8 +227,7 @@
             </div>
             <div class="cat-prd__product">
               <div class="row-flex">
-                <?php foreach ($sp_categories as $item) : ?>
-                  <?php if ($cate['category_slug'] == $item['cate_parent_slug']): ?>
+                <?php foreach (sp_categories($cate['category_slug']) as $key => $item) : ?>
                     <div class="cdt-product">
                       <div class="cdt-product__img">
                         <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
@@ -263,9 +262,7 @@
                         </div>
                       </div>
                     </div>
-                  <?php endif; ?>
                 <?php endforeach ?>
-
               </div>
             </div>
           </div>
