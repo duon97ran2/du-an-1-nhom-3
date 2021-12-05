@@ -328,7 +328,7 @@ function product_update_handle() {
     if (empty($errors)) {
         $time_now = date("Y-m-d H:i:s");
         $image_upload = $product_image['size'] > 0 ? upload_image($product_image, 'products') : $product_data['product_image'];
-        $product_sql = "UPDATE products SET
+        $product_sql = "UPDATE products SET 
             product_image = '$image_upload',product_name = '$product_name',product_slug = '$product_slug',product_description = '$product_description',
             product_content = '$product_content',category_id = '$category_id',brand_id = '$brand_id',product_price = '$product_price',
             product_quantity = '$product_quantity',product_discount = '$product_discount',

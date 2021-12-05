@@ -67,7 +67,7 @@
             $sql_products = "SELECT * FROM products p JOIN categories c ON p.category_id  = c.category_id";
             $products = executeQuery($sql_products,true);
         }
-        // menu ko viet o trong nay ma viet trong helper, ca option nua
+        
         $list_price = list_price();
 
         return [
@@ -103,30 +103,54 @@
     
     }
     
-    function search_ajax() {
-        $search = $_POST['keyword'];
-        $query = "SELECT * FROM `products` WHERE `product_name` like '%$search%'";
-        $result = executeQuery($query, true);
-        $output = '';
-        if($result){
-            foreach($result as $item){
-                $output .= '
-                <div class="p-2 border-bottom">
-                    <a href="sanpham.php?product_id=' . $item['product_id'] . '">
-                        <div class="product_search_item d-flex align-items-center">
-                            <img style=" width: 100px;font-weight:400px" src="'.asset('uploads/'). $item['product_image'].'" alt="sp tim thay">
-                            <div>
-                                <p class="text-uppercase">' . $item['product_name'] . '- ' . $item['category_id'] . '</p>
-                                <p style="color:#000">' . priceVND($item['product_price']) . 'đ</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>';
+    // function search_ajax() {
+    //     $search = $_POST['keyword'];
+    //     $query = "SELECT * FROM `products` WHERE `product_name` like '%$search%'";
+    //     $result = executeQuery($query, true);
+    //     $output = '';
+    //     if($result){
+    //         foreach($result as $item){
+    //             $output .= '
+    //             <div class="p-2 border-bottom">
+    //                 <a href="sanpham.php?product_id=' . $item['product_id'] . '">
+    //                     <div class="product_search_item d-flex align-items-center">
+    //                         <img style=" width: 100px;font-weight:400px" src="'.asset('uploads/'). $item['product_image'].'" alt="sp tim thay">
+    //                         <div>
+    //                             <p class="text-uppercase">' . $item['product_name'] . '- ' . $item['category_id'] . '</p>
+    //                             <p style="color:#000">' . priceVND($item['product_price']) . 'đ</p>
+    //                         </div>
+    //                     </div>
+    //                 </a>
+    //             </div>';
+    //         }
+    //     }else{
+    //         $output = '<div class="alert alert-danger w-100" role="alert">
+    //             không tìm thấy sản phẩm nào!!!
+    //         </div>';
+    //     }
+    //     echo $output;
+    // }
+    
+function search_ajax() {
+    $search = $_POST['keyword'];
+    $query = "SELECT * FROM products WHERE product_name LIKE '%$search%' AND is_delete = 0";
+    $result = executeQuery($query, true);
+    $output = '';
+    if($result){
+        foreach($result as $key => $item){
+            if ($key < 5) {
+                $output .= '<li><a href="'.app_url('san-pham/'.$item['product_slug']).'">' . $item['product_name'] . '</a></li>';
+            } else {
+                continue;
             }
-        }else{
-            $output = '<div class="alert alert-danger w-100" role="alert">
-                không tìm thấy sản phẩm nào!!!
-            </div>';
         }
-        echo $output;
+    }else{
+        $output = '<li><a href="javascript:;">Không tìm thấy sản phẩm nào...</a></li>';
     }
+
+    if (count($result) > 5) {
+        $count_result = count($result) - 5;
+        $output .= '<li><a href="'.app_url('tim-kiem?keyword='.$search).'">Xem thêm '.$count_result.' kết quả khác</a></li>';
+    }
+    echo $output;
+}

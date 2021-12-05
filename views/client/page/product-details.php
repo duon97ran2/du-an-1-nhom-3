@@ -232,9 +232,9 @@
                       </div>
                       <?php if (!empty($c['comment_author'])) : ?>
                         <div class="c-comment-box level2">
-                          <div class="c-comment-box__avatar"><img src="<?= $c['avatar']?>" alt=""></div>
+                          <div class="c-comment-box__avatar"><img src="<?= $c['avatar'] ?>" alt=""></div>
                           <div class="c-comment-box__content">
-                            <div class="c-comment-name"><?= $c['name'] ?? 'Admin'?>
+                            <div class="c-comment-name"><?= $c['name'] ?? 'Admin' ?>
                               <span class="badge badge-primary">Quản trị viên</span>
                               <div class="time"><?= date("d-m-Y", strtotime($c['created_at'])) ?></div>
                             </div>
@@ -244,9 +244,9 @@
                               <p>Thân mến!</p>
                             </div>
                           <?php else : ?>
-                              <p class="btn btn-default text-danger m-0">Quản trị viên sẽ sớm liên lạc với bạn </p>
+                            <p class="btn btn-default text-danger m-0">Quản trị viên sẽ sớm liên lạc với bạn </p>
                           <?php endif ?>
-                          
+
                           <div class="c-comment-status"></div>
                           </div>
                         </div>
@@ -254,6 +254,7 @@
                   <?php endforeach; ?>
 
                 </div>
+              
               </div>
             </div>
           </div>

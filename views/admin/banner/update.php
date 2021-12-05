@@ -20,7 +20,7 @@
     <?php remove_session('message-errors') ?>
 <?php endif; ?>
 
-<form action="<?= admin_url('banner/luu-cap-nhat?banner_id='. $banner['banner_id']) ?>" method="post" enctype="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col col-md-7">
             <div class="card card-default">

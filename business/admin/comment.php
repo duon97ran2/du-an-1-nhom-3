@@ -57,7 +57,7 @@ function reply_comment()
     $sql = "UPDATE comments SET comment_author = '$comment_author' WHERE comment_id = '$comment_id'";
     executeQuery($sql);
     set_session('message', 'Rep Thành công');
-    redirect('cp-admin/comment/chi-tiet?product_id='.$product_id);
+    redirect('cp-admin/comment/chi-tiet?product_id=' . $product_id);
 }
 
 // ----------------------cilent-----------------------------------------------------
@@ -65,12 +65,20 @@ function reply_comment()
 
 function insertCmt()
 {
-        $product_slug = $_POST['product_slug'];
-        $user_id = $_POST['user_id'];
-        $product_id = $_POST['product_id'];
-        $comment_content = $_POST['comment_content'];
-        $sql = "INSERT INTO comments(comment_content,user_id,product_id) VALUES('$comment_content',$user_id,$product_id) ";
-        executeQuery($sql, true);
-        set_session('message', 'Bình luận Thành công');
-        redirect("san-pham/$product_slug#comment-content");
+    $product_slug = $_POST['product_slug'];
+    $user_id = $_POST['user_id'];
+    $product_id = $_POST['product_id'];
+    $comment_content = $_POST['comment_content'];
+    $sql = "INSERT INTO comments(comment_content,user_id,product_id) VALUES('$comment_content',$user_id,$product_id) ";
+    executeQuery($sql, true);
+    set_session('message', 'Bình luận Thành công');
+    redirect("san-pham/$product_slug#comment-content");
 }
+// function deleteComment()
+// {
+//     $product_slug = $_POST['product_slug'];
+//     $comment_id = $_POST['comment_id'];
+//     $sql = "DELETE FROM comments WHERE comment_id=$comment_id";
+//     executeQuery($sql, true);
+//     redirect("san-pham/$product_slug#comment-content");
+// }
