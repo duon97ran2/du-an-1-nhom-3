@@ -91,11 +91,6 @@ function nameSeparation($name)
     ];
 }
 
-function find_user_by_email($email) {
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    return executeQuery($sql, false);
-}
-
 function find_user_by_token($token) {
     $sql = "SELECT * FROM user_tokens WHERE access_token = '$token'";
     return executeQuery($sql, false);

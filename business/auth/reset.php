@@ -176,11 +176,6 @@ function admin_reset_password_handle() {
     }
 }
 
-function find_user_by_email($email) {
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    return executeQuery($sql, false);
-}
-
 function find_user_by_id($user_id) {
     $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
     return executeQuery($sql, false);
