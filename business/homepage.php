@@ -52,11 +52,19 @@ function search_ajax() {
     $result = executeQuery($query, true);
     $output = '';
     if($result){
-        foreach($result as $item){
-            $output .= '<li><a href="'.app_url('san-pham/'.$item['product_slug']).'">' . $item['product_name'] . '</a></li>';
+        foreach($result as $key => $item){
+            if ($key < 5) {
+                $output .= '<li><a href="'.app_url('san-pham/'.$item['product_slug']).'">' . $item['product_name'] . '</a></li>';
+            } else {
+                continue;
+            }
         }
     }else{
         $output = '<li><a href="javascript:;">Không tìm thấy sản phẩm nào...</a></li>';
+    }
+
+    if (count($result) > 5) {
+        $output .= '<li><a href="'.app_url('tim-kiem?keyword='.$search).'">Xem toàn bộ</a></li>';
     }
     echo $output;
 }

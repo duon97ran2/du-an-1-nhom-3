@@ -7379,7 +7379,7 @@ main.main-wrapper {
     z-index: 10;
     display: block;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     -o-text-overflow: ellipsis;
@@ -20682,7 +20682,7 @@ h6 {
     color: #474c51;
     display: block;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     -o-text-overflow: ellipsis;

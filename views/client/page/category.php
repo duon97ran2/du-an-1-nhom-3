@@ -163,8 +163,8 @@
                 <?php if ($products) : ?>
                 <div class="card fplistbox">
                     <div class="card-body p-0 p-t-15 p-b-30 fplistpdbox">
-                        <div class="cdt-product-wrapper m-b-20">
-                            <?php foreach($products as $item) : ?>
+                        <div class="cdt-product-wrapper m-b-20" id="js-data-product">
+                            <!-- <?php foreach($products as $item) : ?>
                                 <div class="cdt-product">
                                     <div class="cdt-product__img">
                                     <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
@@ -174,51 +174,84 @@
                                     </a>
                                     </div>
                                     <div class="cdt-product__info">
-                                    <h3>
-                                        <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="cdt-product__name"><?= $item['product_name'] ?></a>
-                                    </h3>
-                                    <div class="cdt-product__show-promo">
-                                        <?php if ($item['product_discount'] > 0) : ?>
-                                        <div class="progress justify-content-center">
-                                            <?= discount_price($item['product_price'], $item['product_discount']) ?>
-                                            <div class="progress-bar" style="width: 100%;"></div>
+                                        <h3>
+                                            <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="cdt-product__name"><?= $item['product_name'] ?></a>
+                                        </h3>
+                                        <div class="cdt-product__show-promo">
+                                            <?php if ($item['product_discount'] > 0) : ?>
+                                            <div class="progress justify-content-center">
+                                                <?= discount_price($item['product_price'], $item['product_discount']) ?>
+                                                <div class="progress-bar" style="width: 100%;"></div>
+                                            </div>
+                                            <div class="strike-price">
+                                                <strike><?= priceVND($item['product_price']) ?></strike>
+                                            </div>
+                                            <?php else : ?>
+                                            <div class="progress justify-content-center">
+                                                <?= priceVND($item['product_price']) ?>
+                                                <div class="progress-bar" style="width: 100%;"></div>
+                                            </div>
+                                            <?php endif ?>
                                         </div>
-                                        <div class="strike-price">
-                                            <strike><?= priceVND($item['product_price']) ?></strike>
+                                        <?php if ($item['display'] || $item['ram'] || $item['storage']) : ?>
+                                        <div class="cdt-product__config">
+                                            <div class="cdt-product__config__param">
+                                                <span data-title="Màn hình">
+                                                    <span class="material-icons align-top">phone_iphone</span>
+                                                    <?= $item['display'] ?? '??' ?>
+                                                </span>
+                                                <span data-title="RAM">
+                                                    <span class="material-icons align-top">memory</span>
+                                                    <?= $item['ram'] ?>
+                                                </span>
+                                                <span data-title="Bộ nhớ trong">
+                                                    <span class="material-icons align-top">album</span>
+                                                    <?= $item['storage'] ?? '??' ?>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <?php else : ?>
-                                        <div class="progress justify-content-center">
-                                            <?= priceVND($item['product_price']) ?>
-                                            <div class="progress-bar" style="width: 100%;"></div>
+                                        <?php endif; ?>
+                                        <div class="cdt-product__btn">
+                                            <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="btn btn-primary btn-sm btn-main">XEM SẢN PHẨM</a>
                                         </div>
-                                        <?php endif ?>
-                                    </div>
-                                    <?php if ($item['display'] || $item['ram'] || $item['storage']) : ?>
-                                    <div class="cdt-product__config">
-                                        <div class="cdt-product__config__param">
-                                            <span data-title="Màn hình">
-                                            <span class="material-icons align-top">phone_iphone</span>
-                                            <?= $item['display'] ?? '??' ?>
-                                            </span>
-                                            <span data-title="RAM">
-                                            <span class="material-icons align-top">memory</span>
-                                            <?= $item['ram'] ?>
-                                            </span>
-                                            <span data-title="Bộ nhớ trong">
-                                            <span class="material-icons align-top">album</span>
-                                            <?= $item['storage'] ?? '??' ?>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <?php endif; ?>
-                                    <div class="cdt-product__btn">
-                                        <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="btn btn-primary btn-sm btn-main">XEM SẢN PHẨM</a>
-                                    </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                            <div class="cdt-product--loadmore mb-5"><a class="btn btn-light js-load-moresss">Xem thêm</a></div> -->
                         </div>
-                        <!-- <div class="cdt-product--loadmore mb-5"><a class="btn btn-light">Xem thêm</a></div> -->
+                        <script>
+                            $(function() {
+                                let limit = 12;
+                                let total_product = Number("<?= count($products) ?>");
+                                (function data_product() {
+                                    $.ajax({
+                                        type: "get",
+                                        url: "<?= app_url('danh-muc-xem-them') ?>",
+                                        data: {
+                                            slug: "<?= input_get('slug') ?>",
+                                            brand: "<?= input_get('brand') ?>",
+                                            price: "<?= input_get('price') ?>",
+                                            other: "<?= input_get('other') ?>",
+                                            limit: limit,
+                                        },
+                                        success: function(response) {
+                                            $('#js-data-product').html(response);
+                                            $('.js-load-moresss').on('click', function() {
+                                                limit += 12;
+                                                $('.js-load-moresss img').show();
+                                                setTimeout(function(){
+                                                    data_product();
+                                                }, 1000);
+                                            });
+                                        }
+                                    });
+                                    $('.js-load-moresss img').hide();
+                                })();
+                                $('.js-load-moresss').on('click', function() {
+                                    $('.js-load-moresss img').show();
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
                 <?php else : ?>

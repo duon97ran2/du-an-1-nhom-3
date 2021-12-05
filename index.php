@@ -20,6 +20,11 @@ switch ($url) {
         require_once './business/category.php';
         category_page();
         break;
+    case 'danh-muc-xem-them':
+        is_maintenance();
+        require_once './business/category.php';
+        load_more();
+        break;
     case 'thong-tin-san-pham':
         is_maintenance();
         require_once './business/product.php';
