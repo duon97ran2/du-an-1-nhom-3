@@ -18682,7 +18682,8 @@ h6 {
     font-size: inherit;
     line-height: inherit;
     font-weight: inherit;
-    margin-bottom: 0
+    margin-bottom: 0;
+    white-space: pre;
 }
 
 .c-comment-status {
