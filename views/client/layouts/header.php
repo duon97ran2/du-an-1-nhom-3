@@ -47,49 +47,18 @@
       <div class="fs-search">
         <form action="" method="get" autocomplete="off">
           <label for="key" class="mf-vhiditem">Nhập tên điện thoại, máy tính, phụ kiện... cần tìm</label>
-          <input class="fs-stxt" type="text" id="search_input" name="" placeholder="Nhập tên sản phẩm cần tìm" autocomplete="off" maxlength="50">
-          <span class="icon-cance" id="icon-cance" style="display:none" title="Xóa">✕</span>
-          <button type="submit" aria-label="Tìm kiếm" class="search-button" title="Tìm kiếm"><i class="ficon f-search"></i></button>
-          <div class="fs-sresult" id="result_search" style="display:none">
+          <input class="fs-stxt" type="text" name="" placeholder="Nhập tên sản phẩm cần tìm" autocomplete="off" maxlength="50">
+          <span class="icon-cance" style="display:none" title="Xóa">✕</span>
+          <button type="submit" class="search-button" title="Tìm kiếm"><i class="ficon f-search"></i></button>
+          <div class="fs-sresult" style="display:none">
             <div class="fs-sremain">
-              <ul id="result_search_data">
+              <ul>
               </ul>
             </div>
           </div>
         </form>
-          <script>
-            $(function() { 
-              $('#icon-cance').on('click', function() {
-                $(this).css('display', 'none');
-                $('#search_input').val(null);
-                $("#result_search_data").html(null);
-              });
-              $("#search_input").on('change keyup', function() {
-                  let keyword = $(this).val();
-                  if (keyword.trim() != '') {
-                    $('#icon-cance').css('display', 'block');
-                    $.ajax({
-                      type: "post",
-                      url: "<?= app_url('tim-kiem/xu-ly') ?>",
-                      data: {
-                        keyword: keyword,
-                      },
-                      success: function(data) {
-                        $("#result_search").css('display', 'block');
-                        $("#result_search_data").html(data);
-                      }
-                    });
-                  } else {
-                    $("#result_search_data").html(null);
-                    $('#icon-cance').css('display', 'none');
-                  }
-              });
-            });
-        </script>
       </div>
     </div>
-    <input id="queryID" queryid="" hidden="" style="display:none">
-    <input id="userIP" ip-user="14.226.4.149" hidden="" style="display:none">
   </div>
   <?php if(menu_page()): ?>
   <nav class="fs-menu">
