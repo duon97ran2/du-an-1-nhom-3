@@ -72,14 +72,30 @@ function profile_save()
 }
 function user_order_index()
 {
-  $id = $_GET['id'];
+  $id = auth_info()['user_id'];
+  $where=[];
   $sql = "SELECT * 
           FROM orders 
-          WHERE user_id = $id
-          ORDER BY order_date DESC";
+          WHERE user_id = $id";
+  if (isset($_GET['status'])) {
+    $status_get = (int)input_get('status');
+    $where[] = "order_status = $status_get";
+  }
+  $order_code = input_get('order_code');
+  if (!empty($order_code)) {
+    $where[] = "order_code = '$order_code'";
+  }
+  if ($where) {
+    $sql .= " AND ".implode(' AND ', $where);
+  }
   $orders = executeQuery($sql);
+  if (empty($orders)) {
+    set_session('message-errors', 'Đơn hàng không tồn tại');
+  }
   client_render('page/user-orders', [
     'orders' => $orders,
+  ],[
+    'customize/js/order/script.js',
   ]);
 }
 function change_password()

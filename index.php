@@ -404,6 +404,10 @@ switch ($url) {
         require_once "./business/admin/orders.php";
         order_update();
         break;
+    case 'cp-admin/don-hang/xoa':
+        require_once "./business/admin/orders.php";
+        delete_order();
+        break;
     case 'tim-kiem-don-hang':
         require_once "./business/orders.php";
         search_index();

@@ -91,7 +91,7 @@
             <a href='<?= app_url('thong-tin-ca-nhan/doi-mat-khau') ?>' class="btn btn-primary btn-sm mr-3">
               Đổi mật khẩu  
             </a>
-            <a href='<?= app_url('thong-tin-ca-nhan/don-hang?id='.$user['user_id'])?>' class="btn btn-primary btn-sm">
+            <a href='<?= app_url('thong-tin-ca-nhan/don-hang')?>' class="btn btn-primary btn-sm">
               Xem đơn hàng  
             </a>
           </div>

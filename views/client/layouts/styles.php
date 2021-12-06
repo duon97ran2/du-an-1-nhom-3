@@ -8,6 +8,8 @@
 <script src="<?= PUBLIC_ASSETS ?>shop/plugin/toastr/toastr.min.js"></script>
 <script src="<?= PUBLIC_ASSETS ?>shop/plugin/jquery-validation/jquery.validate.min.js"></script>
 <script src="<?= PUBLIC_ASSETS ?>shop/plugin/jquery-validation/additional-methods.min.js"></script>
+<script src="<?= ADMIN_ASSETS ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?= ADMIN_ASSETS ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>

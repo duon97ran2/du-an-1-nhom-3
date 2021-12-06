@@ -75,15 +75,17 @@ $color = [
             <td class="align-middle"><?= empty($item['order_confirm_date']) ? 'Chưa xác nhận' : date("d-m-Y", strtotime($item['order_confirm_date'])) ?></td>
             <td class="align-middle">
               <div class="btn-group">
-                <?php if($item['order_status']==0):?>
-                <a class="btn btn-primary btn-sm text-nowrap btn_confirm_order" data-name="<?= $item['order_code'] ?>" data-url="<?= admin_url('don-hang/cap-nhat?order_id=' . $item['order_id']) . '&order_status=1' ?>" role="button"> Xác nhận </a>
+                <?php if ($item['order_status'] == 0) : ?>
+                  <a class="btn btn-primary btn-sm text-nowrap btn_confirm_order" data-name="<?= $item['order_code'] ?>" data-url="<?= admin_url('don-hang/cap-nhat?order_id=' . $item['order_id']) . '&order_status=1' ?>" role="button"> Xác nhận </a>
                 <?php endif ?>
-                <?php if($item['order_status']==1):?>
-                <a class="btn btn-success btn-sm btn_complete_order text-nowrap "
-                data-name="<?= $item['order_code'] ?>" data-url="<?= admin_url('don-hang/cap-nhat?order_id=' . $item['order_id']) . '&order_status=2' ?>" role="button"> Hoàn thành </a>
+                <?php if ($item['order_status'] == 1) : ?>
+                  <a class="btn btn-success btn-sm btn_complete_order text-nowrap " data-name="<?= $item['order_code'] ?>" data-url="<?= admin_url('don-hang/cap-nhat?order_id=' . $item['order_id']) . '&order_status=2' ?>" role="button"> Hoàn thành </a>
                 <?php endif ?>
-                <?php if($item['order_status']==1||$item['order_status']==0):?>
-                <a class="btn btn-danger btn-sm btn_cancel_order text-nowrap" data-name="<?= $item['order_code'] ?>" data-url="<?= admin_url('don-hang/cap-nhat?order_id=' . $item['order_id']) . '&order_status=3' ?>" role="button"> Hủy đơn </a>
+                <?php if ($item['order_status'] == 1 || $item['order_status'] == 0) : ?>
+                  <a class="btn btn-danger btn-sm btn_cancel_order text-nowrap" data-name="<?= $item['order_code'] ?>" data-url="<?= admin_url('don-hang/cap-nhat?order_id=' . $item['order_id']) . '&order_status=3' ?>" role="button"> Hủy đơn </a>
+                <?php endif ?>
+                <?php if ($item['order_status'] == 3) : ?>
+                  <a class="btn btn-danger btn-sm text-light m-0   btn_delete text-nowrap" data-name="<?= $item['order_code'] ?>" data-url="<?= admin_url('don-hang/xoa?order_id=' . $item['order_id'])?>" role="button"> Xóa </a>
                 <?php endif ?>
               </div>
             </td>
