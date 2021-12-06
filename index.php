@@ -396,10 +396,6 @@ switch ($url) {
         require_once "./business/admin/comment.php";
         reply_comment();
         break;
-    case 'comment':
-        require_once "./business/admin/comment.php";
-        get_detail_comment();
-        break;
     case 'cp-admin/don-hang':
         require_once "./business/admin/orders.php";
         order_index();
