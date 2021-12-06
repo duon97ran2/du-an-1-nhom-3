@@ -224,11 +224,13 @@
                   foreach ($comments as $c) : ?>
                     <div class="c-comment " id="f-comment-root">
                       <div class="c-comment-box">
-                        <div class="c-comment-box__avatar bg-transparent"><img src="<?= asset($c['avatar']) ?>" alt=""></div>
+                        <div class="c-comment-box__avatar bg-transparent"><img src="<?= asset($c['avatar'] ?? 'adminlte/dist/img/avatar.png') ?>" alt=""></div>
                         <div class="c-comment-box__content">
                           <div class="c-comment-name"><?= $c['name'] ?><div class="time"><?= date("d-m-Y", strtotime($c['created_at'])) ?></div>
                           </div>
-                          <div class="c-comment-text"><?= $c['comment_content'] ?></div>
+                          <div class="c-comment-text">
+                            <p><?= $c['comment_content'] ?></p>
+                          </div>
                         </div>
                       </div>
                       <?php if (!empty($c['comment_author'])) : ?>
@@ -240,12 +242,11 @@
                               <div class="time"><?= date("d-m-Y", strtotime($c['created_at'])) ?></div>
                             </div>
                             <div class="c-comment-text">
-                              <p>Chào <?= $c['first_name'] ?></p>
+                              <span>Chào <?= $c['first_name'] ?>,</span>
                               <p><?= $c['comment_author'] ?></p>
-                              <p>Thân mến!</p>
                             </div>
                           <?php else : ?>
-                            <p class="btn btn-default text-danger m-0">Quản trị viên sẽ sớm liên lạc với bạn </p>
+                            <span class="btn btn-default text-danger p-0 m-0">Quản trị viên sẽ sớm liên lạc với bạn </span>
                           <?php endif ?>
 
                           <div class="c-comment-status"></div>
