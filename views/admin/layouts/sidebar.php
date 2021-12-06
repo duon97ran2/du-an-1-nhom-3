@@ -95,6 +95,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="<?= admin_url('bai-viet') ?>" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Bài viết
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="<?= admin_url('cau-hinh-trang') ?>" class="nav-link">
             <i class="nav-icon fas fa-cogs"></i>
             <p>

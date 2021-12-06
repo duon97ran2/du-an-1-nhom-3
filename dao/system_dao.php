@@ -1,7 +1,7 @@
 <?php
 
 function get_connect(){
-    $connect = new PDO("mysql:host=127.0.0.1;dbname=poly_mobile;charset=utf8", "root", "");
+    $connect = new PDO("mysql:host=127.0.0.1;dbname=poly_mobile1;charset=utf8", "root", "");
     return $connect;
 }
 

@@ -5,6 +5,12 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Wikipedia-logo-white.svg/1200px-Wikipedia-logo-white.svg.png" alt="" width="151px">
       </a>
       <ul class="fs-hdmn">
+      <li>
+          <a href="<?= app_url('tin-tuc') ?>" title="">
+            <i class="material-icons">assignment</i>
+            <span>Blog</span>
+          </a>
+        </li>
         <li>
           <a href="./kiemtradonhang.html" title="">
             <i class="material-icons">assignment</i>

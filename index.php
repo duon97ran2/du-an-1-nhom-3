@@ -213,7 +213,7 @@ switch ($url) {
         require_once "./business/admin/product.php";
         product_remove_product_handle();
         break;
-    // Brand By Trần Khánh Linh
+        // Brand By Trần Khánh Linh
     case 'cp-admin/thuong-hieu':
         require_once "./business/admin/brand.php";
         brand_index();
@@ -238,7 +238,7 @@ switch ($url) {
         require_once "./business/admin/brand.php";
         brand_remove();
         break;
-    // Wishlist By Trần Khánh Linh
+        // Wishlist By Trần Khánh Linh
     case 'danh-sach-yeu-thich':
         is_maintenance();
         require_once './business/wishlist.php';
@@ -258,19 +258,19 @@ switch ($url) {
     case 'cp-admin/banner/them-moi':
         is_admin();
         require_once "./business/admin/banner.php";
-        banner_add();   
+        banner_add();
         break;
-     case 'cp-admin/banner/luu-them-moi':
+    case 'cp-admin/banner/luu-them-moi':
         is_admin();
         require_once "./business/admin/banner.php";
-        banner_add_handle();   
-        break; 
+        banner_add_handle();
+        break;
     case 'cp-admin/banner/cap-nhat':
         is_admin();
         require_once "./business/admin/banner.php";
         banner_update();
-        break;  
-     case 'cp-admin/banner/luu-cap-nhat':
+        break;
+    case 'cp-admin/banner/luu-cap-nhat':
         is_admin();
         require_once "./business/admin/banner.php";
         banner_update_handle();
@@ -337,17 +337,17 @@ switch ($url) {
     case 'cp-admin/phieu-giam-gia':
         is_admin();
         require_once "./business/admin/vouchers.php";
-        voucher_index();  
+        voucher_index();
         break;
     case 'cp-admin/phieu-giam-gia/xoa':
         require_once "./business/admin/vouchers.php";
-        voucher_remove();  
+        voucher_remove();
         break;
     case 'cp-admin/phieu-giam-gia/tao-moi':
         is_admin();
         require_once "./business/admin/vouchers.php";
         voucher_create();
-        break;    
+        break;
     case 'cp-admin/phieu-giam-gia/luu-tao-moi':
         require_once "./business/admin/vouchers.php";
         voucher_save_add();
@@ -381,7 +381,7 @@ switch ($url) {
     case 'cp-admin/comment/tra-loi':
         require_once "./business/admin/comment.php";
         reply_comment();
-        break;  
+        break;
     case 'comment':
         require_once "./business/admin/comment.php";
         // get_detail_comment();
@@ -390,9 +390,35 @@ switch ($url) {
         require_once "./business/admin/comment.php";
         insertCmt();
         break;
-    
+    case 'cp-admin/bai-viet':
+        require_once "./business/admin/blog.php";
+        blog_index();
+        break;
+    case 'cp-admin/bai-viet/chi-tiet':
+        require_once "./business/admin/blog.php";
+        blog_detail();
+        break;
+    case 'cp-admin/bai-viet/xoa':
+        require_once "./business/admin/blog.php";
+        deleteBlog();
+        break;
+    case 'cp-admin/bai-viet/them-moi':
+        require_once "./business/admin/blog.php";
+        add_blog();
+        break;
+    case 'cp-admin/bai-viet/luu-them-moi':
+        require_once "./business/admin/blog.php";
+        save_add_blog();
+        break;
+    case 'cp-admin/bai-viet/luu-sua':
+        require_once "./business/admin/blog.php";
+        update_handle();
+        break;
+    case 'tin-tuc':
+        require_once "./business/admin/blog.php";
+        get_all_blog();
+        break;
     default:
         error_page();
         break;
-        
 }
