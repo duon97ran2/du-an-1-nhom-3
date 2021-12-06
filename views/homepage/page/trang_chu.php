@@ -200,15 +200,15 @@
                                 <div class="swiper-slide">
                                     <div class="cdt-product">
                                         <div class="cdt-product__img">
-                                        <a href="<?= app_url('san-pham/'.$item['product_slug']) ?>">
-                                            <a href="<?= app_url('san-pham/'.$item['product_slug']) ?>">
+                                        <a href="<?= app_url('comment?id='.$item['product_id']) ?>"> 
+                                            <a href="<?= app_url('comment?id='.$item['product_id']) ?>">
                                                 <img src="<?= asset('uploads/'.$item['product_image']) ?>" style=" width: 214px; height: 214px; ">
                                             </a>
                                         </a>
                                         </div>
                                         <div class="cdt-product__info">
                                         <h3>
-                                            <a href="<?= app_url('san-pham/'.$item['product_slug']) ?>" class="cdt-product__name"><?= $item['product_name'] ?></a>
+                                            <a href="<?= app_url('comment?id='.$item['product_id']) ?>" class="cdt-product__name"><?= $item['product_name'] ?></a>
                                         </h3>
                                         <div class="cdt-product__show-promo">
                                             <?php if ($item['product_discount'] > 0) : ?>

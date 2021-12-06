@@ -110,7 +110,6 @@
                             <?= $Cate['category_name'] ?>
                         </a>
                         <?php if(empty($Cate['menu_url'])) : ?>
-                            <!-- vì ở đây t để nếu menu url = '' mưới chạy r uki -->
                             <div class="menu--sub">
                                 <div class="row">
                                     <div class="col-2">
@@ -119,8 +118,7 @@
                                         </div>
                                         <div class="menu--sub-content">
                                             <?php foreach ($list_brand as $l) : ?> 
-                                                <!-- mấy cái này tương tự uki, trong này chỉ xài cái category slug thôi nhé -->
-                                                <ul>
+=                                                <ul>
                                                     <li><a href="#"><?= $l['brand_name'] ?></a></li>
                                                 </ul>
                                             <?php endforeach; ?>

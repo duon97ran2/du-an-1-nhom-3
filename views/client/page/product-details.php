@@ -200,9 +200,17 @@
               <h2 class="card-title card-title--badge">Hỏi &amp; Đáp về <?= $product_default['product_name'] ?><span class="badge text-white" style="background: rgb(220, 53, 69);"><?= $total_cmt ?></span></h2>
               <div class="card-body">
                 <div style="margin: 0 2rem;">
-                  <?php if (auth_info()) : ?>
-                    <div class="c-user-rate-form mb-3 f-comment-0"><textarea name="" id="f-comment-0" rows="4" placeholder="Viết câu hỏi của bạn"></textarea><button class="btn btn-primary" data-id="0">Gửi câu hỏi</button></div>
-
+                  <?php if (auth_info()) :
+                    $user = auth_info();
+                  ?>
+                    <h6>Bạn đang bình luận dưới tên: <span style="color:blue"><?= $user['name'] ?></span></h6><br>
+                    <form action="<?= app_url('save-comment') ?>" method="POST" class="c-user-rate-form mb-3 f-comment-0">
+                      <input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
+                      <input type="hidden" name="product_id" value="<?= $product_default['product_id'] ?>">
+                      <input type="hidden" name="product_slug" value="<?= $product_default['product_slug'] ?>">
+                      <textarea name="comment_content" id="f-comment-0" rows="4" placeholder="Viết câu hỏi của bạn"></textarea>
+                      <button class="btn btn-primary" data-id="0">Gửi câu hỏi</button>
+                    </form>
                     <p class="f-err" style="display: none;">Mời bạn viết bình luận.(Tối thiểu 3 ký tự)</p>
                   <?php else : ?>
                     <div class="c-user-rate-form mb-3 f-comment-0">
@@ -211,8 +219,9 @@
                     </div>
                   <?php endif ?>
                 </div>
-                <div class="comment-content">
-                  <?php foreach ($comments as $c) : ?>
+                <div class="comment-content" id="comment-content">
+                  <?php
+                  foreach ($comments as $c) : ?>
                     <div class="c-comment " id="f-comment-root">
                       <div class="c-comment-box">
                         <div class="c-comment-box__avatar bg-transparent"><img src="<?= asset($c['avatar']) ?>" alt=""></div>
@@ -222,24 +231,31 @@
                           <div class="c-comment-text"><?= $c['comment_content'] ?></div>
                         </div>
                       </div>
-                      <!-- <div class="c-comment-box level2">
-                        <div class="c-comment-box__avatar">KVC-ADM</div>
-                        <div class="c-comment-box__content">
-                          <div class="c-comment-name">Adminstrator<span class="badge badge-primary">Quản trị viên</span>
-                            <div class="time">7 giờ trước</div>
-                          </div>
-                          <div class="c-comment-text">
-                            <p>Chào <?= $c['first_name'] ?></p>
-                            <p><?= $c['comment_author'] ?></p>
-                            <p>Thân mến!</p>
-                          </div>
+                      <?php if (!empty($c['comment_author'])) : ?>
+                        <div class="c-comment-box level2">
+                          <div class="c-comment-box__avatar"><img src="<?= $c['avatar'] ?>" alt=""></div>
+                          <div class="c-comment-box__content">
+                            <div class="c-comment-name"><?= $c['name'] ?? 'Admin' ?>
+                              <span class="badge badge-primary">Quản trị viên</span>
+                              <div class="time"><?= date("d-m-Y", strtotime($c['created_at'])) ?></div>
+                            </div>
+                            <div class="c-comment-text">
+                              <p>Chào <?= $c['first_name'] ?></p>
+                              <p><?= $c['comment_author'] ?></p>
+                              <p>Thân mến!</p>
+                            </div>
+                          <?php else : ?>
+                            <p class="btn btn-default text-danger m-0">Quản trị viên sẽ sớm liên lạc với bạn </p>
+                          <?php endif ?>
+
                           <div class="c-comment-status"></div>
+                          </div>
                         </div>
-                      </div> -->
                     </div>
                   <?php endforeach; ?>
 
                 </div>
+              
               </div>
             </div>
           </div>

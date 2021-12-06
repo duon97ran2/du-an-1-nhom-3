@@ -82,8 +82,7 @@ function product_details()
     $comments_sql = "SELECT products.*, users.*, comments.* FROM comments
                 join products on comments.product_id = products.product_id
                 join users on users.user_id	= comments.user_id 
-                where products.product_id = $product_id 
-                group by products.product_id";
+                where products.product_id = $product_id";
     $comments = executeQuery($comments_sql, true);
     $gifts = get_gifts();
     client_render('page/product-details', [

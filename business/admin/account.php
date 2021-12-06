@@ -127,6 +127,7 @@ function account_edit_form()
         'page_title' => 'Sửa ' . $user['name']
     ]);
 }
+// chỗ xử lí login đâu
 
 function account_save_edit()
 {

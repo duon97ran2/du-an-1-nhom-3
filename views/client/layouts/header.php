@@ -26,7 +26,7 @@
             <i class="material-icons">person</i>
             <span>Tài khoản</span>
           </a>
-          <?php if(auth_info()) : ?>
+          <?php if (auth_info()) : ?>
             <ul class="fs-hdmsub fs-hdmsubsmall">
                 <?php if(auth_info()['role'] == 'admin') : ?>
                   <li><a href="<?= admin_url('dashboard') ?>" target="_blank">Trang quản trị</a></li>
@@ -44,13 +44,15 @@
           </a>
         </li>
       </ul>
+
+
       <div class="fs-search">
-        <form action="" method="get" autocomplete="off">
+        <form action="" autocomplete="off">
           <label for="key" class="mf-vhiditem">Nhập tên điện thoại, máy tính, phụ kiện... cần tìm</label>
-          <input class="fs-stxt" type="text" name="" placeholder="Nhập tên sản phẩm cần tìm" autocomplete="off" maxlength="50">
-          <span class="icon-cance" style="display:none" title="Xóa">✕</span>
-          <button type="submit" class="search-button" title="Tìm kiếm"><i class="ficon f-search"></i></button>
-          <div class="fs-sresult" style="display:none">
+          <input class="fs-stxt" type="text" id="key" placeholder="Nhập tên điện thoại, máy tính, phụ kiện... cần tìm" autocomplete="off" maxlength="50">
+          <span class="icon-cance" id="icon-cance" style="display:none" title="Xóa">✕</span>
+          <button type="submit" aria-label="Tìm kiếm" class="search-button" title="Tìm kiếm"><i class="ficon f-search"></i></button>
+          <div class="fs-sresult" id="result" style="display:none">
             <div class="fs-sremain">
               <ul>
               </ul>
@@ -58,6 +60,29 @@
           </div>
         </form>
       </div>
+      <script>
+        $(function() {
+          $(".search-button").keyup(function() {
+            let keyword = $(this).val();
+            if (keyword != '') {
+              $.ajax({
+                type: "post",
+                url: "<?= app_url('tim-kiem/xu-ly') ?>",
+                data: {
+                  keyword: keyword,
+                },
+                success: function(data) {
+                  console.log('suceessfully');
+
+                }
+              })
+            }
+          });
+        });
+      </script>
+
+
+
     </div>
   </div>
   <?php if(menu_page()): ?>

@@ -2,7 +2,6 @@
     <input type="text" id="search_id" placeholder="nhập từ khóa ..." class=" form-control w-100" />
     <div id="search_product"></div>
 </div>
- <!-- khong chay ajax chu gi u,h jquery dau ??? -->
   <script>
             $(function() { 
                 $("#search_id").keyup(function() {

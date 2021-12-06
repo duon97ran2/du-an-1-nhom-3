@@ -274,7 +274,8 @@ switch ($url) {
         require_once "./business/admin/banner.php";
         banner_add();
         break;
-    case 'cp-admin/banner/luu-them-moi':
+     case 'cp-admin/banner/luu-them-moi':
+        is_admin();
         require_once "./business/admin/banner.php";
         banner_add_handle();
         break;
@@ -282,12 +283,14 @@ switch ($url) {
         is_admin();
         require_once "./business/admin/banner.php";
         banner_update();
-        break;
-    case 'cp-admin/banner/luu-cap-nhat':
+        break;  
+     case 'cp-admin/banner/luu-cap-nhat':
+        is_admin();
         require_once "./business/admin/banner.php";
         banner_update_handle();
         break;
     case 'cp-admin/banner/xoa':
+        is_admin();
         require_once "./business/admin/banner.php";
         remove_banner();
         break;
@@ -384,7 +387,6 @@ switch ($url) {
     case 'cp-admin/comment/chi-tiet':
         require_once "./business/admin/comment.php";
         detail_cmt_admin();
-
         break;
     case 'cp-admin/comment/xoa':
         require_once "./business/admin/comment.php";
@@ -418,6 +420,11 @@ switch ($url) {
         require_once "./business/orders.php";
         search_index();
         break;
+    case 'save-comment':
+        require_once "./business/admin/comment.php";
+        insertCmt();
+        break;
+    
     default:
         error_page();
         break;
