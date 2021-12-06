@@ -6,7 +6,7 @@
       </a>
       <ul class="fs-hdmn">
         <li>
-          <a href="./kiemtradonhang.html" title="">
+          <a href="<?= app_url('tim-kiem-don-hang')?>" title="">
             <i class="material-icons">assignment</i>
             <span>Kiểm tra đơn hàng</span>
           </a>
@@ -27,7 +27,7 @@
                 <?php if(auth_info()['role'] == 'admin') : ?>
                   <li><a href="<?= admin_url('dashboard') ?>">Trang quản trị</a></li>
                 <?php endif; ?>
-                <li><a href="<?= app_url('dang-nhap') ?>">Thông tin tài khoản</a></li>
+                <li><a href="<?= app_url('thong-tin-ca-nhan') ?>">Thông tin tài khoản</a></li>
                 <li><a href="<?= app_url('dang-xuat') ?>">Đăng xuất</a></li>
             </ul>
           <?php endif ?>

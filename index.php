@@ -126,9 +126,17 @@ switch ($url) {
         require_once "./business/auth/profile.php";
         profile_index();
         break;
+    case 'thong-tin-ca-nhan/don-hang':
+        require_once "./business/auth/profile.php";
+        user_order_index();
+        break;
     case 'thong-tin-ca-nhan/luu-sua':
         require_once "./business/auth/profile.php";
         profile_save();
+        break;
+    case 'thong-tin-ca-nhan/doi-mat-khau':
+        require_once "./business/auth/profile.php";
+        change_password();
         break;
     case 'cp-admin/dashboard':
         is_admin();
@@ -395,6 +403,10 @@ switch ($url) {
     case 'cp-admin/don-hang/cap-nhat':
         require_once "./business/admin/orders.php";
         order_update();
+        break;
+    case 'tim-kiem-don-hang':
+        require_once "./business/orders.php";
+        search_index();
         break;
     default:
         error_page();

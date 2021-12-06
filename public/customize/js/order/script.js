@@ -45,3 +45,8 @@ $('.btn_complete_order').on('click', function(){
       }
   })
 })
+
+$('.quantity').on('change',function(){
+  let total = $(this).val()*$(this).prev('.price').val();
+  console.log($(this).closest('input'));
+});

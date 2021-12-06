@@ -33,6 +33,7 @@ function items_index()
 {
   $order_id = $_GET['order_id'];
   $order_code = $_GET['order_code'];
+  $total=0;
   $sql = "SELECT OI.*,P.product_name
             FROM order_items OI 
             LEFT JOIN products P on OI.product_id = P.product_id  
@@ -41,6 +42,7 @@ function items_index()
   admin_render('orders/order_items.php', [
     'order_items' => $order_items,
     'order_code' => $order_code,
+    'total'=>$total,
   ], [
     'customize/js/order/script.js'
   ]);
