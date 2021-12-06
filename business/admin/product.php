@@ -26,7 +26,9 @@ function product_page() {
     }
 
     if ($where) {
-        $sql .= " WHERE ". implode(' AND ', $where);
+        $sql .= " WHERE P.is_delete = 0 AND ". implode(' AND ', $where);
+    } else {
+        $sql .= " WHERE P.is_delete = 0";
     }
 
     $products = executeQuery($sql, true);
@@ -248,8 +250,11 @@ function product_update() {
     $brands = executeQuery($brand_sql, true);
     $gifts = executeQuery($gift_sql, true);
     $product_id = input_get('product_id');
-    $product_sql = "SELECT * FROM products WHERE product_id = '$product_id'";
+    $product_sql = "SELECT * FROM products WHERE product_id = '$product_id' AND is_delete = 0";
     $product = executeQuery($product_sql, false);
+    if (empty($product)) {
+        error_page();
+    }
     $config_sql = "SELECT * FROM product_configuration WHERE product_id = '$product_id'";
     $config = executeQuery($config_sql, false);
     $variant_sql = "SELECT * FROM product_variants WHERE product_id = '$product_id'";
@@ -574,14 +579,14 @@ function product_update_handle() {
 function product_change_status_handle() {
     $product_id = input_post('product_id');
     $status = input_post('status');
-    $sql = "UPDATE products SET product_status = $status WHERE product_id = $product_id";
+    $sql = "UPDATE products SET product_status = $status WHERE product_id = $product_id AND is_delete = 0";
     executeQuery($sql);
     echo "Cập nhật thành công";
 }
 
 function product_remove_product_handle() {
     $product_id = input_get('product_id');
-    $sql = "DELETE FROM products WHERE product_id = '$product_id'";
+    $sql = "UPDATE products SET is_delete = 1 WHERE product_id = $product_id";
     executeQuery($sql);
     set_session('message', 'Xoá sản phẩm thành công');
     redirect_back();
@@ -603,7 +608,7 @@ function product_remove_variant_handle() {
 }
 
 function find_product_by_slug($slug) {
-    $sql = "SELECT * FROM products WHERE product_slug = '$slug'";
+    $sql = "SELECT * FROM products WHERE product_slug = '$slug' AND is_delete = 0";
     return executeQuery($sql, false);
 }
 

@@ -8,7 +8,7 @@ $('#js-add-to-cart').on('click', function() {
     let price = $(this).data('price');
     let data_url = $(this).data('url');
     if (login == 0) {
-        toastr.error('Vui long dang nhap de mua hang');
+        toastr.error('Vui lòng đăng nhập để mua hàng');
     } else {
         $.ajax({
             type: "POST",

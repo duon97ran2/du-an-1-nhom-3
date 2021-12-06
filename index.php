@@ -34,11 +34,6 @@ switch ($url) {
         require_once './business/homepage.php';
         index();
         break;
-    case 'tim-kiem/xu-ly':
-        is_maintenance();
-        require_once './business/homepage.php';
-        search_ajax();
-        break;
     case 'thong-tin-san-pham':
         is_maintenance();
         require_once './business/product.php';
