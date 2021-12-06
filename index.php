@@ -47,6 +47,7 @@ switch ($url) {
     case 'thong-tin-san-pham':
         is_maintenance();
         require_once './business/product.php';
+        require_once './business/homepage.php';
         product_details();
         break;
     case 'gio-hang':

@@ -5,7 +5,7 @@
         <div class="row">
           <ol class="breadcrumb bg-transparent breadcrumb-margin">
             <li class="breadcrumb-item "><a href="<?= app_url() ?>" title="Trang chủ">Trang chủ</a></li>
-            <li class="breadcrumb-item "><a href="<?= app_url('danh-muc/'.$product_default['category_slug']) ?>" title="Trang chủ"><?= $product_default['category_name'] ?></a></li>
+            <li class="breadcrumb-item "><a href="<?= app_url('danh-muc/' . $product_default['category_slug']) ?>" title="Trang chủ"><?= $product_default['category_name'] ?></a></li>
             <li class="breadcrumb-item active"><a href="<?= app_url('san-pham/' . $product_default['product_slug']) ?>" class="text-capitalize"><?= $product_default['product_name']; ?></a></li>
           </ol>
         </div>
@@ -253,30 +253,45 @@
                   <div class="swiper-wrapper">
 
                     <!-- foreach -->
+                    <?php foreach (sp_categories($product_default['category_slug']) as $key => $item) :
+                    ?>
+                      <div class="swiper-slide">
+                        <div class="cdt-product">
+                          <div class="cdt-product__img">
+                            <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
+                              <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
+                                <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
+                              </a>
+                            </a>
+                          </div>
+                          <div class="cdt-product__info">
+                            <h3>
+                              <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="cdt-product__name"><?= $item['product_name'] ?></a>
+                            </h3>
+                            <div class="cdt-product__show-promo">
+                              <?php if ($item['product_discount'] > 0) : ?>
+                                <div class="progress justify-content-center">
+                                  <?= discount_price($item['product_price'], $item['product_discount']) ?>
+                                  <div class="progress-bar" style="width: 100%;"></div>
+                                </div>
+                                <div class="strike-price">
+                                  <strike><?= priceVND($item['product_price']) ?></strike>
+                                </div>
+                              <?php else : ?>
+                                <div class="progress justify-content-center">
+                                  <?= priceVND($item['product_price']) ?>
+                                  <div class="progress-bar" style="width: 100%;"></div>
+                                </div>
+                              <?php endif ?>
 
-                    <div class="swiper-slide">
-                      <div class="cdt-product">
-                        <div class="cdt-product__img">
-                          <a href="./details.html">
-                            <span class=" lazy-load-image-background opacity lazy-load-image-loaded">
-                              <img src="https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/9/15/637673213598401263_iphone-13-pro-max-dd-1.jpg" alt="iPhone 13 Pro Max 128GB" title="iPhone 13 Pro Max 128GB">
-                            </span>
-                          </a>
-                        </div>
-                        <div class="cdt-product__info">
-                          <h3><a href="./details.html" title="iPhone 13 Pro Max 128GB" class="cdt-product__name">iPhone 13 Pro Max 128GB</a></h3>
-                          <div class="cdt-product__show-promo">
-                            <div class="progress justify-content-center">
-                              23.699.000 ₫
-                              <div class="progress-bar" style="width: 100%;"></div>
                             </div>
-                            <div class="strike-price">
-                              <strike>25.499.000 ₫</strike>
+                            <div class="cdt-product__btn">
+                              <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="btn btn-primary btn-sm btn-main">XEM SẢN PHẨM</a>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    <?php endforeach ?>
 
                     <!-- endforeach -->
 

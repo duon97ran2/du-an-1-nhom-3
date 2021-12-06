@@ -43,7 +43,6 @@ function get_gifts()
     $sql = "SELECT * FROM gifts";
     return executeQuery($sql);
 }
-
 function product_details()
 {
     $slug = input_get('slug');
