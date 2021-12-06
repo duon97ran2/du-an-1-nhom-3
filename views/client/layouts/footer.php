@@ -64,7 +64,6 @@
 </script>
 <?php remove_session('message-errors') ?>
 <?php endif; ?>
-
 <?php if (!empty(get_session('message'))) : ?>
 <script>
     $(function () {

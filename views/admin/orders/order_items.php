@@ -1,7 +1,7 @@
 <section class="content-header">
   <div class="row mb-2">
-    <div class="col-sm-6">
-      <a href="javascript:;" class="btn btn-default ml-n2">Thông tin các sản phẩm trong đơn hàng <?= $order_code ?></a>
+    <div class="col-sm-6 text-nowrap">
+      <a href="<?= admin_url('don-hang') ?>" class="btn btn-default ml-n2 mb-2">Danh sách đơn hàng</a>
     </div>
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
@@ -12,7 +12,9 @@
   </div>
 </section>
 .<div class="card">
-  <div class="card-header"></div>
+  <div class="card-header">
+    <h2>Thông tin các sản phẩm trong đơn hàng <?= $order_code ?></h2>
+  </div>
   <div class="card-body">
     <table id="example1" class="table table-bordered table-striped text-center">
       <thead>
@@ -23,27 +25,26 @@
           <th>Số lượng</th>
           <th>Màu</th>
           <th>Tổng tiền</th>
-          <th style="width: 40px">Tác vụ</th>
+          <!-- <th style="width: 40px">Tác vụ</th> -->
         </tr>
       </thead>
       <tbody>
         <?php foreach ($order_items as $item) : ?>
           <tr>
+            <?php $total+=$item['total_price'] ?>
             <td class="align-middle"><?= $item['product_id'] ?></td>
             <td class="align-middle"><?= $item['product_name'] ?></td>
-            <td class="align-middle"><?= $item['price'] ?></td>
-            <td class="align-middle"><?= $item['quantity'] ?></td>
+            <td class="align-middle"><?= $item['price'] ?></td><input type="hidden" value="<?= $item['price'] ?>">
+            <td class="align-middle quantity"><input type="number" class="price" value="<?= $item['quantity'] ?>"></td>
             <td class="align-middle"><?= $item['color'] ?></td>
             <td class="align-middle"><?= $item['total_price'] ?></td>
           </tr>
         <?php endforeach; ?>
+        <tr>
+          <td class="text-end fw-bold" colspan="5" id="total">Tổng</td>
+          <td><?=$total?></td>
+        </tr>
       </tbody>
     </table>
-  </div>
-  <div class="card-footer">
-    <div class="btn-group justify-content-end" role="group" aria-label="Button group">
-      <a class="btn btn-primary btn-sm " href="#" role="button"> Xác nhận </a>
-      <a class="btn btn-primary btn-sm btn_cancel_order" data-name="<?= $order_code ?>" data-url="<?= admin_url('don-hang/cap-nhat?order_id='.input_get('order_id')).'&order_status=4' ?>"  role="button"> Hủy đơn </a>
-    </div>
   </div>
 </div>
