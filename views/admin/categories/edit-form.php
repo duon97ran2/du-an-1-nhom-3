@@ -60,6 +60,10 @@
                         <label for="">Duong dan</label>
                         <input type="text" name="menu_url" id="" class="form-control" value="<?= $categories['menu_url'] ?>">
                     </div>
+                    <div class="form-group">
+                        <label for="">Vị trí</label>
+                        <input type="number" name="category_index" id="" class="form-control" value="<?= $categories['category_index'] ?>">
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center">

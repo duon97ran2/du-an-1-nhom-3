@@ -10,7 +10,7 @@
             </div>
             <div class="form-group">
                 <label for="">Thời gian kết thúc</label>
-                <input type="datetime" name="end_time" class="form-control" placeholder="">
+                <input type="date" name="end_time" class="form-control" placeholder="">
             </div>
             <div class="form-group">
                 <label for="">Mô tả</label>

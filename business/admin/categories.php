@@ -33,6 +33,7 @@ function categories_save_add(){
     $is_parent = $_POST['is_parent'];
     $parent_id = $_POST['parent_id'];
     $menu_url = $_POST['menu_url'];
+    $category_index = $_POST['category_index'];
     $is_menu = $_POST['is_menu'];
     $file = $_FILES['category_image'];
     $fileName = "";
@@ -41,9 +42,9 @@ function categories_save_add(){
         move_uploaded_file($file['tmp_name'],'./public/uploads/' .$fileName);
         $fileName = 'uploads/' . $fileName;
     }
-    $sql = "insert into categories (category_name, category_slug, is_parent, parent_id, category_image, is_menu, menu_url)
+    $sql = "insert into categories (category_name, category_slug, is_parent, parent_id, category_image, is_menu, menu_url, category_index)
     values
-    ('$category_name','$category_slug', $is_parent, $parent_id, '$fileName', $is_menu, '$menu_url')";
+    ('$category_name','$category_slug', $is_parent, $parent_id, '$fileName', $is_menu, '$menu_url', $category_index)";
 
     executeQuery($sql);
     set_session('message', 'Thêm thành công');
@@ -72,6 +73,7 @@ function categories_save_edit(){
     $is_parent = $_POST['is_parent'];
     $parent_id = $_POST['parent_id'];
     $menu_url = $_POST['menu_url'];
+    $category_index = $_POST['category_index'];
     $is_menu = $_POST['is_menu'];
     $file = $_FILES['category_image'];
 
@@ -89,7 +91,8 @@ function categories_save_edit(){
             menu_url = '$menu_url',
             parent_id = $parent_id,
             is_menu = $is_menu,
-            category_image = '$category_image'
+            category_image = '$category_image',
+            category_index = $category_index
     where category_id = $category_id";
     executeQuery($sql);
     set_session('message', 'Cập nhật thành công');

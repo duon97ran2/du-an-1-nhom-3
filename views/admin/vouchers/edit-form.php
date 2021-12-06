@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label for="">Thời gian kết thúc</label>
-                <input type="datetime" name="end_time" id="" class="form-control" placeholder="" value="<?= $vouchers['end_time'] ?>">
+                <input type="date" name="end_time" id="" class="form-control" placeholder="" value="<?= $vouchers['end_time'] ?>">
             </div>
             <div class="form-group">
                 <label for="">Mô tả</label>
