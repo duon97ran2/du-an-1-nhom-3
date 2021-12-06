@@ -16,7 +16,7 @@
           </a>
         </li>
         <li>
-          <a href="/" title="">
+          <a href="<?= app_url('yeu-thich')?>" title="">
             <i class="material-icons">favorite</i>
             <span>Yêu thích</span>
           </a>

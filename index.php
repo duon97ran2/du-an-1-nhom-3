@@ -424,7 +424,14 @@ switch ($url) {
         require_once "./business/admin/comment.php";
         insertCmt();
         break;
-    
+    case 'yeu-thich':
+        require_once "./business/wishlist.php";
+        wishlist_index();
+        break;
+    case 'xoa-yeu-thich':
+        require_once "./business/wishlist.php";
+        wishlist_delete();
+        break;
     default:
         error_page();
         break;
