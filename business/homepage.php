@@ -37,9 +37,45 @@ function index() {
     $lst_categories = list_categories();
     $banners = banners();
     client_render('page/home',[
+        'page_title' => 'PolyMobile',
         'hot_sale' => $hot_sale,
         'hot_view' => $hot_view,
         'banners' => $banners,
         'lst_categories' => $lst_categories,
     ]);
+}
+
+function search() {
+    $keyword = $_GET['keyword'];
+    $query = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' AND is_delete = 0";
+    $result = executeQuery($query, true);
+    client_render('page/search',[
+        'page_title' => 'Tìm kiếm với từ khoá ' . $keyword,
+        'result' => $result,
+        'keyword' => $keyword
+    ]);
+}
+
+function search_ajax() {
+    $search = $_POST['keyword'];
+    $query = "SELECT * FROM products WHERE product_name LIKE '%$search%' AND is_delete = 0";
+    $result = executeQuery($query, true);
+    $output = '';
+    if($result){
+        foreach($result as $key => $item){
+            if ($key < 5) {
+                $output .= '<li><a href="'.app_url('san-pham/'.$item['product_slug']).'">' . $item['product_name'] . '</a></li>';
+            } else {
+                continue;
+            }
+        }
+    }else{
+        $output = '<li><a href="javascript:;">Không tìm thấy sản phẩm nào...</a></li>';
+    }
+
+    if (count($result) > 5) {
+        $count_result = count($result) - 5;
+        $output .= '<li><a href="'.app_url('tim-kiem?keyword='.$search).'">Xem thêm '.$count_result.' kết quả khác</a></li>';
+    }
+    echo $output;
 }

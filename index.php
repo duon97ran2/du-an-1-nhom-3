@@ -428,6 +428,16 @@ switch ($url) {
         require_once "./business/wishlist.php";
         wishlist_delete();
         break;
+    case 'tim-kiem':
+        is_maintenance();
+        require_once './business/homepage.php';
+        search();
+        break;
+    case 'tim-kiem/xu-ly':
+        is_maintenance();
+        require_once './business/homepage.php';
+        search_ajax();
+        break;
     default:
         error_page();
         break;
