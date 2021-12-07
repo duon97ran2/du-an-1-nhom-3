@@ -9,6 +9,12 @@
         <?php endif; ?>
       </a>
       <ul class="fs-hdmn">
+      <li>
+          <a href="<?= app_url('tin-tuc') ?>" title="">
+            <i class="material-icons">newspaper</i>
+            <span>Blog</span>
+          </a>
+        </li>
         <li>
           <a href="<?= app_url('tim-kiem-don-hang')?>" title="">
             <i class="material-icons">assignment</i>

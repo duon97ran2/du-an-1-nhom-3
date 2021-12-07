@@ -274,7 +274,7 @@ switch ($url) {
         require_once "./business/admin/banner.php";
         banner_add();
         break;
-     case 'cp-admin/banner/luu-them-moi':
+    case 'cp-admin/banner/luu-them-moi':
         is_admin();
         require_once "./business/admin/banner.php";
         banner_add_handle();
@@ -283,8 +283,8 @@ switch ($url) {
         is_admin();
         require_once "./business/admin/banner.php";
         banner_update();
-        break;  
-     case 'cp-admin/banner/luu-cap-nhat':
+        break;
+    case 'cp-admin/banner/luu-cap-nhat':
         is_admin();
         require_once "./business/admin/banner.php";
         banner_update_handle();
@@ -416,6 +416,10 @@ switch ($url) {
         require_once "./business/orders.php";
         search_index();
         break;
+    case 'comment':
+        require_once "./business/admin/comment.php";
+        // get_detail_comment();
+        break;
     case 'save-comment':
         require_once "./business/admin/comment.php";
         insertCmt();
@@ -427,6 +431,33 @@ switch ($url) {
     case 'xoa-yeu-thich':
         require_once "./business/wishlist.php";
         wishlist_delete();
+    case 'cp-admin/bai-viet':
+        require_once "./business/admin/blog.php";
+        blog_index();
+        break;
+    case 'cp-admin/bai-viet/chi-tiet':
+        require_once "./business/admin/blog.php";
+        blog_detail();
+        break;
+    case 'cp-admin/bai-viet/xoa':
+        require_once "./business/admin/blog.php";
+        deleteBlog();
+        break;
+    case 'cp-admin/bai-viet/them-moi':
+        require_once "./business/admin/blog.php";
+        add_blog();
+        break;
+    case 'cp-admin/bai-viet/luu-them-moi':
+        require_once "./business/admin/blog.php";
+        save_add_blog();
+        break;
+    case 'cp-admin/bai-viet/luu-sua':
+        require_once "./business/admin/blog.php";
+        update_handle();
+        break;
+    case 'tin-tuc':
+        require_once "./business/admin/blog.php";
+        get_all_blog();
         break;
     case 'tim-kiem':
         is_maintenance();

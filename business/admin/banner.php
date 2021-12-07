@@ -65,30 +65,38 @@ function banner_update()
 
 function banner_update_handle()
 {
-    // $banner_id = $_GET['banner_id'];
-    // $sql = "SELECT * FROM banners WHERE banner_id=$banner_id";
-    // $old_banner = executeQuery($sql, true);
+    $error = [];
+    $banner_id = $_GET['banner_id'];
 
-    // $banner_name = input_post('banner_name');
-    // $banner_url = input_post('banner_url');
-    // $banner_index = input_post('banner_index');
-    // $banner_target = input_post('banner_target');
-    // $banner_position = input_post('banner_position');
-    // $is_active = input_post('is_active');
-    // $banner_image = input_file('banner_image');
-  
-    //     $image_upload = upload_image($banner_image, 'banner');
-    //     $b_sql = "UPDATE banners 
-    //             SET banner_name='$banner_name',
-    //                     banner_url='$banner_url',
-    //                     banner_image='$image_upload',
-    //                     banner_index='$banner_index',
-    //                     banner_target='$banner_target',
-    //                     banner_position='$banner_position',
-    //                     is_active='$is_active'
-    //             WHERE banner_id=$banner_id";
-    //     executeQuery($b_sql);
-    //     set_session('message', 'update banner thành công');
-    //     redirect('cp-admin/banner');
-    
+    $banner_name = input_post('banner_name');
+    $banner_image = input_file('banner_image');
+    $banner_url = input_post('banner_url');
+    $banner_index = input_post('banner_index');
+    $banner_target = input_post('banner_target');
+    $banner_position = input_post('banner_position');
+    $is_active =  input_post('is_active');
+    $updated_at = date("Y-m-d");
+    $created_at = date("Y-m-d");
+
+    if (empty($error)) {
+        if (empty($banner_image)) {
+            $banner_image = input_post('banner_image_old');
+        } else {
+            $banner_image = upload_image($banner_image, 'banner');
+        }
+    }
+    $sql = "UPDATE banners 
+             SET banner_name='$banner_name',
+                     banner_url='$banner_url',
+                     banner_image='$banner_image',
+                     banner_index='$banner_index',
+                     banner_target='$banner_target',                     
+                     banner_position='$banner_position',
+                     is_active='$is_active',
+                     created_at = '$created_at',
+                     updated_at = '$updated_at'          
+                     WHERE banner_id=$banner_id";
+    executeQuery($sql, true);
+    set_session('message', 'sửa thành công');
+    redirect('cp-admin/banner');
 }
