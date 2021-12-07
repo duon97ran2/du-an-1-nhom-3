@@ -31,8 +31,8 @@ $('#js-add-to-cart').on('click', function() {
                     if (quantity > 0) {
                         toastr.error("Chi duoc them toi da " + response.product_quantity + " san pham");
                     }
-                }
-                $('.js-quantity-type').val(0);
+                } 
+                $('.js-quantity-type').val(1);
             }
         });
     }

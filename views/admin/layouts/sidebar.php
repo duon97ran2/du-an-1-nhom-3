@@ -74,7 +74,7 @@
         </li>
         <li class="nav-item">
           <a href="<?= admin_url('bai-viet') ?>" class="nav-link">
-            <i class="nav-icon fas fa-newspaper-o"></i>
+            <i class="nav-icon fas fa-newspaper"></i>
             <p>
               Bài viết
             </p>
