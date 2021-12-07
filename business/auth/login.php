@@ -35,7 +35,7 @@ function client_login_handle() {
     }
 
     if ($errors) {
-        set_session('message-errors', $errors['message']);
+        set_errors($errors);
         redirect('dang-nhap');
     } else {
         set_session('message', 'Đăng nhập thành công');
