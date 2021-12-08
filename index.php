@@ -412,6 +412,22 @@ switch ($url) {
         require_once "./business/admin/orders.php";
         delete_order();
         break;
+    case 'cp-admin/don-hang/xoa-chi-tiet':
+        require_once "./business/admin/orders.php";
+        delete_item();
+        break;
+    case 'cp-admin/don-hang/luu-chi-tiet':
+        require_once "./business/admin/orders.php";
+        save_item();
+        break;
+    case 'cp-admin/don-hang/sua-chi-tiet':
+        require_once "./business/admin/orders.php";
+        item_update();
+        break;
+    case 'cp-admin/don-hang/them-chi-tiet':
+        require_once "./business/admin/orders.php";
+        add_item();
+        break;
     case 'tim-kiem-don-hang':
         require_once "./business/orders.php";
         search_index();
