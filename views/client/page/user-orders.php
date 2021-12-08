@@ -65,9 +65,6 @@ $color = [
                       <?php if ($item['order_status'] == 1 || $item['order_status'] == 0) : ?>
                         <a class="btn btn-danger btn-sm text-light m-0   btn_cancel_order text-nowrap" data-name="<?= $item['order_code'] ?>" data-url="<?= admin_url('don-hang/cap-nhat?order_id=' . $item['order_id']) . '&order_status=3' ?>" role="button"> Hủy đơn </a>
                       <?php endif ?>
-                      <?php if ($item['order_status'] == 3) : ?>
-                        <a class="btn btn-danger btn-sm text-light m-0   btn_delete text-nowrap" data-name="<?= $item['order_code'] ?>" data-url="<?= admin_url('don-hang/xoa?order_id=' . $item['order_id']) . '&order_status=3' ?>" role="button"> Xóa </a>
-                      <?php endif ?>
                     </td>
                   </tr>
                 <?php endforeach ?>

@@ -34,7 +34,7 @@ function add_blog()
 
 function save_add_blog()
 {
-    $error = [];
+    $errors = [];
     $blog_title = $_POST['blog_title'];
     $blog_image = input_file('blog_image');
     $short_descrition = $_POST['short_descrition'];

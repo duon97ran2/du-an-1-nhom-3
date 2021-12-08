@@ -64,7 +64,7 @@ $color = [
         <?php foreach ($orders as $item) : ?>
           <tr>
             <td class="align-middle"><?= $item['order_id'] ?></td>
-            <td class="align-middle"><a href="<?= admin_url('don-hang/chi-tiet?order_id=' . $item['order_id'] . '&order_code=' . $item['order_code']) ?>" class="btn btn-primary btn-sm"><?= $item['order_code'] ?></a></td>
+            <td class="align-middle"><a href="<?= admin_url('don-hang/chi-tiet?order_id=' . $item['order_id']) ?>" class="btn btn-primary btn-sm"><?= $item['order_code'] ?></a></td>
             <td class="align-middle"> <span class="badge bg-<?= $color[$item['order_status']] ?> p-2"><?= $status[$item['order_status']] ?></span></td>
             <td class="align-middle"><?= $item['order_total'] ?></td>
             <td class="align-middle"><?= $item['payment_type'] ?></td>
