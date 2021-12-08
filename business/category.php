@@ -123,11 +123,14 @@ function load_more() {
         $output .= '<div class="cdt-product">
                 <div class="cdt-product__img">
                     <a href="'.app_url('san-pham/' . $item['product_slug']).'">
-                        <a href="'.app_url('san-pham/' . $item['product_slug']).'">
                         <img src="'.asset('uploads/' . $item['product_image']).'" style=" width: 214px; height: 214px; ">
-                        </a>
-                    </a>
-                </div>
+                    </a>';
+                if ($item['product_discount'] > 0) {
+                    $output .= '<div class="cdt-product__label">
+                        <span class="badge badge-primary">Giảm '.price_minus_discount($item['product_price'], $item['product_discount']).'</span>
+                    </div>';
+                }
+                $output .= '</div>
                 <div class="cdt-product__info">
                     <h3>
                         <a href="'.app_url('san-pham/' . $item['product_slug']).'" class="cdt-product__name">'.$item['product_name'].'</a>

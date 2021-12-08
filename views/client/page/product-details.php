@@ -274,12 +274,14 @@
                     ?>
                       <div class="swiper-slide">
                         <div class="cdt-product">
-                          <div class="cdt-product__img">
-                            <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
-                              <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
+                          <div class="cdt-product__img"><a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
                                 <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
                               </a>
-                            </a>
+                            <?php if ($item['product_discount'] > 0) : ?>
+                              <div class="cdt-product__label">
+                                <span class="badge badge-primary">Giảm <?= price_minus_discount($item['product_price'], $item['product_discount']) ?></span>
+                              </div>
+                            <?php endif ?>
                           </div>
                           <div class="cdt-product__info">
                             <h3>
@@ -300,7 +302,6 @@
                                   <div class="progress-bar" style="width: 100%;"></div>
                                 </div>
                               <?php endif ?>
-
                             </div>
                             <div class="cdt-product__btn">
                               <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="btn btn-primary btn-sm btn-main">XEM SẢN PHẨM</a>
