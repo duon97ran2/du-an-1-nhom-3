@@ -43,6 +43,16 @@ function get_gifts()
     $sql = "SELECT * FROM gifts";
     return executeQuery($sql);
 }
+
+function view_count($product_id) {
+    if (empty($_SESSION["product_$product_id"])) {
+        $_SESSION["product_$product_id"] = true;
+        $sql = "UPDATE products SET product_views = product_views + 1 WHERE product_id = $product_id";
+        return executeQuery($sql);
+    } 
+    return false;
+}
+
 function product_details()
 {
     $slug = input_get('slug');
@@ -79,6 +89,7 @@ function product_details()
     }
     $product_configuration = get_configuration_by_product_id($product_default['product_id']);
     $product_id = $product_default['product_id'];
+    view_count($product_id);
     $comments_sql = "SELECT products.*, users.*, comments.* FROM comments
                 join products on comments.product_id = products.product_id
                 join users on users.user_id	= comments.user_id 
@@ -98,3 +109,5 @@ function product_details()
         'customize/js/add-to-wishlist.js',
     ]);
 }
+
+
