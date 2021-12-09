@@ -10,7 +10,7 @@
   <?php include_once "./views/admin/layouts/style.php" ?>
   
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->

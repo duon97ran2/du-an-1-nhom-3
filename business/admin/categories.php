@@ -44,7 +44,7 @@ function categories_save_add(){
     }
     $sql = "insert into categories (category_name, category_slug, is_parent, parent_id, category_image, is_menu, menu_url, category_index)
     values
-    ('$category_name','$category_slug', $is_parent, $parent_id, '$fileName', $is_menu, '$menu_url', $category_index)";
+    ('$category_name','$category_slug', '$is_parent', '$parent_id', '$fileName', '$is_menu', '$menu_url', '$category_index')";
 
     executeQuery($sql);
     set_session('message', 'Thêm thành công');
@@ -87,13 +87,13 @@ function categories_save_edit(){
         set
             category_name = '$category_name',
             category_slug = '$category_slug',
-            is_parent = $is_parent,
+            is_parent = '$is_parent',
             menu_url = '$menu_url',
-            parent_id = $parent_id,
-            is_menu = $is_menu,
+            parent_id = '$parent_id',
+            is_menu = '$is_menu',
             category_image = '$category_image',
-            category_index = $category_index
-    where category_id = $category_id";
+            category_index = '$category_index'
+    where category_id = '$category_id'";
     executeQuery($sql);
     set_session('message', 'Cập nhật thành công');
     header("location: " . ADMIN_URL . 'danh-muc');

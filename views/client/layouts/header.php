@@ -46,7 +46,9 @@
           <a href="<?= app_url('gio-hang') ?>" title="">
             <i class="material-icons">shopping_cart</i>
             <span>Giỏ hàng</span>
-            <b class="fs-cartic countTotalCart" id="js-cart-total"><?= cart_total() ?></b>
+            <?php if (auth_info()) : ?>
+            <b class="fs-cartic countTotalCart" id="js-cart-total" data-total="<?= cart_total() ?>"><?= cart_total() ?></b>
+            <?php endif; ?>
           </a>
         </li>
       </ul>
@@ -103,7 +105,7 @@
       <ul class="fs-mnul clearfix">
         <?php foreach (menu_page() as $cate) : ?>
           <li>
-            <a href="<?= $cate['menu_url'] ?? app_url('danh-muc/'.$cate['category_slug'])?>">
+            <a href="<?= empty($cate['menu_url']) ? app_url('danh-muc/'.$cate['category_slug']) : $cate['menu_url'] ?>">
               <div class="base-ic"></div> <?= $cate['category_name'] ?>
             </a>
             <?php if(empty($cate['menu_url'])) : ?>
@@ -129,6 +131,7 @@
                       <li><a href="<?= app_url('danh-muc/'.$cate['category_slug'].'?price=tren-13-trieu') ?>">Trên 13 triệu</a></li>
                     </ul>
                   </div>
+                  <?php if (product_most_view()) : ?>
                   <div class="fs-mntd fs-mntd3">
                     <p class="fs-mnstit">Xem nhiều nhất</p>
                     <ul class="fs-mnsprod">
@@ -150,6 +153,7 @@
                       </li>
                     </ul>
                   </div>
+                  <?php endif; ?>
                 </div>
               </div>
             <?php endif; ?>

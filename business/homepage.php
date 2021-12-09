@@ -11,7 +11,7 @@ function sp_categories($cate_slug){
             FROM products P
             LEFT JOIN categories C ON C.category_id = P.category_id
             LEFT JOIN categories CP ON CP.category_id = C.parent_id
-            WHERE CP.category_slug = '$cate_slug' AND P.is_delete = 0 LIMIT 8";
+            WHERE CP.category_slug = '$cate_slug' AND P.is_delete = 0 AND P.product_status = 1 LIMIT 8";
     return executeQuery($sql,true);
 }
 function sp_hot_view(){
@@ -47,7 +47,7 @@ function index() {
 
 function search() {
     $keyword = $_GET['keyword'];
-    $query = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' AND is_delete = 0";
+    $query = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' AND is_delete = 0  AND product_status = 1";
     $result = executeQuery($query, true);
     client_render('page/search',[
         'page_title' => 'Tìm kiếm với từ khoá ' . $keyword,
@@ -58,7 +58,7 @@ function search() {
 
 function search_ajax() {
     $search = $_POST['keyword'];
-    $query = "SELECT * FROM products WHERE product_name LIKE '%$search%' AND is_delete = 0";
+    $query = "SELECT * FROM products WHERE product_name LIKE '%$search%' AND is_delete = 0 AND product_status = 1";
     $result = executeQuery($query, true);
     $output = '';
     if($result){

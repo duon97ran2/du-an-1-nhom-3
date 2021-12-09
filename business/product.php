@@ -7,7 +7,7 @@ function get_product_by_slug($slug)
                     FROM products P
                     LEFT JOIN categories C ON C.category_id = P.category_id
                     LEFT JOIN categories CP ON CP.category_id = C.parent_id
-                    WHERE P.product_slug = '$slug' AND P.is_delete = 0";
+                    WHERE P.product_slug = '$slug' AND P.is_delete = 0 AND P.product_status = 1";
     return executeQuery($product_sql, false);
 }
 
@@ -23,7 +23,7 @@ function get_product_variant_by_slug($slug)
             LEFT JOIN categories CP ON CP.category_id = C.parent_id
             LEFT JOIN brands B ON B.brand_id = P.brand_id
             LEFT JOIN product_variants V ON V.product_id = P.product_id
-        WHERE P.product_slug = '$slug' AND P.is_delete = 0";
+        WHERE P.product_slug = '$slug' AND P.is_delete = 0 AND P.product_status = 1";
     $product = executeQuery($sql, true);
     if (count($product) == 1) {
         $data[] = $product[0];

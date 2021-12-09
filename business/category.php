@@ -52,9 +52,9 @@ function category_page() {
         $where[] = "P.product_discount > 0";
     }
     if ($where) {
-        $data_products_sql .= " WHERE is_delete = 0 AND " . implode(' AND ', $where);
+        $data_products_sql .= " WHERE is_delete = 0 AND product_status = 1 AND " . implode(' AND ', $where);
     } else {
-        $data_products_sql .= " WHERE is_delete = 0";
+        $data_products_sql .= " WHERE is_delete = 0 AND product_status = 1";
     }
     $data_products_sql .= ' LIMIT 12';
     $data_products = executeQuery($data_products_sql, true);
@@ -111,9 +111,9 @@ function load_more() {
         $where[] = "P.product_discount > 0";
     }
     if ($where) {
-        $data_products_sql .= " WHERE is_delete = 0 AND " . implode(' AND ', $where);
+        $data_products_sql .= " WHERE is_delete = 0 AND product_status = 1 AND " . implode(' AND ', $where);
     } else {
-        $data_products_sql .= " WHERE is_delete = 0";
+        $data_products_sql .= " WHERE is_delete = 0 AND product_status = 1";
     }
     $data_products_sql .= ' LIMIT '. $limit;
     $data_products = executeQuery($data_products_sql, true);

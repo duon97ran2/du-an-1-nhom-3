@@ -1,5 +1,4 @@
 let cart_toal = $('#js-cart-total');
-
 $('#js-add-to-cart').on('click', function() {
     let pid = $(this).data('id');
     let login = $(this).data('login');
@@ -26,6 +25,7 @@ $('#js-add-to-cart').on('click', function() {
                 } 
                 if (response.quantity > 0) {
                     cart_toal.html(response.cart_total);
+                    cart_toal.show();
                     toastr.success("Them thanh cong " + response.quantity + " san pham")
                 } else {
                     if (quantity > 0) {
