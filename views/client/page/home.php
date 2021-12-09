@@ -93,10 +93,16 @@
                       <div class="cdt-product">
                         <div class="cdt-product__img">
                           <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
-                            <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
-                              <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
-                            </a>
+                            <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
                           </a>
+                          <?php if ($item['product_discount'] > 0) : ?>
+                          <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
+                            <div style="background-image: url('https://statics.toiday.com/frame_sale.png');background-size: 100% 100%;width: 100%;width: 100%;position: absolute;top: -4px;left: -4px;bottom: -4px;right: -4px;"></div>
+                            <div class="cdt-product__label" style="top: 0;">
+                                <span class="badge badge-primary">Giảm <?= price_minus_discount($item['product_price'], $item['product_discount']) ?></span>
+                            </div>
+                          </a>
+                          <?php endif ?>
                         </div>
                         <div class="cdt-product__info">
                           <h3>
@@ -162,10 +168,13 @@
                       <div class="cdt-product">
                         <div class="cdt-product__img">
                           <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
-                            <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
-                              <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
-                            </a>
+                            <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
                           </a>
+                          <?php if ($item['product_discount'] > 0) : ?>
+                          <div class="cdt-product__label">
+                              <span class="badge badge-primary">Giảm <?= price_minus_discount($item['product_price'], $item['product_discount']) ?></span>
+                            </div>
+                          <?php endif ?>
                         </div>
                         <div class="cdt-product__info">
                           <h3>
@@ -216,57 +225,62 @@
 
   <?php if ($lst_categories): ?>
     <?php foreach ($lst_categories as $cate): ?>
-      <section class="section-box">
-        <div class="category-container">
-          <div class="cate-box cat-prd box-pad15 bg-white margin-50">
-            <div class="cat-prd-oustanding margin-18">
-              <div class="title f20">
-                <h2><?= $cate['category_name'] ?></h2>
+      <?php if($cate['product_count'] > 0) : ?>
+        <section class="section-box">
+          <div class="category-container">
+            <div class="cate-box cat-prd box-pad15 bg-white margin-50">
+              <div class="cat-prd-oustanding margin-18">
+                <div class="title f20">
+                  <h2><?= $cate['category_name'] ?></h2>
+                </div>
+                <div class="cat-prd-tabs"><a href="<?= app_url('danh-muc/'.$cate['category_slug']) ?>">Xem tất cả</a></div>
               </div>
-              <div class="cat-prd-tabs"><a href="<?= app_url('danh-muc/'.$cate['category_slug']) ?>">Xem tất cả</a></div>
-            </div>
-            <div class="cat-prd__product">
-              <div class="row-flex">
-                <?php foreach (sp_categories($cate['category_slug']) as $key => $item) : ?>
-                    <div class="cdt-product">
-                      <div class="cdt-product__img">
-                        <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
+              <div class="cat-prd__product">
+                <div class="row-flex">
+                  <?php foreach (sp_categories($cate['category_slug']) as $key => $item) : ?>
+                      <div class="cdt-product">
+                        <div class="cdt-product__img">
                           <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
                             <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
                           </a>
-                        </a>
-                      </div>
-                      <div class="cdt-product__info">
-                        <h3>
-                          <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="cdt-product__name"><?= $item['product_name'] ?></a>
-                        </h3>
-                        <div class="cdt-product__show-promo">
                           <?php if ($item['product_discount'] > 0) : ?>
-                            <div class="progress justify-content-center">
-                              <?= discount_price($item['product_price'], $item['product_discount']) ?>
-                              <div class="progress-bar" style="width: 100%;"></div>
-                            </div>
-                            <div class="strike-price">
-                              <strike><?= priceVND($item['product_price']) ?></strike>
-                            </div>
-                          <?php else : ?>
-                            <div class="progress justify-content-center">
-                              <?= priceVND($item['product_price']) ?>
-                              <div class="progress-bar" style="width: 100%;"></div>
+                            <div class="cdt-product__label">
+                              <span class="badge badge-primary">Giảm <?= price_minus_discount($item['product_price'], $item['product_discount']) ?></span>
                             </div>
                           <?php endif ?>
-
                         </div>
-                        <div class="cdt-product__btn">
-                          <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="btn btn-primary btn-sm btn-main">XEM SẢN PHẨM</a>
+                        <div class="cdt-product__info">
+                          <h3>
+                            <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="cdt-product__name"><?= $item['product_name'] ?></a>
+                          </h3>
+                          <div class="cdt-product__show-promo">
+                            <?php if ($item['product_discount'] > 0) : ?>
+                              <div class="progress justify-content-center">
+                                <?= discount_price($item['product_price'], $item['product_discount']) ?>
+                                <div class="progress-bar" style="width: 100%;"></div>
+                              </div>
+                              <div class="strike-price">
+                                <strike><?= priceVND($item['product_price']) ?></strike>
+                              </div>
+                            <?php else : ?>
+                              <div class="progress justify-content-center">
+                                <?= priceVND($item['product_price']) ?>
+                                <div class="progress-bar" style="width: 100%;"></div>
+                              </div>
+                            <?php endif ?>
+
+                          </div>
+                          <div class="cdt-product__btn">
+                            <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="btn btn-primary btn-sm btn-main">XEM SẢN PHẨM</a>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                <?php endforeach ?>
+                  <?php endforeach ?>
+                </div>
               </div>
             </div>
-          </div>
-      </section>
+        </section>
+      <?php endif; ?>
     <?php endforeach; ?>
   <?php endif; ?>
 </main>

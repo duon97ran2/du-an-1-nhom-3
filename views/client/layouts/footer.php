@@ -73,3 +73,11 @@
 </script>
 <?php remove_session('message') ?>
 <?php endif; ?>
+
+<script>
+  if ($('#js-cart-total').data('total') <= 0) {
+    $('#js-cart-total').css('display', 'none');
+  }else {
+    $('#js-cart-total').show();
+  }
+</script>

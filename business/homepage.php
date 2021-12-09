@@ -11,7 +11,7 @@ function sp_categories($cate_slug){
             FROM products P
             LEFT JOIN categories C ON C.category_id = P.category_id
             LEFT JOIN categories CP ON CP.category_id = C.parent_id
-            WHERE CP.category_slug = '$cate_slug' AND P.is_delete = 0 LIMIT 8";
+            WHERE CP.category_slug = '$cate_slug' AND P.is_delete = 0 AND P.product_status = 1 LIMIT 8";
     return executeQuery($sql,true);
 }
 function sp_hot_view(){

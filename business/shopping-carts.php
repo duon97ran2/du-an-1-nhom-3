@@ -9,7 +9,7 @@ function shopping_carts() {
         FROM shopping_carts SP
         LEFT JOIN products P ON SP.product_id = P.product_id
         LEFT JOIN product_variants V ON V.product_variant_slug = SP.color
-        WHERE user_id = $user_id AND is_buy = 0;";
+        WHERE SP.user_id = $user_id AND SP.is_buy = 0 AND P.product_status = 1;";
     $cart_data = executeQuery($cart_sql, true);
     client_render('page/shopping-cart', [
         'cart_data' => $cart_data,

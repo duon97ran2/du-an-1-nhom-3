@@ -26,13 +26,14 @@ $('#js-add-to-cart').on('click', function() {
                 } 
                 if (response.quantity > 0) {
                     cart_toal.html(response.cart_total);
+                    cart_toal.show();
                     toastr.success("Them thanh cong " + response.quantity + " san pham")
                 } else {
                     if (quantity > 0) {
                         toastr.error("Chi duoc them toi da " + response.product_quantity + " san pham");
                     }
                 }
-                $('.js-quantity-type').val(0);
+                $('.js-quantity-type').val(1);
             }
         });
     }

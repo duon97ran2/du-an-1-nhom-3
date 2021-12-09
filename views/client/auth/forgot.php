@@ -2,7 +2,7 @@
   <div class="f-wrap">
     <div class="row">
       <ol class="ml-2 mt-0 breadcrumb bg-transparent breadcrumb-margin">
-        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="<?= app_url() ?>">Trang chủ</a></li>
         <li class="breadcrumb-item active"><a href="<?= app_url('quen-mat-khau') ?>">Quên mật khẩu</a></li>
       </ol>
     </div>

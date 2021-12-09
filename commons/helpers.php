@@ -196,4 +196,9 @@ function discount_price($price, $percent) {
     return priceVND($money);
 }
 
+function price_minus_discount($price, $percent) {
+    $new_money = $price - ($price * ($percent / 100));
+    return priceVND($price - $new_money);
+}
+
 ?>

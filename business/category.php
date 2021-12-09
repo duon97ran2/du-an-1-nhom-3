@@ -52,9 +52,9 @@ function category_page() {
         $where[] = "P.product_discount > 0";
     }
     if ($where) {
-        $data_products_sql .= " WHERE is_delete = 0 AND " . implode(' AND ', $where);
+        $data_products_sql .= " WHERE is_delete = 0 AND product_status = 1 AND " . implode(' AND ', $where);
     } else {
-        $data_products_sql .= " WHERE is_delete = 0";
+        $data_products_sql .= " WHERE is_delete = 0 AND product_status = 1";
     }
     $data_products_sql .= ' LIMIT 12';
     $data_products = executeQuery($data_products_sql, true);
@@ -111,9 +111,9 @@ function load_more() {
         $where[] = "P.product_discount > 0";
     }
     if ($where) {
-        $data_products_sql .= " WHERE is_delete = 0 AND " . implode(' AND ', $where);
+        $data_products_sql .= " WHERE is_delete = 0 AND product_status = 1 AND " . implode(' AND ', $where);
     } else {
-        $data_products_sql .= " WHERE is_delete = 0";
+        $data_products_sql .= " WHERE is_delete = 0 AND product_status = 1";
     }
     $data_products_sql .= ' LIMIT '. $limit;
     $data_products = executeQuery($data_products_sql, true);
@@ -123,11 +123,14 @@ function load_more() {
         $output .= '<div class="cdt-product">
                 <div class="cdt-product__img">
                     <a href="'.app_url('san-pham/' . $item['product_slug']).'">
-                        <a href="'.app_url('san-pham/' . $item['product_slug']).'">
                         <img src="'.asset('uploads/' . $item['product_image']).'" style=" width: 214px; height: 214px; ">
-                        </a>
-                    </a>
-                </div>
+                    </a>';
+                if ($item['product_discount'] > 0) {
+                    $output .= '<div class="cdt-product__label">
+                        <span class="badge badge-primary">Giảm '.price_minus_discount($item['product_price'], $item['product_discount']).'</span>
+                    </div>';
+                }
+                $output .= '</div>
                 <div class="cdt-product__info">
                     <h3>
                         <a href="'.app_url('san-pham/' . $item['product_slug']).'" class="cdt-product__name">'.$item['product_name'].'</a>
