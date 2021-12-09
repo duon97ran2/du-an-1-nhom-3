@@ -52,11 +52,11 @@ $color = [
             <form action="<?= admin_url('don-hang/sua-chi-tiet') ?>" method="post">
               <td class="align-middle"><?= $item['product_id'] ?></td>
               <td class="align-middle"><?= $item['product_name'] ?></td>
-              <td class="align-middle"><?= $item['price'] ?></td><input type="hidden" value="<?= $item['price'] ?>">
+              <td class="align-middle"><?= priceVND( $item['price']) ?></td><input type="hidden" value="<?= $item['price'] ?>">
               <input type="hidden" name="id" value="<?= $item['id'] ?>">
-              <td class="align-middle quantity"><input type="number"  name="quantity" min="1" class="price" value="<?= $item['quantity'] ?>" onchange="this.form.submit()"></td>
+              <td class="align-middle"><input type="number"  name="quantity" min="1" class="form-control w-100" value="<?= $item['quantity'] ?>" <?= ($order['order_status'] == 2 || $order['order_status'] == 3)?'disabled' :'' ?> onchange="this.form.submit()"></td>
               <td class="align-middle"><?= $item['color'] ?></td>
-              <td class="align-middle"><?= $item['total_price'] ?></td>
+              <td class="align-middle"><?= priceVND( $item['total_price']) ?></td>
               <?php if ($order['order_status'] == 0 || $order['order_status'] == 1) : ?>
                 <td class="align-middle"><a class="btn btn-danger btn-sm " href="<?= admin_url('don-hang/xoa-chi-tiet?id=' . $item['id']) ?>" role="button"> Xóa</a></td>
               <?php endif ?>
@@ -65,7 +65,7 @@ $color = [
         <?php endforeach; ?>
         <tr>
           <td class="text-end fw-bold" colspan="5" id="total">Tổng</td>
-          <td><?= $order['order_total'] ?></td>
+          <td><?=priceVND( $order['order_total'] ) ?></td>
         </tr>
       </tbody>
     </table>
