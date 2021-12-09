@@ -2,10 +2,10 @@ const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: listTitle,
+        labels: listTitle,// choox nafy laf lấy ra cái list ngày
         datasets: [{
             label: '# of Votes',
-            data: listData,
+            data: listData,// chỗ nàt đổ dl ads th
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

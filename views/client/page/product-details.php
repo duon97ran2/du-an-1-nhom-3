@@ -219,8 +219,7 @@
                   <?php endif ?>
                 </div>
                 <div class="comment-content" id="comment-content">
-                  <?php
-                  foreach ($comments as $c) : ?>
+                  <?php  foreach ($comments as $c) : ?>
                     <div class="c-comment " id="f-comment-root">
                       <div class="c-comment-box">
                         <div class="c-comment-box__avatar bg-transparent"><img src="<?= asset($c['avatar']) ?>" alt=""></div>
@@ -234,7 +233,7 @@
                         <div class="c-comment-box level2">
                           <div class="c-comment-box__avatar"><img src="<?= $c['avatar'] ?>" alt=""></div>
                           <div class="c-comment-box__content">
-                            <div class="c-comment-name"><?= $c['name'] ?? 'Admin' ?>
+                            <div class="c-comment-name"><?= $c['user_reply'] ?? 'Admin' ?>
                               <span class="badge badge-primary">Quản trị viên</span>
                               <div class="time"><?= date("d-m-Y", strtotime($c['created_at'])) ?></div>
                             </div>
@@ -246,15 +245,12 @@
                           <?php else : ?>
                             <p class="btn btn-default text-danger m-0">Quản trị viên sẽ sớm liên lạc với bạn </p>
                           <?php endif ?>
-
                           <div class="c-comment-status"></div>
                           </div>
                         </div>
                     </div>
                   <?php endforeach; ?>
-
                 </div>
-              
               </div>
             </div>
           </div>

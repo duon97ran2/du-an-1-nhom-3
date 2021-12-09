@@ -182,5 +182,4 @@ function discount_price($price, $percent) {
     $money = $price - ($price * ($percent / 100));
     return priceVND($money);
 }
-
 ?>

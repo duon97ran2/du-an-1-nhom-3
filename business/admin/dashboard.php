@@ -50,11 +50,9 @@ function dashboard_info()
             'count_cate' => $count_cate,
             'listDays' => $listDays,
             'listMoney' => $listMoney,
-            
-            [
-                'customize/js/dashboard.js'
-            ]
-
+        ],
+        [
+            'customize/js/dashboard.js'
         ]
     );
 }

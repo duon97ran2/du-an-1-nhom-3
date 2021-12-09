@@ -114,5 +114,5 @@
       })
       //money 
       var listTitle = <?= json_encode($listDays) ?>;
-      var listData = <?= json_encode($listMoney) ?>;
+      var listData = <?= json_encode($listMoney) ?>; // casi gif the nay
     </script>

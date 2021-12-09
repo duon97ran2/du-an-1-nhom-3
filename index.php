@@ -418,6 +418,10 @@ switch ($url) {
         require_once "./business/admin/blog.php";
         get_all_blog();
         break;
+    case 'bai-viet':
+        require_once "./business/admin/blog.php";
+        get_blog_by_slug();
+        break;
     default:
         error_page();
         break;
