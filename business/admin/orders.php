@@ -13,18 +13,36 @@ function order_index()
     $where[] = "O.order_status = $status_get";
   }
   $order_code = input_get('order_code');
+  $order_date = input_get('order_date');
   if (!empty($order_code)) {
     $where[] = "O.order_code = '$order_code'";
+  }
+  if (!empty($order_date)) {
+    $where[] = "DATE(O.order_date) = '$order_date'";
   }
   if ($where) {
     $sql .= " WHERE " . implode(' AND ', $where);
   }
+  $current_month = date('m');
+  $sql_monthly = "SELECT SUM(order_total) as total FROM orders where order_status=2 and MONTH(order_confirm_date)=$current_month";
+  $sql_daily = "SELECT SUM(order_total) as total FROM orders where order_status=2 and DATE(order_confirm_date)=CURRENT_DATE()";
+  $sql_total = "SELECT SUM(order_total) as total FROM orders where order_status=2 and DATE(order_confirm_date)=CURRENT_DATE()";
+  $sql_total = "SELECT SUM(order_total) as total FROM orders where order_status=2";
+  $sql_products = "SELECT SUM(OI.quantity) as total from order_items OI LEFT JOIN orders O on O.order_id = OI.order_id WHERE order_status=2";
+  $monthly_sales = executeQuery($sql_monthly,false);
+  $daily_sales = executeQuery($sql_daily,false);
+  $products_sales = executeQuery($sql_products,false);
+  $total_sales = executeQuery($sql_total,false);
   $orders = executeQuery($sql);
   if (empty($orders)) {
     set_session('message-errors', 'Đơn hàng không tồn tại');
   }
   admin_render('orders/index.php', [
     'orders' => $orders,
+    'daily_sales' => $daily_sales,
+    'monthly_sales' => $monthly_sales,
+    'products_sales' => $products_sales,
+    'total_sales' => $total_sales,
   ], [
     'customize/js/order/script.js'
   ]);
