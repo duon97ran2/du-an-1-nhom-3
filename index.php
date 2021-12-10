@@ -536,6 +536,7 @@ switch ($url) {
         is_maintenance();
         require_once './business/homepage.php';
         search_ajax();
+        break;
     case 'bai-viet':
         is_maintenance();
         require_once "./business/admin/blog.php";

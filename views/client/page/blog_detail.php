@@ -24,15 +24,14 @@
 </style>
 <main class="l-main">
     <div class="l-pd">
-        <div class="l-pd-header">
-            <div class="g-container">
-                <div class="row">
-                    <ol class="breadcrumb bg-transparent breadcrumb-margin">
-                        <li class="breadcrumb-item "><a href="<?= app_url() ?>" title="Trang chủ">Trang chủ</a></li>
-                        <li class="breadcrumb-item "><a href="<?= app_url('tin-tuc') ?>" title="TIN TỨC">Tin tức</a></li>
-                        <li class="breadcrumb-item active"><a href="<?= app_url('tin-tuc/' . $blogs['blog_slug']) ?>" class="text-capitalize"></a></li>
-                    </ol>
-                </div>
+
+        <div class="g-container">
+            <div class="row">
+                <ol class="breadcrumb bg-transparent breadcrumb-margin">
+                    <li class="breadcrumb-item "><a href="<?= app_url() ?>" title="Trang chủ">Trang chủ</a></li>
+                    <li class="breadcrumb-item "><a href="<?= app_url('tin-tuc') ?>" title="TIN TỨC">Tin tức</a></li>
+                    <li class="breadcrumb-item active"><a href="<?= app_url('tin-tuc/' . $blog_by_slug['blog_slug']) ?>" class="text-capitalize"><?= $blog_by_slug['blog_title'] ?></a></li>
+                </ol>
             </div>
         </div>
         <div class="detail_blog container">
