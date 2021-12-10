@@ -22,9 +22,14 @@
                 <?php foreach ($list as $item) : ?>
                   <tr>
                     <td class="align-middle"><?= $item['product_id'] ?></td>
-                    <td class="align-middle"><?= $item['product_name'] ?></td>
+                    <td class="align-middle">
+                      <div class="row">
+                        <div class="col-sm-2 hidden-xs"><img src="<?= asset('uploads/' . ($item['product_image'] )) ?>" class="img-responsive" /></div>
+                        <?= $item['product_name'] ?>
+                      </div>
+                    </td>
                     <td class="align-middle"><?= $item['product_price'] ?></td>
-                    <td class="align-middle"><?= $item['product_status'] == 1 ? 'Còn hàng' : 'Hết hàng' ?></td>
+                    <td class="align-middle"><?= $item['product_quantity'] != 0 ? 'Còn hàng' : 'Hết hàng' ?></td>
                     <td><a name="" id="" class="btn btn-primary m-0" href="xoa-yeu-thich?id=<?= $item['wishlist_id'] ?>" role="button">Xóa yêu thích</a></td>
                   </tr>
                 <?php endforeach ?>
