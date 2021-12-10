@@ -37,7 +37,7 @@
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="avatar">
-                        <label class="custom-file-label" for="avatar">Chọn hình cho sản phẩm</label>
+                        <label class="custom-file-label" for="avatar">Chọn hình ảnh</label>
                     </div>
                 </div>
                 <span class='text-danger'><?= print_errors('avatar')?></span>

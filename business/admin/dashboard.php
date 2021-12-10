@@ -28,7 +28,7 @@ function dashboard_info()
     foreach ($listDays as $d) {
         $getTotalPriceByDateQuery = "SELECT * FROM orders O join order_items Oi
                                     on O.order_id = Oi.order_id
-                                    where O.order_date  BETWEEN '$d 0:0:0' AND '$d 23:59:59'";
+                                    where O.order_status=2 AND O.order_date BETWEEN '$d 0:0:0' AND '$d 23:59:59'";
 
         $totalPrice = executeQuery($getTotalPriceByDateQuery, true);
         $totalMoneyByDay = 0;
@@ -50,11 +50,9 @@ function dashboard_info()
             'count_cate' => $count_cate,
             'listDays' => $listDays,
             'listMoney' => $listMoney,
-            
-            [
-                'customize/js/dashboard.js'
-            ]
-
+        ],
+        [
+            'customize/js/dashboard.js'
         ]
     );
 }

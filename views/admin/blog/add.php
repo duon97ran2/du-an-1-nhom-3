@@ -1,7 +1,7 @@
 <section class="content-header">
     <div class="row mb-2">
         <div class="col-sm-6">
-            <a href="<?= admin_url('banner') ?>" class="btn btn-default ml-n2">Danh sách banner</a>
+            <a href="<?= admin_url('bai-viet') ?>" class="btn btn-default ml-n2">Danh sách bài viết</a>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -20,7 +20,7 @@
     <?php remove_session('message-errors') ?>
 <?php endif; ?>
 
-<form action="<?= admin_url('bai-viet/luu-them-moi') ?>" method="post" enctype="multipart/form-data">
+<form action="<?= admin_url('bai-viet/luu-them-moi') ?>" id="quickForm" novalidate method="post" enctype="multipart/form-data">
     <div class="row">
 
         <div class="col ">
@@ -37,9 +37,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Tên bài viết<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="blog_title" placeholder="Nhập vào">
+                        <label for="blog_slug">Tên bài viết<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control data-slug blog_check_slug" id="blog_name" data-slug="#blog_slug" name="blog_title" placeholder="Nhập vào">
                     </div>
+                    <div class="form-group">
+                        <label>Tên bài viết không dấu<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control blog_check_slug" data-action="add" data-url="<?= admin_url('bai-viet/kiem-tra-slug') ?>" id="blog_slug" name="blog_slug" placeholder="Nhập vào">
+                    </div>
+
                     <div class="form-group">
                         <label>URL <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="blog_url" placeholder="Nhập vào">

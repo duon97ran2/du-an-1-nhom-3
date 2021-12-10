@@ -7,6 +7,7 @@ RewriteRule ^san-pham/(.+)$ index.php?url=thong-tin-san-pham&slug=$1 [QSA,L]
 RewriteRule ^danh-muc/(.+)$ index.php?url=danh-muc&slug=$1 [QSA,L]
 
 
+RewriteRule ^bai-viet/(.+)$ index.php?url=bai-viet&slug=$1 [QSA,L]
 RewriteCond %{REQUEST_FILENAME} !-d
 
 #remove slash / end url

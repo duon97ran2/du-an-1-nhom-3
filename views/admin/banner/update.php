@@ -1,7 +1,3 @@
-<?php
-var_dump($banner);
-?>
-
 <section class="content-header">
     <div class="row mb-2">
         <div class="col-sm-6">
@@ -17,14 +13,15 @@ var_dump($banner);
     </div>
 </section>
 
-<?php if (!empty(get_session('message-errors'))) : ?>
+<?php
+if (!empty(get_session('message-errors'))) : ?>
     <div class="alert alert-danger">
         <?= get_session('message-errors') ?>
     </div>
     <?php remove_session('message-errors') ?>
 <?php endif; ?>
 
-<form action="<?= admin_url('banner/luu-cap-nhat?banner_id=' . $banner['banner_id']) ?>" method="post" enctype="multipart/form-data">
+<form action="<?= admin_url('banner/luu-cap-nhat')?>" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col col-md-7">
             <div class="card card-default">
@@ -35,11 +32,12 @@ var_dump($banner);
                     <div class="form-group">
                         <input type="hidden" name="banner_id" value="<?= $banner['banner_id'] ?>">
                         <input type="hidden" name="banner_image_old" value="<?= $banner['banner_image'] ?>">
-                        <div class="mb-3"><img src="<?= asset('uploads/') . $banner['banner_image'] ?>" alt="" width="150"></div>
+                        <div class="mb-3"><img src="<?= asset('uploads/'.$banner['banner_image'])?>" alt="" width="150"></div>
                         <label>Ảnh banner <span class="text-danger">*</span></label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="banner_image" id="customFileImage">
                             <label class="" for="">Lựa chọn hình ảnh</label>
+                            <input type="file" class="form-control" name="banner_image" id="customFileImage">
+                            
                         </div>
                     </div>
                     <div class="form-group">
@@ -52,7 +50,7 @@ var_dump($banner);
                     </div>
 
                 </div>
-            </div>
+            </div> 
         </div>
         <div class="col col-md-5">
             <div class="card card-default">

@@ -41,6 +41,7 @@ function client_login_handle() {
     } else {
         set_session('message', 'Đăng nhập thành công');
         set_session('AUTH_ID', $user['user_id']);
+        set_session('AUTH_NAME', $user['name']);
         redirect('/');
     }
 }

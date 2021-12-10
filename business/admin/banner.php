@@ -55,8 +55,7 @@ function banner_update()
     $banner_id = $_GET['banner_id'];
     $sql = "SELECT * from banners where banner_id = $banner_id";
 
-    $banner = executeQuery($sql, true);
-    // var_dump($banner);die;
+    $banner = executeQuery($sql,false);
     admin_render('banner/update.php', [
         'page_title' => 'update banner',
         'banner' => $banner,
@@ -66,7 +65,7 @@ function banner_update()
 function banner_update_handle()
 {
     $error = [];
-    $banner_id = $_GET['banner_id'];
+    $banner_id = input_post('banner_id');
 
     $banner_name = input_post('banner_name');
     $banner_image = input_file('banner_image');
@@ -79,8 +78,8 @@ function banner_update_handle()
     $created_at = date("Y-m-d");
 
     if (empty($error)) {
-        if (empty($banner_image)) {
-            $banner_image = input_post('banner_image_old');
+        if (empty($banner_image['name'])) {
+            $banner_image = $_POST['banner_image_old'];
         } else {
             $banner_image = upload_image($banner_image, 'banner');
         }

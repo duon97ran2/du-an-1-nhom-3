@@ -15,7 +15,7 @@ function get_product_variant_by_slug($slug)
 {
     $data = [];
     $sql = "SELECT 
-                P.*, C.category_name, CP.category_id as category_parent_id, CP.category_name as category_parent_name, B.brand_name,
+                P.*, C.category_name, CP.category_id as category_parent_id, CP.category_slug,CP.category_name as category_parent_name, B.brand_name,
                 V.product_variant_name, V.product_variant_slug, V.product_variant_price, V.product_variant_discount, V.product_variant_quantity,
                 V.product_variant_image
             FROM products P

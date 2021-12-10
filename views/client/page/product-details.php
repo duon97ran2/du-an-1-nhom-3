@@ -220,8 +220,7 @@
                   <?php endif ?>
                 </div>
                 <div class="comment-content" id="comment-content">
-                  <?php
-                  foreach ($comments as $c) : ?>
+                  <?php foreach ($comments as $c) : ?>
                     <div class="c-comment " id="f-comment-root">
                       <div class="c-comment-box">
                         <div class="c-comment-box__avatar bg-transparent"><img src="<?= asset($c['avatar'] ?? 'adminlte/dist/img/avatar.png') ?>" alt=""></div>
@@ -237,7 +236,7 @@
                         <div class="c-comment-box level2">
                           <div class="c-comment-box__avatar"><img src="<?= $c['avatar'] ?>" alt=""></div>
                           <div class="c-comment-box__content">
-                            <div class="c-comment-name"><?= $c['name'] ?? 'Admin' ?>
+                            <div class="c-comment-name"><?= $c['user_reply'] ?? 'Admin' ?>
                               <span class="badge badge-primary">Quản trị viên</span>
                               <div class="time"><?= date("d-m-Y", strtotime($c['created_at'])) ?></div>
                             </div>
@@ -248,15 +247,12 @@
                           <?php else : ?>
                             <span class="btn btn-default text-danger p-0 m-0">Quản trị viên sẽ sớm liên lạc với bạn </span>
                           <?php endif ?>
-
                           <div class="c-comment-status"></div>
                           </div>
                         </div>
                     </div>
                   <?php endforeach; ?>
-
                 </div>
-              
               </div>
             </div>
           </div>
@@ -268,52 +264,48 @@
               <div class="card-body">
                 <div class="hot-js-swipper swiper-container cdt-sale-js swiper-container-initialized swiper-container-horizontal">
                   <div class="swiper-wrapper">
-
-                    <!-- foreach -->
                     <?php foreach (sp_categories($product_default['category_slug']) as $key => $item) :
                     ?>
-                      <div class="swiper-slide">
-                        <div class="cdt-product">
-                          <div class="cdt-product__img"><a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
+                      <?php if ($item['product_id'] != $product_default['product_id']) : ?>
+                        <div class="swiper-slide">
+                          <div class="cdt-product">
+                            <div class="cdt-product__img"><a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
                                 <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
                               </a>
-                            <?php if ($item['product_discount'] > 0) : ?>
-                              <div class="cdt-product__label">
-                                <span class="badge badge-primary">Giảm <?= price_minus_discount($item['product_price'], $item['product_discount']) ?></span>
-                              </div>
-                            <?php endif ?>
-                          </div>
-                          <div class="cdt-product__info">
-                            <h3>
-                              <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="cdt-product__name"><?= $item['product_name'] ?></a>
-                            </h3>
-                            <div class="cdt-product__show-promo">
                               <?php if ($item['product_discount'] > 0) : ?>
-                                <div class="progress justify-content-center">
-                                  <?= discount_price($item['product_price'], $item['product_discount']) ?>
-                                  <div class="progress-bar" style="width: 100%;"></div>
-                                </div>
-                                <div class="strike-price">
-                                  <strike><?= priceVND($item['product_price']) ?></strike>
-                                </div>
-                              <?php else : ?>
-                                <div class="progress justify-content-center">
-                                  <?= priceVND($item['product_price']) ?>
-                                  <div class="progress-bar" style="width: 100%;"></div>
+                                <div class="cdt-product__label">
+                                  <span class="badge badge-primary">Giảm <?= price_minus_discount($item['product_price'], $item['product_discount']) ?></span>
                                 </div>
                               <?php endif ?>
                             </div>
-                            <div class="cdt-product__btn">
-                              <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="btn btn-primary btn-sm btn-main">XEM SẢN PHẨM</a>
+                            <div class="cdt-product__info">
+                              <h3>
+                                <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="cdt-product__name"><?= $item['product_name'] ?></a>
+                              </h3>
+                              <div class="cdt-product__show-promo">
+                                <?php if ($item['product_discount'] > 0) : ?>
+                                  <div class="progress justify-content-center">
+                                    <?= discount_price($item['product_price'], $item['product_discount']) ?>
+                                    <div class="progress-bar" style="width: 100%;"></div>
+                                  </div>
+                                  <div class="strike-price">
+                                    <strike><?= priceVND($item['product_price']) ?></strike>
+                                  </div>
+                                <?php else : ?>
+                                  <div class="progress justify-content-center">
+                                    <?= priceVND($item['product_price']) ?>
+                                    <div class="progress-bar" style="width: 100%;"></div>
+                                  </div>
+                                <?php endif ?>
+                              </div>
+                              <div class="cdt-product__btn">
+                                <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>" class="btn btn-primary btn-sm btn-main">XEM SẢN PHẨM</a>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      <?php endif ?>
                     <?php endforeach ?>
-
-                    <!-- endforeach -->
-
-
                   </div>
                   <div class="swiper-button-next swiper-button-white"><i class="icon-angle-right"></i></div>
                   <div class="swiper-button-prev swiper-button-white"><i class="icon-angle-left"></i></div><span class="swiper-notification"></span>

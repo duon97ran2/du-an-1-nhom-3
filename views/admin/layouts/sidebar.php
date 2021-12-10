@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="<?= admin_url() ?>" class="brand-link">
+  <a href="<?= admin_url('dashboard') ?>" class="brand-link">
     <?php if (option_info('logo')) : ?>
       <img src="<?= option_info() ? asset('uploads/' . option_info('logo')) : '' ?>" class="ml-3" width="150px" height="30px">
     <?php else : ?>

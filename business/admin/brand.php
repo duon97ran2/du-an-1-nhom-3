@@ -37,7 +37,6 @@ function brand_create(){
 }
 function brand_save_add(){
     $brand_name = $_POST['brand_name'];
-    $brand_slug = $_POST['brand_slug'];
     $file = $_FILES['brand_image'];
     $brand_image='';
     if($file['size'] > 0){
@@ -49,9 +48,6 @@ function brand_save_add(){
         if (empty($brand_name)) {
             $errors['brand_name'] = 'Vui lòng nhập tên thương hiệu';
     }
-        if (empty($brand_slug)) {
-            $errors['brand_slug'] = 'Vui lòng nhập slug';
-    }
         if (empty($brand_image)) {
             $errors['brand_image'] = 'Vui lòng upload ảnh';
     }
@@ -59,9 +55,9 @@ function brand_save_add(){
     $_SESSION['errors'] = $errors;
     // tạo ra câu sql insert tài khoản mới
     $sql = "insert into brands
-                (brand_name, brand_slug, brand_image) 
+                (brand_name, brand_image) 
             values 
-                ('$brand_name', '$brand_slug', '$brand_image')";
+                ('$brand_name', '$brand_image')";
     // Thực thi câu sql với db
     if ($errors) {
         $_SESSION['message-errors'] = 'Thêm thất bại';
@@ -90,7 +86,6 @@ function brand_save_edit(){
     $oldData = executeQuery($sql, false);
     // nhận dữ liệu từ form gửi lên
     $brand_name = $_POST['brand_name'];
-    $brand_slug = $_POST['brand_slug'];
     // lưu ảnh vào thư mục public/uploads
     $file = $_FILES['brand_image'];
     $brand_image = $oldData['brand_image'];
@@ -100,15 +95,9 @@ function brand_save_edit(){
         move_uploaded_file($file['tmp_name'], './public/uploads/brands/' . $filename);
         $brand_image = "uploads/brands/" . $filename;
     }
-    $created_at = $_POST['created_at'];
-    $updated_at = $_POST['updated_at'];
-
     $errors = [];
         if (empty($brand_name)) {
             $errors['brand_name'] = 'Vui lòng nhập tên thương hiệu';
-    }
-        if (empty($brand_slug)) {
-            $errors['brand_slug'] = 'Vui lòng nhập slug';
     }
         if (empty($brand_image)) {
             $errors['brand_image'] = 'Vui lòng upload ảnh';
@@ -119,10 +108,7 @@ function brand_save_edit(){
     $sql = "update brands 
             set
                 brand_name = '$brand_name', 
-                brand_slug = '$brand_slug', 
-                brand_image = '$brand_image',
-                created_at = '$created_at',
-                updated_at = '$updated_at'
+                brand_image = '$brand_image'
             where brand_id = $brand_id";
     // Thực thi câu sql với db
     if ($errors) {

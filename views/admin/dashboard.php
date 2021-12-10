@@ -21,7 +21,7 @@
       <!-- DON HANG -->
       <section class="col-md-6 card card-danger">
         <div class="card-header">
-          <h3 class="card-title">ĐƠN HÀNG</h3>
+          <h3 class="card-title">DANH MỤC</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -41,7 +41,7 @@
     <div class="col-md-12 card card-danger">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Doanh Thu</h3>
+          <h3 class="card-title">Doanh Thu Theo Ngày</h3>
         </div>
         <div class="card-body">
           <canvas id="myChart" width="400" height="400"></canvas>
@@ -112,7 +112,6 @@
           options: donutOptions
         })
       })
-      //money 
       var listTitle = <?= json_encode($listDays) ?>;
       var listData = <?= json_encode($listMoney) ?>;
     </script>

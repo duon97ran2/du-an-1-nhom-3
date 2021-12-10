@@ -31,33 +31,27 @@
                 <div class="card-body">
                     <div class="form-group">
 
-                        <input type="hidden" name="blog_id" value="<?= $detail[0]['blog_id'] ?>">
-                        <input type="hidden" name="blog_image_old" value="<?= $detail[0]['blog_image'] ?>">
+                        <input type="hidden" name="blog_id" value="<?= $detail['blog_id'] ?>">
+                        <input type="hidden" name="blog_image_old" value="<?= $detail['blog_image'] ?>">
                         <label>Ảnh bìa<span class="text-danger">*</span></label>
-                        <img src="<?= asset('uploads/' . $detail[0]['blog_image']) ?>" alt="" width="100px">
+                        <img src="<?= asset('uploads/' . $detail['blog_image']) ?>" alt="" width="100px">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="blog_image" id="customFileImage">
                             <label class="custom-file-label" for="customFileImage">Lựa chọn hình ảnh</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Tên bài viết<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="blog_title" value="<?= $detail[0]['blog_title'] ?>">
+                        <label for="blog_slug">Tên bài viết<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control data-slug blog_check_slug" id="blog_name" data-slug="#blog_slug" name="blog_title" value="<?= $detail['blog_title'] ?>">
                     </div>
+                    <div class="form-group">
+                        <label>Tên bài viết không dấu<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control blog_check_slug" data-action="add" data-url="<?= admin_url('bai-viet/kiem-tra-slug') ?>" id="blog_slug" name="blog_slug" value="<?= $detail['blog_slug']?>">
+                    </div>
+
                     <div class="form-group">
                         <label>URL <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="blog_url" value="<?= $detail[0]['blog_url'] ?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Status</label><br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="blog_status" id="blog_status" value="1" <?= intval($detail[0]['blog_status']) == 1 ? "checked" : "" ?>>
-                            <label class="form-check-label" for="inlineRadio1">Hiển Thị</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="blog_status" id="blog_status" value="2" <?= intval($detail[0]['blog_status']) == 2 ? "checked" : "" ?>>
-                            <label class="form-check-label" for="inlineRadio2">Khóa bài viết</label>
-                        </div>
+                        <input type="text" class="form-control" name="blog_url" value="<?= $detail['blog_url'] ?>">
                     </div>
 
                 </div>
@@ -70,8 +64,19 @@
                     <h3 class="card-title">Thông tin</h3>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">Mô tả ngắn<span class="text-danger">*</span></label>
-                        <input type="text" name="short_descrition" class="form-control" value="<?= $detail[0]['short_descrition'] ?>">
+                <div class="form-group">
+                        <label for="">Status</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="blog_status" id="blog_status" value="1" <?= intval($detail['blog_status']) == 1 ? "checked" : "" ?>>
+                            <label class="form-check-label" for="inlineRadio1">Hiển Thị</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="blog_status" id="blog_status" value="2" <?= intval($detail['blog_status']) == 2 ? "checked" : "" ?>>
+                            <label class="form-check-label" for="inlineRadio2">Khóa bài viết</label>
+                        </div>
+                    </div>
+                    <div class="form-group">Mô tả ngắn<span class="text-danger mb-3">*</span></label>
+                        <textarea name="short_descrition" id="short_descrition"><?= $detail['short_descrition'] ?></textarea>
                     </div>
                 </div>
             </div>
@@ -80,7 +85,7 @@
     <div class="col">
         <div class="form-group">
             <label for="">Nôị dung</label><br>
-            <textarea name="blog_content" id="blog_content" class="form-control"><?= $detail[0]['blog_content'] ?></textarea>
+            <textarea name="blog_content" id="blog_content" class="form-control"><?= $detail['blog_content'] ?></textarea>
 
         </div>
     </div>
@@ -97,7 +102,8 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('#blog_content').summernote()
+            $('#blog_content').summernote();
+            $('#short_descrition').summernote();
         })
     </script>
 

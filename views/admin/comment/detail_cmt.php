@@ -61,7 +61,7 @@
                         </td>
                     </tr>
                 <?php endforeach; ?>
-                <!-- <script>
+                <script>
                     $('.btn_admin_rep_cmt').on('click', function() {
                         let btn_rep = $(this).parent().parent().find('.form_rep');
                         let result = $(this).parent().parent().find('.result');
@@ -76,7 +76,7 @@
                         $('#form_rep').css('display', 'none');
                         $('#result').css('display', 'block');
                     })
-                </script>  -->
+                </script> 
             </tbody>
         </table>
 
