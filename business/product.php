@@ -71,12 +71,11 @@ function product_details()
             } else {
                 if (count($product_variant) > 1) {
                     foreach ($product_variant as $variant) {
-                        if ($variant['product_variant_slug'] == $color) {
-                            $product_default = $variant;
-                            $flag = true;
-                        } else {
-                            $flag = false;
+                        if ($variant['product_variant_slug'] !== $color) {
+                            continue;
                         }
+                        $flag = true;
+                        $product_default = $variant;
                     }
                 } else {
                     $flag = false;

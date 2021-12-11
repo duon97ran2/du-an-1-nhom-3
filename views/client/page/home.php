@@ -98,10 +98,10 @@
                           <?php if ($item['product_discount'] > 0) : ?>
                           <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
                             <div style="background-image: url('https://statics.toiday.com/frame_sale.png');background-size: 100% 100%;width: 100%;width: 100%;position: absolute;top: -4px;left: -4px;bottom: -4px;right: -4px;"></div>
-                          </a>
-                          <div class="cdt-product__label" style="top: 0;">
+                            <div class="cdt-product__label" style="top: 0;">
                               <span class="badge badge-primary">Giảm <?= price_minus_discount($item['product_price'], $item['product_discount']) ?></span>
                             </div>
+                          </a>
                           <?php endif ?>
                         </div>
                         <div class="cdt-product__info">
@@ -241,9 +241,7 @@
                     <div class="cdt-product">
                       <div class="cdt-product__img">
                         <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
-                          <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
-                            <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
-                          </a>
+                          <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
                         </a>
                         <?php if ($item['product_discount'] > 0) : ?>
                           <div class="cdt-product__label">

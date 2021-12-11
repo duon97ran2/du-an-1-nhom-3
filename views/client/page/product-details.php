@@ -129,7 +129,7 @@
       <div class="g-container">
         <div class="l-pd-body__wrapper">
           <div class="l-pd-body__left">
-            <div class="card re-card st-card st-card--article js--st-card--article">
+            <div style="position: static" class="card re-card st-card st-card--article js--st-card--article">
               <h2 class="card-title">Thông tin sản phẩm <?= $product_default['product_name']; ?></h2>
               <div class="card-body">
                 <?= $product_default['product_content']; ?>
@@ -138,7 +138,7 @@
           </div>
           <?php if ($product_configuration) : ?>
             <div class="l-pd-body__right">
-              <div class="card re-card st-card">
+              <div class="card re-card st-card" style="position: sticky; top: 1rem">
                 <h2 class="card-title">Thông số kỹ thuật</h2>
                 <div class="card-body">
                   <table class="st-pd-table mb30">
@@ -269,7 +269,8 @@
                       <?php if ($item['product_id'] != $product_default['product_id']) : ?>
                         <div class="swiper-slide">
                           <div class="cdt-product">
-                            <div class="cdt-product__img"><a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
+                            <div class="cdt-product__img">
+                              <a href="<?= app_url('san-pham/' . $item['product_slug']) ?>">
                                 <img src="<?= asset('uploads/' . $item['product_image']) ?>" style=" width: 214px; height: 214px; ">
                               </a>
                               <?php if ($item['product_discount'] > 0) : ?>
