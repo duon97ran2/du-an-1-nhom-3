@@ -1,3 +1,16 @@
+<style>
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+</style>
 <section class="fs-main">
   <div class="f-wrap">
     <div class="row">
@@ -22,7 +35,7 @@
             <tr>
               <td class="align-middle">
                 <div class="row">
-                  <div class="col-sm-2 hidden-xs"><img src="<?= asset('uploads/' . ($item['product_image'] ?? $item['product_variant_image'])) ?>" class="img-responsive"/></div>
+                  <div class="col-sm-2 hidden-xs"><img src="<?= asset('uploads/' . ($item['product_variant_image'] ?? $item['product_image'])) ?>" class="img-responsive"/></div>
                   <div class="col-sm-10">
                     <h4 class="nomargin">
                       <?= $item['product_name']?>

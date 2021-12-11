@@ -44,7 +44,7 @@
                 <tr>
                     <td class="align-middle">
                       <div class="row">
-                        <div class="col-sm-2 hidden-xs"><img src="<?= asset('uploads/' . ($item['product_image'] ?? $item['product_variant_image'])) ?>" class="img-responsive"/></div>
+                        <div class="col-sm-2 hidden-xs"><img src="<?= asset('uploads/' . ($item['product_variant_image'] ?? $item['product_image'])) ?>" class="img-responsive"/></div>
                         <div class="col-sm-10">
                           <h4 class="nomargin">
                             <?= $item['product_name']?>

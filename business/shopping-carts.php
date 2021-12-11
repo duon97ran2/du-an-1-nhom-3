@@ -8,7 +8,7 @@ function shopping_carts() {
             P.product_name, P.product_image, SP.*, V.product_variant_name, V.product_variant_id, V.product_variant_image
         FROM shopping_carts SP
         LEFT JOIN products P ON SP.product_id = P.product_id
-        LEFT JOIN product_variants V ON V.product_variant_slug = SP.color
+        LEFT JOIN product_variants V ON V.product_id = P.product_id AND V.product_variant_slug = SP.color
         WHERE SP.user_id = $user_id AND SP.is_buy = 0 AND P.product_status = 1;";
     $cart_data = executeQuery($cart_sql, true);
     client_render('page/shopping-cart', [
@@ -162,7 +162,7 @@ function checkout() {
                     P.product_name, P.product_image, SP.*, V.product_variant_name, V.product_variant_id, V.product_variant_image
                 FROM shopping_carts SP
                 LEFT JOIN products P ON SP.product_id = P.product_id
-                LEFT JOIN product_variants V ON V.product_variant_slug = SP.color
+                LEFT JOIN product_variants V ON V.product_id = P.product_id AND V.product_variant_slug = SP.color
                 WHERE user_id = $user_id AND is_buy = 0 AND quantity > 0;";
     $cart_data = executeQuery($cart_data_sql, true);
 
@@ -224,7 +224,7 @@ function checkout_handle() {
                         P.product_name, P.product_price, P.product_quantity, SP.*, V.product_variant_name, V.product_variant_id, V.product_variant_quantity
                     FROM shopping_carts SP
                     LEFT JOIN products P ON SP.product_id = P.product_id
-                    LEFT JOIN product_variants V ON V.product_variant_slug = SP.color
+                    LEFT JOIN product_variants V ON V.product_id = P.product_id AND V.product_variant_slug = SP.color
                     WHERE is_buy = 0 AND user_id = $user_id AND quantity > 0;";
         $carts = executeQuery($cart_sql, true);
 
