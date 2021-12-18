@@ -29,6 +29,7 @@ $color = [
   <div class="card-header">
     <h2>Thông tin các sản phẩm trong đơn hàng <?= $order['order_code'] ?></h2>
     <h4>Trạng thái: <?= $status[$order['order_status']] ?></h4>
+    <h4>Ghi chú: <?= $order['notes']??'Không có' ?></h4>
     <?php if ($order['order_status'] == 0 || $order['order_status'] == 1) : ?>
       <a type="button" href="<?= admin_url('don-hang/them-chi-tiet?id=' . $order_id) ?>" class="btn btn-primary">Thêm sản phẩm vào đơn hàng</a><?php endif ?>
   </div>

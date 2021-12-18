@@ -14,6 +14,14 @@ $color = [
 ?>
 <section class="fs-main">
   <div class="f-wrap">
+  <div class="row">
+    
+    <ol class="ml-2 mt-0 breadcrumb bg-transparent breadcrumb-margin">
+      <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+      <li class="breadcrumb-item active"><a href="<?= app_url('thong-tin-ca-nhan')?> ">Thông tin cá nhân</a></li>
+      <li class="breadcrumb-item active"><a href="<?= app_url('thong-tin-ca-nhan/don-hang')?> ">Đơn hàng</a></li>
+    </ol>
+  </div>
     <div class="row my-5">
       <div class="col">
         <div class="well">
@@ -53,7 +61,7 @@ $color = [
                 <?php foreach ($orders as $item) : ?>
                   <tr>
                     <td class="align-middle"><?= $item['order_id'] ?></td>
-                    <td class="align-middle"><?= $item['order_code'] ?></td>
+                    <td class="align-middle"><a href="<?= app_url('thong-tin-ca-nhan/don-hang/chi-tiet-don-hang?order_id=' . $item['order_id']) ?>" class="btn btn-primary btn-sm m-0"><?= $item['order_code'] ?></a></td>
                     <td class="align-middle"> <span class="badge text-light p-3 bg-<?= $color[$item['order_status']] ?>"><?= $status[$item['order_status']] ?></span></td>
                     <td class="align-middle"><?= $item['order_total'] ?></td>
                     <td class="align-middle"><?= $item['payment_type'] ?></td>

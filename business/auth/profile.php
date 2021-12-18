@@ -132,3 +132,55 @@ function change_password()
   }
   client_render('page/password-change', []);
 }
+function user_order_items(){
+  $order_id = $_GET['order_id'];
+  $order_sql = "select * from orders where order_id = $order_id";
+  $order = executeQuery($order_sql, false);
+  $sql = "SELECT OI.*,P.product_name,P.product_image
+            FROM order_items OI 
+            LEFT JOIN products P on OI.product_id = P.product_id  
+            WHERE OI.order_id = $order_id";
+  $order_items = executeQuery($sql);
+  client_render('page/order-items', [
+    'order_items' => $order_items,
+    'order_id' => $order_id,
+    'order' => $order,
+  ], [
+    'customize/js/order/script.js'
+  ]);
+}
+function add_item()
+{
+  $cate_sql = "SELECT * FROM categories WHERE parent_id IS NOT NULL";
+  $brand_sql = "SELECT * FROM brands";
+  $categories = executeQuery($cate_sql, true);
+  $brands = executeQuery($brand_sql, true);
+  $where = [];
+  $variants_sql = "SELECT * FROM product_variants";
+  $variants = executeQuery($variants_sql);
+  $product_sql = "SELECT * FROM products P
+        LEFT JOIN categories C ON C.category_id = P.category_id
+        LEFT JOIN brands B ON B.brand_id = P.brand_id
+        WHERE P.product_status=1 AND P.is_delete=0
+        ";
+  $id = input_get('id');
+  $brand_get = input_get('brand');
+  $cate_get = input_get('category');
+  if (!empty($brand_get)) {
+    $where[] = "P.brand_id = $brand_get";
+  }
+  if (!empty($cate_get)) {
+    $where[] = "P.category_id = $cate_get";
+  }
+  if ($where) {
+    $product_sql .= " AND " . implode(' AND ', $where);
+  }
+  $products = executeQuery($product_sql);
+  client_render('page/add-item', [
+    'products' => $products,
+    'categories' => $categories,
+    'brands' => $brands,
+    'variants' => $variants,
+    'id' => $id,
+  ]);
+}

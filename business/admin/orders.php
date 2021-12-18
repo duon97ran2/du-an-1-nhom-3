@@ -29,10 +29,10 @@ function order_index()
   $sql_total = "SELECT SUM(order_total) as total FROM orders where order_status=2 and DATE(order_confirm_date)=CURRENT_DATE()";
   $sql_total = "SELECT SUM(order_total) as total FROM orders where order_status=2";
   $sql_products = "SELECT SUM(OI.quantity) as total from order_items OI LEFT JOIN orders O on O.order_id = OI.order_id WHERE order_status=2";
-  $monthly_sales = executeQuery($sql_monthly,false);
-  $daily_sales = executeQuery($sql_daily,false);
-  $products_sales = executeQuery($sql_products,false);
-  $total_sales = executeQuery($sql_total,false);
+  $monthly_sales = executeQuery($sql_monthly, false);
+  $daily_sales = executeQuery($sql_daily, false);
+  $products_sales = executeQuery($sql_products, false);
+  $total_sales = executeQuery($sql_total, false);
   $orders = executeQuery($sql);
   if (empty($orders)) {
     set_session('message-errors', 'Đơn hàng không tồn tại');
@@ -126,6 +126,13 @@ function delete_item()
   $sql_update = "UPDATE orders set  order_total = order_total - $item_price_total WHERE order_id=$order_id";
   executeQuery($sql_update);
   set_session('message', 'Sản phẩm đã được xóa khỏi đơn hàng');
+  $update_order=get_order($order_id);
+  if($update_order['order_total']==0){
+    $sql =  $sql_update = "UPDATE orders set order_status=3 WHERE order_id=$order_id";
+    executeQuery($sql);
+    remove_session('message');
+    set_session('message-errors', 'Đơn hàng đã bị hủy');
+  }
   redirect_back();
 }
 function add_item()
@@ -176,7 +183,15 @@ function save_item()
   $sql_update = "UPDATE orders set  order_total = order_total + $total WHERE order_id=$id";
   set_session('message', 'Thêm sản phẩm vào đơn hàng thành công');
   executeQuery($sql_update);
-  header('Location:' . admin_url('don-hang/chi-tiet?order_id=' . $id));
+  if (auth_info()['role'] == 'admin') {
+    header('Location:' . admin_url('don-hang/chi-tiet?order_id=' . $id));
+  } else {
+    header('Location:' . app_url('thong-tin-ca-nhan/don-hang/chi-tiet-don-hang?order_id=' . $id));
+  }
+}
+function get_order($id){
+  $sql = "select * from orders where order_id = $id";
+  return executeQuery($sql,false);
 }
 function item_update()
 {

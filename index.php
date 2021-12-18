@@ -142,6 +142,14 @@ switch ($url) {
         require_once "./business/auth/profile.php";
         user_order_index();
         break;
+    case 'thong-tin-ca-nhan/don-hang/chi-tiet-don-hang':
+        require_once "./business/auth/profile.php";
+        user_order_items();
+        break;
+    case 'thong-tin-ca-nhan/don-hang/them-chi-tiet':
+        require_once "./business/auth/profile.php";
+        add_item();
+        break;
     case 'thong-tin-ca-nhan/luu-sua':
         require_once "./business/auth/profile.php";
         profile_save();
@@ -446,7 +454,6 @@ switch ($url) {
         items_index();
         break;
     case 'cp-admin/don-hang/cap-nhat':
-        is_admin();
         require_once "./business/admin/orders.php";
         order_update();
         break;
@@ -456,17 +463,14 @@ switch ($url) {
         delete_order();
         break;
     case 'cp-admin/don-hang/xoa-chi-tiet':
-        is_admin();
         require_once "./business/admin/orders.php";
         delete_item();
         break;
     case 'cp-admin/don-hang/luu-chi-tiet':
-        is_admin();
         require_once "./business/admin/orders.php";
         save_item();
         break;
     case 'cp-admin/don-hang/sua-chi-tiet':
-        is_admin();
         require_once "./business/admin/orders.php";
         item_update();
         break;

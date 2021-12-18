@@ -31,14 +31,14 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach($cart_data as $item) : ?>
+          <?php foreach ($cart_data as $item) : ?>
             <tr>
               <td class="align-middle">
                 <div class="row">
-                  <div class="col-sm-2 hidden-xs"><img src="<?= asset('uploads/' . ($item['product_variant_image'] ?? $item['product_image'])) ?>" class="img-responsive"/></div>
+                  <div class="col-sm-2 hidden-xs"><img src="<?= asset('uploads/' . ($item['product_variant_image'] ?? $item['product_image'])) ?>" class="img-responsive" /></div>
                   <div class="col-sm-10">
                     <h4 class="nomargin">
-                      <?= $item['product_name']?>
+                      <?= $item['product_name'] ?>
                       <?= $item['product_variant_name'] ? (' - ' . $item['product_variant_name']) : '' ?>
                     </h4>
                   </div>
@@ -80,12 +80,17 @@
               <input type="text" class="form-control" value="<?= $auth_info['address'] ?? '' ?>" name="address" placeholder="Địa chỉ">
               <span class="text-danger"><?= get_session('message-errors')['address'] ?? '' ?></span>
             </div>
+            <div class="form-group">
+              <label>Ghi chú</label>
+              <textarea name="notes" id="" cols="30" rows="5" class="form-control"></textarea>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="well">
             <h5 class="mb-2">Giá tiền: <span><?= priceVND($total_price) ?></span></h5>
-            <h5 class="mb-2">Giảm giá: <span id="js-show-voucher-discount"><?= priceVND($voucher['price'] ?? 0) ?></sp></h5>
+            <h5 class="mb-2">Giảm giá: <span id="js-show-voucher-discount"><?= priceVND($voucher['price'] ?? 0) ?></sp>
+            </h5>
             <h5 class="mb-4">Tổng tiền: <span id="js-show-total-price"><?= priceVND($total_price - ($voucher['price'] ?? 0)) ?></span></h5>
             <input type="hidden" name="payment_type" value="shipcod">
             <input type="hidden" name="price" id="js-price" value="<?= $total_price ?>">

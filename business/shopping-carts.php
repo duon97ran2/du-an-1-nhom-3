@@ -187,6 +187,7 @@ function checkout_handle() {
     $address = input_post('address');
     $payment_type = input_post('payment_type');
     $price = input_post('price');
+    $notes = input_post('notes');
     $time_now = date("Y-m-d H:i:s");
     $total_price = input_post('total_price');
     $voucher = strtoupper(input_post('voucher'));
@@ -228,8 +229,8 @@ function checkout_handle() {
                     WHERE is_buy = 0 AND user_id = $user_id AND quantity > 0;";
         $carts = executeQuery($cart_sql, true);
 
-        $order_sql = "INSERT INTO orders (order_code, order_total, payment_type ,user_id, address, phone, order_date) 
-                        VALUES ('$order_code', $total_price, '$payment_type', $user_id, '$address', '$phone', '$time_now')";
+        $order_sql = "INSERT INTO orders (order_code, order_total, payment_type ,user_id, address, phone, order_date,notes) 
+                        VALUES ('$order_code', $total_price, '$payment_type', $user_id, '$address', '$phone', '$time_now','$notes')";
         $order_id = insertExecuteQueryLastID($order_sql);
             
         if ($voucher) {

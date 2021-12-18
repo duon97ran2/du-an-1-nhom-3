@@ -61,7 +61,7 @@
     
       <ol class="ml-2 mt-0 breadcrumb bg-transparent breadcrumb-margin">
         <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-        <li class="breadcrumb-item active"><a href="/">Thông tin cá nhân</a></li>
+        <li class="breadcrumb-item active"><a href="<?= app_url('thong-tin-ca-nhan')?> ">Thông tin cá nhân</a></li>
       </ol>
     </div>
     <form action="<?= app_url('thong-tin-ca-nhan/luu-sua?id=') . $user['user_id'] ?>" method="post" enctype="multipart/form-data">
